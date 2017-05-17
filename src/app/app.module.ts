@@ -10,12 +10,12 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { ToolBar, Copyright, IndexVideo } from './components/components.index';  //pages.moduls
+import { ToolBar, Copyright, IndexVideo, IndexButton } from './components/components.index';  //pages.moduls
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolBar, Copyright, IndexVideo
+    ToolBar, Copyright, IndexVideo, IndexButton
   ],
   imports: [
     BrowserModule,
