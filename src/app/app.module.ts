@@ -10,12 +10,14 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { ToolBar, Copyright, IndexVideo, IndexButton } from './components/components.index';  //pages.moduls
+import { IndexPage, FreightTransportation, LoginDialog } from './components/components.index'; 
+
+import { routes } from './app.routes';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ToolBar, Copyright, IndexVideo, IndexButton
+    AppComponent, 
+    IndexPage, FreightTransportation, LoginDialog
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,11 @@ import { ToolBar, Copyright, IndexVideo, IndexButton } from './components/compon
     HttpModule,
     RouterModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(routes)
+  ],
+  entryComponents: [
+    LoginDialog
   ],
   providers: [],
   bootstrap: [AppComponent]

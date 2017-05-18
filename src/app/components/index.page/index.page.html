@@ -1,0 +1,51 @@
+<!-- Верхняя панель  -->
+<md-toolbar color="primary" class="toolbar">
+  <a id="index" class="page-logo" href="index.html">
+    <img src="../assets/img/logo.png" alt="Logo">
+  </a>
+</md-toolbar>
+
+<!-- Фоновое видео -->
+<video autoplay loop>
+  <source src="http://appsrvtofi:51984/video/main.mp4" type='video/mp4'>
+  <source src="http://appsrvtofi:51984/video/main.webm" type='video/webm'>
+</video>
+
+
+<!-- Кнопки выбора приложения -->
+<div class="container-center">
+    <div class="container-button-center">
+        <div class="container-center-button">
+            <md-card class="card">
+                <md-card-content class="bt">
+                    <h3 class="title uppercase text-center">Грузовой перевозчик</h3>
+                    <div class="image-container">                    
+                        <img width="65" height="60" src="../../../assets/svg/gp.svg">
+                    </div>
+                    <p>Расчет себестоимости грузового перевозчика</p>
+                    <button md-raised-button class="container-btn" (click)="openDialog()"><i class="material-icons">trending_flat</i></button>
+                    <!--<a md-raised-button routerLink=".">Raised button</a>-->
+                </md-card-content>
+            </md-card>
+        </div>
+
+        <div class="container-center-button">
+            <md-card class="card">
+                <md-card-content class="bt">
+                    <h3 class="title uppercase text-center">Магистральная Ж/Д сеть</h3>
+                    <div class="image-container">
+                        <img width="60" height="48" alt="Магистральная Ж/Д сеть" src="../../../assets/svg/mzhs.svg">
+                    </div>
+                    <p>Расчет себестоимости магистральной Ж/Д сети</p>
+                    <button md-raised-button class="container-btn"><i class="material-icons">trending_flat</i></button>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</div>
+
+
+<!-- Копирайт -->
+<div>
+    <p class="copyright">{{copyright_caption}}</p>
+</div>

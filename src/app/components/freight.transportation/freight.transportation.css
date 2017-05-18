@@ -1,0 +1,12 @@
+.ftpage{
+    margin: 0;
+}
+
+/* Wrapper for above 991px */
+@media (min-width: 991px) {
+  /* 991px */
+  .wrapper {
+    margin: 10px;
+    background-color: #fff
+  }
+}

@@ -1,0 +1,28 @@
+<div class="dialogfrom">
+    <img src="../../../../assets/img/user.png">
+    <h1 md-dialog-title>Вход в систему</h1>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+        <md-input-container class="full-width"> 
+            <input mdInput placeholder="Логин пользователя:" [(ngModel)]="user.login">
+        </md-input-container>
+        <md-input-container class="full-width"> 
+            <input mdInput placeholder="Пароль:" [(ngModel)]="user.password">
+        </md-input-container>
+        <!--<h3 style="color: #c60008">{{vm.errorLabel}}</h3>-->
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <button md-button (click)="login()" md-dialog-close>Вход</button>
+        <button md-button (click)="dialogRef.close('Option 2')">Отмена</button>
+    </md-dialog-actions>
+
+<!--<h1 md-dialog-title>Dialog</h1>
+<div md-dialog-content>What would you like to do?</div>
+<div md-dialog-actions>
+<button md-button (click)="dialogRef.close('Option 1')">Option 1</button>
+<button md-button (click)="dialogRef.close('Option 2')">Option 2</button>
+</div>-->
+</div>
