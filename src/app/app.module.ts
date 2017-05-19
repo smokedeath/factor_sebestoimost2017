@@ -10,14 +10,15 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { IndexPage, FreightTransportation, LoginDialog } from './components/components.index'; 
+import { PageLogin }  from './components/pages/index';
+import { ComponentLogin } from './components/components/index';
 
 import { routes } from './app.routes';
 
 @NgModule({
-  declarations: [
-    AppComponent, 
-    IndexPage, FreightTransportation, LoginDialog
+  declarations: [AppComponent,
+                PageLogin, //Основные страницы
+                ComponentLogin // Общие компоненты
   ],
   imports: [
     BrowserModule,
@@ -27,9 +28,6 @@ import { routes } from './app.routes';
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(routes)
-  ],
-  entryComponents: [
-    LoginDialog
   ],
   providers: [],
   bootstrap: [AppComponent]

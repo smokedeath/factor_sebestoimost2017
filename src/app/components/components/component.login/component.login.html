@@ -1,0 +1,34 @@
+<div class="pricing pricing--tashi">
+    <div class="pricing__item loginbox">
+        <h1>Авторизация</h1>
+        <form #f="ngForm" novalidate>
+
+            <div class="form-group">
+                <label>Логин</label>
+                <input type="text" class="form-control" name="login" [(ngModel)]="user.login">
+            </div>
+
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="user.password">
+            </div>
+
+            <div class="form-group">
+                <label>Предприятие</label>
+                <select name="programmId" class="form-control" [(ngModel)]="user.programmId">
+                    <option *ngFor="let prog of programms" [value]="prog.value">{{prog.display}}</option>
+                </select>
+            </div>  
+
+            <div>  
+                <button class="btn btn-lg" type="button" (click)="loginEnter()"> <i class="material-icons">check</i>  Вход<span class="md-click-circle md-click-animate"                               
+                                                            style="height: 115px; width: 115px; top: -38.5px;"></span>
+                </button>
+
+                <button class="btn btn-lg" type="button" (click)="loginCancel()"> <i class="material-icons">cancel</i>  Отмена<span class="md-click-circle md-click-animate"                               
+                                                            style="height: 115px; width: 115px; top: -38.5px;"></span>
+                </button>
+            </div>
+        </form>
+   </div>
+</div>

@@ -1,0 +1,32 @@
+<div>
+    <div class="btnclose"><button md-mini-fab color="warn"><i class="icon-login"></i></button></div>
+    
+    <div class="page-quick-sidebar">  
+        <div id="feedbackform" class="nav-justified" data-id="ГП" >
+        <div class="pp"><p>Форма сбора данных об ошибках</p></div>
+        <div class="tab-content">
+            <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+                <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+                    <ul class="media-list list-items">
+
+                        <div class="form-group" style="margin:10px 0 0 10px;padding-right: 10px">
+                            <textarea  ng-model="data.userName" class="form-control" rows="1=2" placeholder="Введите имя"></textarea>
+                        </div>
+
+                        <select class="form-control input-large select2me " style="max-width: 300px ; margin: 12px 10px 0 10px "
+                                ng-options="option.name for option in data.thems track by option.id"
+                                ng-model="data.themsAvalaibleOption">
+                            <option value=""></option>
+                        </select>
+
+                        <div class="form-group" style="margin:10px 0 0 10px;padding-right: 10px">
+                            <textarea  ng-model="data.errorText" class="form-control" rows="3=6" placeholder="Введите текст ошибки"></textarea>
+                        </div>
+                        <a class="btn green "  style="width: auto;height:auto;float:right;margin: 6px 10px 0 0 " ng-click="SendErrorReport()">Отправить</a>
+                    </ul>
+                </div>
+            </div>
+        </div>    
+        </div>   
+    </div>  
+</div>

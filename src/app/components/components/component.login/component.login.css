@@ -1,0 +1,4 @@
+.loginbox {
+    -webkit-flex: 0 1 300px;
+    flex: 0 1 360px !important;
+}

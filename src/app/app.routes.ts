@@ -1,9 +1,9 @@
 import { Routes } from "@angular/router";
-import { IndexPage, FreightTransportation } from './components/components.index'; 
+import { PageLogin } from './components/pages/index'; 
 
 
 export const routes: Routes = [    
     { path: "", redirectTo: "login", pathMatch: "full" },
-    { path: "login", component: IndexPage },
-    { path: "ft", component: FreightTransportation },
+    { path: "login", component: PageLogin },
+    // { path: "ft", component: FreightTransportation },
 ]
