@@ -1,0 +1,140 @@
+<div class="wrapper">
+	<header class="page-header">
+		<nav class="navbar mega-menu" role="navigation">
+			<div class="container-fluid">
+				<div class="clearfix navbar-fixed-top">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+					        data-target=".navbar-responsive-collapse">
+						<span class="sr-only">Toggle navigation</span>
+		                    <span class="toggle-icon">
+		                        <span class="icon-bar"></span>
+		                        <span class="icon-bar"></span>
+		                        <span class="icon-bar"></span>
+		                    </span>
+					</button>
+
+					<a id="index" class="page-logo" routerLink="/index.gp" routerLinkActive="active">
+						<img src="../assets/admin/layout5/img/logo_gp_new.png" alt="Logo">
+					</a>
+					
+					<div id="headerselect" class="topbar-actions headerselect ">
+						<select class="form-control" style="max-width: 250px ; margin: 12px 10px 0 0;"
+						          ng-options="option.name for option in data.structure track by option.id"
+						          ng-model="data.structureAvalaibleOption">
+						</select>
+
+						<button ng-click="Screenshot()" type="button" class="quick-sidebar-toggler" data-toggle="collapse" style="margin:4px 10px 0 0 ;background: #0095BD">
+							<span class="sr-only">Toggle Quick Sidebar</span>
+							<i class="fa fa-question-circle"></i>
+						</button>
+
+					</div>
+				</div>
+				
+				<div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
+					<ul class="nav navbar-nav text-uppercase">
+						<li class="dropdown dropdown-fw open selected">
+							<ul class="dropdown-menu dropdown-menu-fw">
+								<li class="dropdown more-dropdown-sub">
+									<a href="javascript:;" data-close-others="true">
+										Расходные измерители
+									</a>
+									<!--<ul class="dropdown-menu">
+										<li><a ui-sref="menuItemFactRIValueGP">Фактические расходные измерители</a>
+										</li>
+										<li><a ui-sref="menuItemPlanRIValueGP">Плановые расходные измерители</a>
+										</li>
+									</ul>-->
+								</li>
+
+
+								<li class="dropdown more-dropdown-sub">
+									<a href="javascript:;" data-close-others="true">
+										Эксплуатационные показатели
+									</a>
+
+									<!--<ul class="dropdown-menu">
+										<li>
+                                            <a ui-sref="menuItemFactEkspValGP">Фактические статистические показатели</a>
+										</li>
+										<li><a ui-sref="menuItemPlanEkspValGP">Плановые статистические показатели</a>
+										</li>
+
+									</ul>-->
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+
+			</div>
+		</nav>
+	</header>
+
+	<div class="container-fluid ">
+		<div class="page-content">
+			<div ui-view class="fade-in-up">
+			</div>
+			<p class="copyright">2017 © ТОО "Научно-исследовательский институт экономики и информатизации транспорта,
+				телекоммуникаций"
+			</p>
+			<div class="modal fade" id="commonmsg" tabindex="-1" role="coordination" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title" id="fortitle"></h4>
+						</div>
+						<div class="modal-body">
+							<p id="forcommonmsg"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">Закрыть</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-login"></i></a>
+		<div class="page-quick-sidebar-wrapper">
+			<div class="page-quick-sidebar">
+				<div id="feedbackform" class="nav-justified" data-id="ГП" >
+					<ul class="nav nav-tabs nav-justified">
+						<li class="active">
+							<a href="#quick_sidebar_tab_1" data-toggle="tab">
+								Форма сбора данных об ошибках
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+							<div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+								<ul class="media-list list-items">
+
+									<div class="form-group" style="margin:10px 0 0 10px;padding-right: 10px">
+										<textarea  ng-model="data.userName" class="form-control" rows="1=2" placeholder="Введите имя"></textarea>
+									</div>
+
+									<select class="form-control input-large select2me " style="max-width: 300px ; margin: 12px 10px 0 10px "
+									        ng-options="option.name for option in data.thems track by option.id"
+									        ng-model="data.themsAvalaibleOption">
+										<option value=""></option>
+									</select>
+
+									<div class="form-group" style="margin:10px 0 0 10px;padding-right: 10px">
+										<textarea  ng-model="data.errorText" class="form-control" rows="3=6" placeholder="Введите текст ошибки"></textarea>
+									</div>
+
+									<a class="btn green "  style="width: auto;height:auto;float:right;margin: 6px 10px 0 0 " ng-click="SendErrorReport()">Отправить</a>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<a href="index.gp" class="go2top"><i class="icon-arrow-up"></i></a>-->
+	</div>
+</div>

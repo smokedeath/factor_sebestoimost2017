@@ -10,15 +10,15 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { PageLogin }  from './components/pages/index';
-import { ComponentLogin } from './components/components/index';
+import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput }  from './components/pages/pages.index';
+import { ComponentLogin, ErrorDialog, ComponentBigBatton, SinglTopMenu } from './components/components/components.index';
 
 import { routes } from './app.routes';
 
 @NgModule({
   declarations: [AppComponent,
-                PageLogin, //Основные страницы
-                ComponentLogin // Общие компоненты
+                PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, //Основные страницы
+                ComponentLogin, ErrorDialog, ComponentBigBatton, SinglTopMenu, // Общие компоненты
   ],
   imports: [
     BrowserModule,
@@ -28,6 +28,9 @@ import { routes } from './app.routes';
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(routes)
+  ],
+  entryComponents: [
+    ErrorDialog
   ],
   providers: [],
   bootstrap: [AppComponent]
