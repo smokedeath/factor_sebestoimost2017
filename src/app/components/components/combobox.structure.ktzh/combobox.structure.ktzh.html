@@ -1,0 +1,3 @@
+<select name="programmId" class="form-control" [(ngModel)]="structureId" style="max-width: 250px ; margin: 12px 10px 0 0;">
+    <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name}}</option>
+</select>

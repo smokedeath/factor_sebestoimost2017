@@ -1,0 +1,31 @@
+<header class="page-header">
+    <nav class="navbar mega-menu" role="navigation">
+        <div class="container-fluid">
+            <div class="clearfix navbar-fixed-top">
+                <a id="index" class="page-logo" routerLink="/login" routerLinkActive="active">
+                    <img src="../assets/admin/layout5/img/logo_gp_new.png" alt="Logo">
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<video autoplay loop>
+    <source src="http://appsrvtofi:51984/video/main.mp4" type='video/mp4'>
+    <source src="http://appsrvtofi:51984/video/main.webm" type='video/webm'>
+</video>
+
+<div class="pricing pricing--tashi">        
+        <component-big-batton *ngFor="let btn of bigBatton" class="{{btn.class}}" 
+                              [rlink]=btn.rlink 
+                              [name]=btn.name  
+                              [icon_type]=btn.icon_type
+                              [label]=btn.label style="height: 320px; width: 400px;">
+        </component-big-batton> 
+</div> 
+
+<div style="margin-bottom: 0px;margin-top: 80px">
+    <p class="copyright" style="color:#fff;margin-bottom: 0px">2017 © ТОО "Научно-исследовательский институт
+        экономики и информатизации транспорта, телекоммуникаций"</p>
+</div>

@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
-import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput } from './components/pages/pages.index'; 
+import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, 
+         PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz } from './components/pages/pages.index'; 
 
 export const routes: Routes = [    
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -7,5 +8,7 @@ export const routes: Routes = [
     { path: "index.gp", component: PageIndexGp },
     { path: "index.mzhs", component: PageIndexMzhs},
     { path: "gp.date.input", component: PageGpDateInput },
-    // { path: "ft", component: FreightTransportation },
+    { path: "gp.rashodstavok", component: PageGpRashodStavok },
+    { path: "gp.sebestoimosti", component: PageGpSebestoimosti },
+    { path: "gp.analiz", component: PageGpAnaliz }
 ]

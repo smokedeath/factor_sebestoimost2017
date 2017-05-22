@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
     styleUrls: ['singl.top.menu.css']
 })
 
-export class SinglTopMenu{}
+export class SinglTopMenu{ 
+    @Input() 
+    menu = [
+        {
+            name: "",
+            subname: [
+                {
+                    name: "",
+                    sref: ""
+                }
+            ]
+        }
+    ]; 
+}

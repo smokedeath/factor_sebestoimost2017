@@ -10,15 +10,20 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput }  from './components/pages/pages.index';
-import { ComponentLogin, ErrorDialog, ComponentBigBatton, SinglTopMenu } from './components/components/components.index';
+import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz,
+         PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
+import { ComponentLogin, ErrorDialog, ComponentBigBatton, 
+         SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh} from './components/components/components.index';
 
 import { routes } from './app.routes';
 
 @NgModule({
   declarations: [AppComponent,
-                PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, //Основные страницы
-                ComponentLogin, ErrorDialog, ComponentBigBatton, SinglTopMenu, // Общие компоненты
+                PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
+                PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
+
+                ComponentLogin, ErrorDialog, ComponentBigBatton, 
+                SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh// Общие компоненты
   ],
   imports: [
     BrowserModule,
