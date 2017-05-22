@@ -1,0 +1,75 @@
+<!--<div class="row bugwithmenu" ng-controller="FactRIValueGPCtrl">
+	<div class="col-md-12">
+		<div class="portlet light">
+			<div class="portlet-title">
+				<div class="caption font-dark">
+					<span class="caption-subject bold uppercase" ng-bind="$state.current.data.pageTitle"></span>
+				</div>
+				<div class="actions">
+					<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
+					</a>
+				</div>
+			</div>
+
+			<div class="portlet-body">
+				<div id='ekspval' class="row" style="padding-bottom: 20px">
+					<div class="clearfix" style="padding-bottom: 30px; padding-left: 20px;">
+						<a ng-click="generateExcell()" class="btn green hidden">Выгрузить в Excel</a>
+					</div>
+
+					<div class="col-md-3" style="max-width: 220px;height: 32px;margin-top: -3px">
+						<md-datepicker ng-model="data.currentDateAngular"></md-datepicker>
+					</div>
+
+					<div class="col-md-3" style=" padding-left: 0px; width: 320px">
+						<md-select aria-label=" " class="averagecalc" ng-model="data.typePeriodAvalaibleOption" placeholder="{{data.typePeriodAvalaibleOption.name}}">
+							<md-option ng-value="period" ng-repeat="period in data.typePeriod">{{ period.name }}</md-option>
+						</md-select>
+					</div>
+
+					<div class="col-md-3" style="width: 320px; margin-right: 20px">
+						<md-select aria-label=" " class="averagecalc" ng-model="data.stepAvalaibleOption" placeholder="{{data.stepAvalaibleOption.name}}">
+							<md-option ng-value="step" ng-repeat="step in data.stepArr">{{ step.name }}</md-option>
+						</md-select>
+					</div>
+
+					<div class="col-md-1">
+						<button  ng-click="refreshBtn()" type="button" class="btn green refresh">Обновить</button>
+					</div>
+				</div>
+
+				<div class="tabbable-custom">
+					<ul class="nav nav-tabs" id="dynamictab">
+						<li class="active">
+							<a data-target="#eksp" data-toggle="tab" ng-bind="data.titleTab">
+							</a>
+						</li>
+					</ul>
+
+					<div class="tab-content" id="tabcontent">
+						<div class="tab-pane active" id="eksp">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="portlet light" style="margin-top: 25px">
+										<div class="portlet-body">
+											<div class="row">
+												<div class="col-md-12">
+													<tree-grid tree-data="tree_data"
+													           on-select="tree_select(branch)"
+													           expand-level="1"
+													           col-defs="col_defs"
+													           expand-on="expanding_property"
+													></tree-grid>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>-->

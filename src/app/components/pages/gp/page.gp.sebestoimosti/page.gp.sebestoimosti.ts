@@ -61,7 +61,7 @@ export class PageGpSebestoimosti{
             subname: [
                 {
                     name: "Расчет фактической конкретной себестоимости",
-                    sref: ""
+                    sref: "factconcseb"
                 },
                 {
                     name: "Расчет плановой конкретной себестоимости",

@@ -1,0 +1,311 @@
+<div class="bugwithmenu" ng-controller="FactCalcKonkretSebestGPCtrl">
+	<!--Окно "Общие параметров"-->
+	<div class="row" id="choiseparams">
+		<!-- BEGIN Portlet PORTLET-->
+		<div class="portlet light">
+			<div class="portlet-title">
+				<div class="caption font-dark">
+					<span class="caption-subject bold uppercase">Общие параметры</span>
+				</div>
+			</div>
+			<div class="portlet-body form">
+				<form action="#" class="form-horizontal form-row-seperated">
+					<div class="form-body">
+						<div class="form-group">
+							<div class="row" style="margin-top:40px;margin-left:40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Поставщик услуг:
+									</label>
+								</div>
+                                <div class="col-md-3" style="width: 250px">
+                                    <button class="btn" (click)="getInitJ()"></button>
+                                </div>    
+								<!--<div class="col-md-3" style="width: 250px">
+									<md-select disabled style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" 
+                                                        ng-model="data.providerOfServicesAvalaibleOption" 
+                                                        placeholder="{{data.providerOfServicesAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrProviderOfServices">{{ element.name }}</md-option>
+									</md-select>
+								</div>-->
+
+							<!--	<div class="col-md-3" style="width: 290px">
+									<label>
+										Услуга:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select  style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.uslugaAvalaibleOption" placeholder="{{data.uslugaAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrUsluga">{{ element.name }}</md-option>
+									</md-select>
+								</div>-->
+							</div>
+
+							<!--<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Вид Себестоимости:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select disabled style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.typeOfCostAvalaibleOption" placeholder="{{data.typeOfCostAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrTypeOfCost">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Тип себестоимости перевозки груза:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.costTypeAvalaibleOption" placeholder="{{data.costTypeAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.costType">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Метод расчета:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.calcMethodAvalaibleOption" placeholder="{{data.calcMethodAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.calcMethod">{{ element.name_ru }}</md-option>
+									</md-select>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Учитывать план формирования:
+									</label>
+								</div>
+
+								<div class="col-md-3 md-checkbox" style="width: 200px">
+									<md-checkbox ng-model="data.formingPlan" aria-label="Учитывать план формирования:">
+									</md-checkbox>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Использовать расходные ставки:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.suppliesRatesAvalaibleOption" placeholder="{{data.suppliesRatesAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.suppliesRates">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Вычислять отсутствующие значения:
+									</label>
+								</div>
+
+								<div class="col-md-3 md-checkbox" style="width: 200px">
+									<md-checkbox ng-model="data.isCalcMiss" aria-label="Вычислять отсутствующие значения:">
+									</md-checkbox>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px;min-height:40px;">
+									<label>
+										Дата:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width:250px">
+									<md-datepicker ng-model="data.currentDateAngular"></md-datepicker>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Тип периода:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.typePeriodAvalaibleOption" placeholder="{{data.typePeriodAvalaibleOption.name}}">
+										<md-option ng-value="period" ng-repeat="period in data.arrTypePeriod">{{ period.name }}</md-option>
+									</md-select>
+								</div>
+							</div>-->
+						</div>
+
+						<!--<div class="form-group">
+							<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Род груза:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select ng-disabled="rodgruz" ng-init="rodgruz=false" style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.rodGruzaAvalaibleOption" placeholder="{{data.rodGruzaAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrRodGruza">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Характеристика груза:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select ng-disabled="haractergruza" ng-init="haractergruza=false" style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.haraktGruzAvalaibleOption" placeholder="{{data.haraktGruzAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrHaraktGruz">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Вид сообщения:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.vidSoobAvalaibleOption" placeholder="{{data.vidSoobAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrVidSoob">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Вид грузовой отправки:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select ng-disabled="vidgruzotpravki" ng-init="vidgruzotpravki=false" style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.vidGruzOtprAvalaibleOption" placeholder="{{data.vidGruzOtprAvalaibleOption.name}}">
+										<md-option  ng-value="element" ng-repeat="element in data.arrVidGruzOtpr">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Тип грузового вагона :
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select ng-init="tipgruzovogovagona=false" style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.typGpVagonAvalaibleOption" placeholder="{{data.typGpVagonAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrTypGpVagon">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Принадлежность вагона:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.prinadlVagonAvalaibleOption" placeholder="{{data.prinadlVagonAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrPrinadlVagon">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:10px;margin-left: 40px">
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Тип контейнера :
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select ng-disabled="kontainertyp" ng-init="kontainertyp=true" style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.typContAvalaibleOption" placeholder="{{data.typContAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrTypCont">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+
+
+								<div class="col-md-3" style="width: 290px">
+									<label>
+										Принадлежность инвентарного вагона:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select ng-disabled="prininventvagon" ng-init="prininventvagon=false"  style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.prinadlInvVagonContAvalaibleOption" placeholder="{{data.prinadlInvVagonContAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrPrinadlInvVagon">{{ element.name }}</md-option>
+									</md-select >
+								</div>
+							</div>
+
+							<div class="row" style="margin-top:10px;margin-left: 40px">	
+								<div class="col-md-3" style="width: 260px">
+									<label>
+										Принадлежность контейнера:
+									</label>
+								</div>
+
+								<div class="col-md-3" style="width: 250px">
+									<md-select ng-disabled="kontainerown" ng-init="kontainerown=true" style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.prinadlContAvalaibleOption" placeholder="{{data.prinadlContAvalaibleOption.name}}">
+										<md-option ng-value="element" ng-repeat="element in data.arrPrinadlCont">{{ element.name }}</md-option>
+									</md-select>
+								</div>
+
+								<div class="col-md-3" style="width:290px">
+									<label>
+										Производится охрана груза
+									</label>
+								</div>
+
+								<div class="col-md-3 md-checkbox" style="width: 200px">
+									<md-checkbox ng-disabled="ohranatruda" ng-init="ohranatruda=false" ng-model="data.ohrana" aria-label="Вычислять отсутствующие значения:">
+									</md-checkbox>
+								</div>
+							</div>
+						</div>-->
+
+						<!--<div class="row" style="margin-top:20px;margin-left: 40px">
+							<div class="col-md-3" style="width: 260px;padding-left: 10px;padding-right: 20px">
+								<md-input-container>
+									<label>Вес груза:</label>
+									<input ng-disabled="vesgruza" ng-init="vesgruza=false" type="number" ng-model="data.vesGruz">
+								</md-input-container>
+							</div>
+
+							<div class="col-md-3" style="width: 280px;padding-left: 0">
+								<md-input-container>
+									<label>Количество вагонов в отправке:</label>
+									<input type="number" ng-model="data.kolVagon" ng-disabled="colvagonotvravki" ng-init="colvagonotvravki=false">
+								</md-input-container>
+							</div>
+
+							<div class="col-md-3" style="width: 300px">
+								<md-input-container>
+									<label>Количество контейнеров:</label>
+									<input type="number" ng-model="data.kolKont" ng-disabled="contcount" ng-init="contcount=true">
+								</md-input-container>
+							</div> 
+						</div>-->
+                        <!--/////////////////////////////////////-->
+                        <!--/////////////////////////////////////-->
+                        <!--/////////////////////////////////////-->
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- END PORTLET-->
+	</div>
+	<!--КОНЕЦ "Выбор параметров"-->
+	<!--Окно "Выбор маршрута"(Карта)-->
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 })
 
 export class PageGpDateInput{
+    constructor(
+        private router: Router) {}
 
     menu = [
         {
@@ -31,5 +34,10 @@ export class PageGpDateInput{
             subname: []
         }
     ];
+
+    selectRout(){
+        this.router.navigate(["/gp.date.input/sap"]);
+        // routerLink="/gp.date.input/sap" routerLinkActive="active"
+    }
 
 }

@@ -12,52 +12,30 @@
 		                        <span class="icon-bar"></span>
 		                    </span>
 					</button>
-
 					<a id="index" class="page-logo" routerLink="/index.gp" routerLinkActive="active">
 						<img src="../assets/admin/layout5/img/logo_gp_new.png" alt="Logo">
-					</a>
-					
+					</a>					
 					<div id="headerselect" class="topbar-actions headerselect ">
 						<combobox-structure-ktzh></combobox-structure-ktzh>
-
 						<button ng-click="Screenshot()" type="button" class="quick-sidebar-toggler" data-toggle="collapse" style="margin:4px 10px 0 0 ;background: #0095BD">
 							<span class="sr-only">Toggle Quick Sidebar</span>
 							<i class="fa fa-question-circle"></i>
 						</button>
-
 					</div>
 				</div>
-
 				<singl-top-menu [menu]="menu"></singl-top-menu>	
-
 			</div>
 		</nav>
 	</header>
-
 	<!--//////-->
 	<div class="container-fluid ">
 		<div class="page-content">
 			<div ui-view class="fade-in-up">
+				<router-outlet></router-outlet>
 			</div>
 			<p class="copyright">2017 © ТОО "Научно-исследовательский институт экономики и информатизации транспорта,
 				телекоммуникаций"
 			</p>
-			<div class="modal fade" id="commonmsg" tabindex="-1" role="coordination" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-							<h4 class="modal-title" id="fortitle"></h4>
-						</div>
-						<div class="modal-body">
-							<p id="forcommonmsg"></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn default" data-dismiss="modal">Закрыть</button>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		
 		<error-form-date></error-form-date>
