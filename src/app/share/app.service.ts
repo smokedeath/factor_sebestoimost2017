@@ -1,31 +1,47 @@
 import { Injectable } from "@angular/core";
-import { Jsonp, URLSearchParams, Http } from "@angular/http";
-import { Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+import { Http } from "@angular/http"; 
+//Jsonp, URLSearchParams,
+// import { Headers, RequestOptions, Response } from '@angular/http';
+// import { Observable } from 'rxjs';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AppService {    
-    constructor(private jsonp: Jsonp,
-                private http: Http) {}
+    constructor(private http: Http) {}
 
     baseUrl = "http://192.168.1.20:51984/SpringCost";
 
-    
-    getPostavshikUslug(data){
-        let apiUrl = "/api/sebestoimost/gp/koncretsebest/postavshikuslug";   
+    getPostavshikUslug(data) { //Возвращяет Поставщик Услуг
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/postavshikuslug"; 
+        return this.http.post(this.baseUrl + apiUrl, data);
+    }  
+    getUsluga() {  //Возвращяет Вид себестоимости
+        let apiUrl = "/api/sebestoimost/gp/getcostkind"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }    
+    getSebistoimostVid() {  //Возвращяет список видов себестоимости (факт, план, ...)
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/vidsebectoimosti"; 
+        return this.http.get(this.baseUrl + apiUrl);    }  
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.baseUrl + apiUrl, data, options)
-                .map(response => response.json())
-                .catch(this.handleErrorObservable);
-    } 
-    
-    private handleErrorObservable (error: Response | any) {
-		console.error(error.message || error);
-		return Observable.throw(error.message || error);
-    }
+    getTypSebestPerevozkiGruzi() {  //Возвращяет Тип себестоимости перевозки груза
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/typsebestperevozkigruza"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }  
+    getMetodRascheta() {  //Возвращяет список Методов расчета
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/metodrascheta"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }  
+    getViRrahodStavki() {  //Возвращяет список Вид расходной ставки
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/vidrahodstavki"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }  
+    getGenPeriodList() {  //Тип периода
+        let apiUrl = "/api/sebestoimost/genperiodlist"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }  
+
+
+
 
 }

@@ -17,32 +17,24 @@
 									<label>
 										Поставщик услуг:
 									</label>
+								</div> 	
+								<div class="col-md-3" style="width: 250px">
+									<combobox-component [iNgModel]=data.providerOfServicesAvalaibleOption 
+									                    [structure]=data.arrProviderOfServices></combobox-component>
 								</div>
-                                <div class="col-md-3" style="width: 250px">
-                                    <button class="btn" (click)="getInitJ()"></button>
-                                </div>    
-								<!--<div class="col-md-3" style="width: 250px">
-									<md-select disabled style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" 
-                                                        ng-model="data.providerOfServicesAvalaibleOption" 
-                                                        placeholder="{{data.providerOfServicesAvalaibleOption.name}}">
-										<md-option ng-value="element" ng-repeat="element in data.arrProviderOfServices">{{ element.name }}</md-option>
-									</md-select>
-								</div>-->
-
-							<!--	<div class="col-md-3" style="width: 290px">
+								<div class="col-md-3" style="width: 290px">
 									<label>
 										Услуга:
 									</label>
 								</div>
 
 								<div class="col-md-3" style="width: 250px">
-									<md-select  style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.uslugaAvalaibleOption" placeholder="{{data.uslugaAvalaibleOption.name}}">
-										<md-option ng-value="element" ng-repeat="element in data.arrUsluga">{{ element.name }}</md-option>
-									</md-select>
-								</div>-->
+									<combobox-component [iNgModel]=data.uslugaAvalaibleOption 
+									                    [structure]=data.arrUsluga></combobox-component>
+								</div>
 							</div>
 
-							<!--<div class="row" style="margin-top:10px;margin-left: 40px">
+							<div class="row" style="margin-top:10px;margin-left: 40px">
 								<div class="col-md-3" style="width: 260px">
 									<label>
 										Вид Себестоимости:
@@ -50,9 +42,8 @@
 								</div>
 
 								<div class="col-md-3" style="width: 250px">
-									<md-select disabled style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.typeOfCostAvalaibleOption" placeholder="{{data.typeOfCostAvalaibleOption.name}}">
-										<md-option ng-value="element" ng-repeat="element in data.arrTypeOfCost">{{ element.name }}</md-option>
-									</md-select>
+									<combobox-component [iNgModel]=data.typeOfCostAvalaibleOption 
+									                    [structure]=data.arrTypeOfCost></combobox-component>
 								</div>
 
 								<div class="col-md-3" style="width:290px">
@@ -62,9 +53,8 @@
 								</div>
 
 								<div class="col-md-3" style="width: 250px">
-									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.costTypeAvalaibleOption" placeholder="{{data.costTypeAvalaibleOption.name}}">
-										<md-option ng-value="element" ng-repeat="element in data.costType">{{ element.name }}</md-option>
-									</md-select>
+									<combobox-component [iNgModel]=data.costTypeAvalaibleOption 
+									                    [structure]=data.costType></combobox-component>
 								</div>
 							</div>
 
@@ -76,9 +66,8 @@
 								</div>
 
 								<div class="col-md-3" style="width: 250px">
-									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.calcMethodAvalaibleOption" placeholder="{{data.calcMethodAvalaibleOption.name}}">
-										<md-option ng-value="element" ng-repeat="element in data.calcMethod">{{ element.name_ru }}</md-option>
-									</md-select>
+									<combobox-component [iNgModel]=data.calcMethodAvalaibleOption 
+									                    [structure]=data.calcMethod></combobox-component>
 								</div>
 
 								<div class="col-md-3" style="width:290px">
@@ -88,8 +77,10 @@
 								</div>
 
 								<div class="col-md-3 md-checkbox" style="width: 200px">
-									<md-checkbox ng-model="data.formingPlan" aria-label="Учитывать план формирования:">
-									</md-checkbox>
+									<md-checkbox [(ngModel)]="checked" name="palanForm" aria-label="Учитывать план формирования:" color="accent"></md-checkbox>
+									<label>checked: {{checked}}</label>
+									<!--<md-checkbox [(ngModel)]="data.formingPlan" aria-label="Учитывать план формирования:">
+									</md-checkbox>-->
 								</div>
 							</div>
 
@@ -101,9 +92,8 @@
 								</div>
 
 								<div class="col-md-3" style="width: 250px">
-									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.suppliesRatesAvalaibleOption" placeholder="{{data.suppliesRatesAvalaibleOption.name}}">
-										<md-option ng-value="element" ng-repeat="element in data.suppliesRates">{{ element.name }}</md-option>
-									</md-select>
+									<combobox-component [iNgModel]=data.suppliesRatesAvalaibleOption 
+									                    [structure]=data.suppliesRates></combobox-component>
 								</div>
 
 								<div class="col-md-3" style="width:290px">
@@ -113,8 +103,8 @@
 								</div>
 
 								<div class="col-md-3 md-checkbox" style="width: 200px">
-									<md-checkbox ng-model="data.isCalcMiss" aria-label="Вычислять отсутствующие значения:">
-									</md-checkbox>
+									<!--<md-checkbox [(ngModel)]="data.isCalcMiss" aria-label="Вычислять отсутствующие значения:">
+									</md-checkbox>-->
 								</div>
 							</div>
 
@@ -126,7 +116,7 @@
 								</div>
 
 								<div class="col-md-3" style="width:250px">
-									<md-datepicker ng-model="data.currentDateAngular"></md-datepicker>
+									<!--<md-datepicker [(ngModel)]="data.currentDateAngular"></md-datepicker>-->
 								</div>
 
 								<div class="col-md-3" style="width:290px">
@@ -136,11 +126,10 @@
 								</div>
 
 								<div class="col-md-3" style="width: 250px">
-									<md-select style="max-width: 220px" class="konkret" aria-label=" " md-container-class="konkretselect" ng-model="data.typePeriodAvalaibleOption" placeholder="{{data.typePeriodAvalaibleOption.name}}">
-										<md-option ng-value="period" ng-repeat="period in data.arrTypePeriod">{{ period.name }}</md-option>
-									</md-select>
+									<combobox-component [iNgModel]=data.typePeriodAvalaibleOption 
+									                    [structure]=data.arrTypePeriod></combobox-component>
 								</div>
-							</div>-->
+							</div>
 						</div>
 
 						<!--<div class="form-group">

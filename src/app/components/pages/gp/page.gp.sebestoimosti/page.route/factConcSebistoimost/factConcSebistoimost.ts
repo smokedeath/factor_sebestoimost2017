@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {AppService } from './../../../../../../share/app.service';
+import { forEach } from '@angular/router/src/utils/collection';
+import { Component, OnInit } from '@angular/core';
+import { AppService } from './../../../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
@@ -8,7 +9,7 @@ import {AppService } from './../../../../../../share/app.service';
     styleUrls: ['factConcSebistoimost.css']
 })
 
-export class FactConcSebistoimostView {
+export class FactConcSebistoimostView implements OnInit {
     constructor(private service: AppService) { }
     
     items: any;
@@ -123,10 +124,124 @@ export class FactConcSebistoimostView {
         prinadlInvVagonContAvalaibleOption: {}
     };
 
-    getInitJ(){
-        this.service.getPostavshikUslug(this.data).subscribe(
-            response => this.items = response
-        );          
-       console.log(this.items); 
-    }
+    checked = false;
+
+    ngOnInit(){
+        let items: any;
+        
+
+        //  Поставщики услуг
+        this.service.getPostavshikUslug(this.data)
+                    .subscribe(data => { 
+                        items = data.json();
+                        for (let i = 0; i<items.length; i++){
+                            this.data.arrProviderOfServices.push({                        
+                                name: items[i].name_ru,
+                                id: items[i].id
+                            });
+                        }   
+                        this.data.providerOfServicesAvalaibleOption = {
+                            id: this.data.arrProviderOfServices[0].id,
+                            name: this.data.arrProviderOfServices[0].name
+                        }       
+                    })  
+
+        // Услуга
+        this.service.getUsluga()
+                    .subscribe(data => {
+                        items = data.json();
+                        for (let i = 0; i<items.length; i++){
+                            this.data.arrUsluga.push({                        
+                                name: items[i].name_ru,
+                                id: items[i].id
+                            });
+                        }   
+                        this.data.uslugaAvalaibleOption = {
+                            id: this.data.arrProviderOfServices[0].id,
+                            name: this.data.arrProviderOfServices[0].name
+                        }  
+                    });
+        // Вид себестоимости
+        this.service.getSebistoimostVid()
+                    .subscribe(data => {
+                        items = data.json();
+                        for (let i = 0; i<items.length; i++){
+                            this.data.arrTypeOfCost.push({                        
+                                name: items[i].name_ru,
+                                id: items[i].id
+                            });
+                        }   
+                        this.data.typeOfCostAvalaibleOption = {
+                            id: this.data.arrTypeOfCost[0].id,
+                            name: this.data.arrTypeOfCost[0].name
+                        }  
+                    });
+        // Тип себестоимости перевозки груза  
+        this.service.getTypSebestPerevozkiGruzi()
+                    .subscribe(data => {
+                        items = data.json();
+                        for (let i = 0; i<items.length; i++){
+                            this.data.costType.push({                        
+                                name: items[i].name_ru,
+                                id: items[i].id
+                            });
+                        }   
+                        this.data.costTypeAvalaibleOption = {
+                            id: this.data.costType[0].id,
+                            name: this.data.costType[0].name
+                        }  
+                    });
+        //Метод Расчета(Поставщики)
+        this.service.getMetodRascheta()
+                    .subscribe(data => {
+                        items = data.json();
+                        for (let i = 0; i<items.length; i++){
+                            this.data.calcMethod.push({                        
+                                name: items[i].name_ru,
+                                id: items[i].id
+                            });
+                        }   
+                        this.data.calcMethodAvalaibleOption = {
+                            id: this.data.calcMethod[0].id,
+                            name: this.data.calcMethod[0].name
+                        }  
+                    });
+        //Использовать расходные ставки  
+        this.service.getViRrahodStavki()
+                    .subscribe(data => {
+                        items = data.json();
+                        for (let i = 0; i<items.length; i++){
+                            this.data.suppliesRates.push({                        
+                                name: items[i].name_ru,
+                                id: items[i].id
+                            });
+                        }   
+                        this.data.suppliesRatesAvalaibleOption = {
+                            id: this.data.suppliesRates[0].id,
+                            name: this.data.suppliesRates[0].name
+                        }  
+                    });
+        //Тип периода
+        this.service.getGenPeriodList()
+                    .subscribe(data => {
+                        items = data.json();
+                        for (let i = 0; i<items.length; i++){
+                            this.data.arrTypePeriod.push({                        
+                                name: items[i].name_ru,
+                                id: items[i].id
+                            });
+                        }   
+                        this.data.typePeriodAvalaibleOption = {
+                            id: this.data.arrTypePeriod[0].id,
+                            name: this.data.arrTypePeriod[0].name
+                        }  
+                    });
+
+
+
+
+
+
+    }     
+
 }
