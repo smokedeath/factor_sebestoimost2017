@@ -6,7 +6,7 @@ import { SelectModule } from 'angular2-select';
 
 //Angular Material imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -36,6 +36,7 @@ import { AppService } from './share/app.service';
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MdNativeDateModule,
     JsonpModule,
     AppRoutingModule,
     SelectModule

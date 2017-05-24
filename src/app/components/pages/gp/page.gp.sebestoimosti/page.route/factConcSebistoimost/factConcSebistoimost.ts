@@ -12,7 +12,22 @@ import { AppService } from './../../../../../../share/app.service';
 export class FactConcSebistoimostView implements OnInit {
     constructor(private service: AppService) { }
     
-    items: any;
+    dateInJson: any;
+    vesgruza : boolean; 
+    colvagonotvravki: boolean;
+    contcount : boolean;
+    ohranatruda : boolean;    
+    showprogressmap : boolean;   
+    koncretcalc : boolean;   
+
+    distance: number;
+
+    selected = [];
+    items = [];
+    selectedOperation = [];
+    arrUchastki = [];
+
+
 
     data = {
         selectedOperation: [],
@@ -71,7 +86,7 @@ export class FactConcSebistoimostView implements OnInit {
         /* Вид грузовой отправки */
         vidGruzOtpr: 1017,
         arrVidGruzOtpr: [],
-        vidGruzOtprAvalaibleOption: [],
+        vidGruzOtprAvalaibleOption: {},
         /* Тип грузового вагона */
         typGpVagon: 1007,
         arrTypGpVagon: [],
@@ -127,17 +142,20 @@ export class FactConcSebistoimostView implements OnInit {
     checked = false;
 
     ngOnInit(){
-        let items: any;
-        
+        let dateInJson: any;
+        this.vesgruza = false;
+        this.colvagonotvravki = false;
+        this.contcount = true;
+        this.ohranatruda = false;
 
         //  Поставщики услуг
-        this.service.getPostavshikUslug(this.data)
+        this.service.postPostavshikUslug(this.data)
                     .subscribe(data => { 
-                        items = data.json();
-                        for (let i = 0; i<items.length; i++){
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
                             this.data.arrProviderOfServices.push({                        
-                                name: items[i].name_ru,
-                                id: items[i].id
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
                             });
                         }   
                         this.data.providerOfServicesAvalaibleOption = {
@@ -149,11 +167,11 @@ export class FactConcSebistoimostView implements OnInit {
         // Услуга
         this.service.getUsluga()
                     .subscribe(data => {
-                        items = data.json();
-                        for (let i = 0; i<items.length; i++){
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
                             this.data.arrUsluga.push({                        
-                                name: items[i].name_ru,
-                                id: items[i].id
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
                             });
                         }   
                         this.data.uslugaAvalaibleOption = {
@@ -164,11 +182,11 @@ export class FactConcSebistoimostView implements OnInit {
         // Вид себестоимости
         this.service.getSebistoimostVid()
                     .subscribe(data => {
-                        items = data.json();
-                        for (let i = 0; i<items.length; i++){
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
                             this.data.arrTypeOfCost.push({                        
-                                name: items[i].name_ru,
-                                id: items[i].id
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
                             });
                         }   
                         this.data.typeOfCostAvalaibleOption = {
@@ -179,11 +197,11 @@ export class FactConcSebistoimostView implements OnInit {
         // Тип себестоимости перевозки груза  
         this.service.getTypSebestPerevozkiGruzi()
                     .subscribe(data => {
-                        items = data.json();
-                        for (let i = 0; i<items.length; i++){
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
                             this.data.costType.push({                        
-                                name: items[i].name_ru,
-                                id: items[i].id
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
                             });
                         }   
                         this.data.costTypeAvalaibleOption = {
@@ -194,11 +212,11 @@ export class FactConcSebistoimostView implements OnInit {
         //Метод Расчета(Поставщики)
         this.service.getMetodRascheta()
                     .subscribe(data => {
-                        items = data.json();
-                        for (let i = 0; i<items.length; i++){
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
                             this.data.calcMethod.push({                        
-                                name: items[i].name_ru,
-                                id: items[i].id
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
                             });
                         }   
                         this.data.calcMethodAvalaibleOption = {
@@ -209,11 +227,11 @@ export class FactConcSebistoimostView implements OnInit {
         //Использовать расходные ставки  
         this.service.getViRrahodStavki()
                     .subscribe(data => {
-                        items = data.json();
-                        for (let i = 0; i<items.length; i++){
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
                             this.data.suppliesRates.push({                        
-                                name: items[i].name_ru,
-                                id: items[i].id
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
                             });
                         }   
                         this.data.suppliesRatesAvalaibleOption = {
@@ -224,11 +242,11 @@ export class FactConcSebistoimostView implements OnInit {
         //Тип периода
         this.service.getGenPeriodList()
                     .subscribe(data => {
-                        items = data.json();
-                        for (let i = 0; i<items.length; i++){
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
                             this.data.arrTypePeriod.push({                        
-                                name: items[i].name_ru,
-                                id: items[i].id
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
                             });
                         }   
                         this.data.typePeriodAvalaibleOption = {
@@ -236,12 +254,208 @@ export class FactConcSebistoimostView implements OnInit {
                             name: this.data.arrTypePeriod[0].name
                         }  
                     });
+        //Род груза
+        this.service.getRodgruza()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrRodGruza.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.rodGruzaAvalaibleOption = {
+                            id: this.data.arrRodGruza[0].id,
+                            name: this.data.arrRodGruza[0].name
+                        }  
+                    });
+        //Характеристика груза
+        this.service.getHarakteristikaGruza()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrHaraktGruz.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.haraktGruzAvalaibleOption = {
+                            id: this.data.arrHaraktGruz[0].id,
+                            name: this.data.arrHaraktGruz[0].name
+                        }  
+                    }); 
+        //Вид сообщения
+        this.service.getVidsoobsheniya()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrVidSoob.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.vidSoobAvalaibleOption = {
+                            id: this.data.arrVidSoob[0].id,
+                            name: this.data.arrVidSoob[0].name
+                        }  
+                    });
+        // Вид грузовой отправки
+        this.service.getVidGruzotpravki()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrVidGruzOtpr.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.vidGruzOtprAvalaibleOption = {
+                            id: this.data.arrVidGruzOtpr[0].id,
+                            name: this.data.arrVidGruzOtpr[0].name
+                        }  
+                    });
+        // Тип грузового вагона
+        this.service.getTypGruzVagon()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrTypGpVagon.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.typGpVagonAvalaibleOption = {
+                            id: this.data.arrTypGpVagon[0].id,
+                            name: this.data.arrTypGpVagon[0].name
+                        }  
+                    });
+        // Принадлежность вагона
+        this.service.getPrinadlezhnostVagona()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrPrinadlVagon.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.prinadlVagonAvalaibleOption = {
+                            id: this.data.arrPrinadlVagon[0].id,
+                            name: this.data.arrPrinadlVagon[0].name
+                        }  
+                    });
+        // Тип контейнера
+        this.service.getTypKonteinera()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrTypCont.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.typContAvalaibleOption = {
+                            id: this.data.arrTypCont[0].id,
+                            name: this.data.arrTypCont[0].name
+                        }  
+                    });
+        // Возвращяет список Принадлежность инвентарного вагона
+        this.service.getPrinadlezhnostInventarnogoVagona()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrPrinadlInvVagon.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.prinadlInvVagonContAvalaibleOption = {
+                            id: this.data.arrPrinadlInvVagon[0].id,
+                            name: this.data.arrPrinadlInvVagon[0].name
+                        }  
+                    });
+        // Принадлежность контейнера
+        this.service.getPrinadlezhnostKonteinera()
+                    .subscribe(data => {
+                        dateInJson = data.json();
+                        for (let i = 0; i<dateInJson.length; i++){
+                            this.data.arrPrinadlCont.push({                        
+                                name: dateInJson[i].name_ru,
+                                id: dateInJson[i].id
+                            });
+                        }   
+                        this.data.prinadlContAvalaibleOption = {
+                            id: this.data.arrPrinadlCont[0].id,
+                            name: this.data.arrPrinadlCont[0].name
+                        }  
+                    });
+        // Данные по маршруту          
+        // this.service.postPathMarshrut(this.data)
+        //             .subscribe(data => {                         
+        //                 dateInJson = data.json();
+        //                 this.showprogressmap = false;
+        //                 this.koncretcalc = false;
+                        
+        //                 this.distance = 0;//accounting.formatNumber(response.data.distance, 2, " ");
+
+                        
+
+
+        //             })  
+    }    
+
+    isChecked(){
+        return this.selected.length === this.items.length;
+    } 
+
+    isIndeterminate(){
+        return (this.selected.length !== 0 &&
+        this.selected.length !== this.items.length);
+    }
+
+    toggleAll(arr: any[]){
+        if (this.selected.length === this.items.length) {
+            this.selected = [];
+        } else if (this.selected.length === 0 || this.selected.length > 0) {
+            this.selected = this.items.slice(0);
+        }
+    }
+
+    editStMarshrut(index, item){
+        //
+    }
+    
+    genExcell(){
+        // var data = {fileName: $scope.excellFileName};
+        // var $iframe,
+        //     iframe_doc,
+        //     iframe_html;
+
+        // if (($iframe = $('#download_iframe')).length === 0) {
+        //     $iframe = $("<iframe id='download_iframe'" +
+        //         " style='display: none' src='about:blank'></iframe>"
+        //     ).appendTo("body");
+        // }
+
+        // iframe_doc = $iframe[0].contentWindow || $iframe[0].contentDocument;
+        // if (iframe_doc.document) {
+        //     iframe_doc = iframe_doc.document;
+        // }
+
+        // iframe_html = "<html><head></head><body><form method='GET' action='"+RELIZADDRES+"/api/sebestoimost/getfile'>";
 
 
 
+        // Object.keys(data).forEach(function (key) {
+        //     iframe_html += "<input type='hidden' name='" + key + "' value='" + data[key] + "'>";
 
+        // });
 
+        // iframe_html += "</form></body></html>";
 
-    }     
+        // iframe_doc.open();
+        // iframe_doc.write(iframe_html);
+        // $(iframe_doc).find('form').submit();
+    }  
 
 }

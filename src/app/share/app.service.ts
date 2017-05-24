@@ -12,7 +12,7 @@ export class AppService {
 
     baseUrl = "http://192.168.1.20:51984/SpringCost";
 
-    getPostavshikUslug(data) { //Возвращяет Поставщик Услуг
+    postPostavshikUslug(data) { //Возвращяет Поставщик Услуг
         let apiUrl = "/api/sebestoimost/gp/koncretsebest/postavshikuslug"; 
         return this.http.post(this.baseUrl + apiUrl, data);
     }  
@@ -39,7 +39,49 @@ export class AppService {
     getGenPeriodList() {  //Тип периода
         let apiUrl = "/api/sebestoimost/genperiodlist"; 
         return this.http.get(this.baseUrl + apiUrl);
+    } 
+    getRodgruza() {  //Род груза
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/rodgruza"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }   
+    getHarakteristikaGruza() {  //Характеристика груза
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/harakteristikagruza"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    } 
+    getVidsoobsheniya() {  //Вид сообщения
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/vidsoobsheniya"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }   
+    getVidGruzotpravki() {  // Вид грузовой отправки
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/vidgruzotpravki"; 
+        return this.http.get(this.baseUrl + apiUrl);
     }  
+    getTypGruzVagon() {  // Тип грузового вагона
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/typgruzvagon"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    } 
+    getPrinadlezhnostVagona() {  // Принадлежность вагона
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/prinadlezhnostvagona"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    } 
+    getTypKonteinera() {  // Тип контейнера
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/typkonteinera"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    } 
+    getPrinadlezhnostInventarnogoVagona() {  // Возвращяет список Принадлежность инвентарного вагона
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/prinadlezhnostinventarnogovagona"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    }  
+    getPrinadlezhnostKonteinera() {  // Принадлежность контейнера
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/prinadlezhnostkonteinera"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    } 
+
+    postPathMarshrut(data) { // Данные по маршруту
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/getpathmarshrut"; 
+        return this.http.post(this.baseUrl + apiUrl, data);
+    } 
+     
 
 
 
