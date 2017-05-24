@@ -1,3 +1,5 @@
+// 404
+export * from './not-found/not-found';
 // Грузоперевозки
 export * from './page.login/page.login';
 export * from './gp/page.index.gp/page.index.gp';

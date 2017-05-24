@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -7,19 +8,20 @@ import { Component } from '@angular/core';
     styleUrls: ['page.gp.rashodstavok.css']
 })
 
-export class PageGpRashodStavok{
-    
+export class PageGpRashodStavok implements OnInit{          
+    constructor(private router: Router) {} 
+
     menu = [
         {
             name: "Алгоритмы отнесения",
             subname: [
                 {
                     name: "Деление на зависящие и условно-постоянные части",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Расчет полных расходов по расходным измерителям",
-                    sref: ""
+                    sref: "notfound"
                 }
             ]
         },
@@ -28,11 +30,11 @@ export class PageGpRashodStavok{
             subname: [
                 {
                     name: "Расчет зависящих и условно-постоянных расходных ставок",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Расчет полных расходных ставок",
-                    sref: ""
+                    sref: "notfound"
                 }
             ]
         },
@@ -41,14 +43,18 @@ export class PageGpRashodStavok{
             subname: [
                 {
                     name: "Расчет зависящих и условно-постоянных расходных ставок",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Расчет полных расходных ставок",
-                    sref: ""
+                    sref: "notfound"
                 }
             ]
         }
     ]; 
+
+    ngOnInit(){
+        this.router.navigate(['gp.rashodstavok/notfound']);
+    }
 
 }

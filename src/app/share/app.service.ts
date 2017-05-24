@@ -76,9 +76,12 @@ export class AppService {
         let apiUrl = "/api/sebestoimost/gp/koncretsebest/prinadlezhnostkonteinera"; 
         return this.http.get(this.baseUrl + apiUrl);
     } 
-
-    postPathMarshrut(data) { // Данные по маршруту
+    postPathMarshrut(data) { // Данные по маршруту   !!!!!!  НЕ РАБОТАЕТ !!!!!
         let apiUrl = "/api/sebestoimost/gp/koncretsebest/getpathmarshrut"; 
+        return this.http.post(this.baseUrl + apiUrl, data);
+    } 
+    postLoadStations(data) { // Загружает список раздельных пунктов для указания маршрута в ГП 
+        let apiUrl = "/api/sebestoimost/gp/koncretsebest/loadStations"; 
         return this.http.post(this.baseUrl + apiUrl, data);
     } 
      

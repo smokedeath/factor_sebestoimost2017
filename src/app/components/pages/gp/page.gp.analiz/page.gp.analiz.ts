@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
     styleUrls: ['page.gp.analiz.css']
 })
 
-export class PageGpAnaliz{
+export class PageGpAnaliz implements OnInit{
+    constructor(private router: Router) {}
     
     menu = [
         {
@@ -19,6 +21,10 @@ export class PageGpAnaliz{
             subname: []
         }
     ];
+
+    ngOnInit(){
+        this.router.navigate(["gp.analiz/notfound"]);
+    }  
 
 
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -7,22 +8,24 @@ import { Component } from '@angular/core';
     styleUrls: ['page.gp.sebestoimosti.css']
 })
 
-export class PageGpSebestoimosti{    
+export class PageGpSebestoimosti implements OnInit{       
+    constructor(private router: Router) {} 
+
     menu = [
         {
             name: "Исходные данные",
             subname: [
                 {
                     name: "Расходы по номенклатуре",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Расходные измерители",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Эксплуатационные показатели",
-                    sref: ""
+                    sref: "notfound"
                 }
             ]
         },
@@ -31,15 +34,15 @@ export class PageGpSebestoimosti{
             subname: [
                 {
                     name: "Отнесение статей расходов по РИ",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Расходы по расходным измерителям",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Расходные ставки",
-                    sref: ""
+                    sref: "notfound"
                 }
             ]
         },
@@ -48,11 +51,11 @@ export class PageGpSebestoimosti{
             subname: [
                 {
                     name: "Расчет фактической средней себестоимости",
-                    sref: ""
+                    sref: "notfound"
                 },
                 {
                     name: "Расчет плановой средней себестоимости",
-                    sref: ""
+                    sref: "notfound"
                 }
             ]
         },
@@ -65,10 +68,14 @@ export class PageGpSebestoimosti{
                 },
                 {
                     name: "Расчет плановой конкретной себестоимости",
-                    sref: ""
+                    sref: "notfound"
                 }
             ]
         }
-    ]; 
+    ];
+
+    ngOnInit(){
+        this.router.navigate(['gp.sebestoimosti/factconcseb']);
+    } 
 
 }

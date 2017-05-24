@@ -5,7 +5,7 @@
 				<div class="portlet light">
 					<div class="portlet-title">
 						<div class="caption font-dark">
-							<span class="caption-subject bold uppercase">ОБЩИЕ ПАРАМЕТРЫ</span>
+							<span class="caption-subject bold uppercase">ОБЩИЕ ПАРАМЕТРЫ (Расчет фактической конкретной себестоимости)</span>
 						</div>
 					</div>
 					<div class="portlet-body form">
@@ -293,7 +293,7 @@
 					<div class="portlet light">
 						<div class="portlet-title">
 							<div class="caption font-dark">
-								<span class="caption-subject bold uppercase">Выбор маршрута</span>
+								<span class="caption-subject bold uppercase">Выбор маршрута (Расчет фактической конкретной себестоимости)</span>
 							</div>
 							<div class="actions">
 								<!--<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
@@ -317,41 +317,54 @@
 									</button>
 								</div>
 
-								<div class="col-md-7" style="width: 870px;padding-top: 8px;padding-right: 0px;">
+								<div class="col-md-8" style="width: 870px;padding-top: 8px;padding-right: 0px;">
+									<div class="col-md-4">
+										<combobox-component [iNgModel]=data.startStationAvalaibleOption 
+															[structure]=data.startStation></combobox-component>
+										<span class="fa fa-arrow-circle-right"></span>
+									</div>
+									<div class="col-md-4">
+										<combobox-component [iNgModel]=data.middleStationAvalaibleOption 
+															[structure]=data.startStation></combobox-component>
+										<span class="fa fa-arrow-circle-right"></span>
+									</div>
+									<div class="col-md-4">
+										<combobox-component [iNgModel]=data.finishStationAvalaibleOption 
+															[structure]=data.startStation></combobox-component>					
+										<span class="fa fa-arrow-circle-right"></span>
+									</div>
 									<!--<select class="form-control input-large select2me" style="max-width: 270px;"
 											ng-options="option.name for option in data.startStation track by option.id"
 											ng-model="data.startStationAvalaibleOption"
 											data-placeholder="Выберите станцию отправления">
 										<option value=""></option>
 									</select>-->
-									<!--<span class="fa fa-arrow-circle-right"></span>
-									<select class="form-control input-large select2me" style="max-width: 270px;"
+									<!--<select class="form-control input-large select2me" style="max-width: 270px;"
 											ng-options="option.name for option in data.startStation track by option.id"
 											ng-model="data.middleStationAvalaibleOption"
 											data-placeholder="Выберите промежуточную станцию">
 										<option value=""></option>
-									</select>
-									<span class="fa fa-arrow-circle-right"></span>
-									<select class="form-control input-large select2me" style="max-width: 270px;"
+									</select>-->									
+									<!--<select class="form-control input-large select2me" style="max-width: 270px;"
 											ng-options="option.name for option in data.startStation track by option.id"
 											ng-model="data.finishStationAvalaibleOption"
 											data-placeholder="Выберите станцию назначения">
 										<option value=""></option>
 									</select>-->
 								</div>
-								<div class="col-md-3" style="width: 350px;padding-left: 0px;">
-									<!--<div class="col-md-2">
-										<button ng-disabled="searchmap" ng-init="searchmap=true" type="button" class="btn green" ng-click="btnSearch()">
-											<img src="img/magnifying-glass.png" width="32" height="32">
+								<div class="col-md-2" style="width: 350px;padding-left: 0px;">
+									<div class="col-md-2">
+										<button [disabled]="searchmap" type="button" class="btn green" ng-click="btnSearch()">
+											<img src="./../../../../../../../assets/img/magnifying-glass.png" width="32" height="32">
 										</button>
 									</div>
 
 									<div class="col-md-10" style="display:-webkit-box;padding-top: 9px; padding-left: 40px">
 										<a style="text-decoration: none; cursor:default; font-size: 18px">Длина маршрута (км):
 											<h4 style="margin:3px 0 0 5px "><span class="label label-warning large"
-																				ng-bind="distance" ng-init="distance=0"></span></h4>
+																				[innerHtml]="distance"></span></h4>
 										</a>
-									</div>-->
+									</div>
 								</div>
 							</div>
 							<div class="row">
@@ -363,9 +376,9 @@
 											</div>
 										</div>
 										<div class="portlet-body">
-											<!--<md-progress-linear md-mode="indeterminate" ng-show="showprogressmap" ng-init="showprogressmap=false"></md-progress-linear>
+											<!--<md-progress-linear md-mode="indeterminate" ng-show="showprogressmap"></md-progress-linear>-->
 											<div id="map" style="margin-top: 5px;">
-											</div>-->
+											</div>
 										</div>
 									</div>
 								</div>
@@ -380,7 +393,7 @@
 					<div class="portlet light">
 						<div class="portlet-title">
 							<div class="caption font-dark">
-								<span class="caption-subject bold uppercase">Выбор параметров</span>
+								<span class="caption-subject bold uppercase">Выбор параметров (Расчет фактической конкретной себестоимости)</span>
 							</div>
 							<div class="actions">
 								<!--<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"></a>-->
@@ -654,7 +667,7 @@
 					<div class="portlet light">
 						<div class="portlet-title">
 							<div class="caption font-dark">
-								<span class="caption-subject bold uppercase">Результаты расчета</span>
+								<span class="caption-subject bold uppercase">Результаты расчета (Расчет фактической конкретной себестоимости)</span>
 							</div>
 							<div class="actions">
 								<a class="btn green" (click)="genExcell()">Экспортировать в Excel</a>

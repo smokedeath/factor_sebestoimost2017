@@ -18,7 +18,8 @@ export class FactConcSebistoimostView implements OnInit {
     contcount : boolean;
     ohranatruda : boolean;    
     showprogressmap : boolean;   
-    koncretcalc : boolean;   
+    koncretcalc : boolean;       
+    searchmap: boolean;
 
     distance: number;
 
@@ -147,6 +148,9 @@ export class FactConcSebistoimostView implements OnInit {
         this.colvagonotvravki = false;
         this.contcount = true;
         this.ohranatruda = false;
+        this.searchmap = true
+        this.distance = 0;
+        this.showprogressmap = false;
 
         //  Поставщики услуг
         this.service.postPostavshikUslug(this.data)
@@ -389,6 +393,25 @@ export class FactConcSebistoimostView implements OnInit {
                             name: this.data.arrPrinadlCont[0].name
                         }  
                     });
+        // Загружает список раздельных пунктов для указания маршрута в ГП 
+        // this.service.postLoadStations(this.data)
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrPrinadlCont.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.prinadlContAvalaibleOption = {
+        //                     id: this.data.arrPrinadlCont[0].id,
+        //                     name: this.data.arrPrinadlCont[0].name
+        //                 }  
+                        
+        //             });
+
+
         // Данные по маршруту          
         // this.service.postPathMarshrut(this.data)
         //             .subscribe(data => {                         

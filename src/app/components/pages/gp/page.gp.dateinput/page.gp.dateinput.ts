@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router} from "@angular/router";
 
 @Component({
@@ -8,9 +8,8 @@ import { Router} from "@angular/router";
     styleUrls: ['page.gp.dateinput.css']
 })
 
-export class PageGpDateInput{
-    constructor(
-        private router: Router) {}
+export class PageGpDateInput implements OnInit{
+    constructor(private router: Router) {}
 
     menu = [
         {
@@ -34,6 +33,10 @@ export class PageGpDateInput{
             subname: []
         }
     ];
+
+    ngOnInit(){
+        this.router.navigate(["gp.date.input/notfound"]);
+    }   
 
     selectRout(){
         this.router.navigate(["/gp.date.input/sap"]);

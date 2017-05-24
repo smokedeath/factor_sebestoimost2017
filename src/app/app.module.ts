@@ -10,7 +10,7 @@ import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
+import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
          PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent,
          SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh} from './components/components/components.index';
@@ -25,7 +25,7 @@ import { AppService } from './share/app.service';
   declarations: [AppComponent,
                 PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
-                ViewGpSap, FactConcSebistoimostView, // View основных страниц
+                ViewGpSap, FactConcSebistoimostView, NotFountComponent,// View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, 
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh// Общие компоненты
