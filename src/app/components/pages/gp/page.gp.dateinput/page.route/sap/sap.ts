@@ -13,6 +13,7 @@ import { LeafletLayersModel } from './../../../../../../share/layers-map.model';
 
 export class ViewGpSap implements OnInit{
     constructor(private service: AppService) { }
+    jscoordinates = [];
 	// Open Street Map and Open Cycle Map definitions
 	LAYER_OCM = {
 		id: 'opencyclemap',
@@ -65,37 +66,55 @@ export class ViewGpSap implements OnInit{
 		})
 	};
 	geoJSON = {
-		id: 'geoJSON',
-		name: 'Geo JSON Polygon',
-		enabled: true,
-		layer: L.geoJSON(
-			({
-				type: 'Polygon',
-				coordinates: [[
-					[ -121.6, 46.87 ],
-					[ -121.5, 46.87 ],
-					[ -121.5, 46.93],
-					[ -121.6, 46.87 ]
-				]]
-			}) as any,
-			{ style: () => { return { color: '#ff7800' }; } })
-	};
-
+            id: 'geoJSON',
+            name: 'Geo JSON Polygon',
+            enabled: true,
+            layer: L.geoJSON(
+                ({
+                    type: 'Polygon',
+                    coordinates:  [[
+                            [ -121.6, 46.87 ],
+                            [ -121.5, 46.87 ],
+                            [ -121.5, 46.93],
+                            [ -121.6, 46.87 ]
+                        ]]
+                }) as any,
+                { style: () => { return { color: "#7990F3", weight: 7, opacity: 1 }; } })};  
 	// Form model object
-	model = new LeafletLayersModel(
-		[ this.LAYER_OSM, this.LAYER_OCM ],
-		this.LAYER_OCM.id,
-		[ this.circle, this.polygon, this.square, this.marker, this.geoJSON ]
-	);
-
-
+	model: LeafletLayersModel;
 	// Values to bind to Leaflet Directive
 	layers: L.Layer[];
 	layersControl: any;
-	options = {
-		zoom: 10,
-		center: L.latLng([ 46.879966, -121.726909 ])
-	};
+    options = {
+        layers: [
+            L.tileLayer('http://appsrvtofi:51984/Tiles/{z}/{x}/{y}.png', {
+                            minZoom:4,
+                            maxZoom: 7,
+                            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        })
+        ],
+        zoom: 4,
+        center: L.latLng({ lat: 49.4, lng: 67.1 })
+    };
+    
+    onJsAfterget(){
+        this.geoJSON = {
+            id: 'geoJSON',
+            name: 'Geo JSON Polygon',
+            enabled: true,
+            layer: L.geoJSON(
+                ({
+                    type: 'Polygon',
+                    coordinates: [this.jscoordinates]
+                }) as any,
+                { style: () => { return { color: "#7990F3", weight: 7, opacity: 1 }; } })};              
+
+        this.model = new LeafletLayersModel(
+            [ this.LAYER_OSM, this.LAYER_OCM ],
+            this.LAYER_OCM.id,
+            [ this.circle, this.polygon, this.square, this.marker, this.geoJSON ]
+        );
+    }    
 
     
 	onApply() {
@@ -123,30 +142,22 @@ export class ViewGpSap implements OnInit{
 			}
 		};
 		return false;
-	}                  
+	}      
 
-    ngOnInit(){   
-        this.onApply();     
+    ngOnInit(){    
         let dateInJson: any;
-        // this.options = {
-        //     layers: [
-        //         L.tileLayer('http://appsrvtofi:51984/Tiles/{z}/{x}/{y}.png', {
-        //                         minZoom:4,
-        //                         maxZoom: 7,
-        //                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        //                     })
-        //     ],
-        //     zoom: 6,
-        //     center: L.latLng({ lat: 49.4, lng: 67.1 })
-        // };
-        
+
         this.service.getMapRk()
                     .subscribe(data => {
                         dateInJson = data.json();   
                         dateInJson = dateInJson.geoData.features[0];                           
                         // geometry.push({type: 'LineString', coordinates: dateInJson.geometry.coordinates, properties: dateInJson.properties});   
-
+                        this.jscoordinates = dateInJson.geometry.coordinates;  
+                        this.onJsAfterget();                      
+                        this.onApply();    
                     });
+
+
 
 
 
