@@ -14,6 +14,7 @@ export class PageGpSebestoimosti implements OnInit{
     menu = [
         {
             name: "Исходные данные",
+            sref: "notfound",
             subname: [
                 {
                     name: "Расходы по номенклатуре",
@@ -31,6 +32,7 @@ export class PageGpSebestoimosti implements OnInit{
         },
         {
             name: "Промежуточные результаты расчетов",
+            sref: "notfound",
             subname: [
                 {
                     name: "Отнесение статей расходов по РИ",
@@ -48,6 +50,7 @@ export class PageGpSebestoimosti implements OnInit{
         },
         {
             name: "Расчет средней себестоимости",
+            sref: "notfound",
             subname: [
                 {
                     name: "Расчет фактической средней себестоимости",
@@ -61,6 +64,7 @@ export class PageGpSebestoimosti implements OnInit{
         },
         {
             name: "Расчет конкретной себестоимости",
+            sref: "factconcseb",
             subname: [
                 {
                     name: "Расчет фактической конкретной себестоимости",

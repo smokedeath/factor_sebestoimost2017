@@ -85,7 +85,7 @@ video {
 	height: auto;
 	z-index: -100;
 	transform: translateX(-50%) translateY(-50%);
-	background: url('./../assets/img/coverVideo.jpg') no-repeat;
+	background: url('./../../../assets/img/coverVideo.jpg') no-repeat;
 	background-size: cover;
     -webkit-filter: blur(4px);
 }

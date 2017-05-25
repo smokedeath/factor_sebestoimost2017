@@ -14,6 +14,7 @@ export class PageGpRashodStavok implements OnInit{
     menu = [
         {
             name: "Алгоритмы отнесения",
+            sref: "notfound",
             subname: [
                 {
                     name: "Деление на зависящие и условно-постоянные части",
@@ -27,6 +28,7 @@ export class PageGpRashodStavok implements OnInit{
         },
         {
             name: "Алгоритмы расчета расходных ставок (фактических)",
+            sref: "notfound",
             subname: [
                 {
                     name: "Расчет зависящих и условно-постоянных расходных ставок",
@@ -40,6 +42,7 @@ export class PageGpRashodStavok implements OnInit{
         },
         {
             name: "Алгоритмы расчета расходных ставок (плановых)",
+            sref: "notfound",
             subname: [
                 {
                     name: "Расчет зависящих и условно-постоянных расходных ставок",

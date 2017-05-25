@@ -3,7 +3,7 @@
         <li class="dropdown dropdown-fw open selected">
             <ul class="dropdown-menu dropdown-menu-fw">    
                 <li class="dropdown more-dropdown-sub" *ngFor="let tmenu of menu">
-                    <a href="javascript:;" data-close-others="true">{{tmenu.name}}</a>
+                    <a data-close-others="true" routerLink={{tmenu.sref}} routerLinkActive="active">{{tmenu.name}}</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let smenu of tmenu.subname"><a routerLink={{smenu.sref}} routerLinkActive="active">{{smenu.name}}</a>
                         </li>

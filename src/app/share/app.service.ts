@@ -1,17 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http"; 
-//Jsonp, URLSearchParams,
-// import { Headers, RequestOptions, Response } from '@angular/http';
-// import { Observable } from 'rxjs';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AppService {    
     constructor(private http: Http) {}
 
     baseUrl = "http://192.168.1.20:51984/SpringCost";
-
+    // Карта РК
+    getMapRk(){
+        let apiUrl = "/api/ks/getGeoRK";
+        return this.http.get(this.baseUrl + apiUrl);
+    }
     postPostavshikUslug(data) { //Возвращяет Поставщик Услуг
         let apiUrl = "/api/sebestoimost/gp/koncretsebest/postavshikuslug"; 
         return this.http.post(this.baseUrl + apiUrl, data);

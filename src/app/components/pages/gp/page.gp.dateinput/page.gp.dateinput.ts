@@ -14,23 +14,28 @@ export class PageGpDateInput implements OnInit{
     menu = [
         {
             name: "Загрузка данных SAP",
-            subname: []
+            subname: [],
+            sref: "notfound"
         },
         {
             name: "Загрузка данных из ЕК ИОДВ",
-            subname: []
+            subname: [],
+            sref: "notfound"
         },
         {
             name: "Загрузка данных из АСУ ДКР",
-            subname: []
+            subname: [],
+            sref: "notfound"
         },
         {
             name: "Загрузка данных из Ц Расчет",
-            subname: []
+            subname: [],
+            sref: "notfound"
         },
         {
             name: "Загрузка статистических показателей",
-            subname: []
+            subname: [],
+            sref: "sap"
         }
     ];
 

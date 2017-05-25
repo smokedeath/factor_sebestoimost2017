@@ -12,7 +12,6 @@ import { AppService } from './../../../../../../share/app.service';
 export class FactConcSebistoimostView implements OnInit {
     constructor(private service: AppService) { }
     
-    dateInJson: any;
     vesgruza : boolean; 
     colvagonotvravki: boolean;
     contcount : boolean;
@@ -27,6 +26,19 @@ export class FactConcSebistoimostView implements OnInit {
     items = [];
     selectedOperation = [];
     arrUchastki = [];
+
+    
+    options = {
+        layers: [
+            L.tileLayer('http://appsrvtofi:51984/Tiles/{z}/{x}/{y}.png', {
+                            minZoom:4,
+                            maxZoom: 7,
+                            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        })
+        ],
+        zoom: 4,
+        center: L.latLng({ lat: 49.4, lng: 67.1 })
+    };
 
 
 

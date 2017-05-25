@@ -14,11 +14,13 @@ export class PageGpAnaliz implements OnInit{
     menu = [
         {
             name: "Анализ себестоимости",
-            subname: []
+            subname: [],
+            sref: "notfound"
         },
         {
             name: "Анализ расходов",
-            subname: []
+            subname: [],
+            sref: "notfound"
         }
     ];
 

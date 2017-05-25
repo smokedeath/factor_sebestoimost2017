@@ -1,75 +1,61 @@
-<!--<div class="row bugwithmenu" ng-controller="FactRIValueGPCtrl">
-	<div class="col-md-12">
-		<div class="portlet light">
-			<div class="portlet-title">
-				<div class="caption font-dark">
-					<span class="caption-subject bold uppercase" ng-bind="$state.current.data.pageTitle"></span>
-				</div>
-				<div class="actions">
-					<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
-					</a>
-				</div>
-			</div>
+<md-tab-group>   
+    <md-tab label="Карта">        
+        <div class="row" id="choiseroute">
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <span class="caption-subject bold uppercase">Выбор маршрута (Расчет фактической конкретной себестоимости)</span>
+                    </div>
+                    <div class="actions">
+                        <!--<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
+                        </a>-->
+                    </div>
+                </div>
 
-			<div class="portlet-body">
-				<div id='ekspval' class="row" style="padding-bottom: 20px">
-					<div class="clearfix" style="padding-bottom: 30px; padding-left: 20px;">
-						<a ng-click="generateExcell()" class="btn green hidden">Выгрузить в Excel</a>
-					</div>
+                <div class="portlet-body">
+                    <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+                        <div class="col-md-2" style="width: 230px">
+                            <button type="button" class="btn green" id="borderrk">
+                                <img src="./../../../../../../../assets/img/placeholder.png" width="32" height="32">
+                            </button>
 
-					<div class="col-md-3" style="max-width: 220px;height: 32px;margin-top: -3px">
-						<md-datepicker ng-model="data.currentDateAngular"></md-datepicker>
-					</div>
+                            <button type="button" class="btn green" id="station">
+                                <img src="./../../../../../../../assets/img/trafficsignal.png" width="32" height="32">
+                            </button>
 
-					<div class="col-md-3" style=" padding-left: 0px; width: 320px">
-						<md-select aria-label=" " class="averagecalc" ng-model="data.typePeriodAvalaibleOption" placeholder="{{data.typePeriodAvalaibleOption.name}}">
-							<md-option ng-value="period" ng-repeat="period in data.typePeriod">{{ period.name }}</md-option>
-						</md-select>
-					</div>
+                            <button type="button" class="btn green" id="razezd">
+                                <img src="./../../../../../../../assets/img/subway.png" width="32" height="32">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet box green">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        Карта Казахстана
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <!--<md-progress-linear md-mode="indeterminate" ng-show="showprogressmap"></md-progress-linear>-->
+                                    <!--<leaflet-map style="margin-top: 5px;" [options]=options></leaflet-map>-->
+                                    <div leaflet style="height: 600px;"
+                                        [leafletOptions]="options"
+                                        [leafletLayers]="layers"
+                                        [leafletLayersControl]="layersControl">
+                                    </div>
 
-					<div class="col-md-3" style="width: 320px; margin-right: 20px">
-						<md-select aria-label=" " class="averagecalc" ng-model="data.stepAvalaibleOption" placeholder="{{data.stepAvalaibleOption.name}}">
-							<md-option ng-value="step" ng-repeat="step in data.stepArr">{{ step.name }}</md-option>
-						</md-select>
-					</div>
-
-					<div class="col-md-1">
-						<button  ng-click="refreshBtn()" type="button" class="btn green refresh">Обновить</button>
-					</div>
-				</div>
-
-				<div class="tabbable-custom">
-					<ul class="nav nav-tabs" id="dynamictab">
-						<li class="active">
-							<a data-target="#eksp" data-toggle="tab" ng-bind="data.titleTab">
-							</a>
-						</li>
-					</ul>
-
-					<div class="tab-content" id="tabcontent">
-						<div class="tab-pane active" id="eksp">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="portlet light" style="margin-top: 25px">
-										<div class="portlet-body">
-											<div class="row">
-												<div class="col-md-12">
-													<tree-grid tree-data="tree_data"
-													           on-select="tree_select(branch)"
-													           expand-level="1"
-													           col-defs="col_defs"
-													           expand-on="expanding_property"
-													></tree-grid>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-tab>   
+    
+    <md-tab label="Страница">
+        <div>111
+        </div>
+    </md-tab>  
+</md-tab-group>

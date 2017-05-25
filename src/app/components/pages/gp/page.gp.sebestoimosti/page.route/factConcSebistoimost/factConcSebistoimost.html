@@ -1,7 +1,7 @@
 <div class="bugwithmenu" ng-controller="FactCalcKonkretSebestGPCtrl">
 	<div class="row" id="choiseparams">
 		<md-tab-group>
-			<md-tab label="Общие параметры">
+			<md-tab label="ОБЩИЕ ПАРАМЕТРЫ">
 				<div class="portlet light">
 					<div class="portlet-title">
 						<div class="caption font-dark">
@@ -377,8 +377,9 @@
 										</div>
 										<div class="portlet-body">
 											<!--<md-progress-linear md-mode="indeterminate" ng-show="showprogressmap"></md-progress-linear>-->
-											<div id="map" style="margin-top: 5px;">
-											</div>
+											<leaflet-map style="margin-top: 5px;" [options]=options></leaflet-map>
+											<!--<div id="map" style="margin-top: 5px;">-->
+											<!--</div>-->
 										</div>
 									</div>
 								</div>
