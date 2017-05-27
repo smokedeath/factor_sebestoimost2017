@@ -18,20 +18,22 @@ export class ViewGpSap implements OnInit{
 	LAYER_OCM = {
 		id: 'opencyclemap',
 		name: 'Open Cycle Map',
-		enabled: true,
-		layer: L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
-			maxZoom: 18,
+		enabled: false,
+		layer: L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {			
+            minZoom:4,
+            maxZoom: 7,
 			attribution: 'Open Cycle Map'
 		})
 	};
 	LAYER_OSM = {
 		id: 'openstreetmap',
 		name: 'Open Street Map',
-		enabled: false,
-		layer: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: 'Open Street Map'
-		})
+		enabled: true,
+		layer: L.tileLayer('http://appsrvtofi:51984/Tiles/{z}/{x}/{y}.png', {
+                            minZoom:4,
+                            maxZoom: 7,
+                            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        })
 	};
 
 	circle = {
@@ -60,8 +62,8 @@ export class ViewGpSap implements OnInit{
 			icon: L.icon({
 				iconSize: [ 25, 41 ],
 				iconAnchor: [ 13, 41 ],
-				iconUrl: '2273e3d8ad9264b7daa5bdbf8e6b47f8.png',
-				shadowUrl: '44a526eed258222515aa21eaffd14a96.png'
+				iconUrl: 'assets/marker-icon.png',
+				shadowUrl: 'assets/marker-shadow.png'
 			})
 		})
 	};
@@ -81,7 +83,12 @@ export class ViewGpSap implements OnInit{
                 }) as any,
                 { style: () => { return { color: "#7990F3", weight: 7, opacity: 1 }; } })};  
 	// Form model object
-	model: LeafletLayersModel;
+	// model: LeafletLayersModel;
+    model = new LeafletLayersModel(
+        [ this.LAYER_OSM, this.LAYER_OCM ],
+        this.LAYER_OSM.id,
+        [ this.circle, this.polygon, this.square, this.marker, this.geoJSON ]
+    );
 	// Values to bind to Leaflet Directive
 	layers: L.Layer[];
 	layersControl: any;
@@ -111,7 +118,7 @@ export class ViewGpSap implements OnInit{
 
         this.model = new LeafletLayersModel(
             [ this.LAYER_OSM, this.LAYER_OCM ],
-            this.LAYER_OCM.id,
+            this.LAYER_OSM.id,
             [ this.circle, this.polygon, this.square, this.marker, this.geoJSON ]
         );
     }    
@@ -146,7 +153,7 @@ export class ViewGpSap implements OnInit{
 
     ngOnInit(){    
         let dateInJson: any;
-
+        this.onApply();  
         this.service.getMapRk()
                     .subscribe(data => {
                         dateInJson = data.json();   

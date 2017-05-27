@@ -83,6 +83,11 @@ export class AppService {
         let apiUrl = "/api/sebestoimost/gp/koncretsebest/loadStations"; 
         return this.http.post(this.baseUrl + apiUrl, data);
     } 
+    getStatus() {  // Генерирует статусы для комбобокса в расчете плановой себестоимости
+        let apiUrl = "/api/sebestoimost/sredsebest/getstatus"; 
+        return this.http.get(this.baseUrl + apiUrl);
+    } 
+
      
 
 

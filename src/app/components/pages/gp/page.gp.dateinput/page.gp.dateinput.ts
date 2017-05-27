@@ -13,9 +13,9 @@ export class PageGpDateInput implements OnInit{
 
     menu = [
         {
-            name: "Загрузка данных SAP",
+            name: "Загрузка финансовых данных",
             subname: [],
-            sref: "notfound"
+            sref: "findatainput"
         },
         {
             name: "Загрузка данных из ЕК ИОДВ",
@@ -40,12 +40,11 @@ export class PageGpDateInput implements OnInit{
     ];
 
     ngOnInit(){
-        this.router.navigate(["gp.date.input/notfound"]);
+        this.router.navigate(["gp.date.input/findatainput"]);
     }   
 
     selectRout(){
         this.router.navigate(["/gp.date.input/sap"]);
-        // routerLink="/gp.date.input/sap" routerLinkActive="active"
     }
 
 }

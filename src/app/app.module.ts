@@ -19,7 +19,7 @@ import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent,
          SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap} from './components/components/components.index';
 
 import { FactConcSebistoimostView } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
-import { ViewGpSap } from './components/pages/gp/page.gp.dateinput/page.route/view.index';   
+import { ViewGpSap, FinanceDataInput } from './components/pages/gp/page.gp.dateinput/page.route/view.index';   
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './share/app.service';
@@ -28,7 +28,7 @@ import { AppService } from './share/app.service';
   declarations: [AppComponent,
                 PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
-                ViewGpSap, FactConcSebistoimostView, NotFountComponent,// View основных страниц
+                ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput, // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, 
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap// Общие компоненты
