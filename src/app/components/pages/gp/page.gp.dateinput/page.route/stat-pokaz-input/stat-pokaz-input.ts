@@ -3,14 +3,14 @@ import { AppService } from './../../../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'finance-data-input.html',
-    styleUrls: ['finance-data-input.css'],
-
+    selector: 'stat-pokaz-input',
+    templateUrl: 'stat-pokaz-input.html',
+    styleUrls: ['stat-pokaz-input.css']
 })
 
-export class FinanceDataInput implements OnInit{
+export class StatPokazInputComponent implements OnInit{
     constructor(private service : AppService){}  
-
+    
     arrtypePeriud = [];
     tableDate = [];
     tableDateColumns = [
@@ -20,19 +20,11 @@ export class FinanceDataInput implements OnInit{
         },
         {
             field: "size",
-            header: "Затраты на оплату труда"
+            header: "План"
         },
         {
-            field: "type",
-            header: "..."
-        },
-        {
-            field: "type",
-            header: "Прочие расходы"
-        },
-        {
-            field: "type",
-            header: "Сумма по элементам"
+            field: "size",
+            header: "Факт"
         }
     ]  
 
@@ -47,11 +39,8 @@ export class FinanceDataInput implements OnInit{
 
     vladelicModel: number; 
 
-    arrPostavschik = [{id: 1, name: "Поставщик"}];
-    postavschikModel: number;
-
-    arrStatus = [];
-    statusModel: number;
+    arrGrupZnacheni = [{id: 1, name: "Группа измерителей"},{id: 2, name: "Группа статистических показателей"},{id: 3, name: "Группа доходных измерителей"}];
+    grupZnacheniModel: number;
 
     inputFromTemplate(){
         ///
@@ -64,7 +53,7 @@ export class FinanceDataInput implements OnInit{
     ngOnInit(){
         ///////////////////   Типо сервисы   ////////////////////  
         this.vladelicModel = this.arrVladelic[0].id;        
-        this.postavschikModel = this.arrPostavschik[0].id; 
+        this.grupZnacheniModel = this.arrGrupZnacheni[0].id; 
 
         //Тип периода
         this.service.getGenPeriodList()
@@ -78,19 +67,6 @@ export class FinanceDataInput implements OnInit{
                             });
                         }   
                         this.typePeriudModel = this.arrtypePeriud[0].id;
-                    });
-        //статусы
-        this.service.getStatus()
-                    .subscribe(data => {               
-                        let dateInJson: any;   
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.arrStatus.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.statusModel = this.arrStatus[0].id;
                     });
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});

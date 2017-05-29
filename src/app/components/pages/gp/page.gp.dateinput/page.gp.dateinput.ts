@@ -35,7 +35,7 @@ export class PageGpDateInput implements OnInit{
         {
             name: "Загрузка статистических показателей",
             subname: [],
-            sref: "sap"
+            sref: "statpokazinput"
         }
     ];
 

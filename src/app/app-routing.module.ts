@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountComponent,
          PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz } from './components/pages/pages.index'; 
 
-import { ViewGpSap, FinanceDataInput } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
+import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
 import { FactConcSebistoimostView } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
 
 @NgModule({
@@ -17,6 +17,8 @@ import { FactConcSebistoimostView } from './components/pages/gp/page.gp.sebestoi
                     children: [                        
                         { path: "notfound", component: NotFountComponent },
                         { path: "findatainput", component: FinanceDataInput },
+                        { path: "iodv", component: IodvDataInput }, 
+                        { path: "statpokazinput", component: StatPokazInputComponent},
                         { path: "sap", component: ViewGpSap }
                     ] 
             },

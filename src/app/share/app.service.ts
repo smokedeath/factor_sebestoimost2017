@@ -5,6 +5,8 @@ import { Http } from "@angular/http";
 export class AppService {    
     constructor(private http: Http) {}
 
+
+
     baseUrl = "http://192.168.1.20:51984/SpringCost";
     // Карта РК
     getMapRk(){
@@ -88,7 +90,12 @@ export class AppService {
         return this.http.get(this.baseUrl + apiUrl);
     } 
 
-     
+    ////////////////////
+    ////////////////////
+    /////////////////////     
+    getFinDataInput() {
+        return this.http.get('https://api.myjson.com/bins/p7rnt');
+    }   
 
 
 

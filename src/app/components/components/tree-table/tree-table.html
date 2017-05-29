@@ -1,0 +1,3 @@
+<p-treeTable [value]="tableDate" selectionMode="single" [(selection)]="selectedField" >
+    <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header}}></p-column>
+</p-treeTable>

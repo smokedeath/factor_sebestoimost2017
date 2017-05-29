@@ -12,14 +12,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import 'hammerjs';
 
+// primeng imports
+import {TreeTableModule,TreeNode,SharedModule, TreeTable, GrowlModule, CalendarModule} from 'primeng/primeng';
+
 import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
          PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
-import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent,
-         SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap} from './components/components/components.index';
+import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
+         SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent} from './components/components/components.index';
 
 import { FactConcSebistoimostView } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
-import { ViewGpSap, FinanceDataInput } from './components/pages/gp/page.gp.dateinput/page.route/view.index';   
+import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';   
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './share/app.service';
@@ -28,10 +31,12 @@ import { AppService } from './share/app.service';
   declarations: [AppComponent,
                 PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
-                ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput, // View основных страниц
 
-                ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, 
-                SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap// Общие компоненты
+                ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput,
+                IodvDataInput, StatPokazInputComponent,  // View основных страниц
+
+                ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, 
+                SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent// Общие компоненты
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,8 @@ import { AppService } from './share/app.service';
     JsonpModule,
     AppRoutingModule,
     SelectModule,
-    LeafletModule
+    LeafletModule, 
+    TreeTableModule, SharedModule, GrowlModule, CalendarModule
   ],
   entryComponents: [
     ErrorDialog
