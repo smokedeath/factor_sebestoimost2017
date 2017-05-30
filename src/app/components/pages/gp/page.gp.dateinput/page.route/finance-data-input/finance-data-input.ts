@@ -20,21 +20,45 @@ export class FinanceDataInput implements OnInit{
         },
         {
             field: "size",
-            header: "Затраты на оплату труда"
+            header: "Расходы на оплату труда"
         },
         {
-            field: "type",
-            header: "..."
+            field: "size",
+            header: "Отчисления от фонда оплаты труда"
         },
         {
-            field: "type",
+            field: "size",
+            header: "Материалы"
+        },
+        {
+            field: "size",
+            header: "Топливо"
+        },
+        {
+            field: "size",
+            header: "Электроэнергия"
+        },
+        {
+            field: "size",
+            header: "Оплата работ сторонних организаций"
+        },
+        {
+            field: "size",
+            header: "Оплата работ дочерних предприятий"
+        },
+        {
+            field: "size",
+            header: "Износ средств"
+        },
+        {
+            field: "size",
             header: "Прочие расходы"
         },
         {
-            field: "type",
+            field: "size",
             header: "Сумма по элементам"
         }
-    ]  
+    ] 
 
     typePeriudModel: number;
     

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { SelectModule } from 'angular2-select';
 
 //LeafletModule
 import { LeafletModule } from '@asymmetrik/angular2-leaflet';
@@ -13,7 +12,8 @@ import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import 'hammerjs';
 
 // primeng imports
-import {TreeTableModule,TreeNode,SharedModule, TreeTable, GrowlModule, CalendarModule} from 'primeng/primeng';
+import {TreeTableModule,TreeNode,SharedModule, TreeTable, GrowlModule, 
+        CalendarModule, CheckboxModule} from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
@@ -28,7 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './share/app.service';
 
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [AppComponent, 
                 PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
 
@@ -47,9 +47,8 @@ import { AppService } from './share/app.service';
     MdNativeDateModule,
     JsonpModule,
     AppRoutingModule,
-    SelectModule,
     LeafletModule, 
-    TreeTableModule, SharedModule, GrowlModule, CalendarModule
+    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule
   ],
   entryComponents: [
     ErrorDialog

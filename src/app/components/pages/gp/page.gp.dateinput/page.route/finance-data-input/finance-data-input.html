@@ -19,12 +19,12 @@
                         [structure]=arrStatus></combobox-component>  
   </div>     
   <div class="col-md-2">
-      <button type="btn btn-info" class="btn_css">Обновить</button>
+      <button type="btn btn-primary" class="btn-css">Обновить</button>
   </div> 
 </div>
 
 <div class="row">
-      <div class="col-md-10 row-margin table-margin">
+      <div class="row-margin table-margin">
         <tree-table [tableDate]=tableDate [tableDateColumns]=tableDateColumns></tree-table>
       </div>
 </div> 
@@ -32,10 +32,10 @@
 <div class="row">
     <div class="col-md-offset-8 row-margin">
         <div class="col-md-4">
-        <button type="btn btn-info" class="btn_css" (click)="inputFromTemplate()">Загрузить из шаблона</button>
+        <button type="btn btn-primary" class="btn-css" (click)="inputFromTemplate()">Загрузить из шаблона</button>
         </div> 
         <div class="col-md-4">
-        <button type="btn btn-info" class="btn_css" (click)="exportToExcell()">Выгрузить в Excell</button>
+        <button type="btn btn-primary" class="btn-css" (click)="exportToExcell()">Выгрузить в Excell</button>
         </div>         
     </div>
 </div> 

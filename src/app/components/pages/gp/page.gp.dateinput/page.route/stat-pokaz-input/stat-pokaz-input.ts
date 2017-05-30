@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { AppService } from './../../../../../../share/app.service';
 
 @Component({
@@ -47,7 +48,14 @@ export class StatPokazInputComponent implements OnInit{
     }
 
     exportToExcell(){
-        //
+        let options = { 
+                fieldSeparator: ',',
+                quoteStrings: '"',
+                decimalseparator: '.',
+                showLabels: true, 
+                showTitle: true 
+            };
+        new Angular2Csv(this.tableDate, 'My Report', options);
     }
 
     ngOnInit(){

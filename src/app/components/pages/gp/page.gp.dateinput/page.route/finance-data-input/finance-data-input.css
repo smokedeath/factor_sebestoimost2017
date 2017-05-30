@@ -1,10 +1,11 @@
-.btn_css{
-    background: #0095BD;
+.btn-css{
+    background-color: #0095BD;
     color: floralwhite;
 }
 .row-margin{
     margin-top: 50px
 }
 .table-margin{
-    margin-left: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
