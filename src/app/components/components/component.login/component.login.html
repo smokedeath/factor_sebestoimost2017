@@ -19,14 +19,17 @@
                 </select>
             </div>  
 
-            <div>  
-                <button class="btn btn-lg" type="button" (click)="loginEnter()"> <i class="material-icons">check</i>  Вход<span class="md-click-circle md-click-animate"                               
+            <div class="row">
+                <div class="col-md-6"><button type="button" (click)="loginEnter()" class="btn btn-primary btn-lg btn-block"><i class="material-icons">check</i>  Вход</button></div>  
+                <div class="col-md-6"><button type="button" (click)="loginCancel()" class="btn btn-primary btn-lg btn-block"><i class="material-icons">cancel</i>  Отмена</button></div>                  
+                
+                <!--<button class="btn btn-lg" type="button" (click)="loginEnter()"> <i class="material-icons">check</i>  Вход<span class="md-click-circle md-click-animate"                               
                                                             style="height: 115px; width: 115px; top: -38.5px;"></span>
                 </button>
 
                 <button class="btn btn-lg" type="button" (click)="loginCancel()"> <i class="material-icons">cancel</i>  Отмена<span class="md-click-circle md-click-animate"                               
                                                             style="height: 115px; width: 115px; top: -38.5px;"></span>
-                </button>
+                </button>-->
             </div>
         </form>
    </div>

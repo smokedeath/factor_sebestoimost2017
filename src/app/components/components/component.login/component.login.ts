@@ -53,5 +53,4 @@ export class ComponentLogin{
         this.user.login = '';
         this.user.password = '';
     }
-    ///////////////////////
 }

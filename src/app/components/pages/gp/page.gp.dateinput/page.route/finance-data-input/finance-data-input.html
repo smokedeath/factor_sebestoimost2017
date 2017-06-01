@@ -8,7 +8,7 @@
   </div>
   <div class="col-md-2"> 
     <combobox-component [iNgModel]=vladelicModel 
-                        [structure]=arrVladelic></combobox-component>      
+                        [structure]=arrVladelic></combobox-component>    
   </div>
   <div class="col-md-2">
     <combobox-component [iNgModel]=postavschikModel 
@@ -19,7 +19,7 @@
                         [structure]=arrStatus></combobox-component>  
   </div>     
   <div class="col-md-2">
-      <button type="btn btn-primary" class="btn-css">Обновить</button>
+      <button type="button" class="btn btn-primary"><i class="material-icons">autorenew</i> Обновить</button>
   </div> 
 </div>
 
@@ -30,12 +30,12 @@
 </div> 
 
 <div class="row">
-    <div class="col-md-offset-8 row-margin">
-        <div class="col-md-4">
-        <button type="btn btn-primary" class="btn-css" (click)="inputFromTemplate()">Загрузить из шаблона</button>
+    <div class="col-md-offset-6 row-margin" style="text-align: right">
+        <div class="col-md-3">
+          <button type="button" class="btn btn-primary" (click)="inputFromTemplate()"><i class="material-icons">view_list</i> Загрузить из шаблона</button>
         </div> 
-        <div class="col-md-4">
-        <button type="btn btn-primary" class="btn-css" (click)="exportToExcell()">Выгрузить в Excell</button>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-primary" (click)="exportToExcell()"><i class="material-icons">file_download</i> Выгрузить в Excell</button>
         </div>         
     </div>
 </div> 

@@ -9,3 +9,4 @@ export * from './combobox.component/combobox.component';
 export * from './leaflet-map/leaflet-map';
 export * from './tree-table/tree-table';
 export * from './calendar/calendar';
+export * from './multi-combobox.component/multi-combobox.component';

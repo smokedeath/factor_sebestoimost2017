@@ -19,7 +19,8 @@ import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
          PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
-         SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent} from './components/components/components.index';
+         SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent, 
+         MultiComboboxComponent } from './components/components/components.index';
 
 import { FactConcSebistoimostView } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';   
@@ -36,7 +37,7 @@ import { AppService } from './share/app.service';
                 IodvDataInput, StatPokazInputComponent,  // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, 
-                SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent// Общие компоненты
+                SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent // Общие компоненты
   ],
   imports: [
     BrowserModule,

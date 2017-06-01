@@ -40,7 +40,29 @@ export class StatPokazInputComponent implements OnInit{
 
     vladelicModel: number; 
 
-    arrGrupZnacheni = [{id: 1, name: "Группа измерителей"},{id: 2, name: "Группа статистических показателей"},{id: 3, name: "Группа доходных измерителей"}];
+    arrGrupZnacheni = [
+                        {id: 1, name: "Группа измерителей",
+                                option:[
+                                    {id: 11, name: "Измеритель 1"},
+                                    {id: 12, name: "Измеритель 2"},
+                                    {id: 13, name: "Измеритель 3"}
+                                ]
+                        },
+                        {id: 2, name: "Группа статистических показателей",
+                                option:[
+                                    {id: 21, name: "Статистический показатель 1"},
+                                    {id: 22, name: "Статистический показатель 2"},
+                                    {id: 23, name: "Статистический показатель 3"}
+                                ]
+                        },
+                        {id: 3, name: "Группа доходных измерителей",
+                                option:[
+                                    {id: 31, name: "Доходный измеритель 1"},
+                                    {id: 32, name: "Доходный измеритель 2"},
+                                    {id: 33, name: "Доходный измеритель 3"}
+                                ]
+                        }
+                      ];
     grupZnacheniModel: number;
 
     inputFromTemplate(){
@@ -61,7 +83,7 @@ export class StatPokazInputComponent implements OnInit{
     ngOnInit(){
         ///////////////////   Типо сервисы   ////////////////////  
         this.vladelicModel = this.arrVladelic[0].id;        
-        this.grupZnacheniModel = this.arrGrupZnacheni[0].id; 
+        this.grupZnacheniModel = this.arrGrupZnacheni[0].option[0].id; 
 
         //Тип периода
         this.service.getGenPeriodList()
