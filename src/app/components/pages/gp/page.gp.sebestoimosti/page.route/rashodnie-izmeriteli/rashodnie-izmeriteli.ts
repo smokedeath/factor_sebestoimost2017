@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import {  Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'stat-pokaz-input',
-    templateUrl: 'stat-pokaz-input.html',
-    styleUrls: ['stat-pokaz-input.css']
+    selector: 'rashodnie-izmeriteli',
+    templateUrl: 'rashodnie-izmeriteli.html',
+    styleUrls: ['rashodnie-izmeriteli.css']
+
 })
 
-export class StatPokazInputComponent implements OnInit{
+export class RazhodnieIzmeriteli{
+    
     constructor(private service : AppService){}  
     
     arrtypePeriud = [];
@@ -34,30 +35,23 @@ export class StatPokazInputComponent implements OnInit{
     arrVladelic = [];
     vladelicModel: number; 
 
-    arrGrupZnacheni = [];
-    grupZnacheniModel: number;
+    arrGrupZnachen = [];
+    grupZnachenModel: number;
 
     inputFromTemplate(){
         ///
     }
 
     exportToExcell(){
-        let options = { 
-                fieldSeparator: ',',
-                quoteStrings: '"',
-                decimalseparator: '.',
-                showLabels: true, 
-                showTitle: true 
-            };
-        new Angular2Csv(this.tableDate, 'My Report', options);
+        //
     }
 
     ngOnInit(){
-        ///////////////////   Типо сервисы   ////////////////////  
-        this.arrGrupZnacheni = this.service.getGrupZnacheni();
-        this.arrVladelic = this.service.getVladelic();
+        ///////////////////   Типо сервисы   //////////////////// 
+        this.arrGrupZnachen = this.service.getGrupZnachen();
+        this.arrVladelic = this.service.getVladelic();  
         this.vladelicModel = this.arrVladelic[0].id;        
-        this.grupZnacheniModel = this.arrGrupZnacheni[0].option[0].id; 
+        this.grupZnachenModel = this.arrGrupZnachen[0].id; 
 
         //Тип периода
         this.service.getGenPeriodList()
@@ -75,5 +69,4 @@ export class StatPokazInputComponent implements OnInit{
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
     }    
-
 }

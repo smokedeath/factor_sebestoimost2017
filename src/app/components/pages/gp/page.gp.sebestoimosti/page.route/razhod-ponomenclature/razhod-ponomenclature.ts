@@ -3,12 +3,13 @@ import { AppService } from './../../../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'finance-data-input.html',
-    styleUrls: ['finance-data-input.css'],
+    selector: 'razhod-ponomenclature',
+    templateUrl: 'razhod-ponomenclature.html',
+    styleUrls: ['razhod-ponomenclature.css']
 
 })
 
-export class FinanceDataInput implements OnInit{
+export class RazhodPoNomenclature implements OnInit{
     constructor(private service : AppService){}  
 
     arrtypePeriud = [];
@@ -60,12 +61,12 @@ export class FinanceDataInput implements OnInit{
         }
     ] 
 
-    typePeriudModel: number;  
-
+    typePeriudModel: number;   
+     
     arrVladelic = [];   
     vladelicModel: number; 
-    
-    arrPostavschik = [];
+
+    arrPostavschik = [{id: 1, name: "Поставщик"}];
     postavschikModel: number;
 
     arrStatus = [];
@@ -81,8 +82,7 @@ export class FinanceDataInput implements OnInit{
 
     ngOnInit(){
         ///////////////////   Типо сервисы   ////////////////////  
-        this. arrVladelic = this.service.getVladelic();
-        this.arrPostavschik = this.service.getPostavschik();
+        this.arrVladelic = this.service.getVladelic();
         this.vladelicModel = this.arrVladelic[0].id;        
         this.postavschikModel = this.arrPostavschik[0].id; 
 
@@ -115,5 +115,4 @@ export class FinanceDataInput implements OnInit{
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
     }    
-
 }

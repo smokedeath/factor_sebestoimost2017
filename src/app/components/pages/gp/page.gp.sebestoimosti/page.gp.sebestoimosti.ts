@@ -18,11 +18,11 @@ export class PageGpSebestoimosti implements OnInit{
             subname: [
                 {
                     name: "Расходы по номенклатуре",
-                    sref: "notfound"
+                    sref: "rashodnomencl"
                 },
                 {
                     name: "Расходные измерители",
-                    sref: "notfound"
+                    sref: "razhodizmer"
                 },
                 {
                     name: "Эксплуатационные показатели",
@@ -79,7 +79,7 @@ export class PageGpSebestoimosti implements OnInit{
     ];
 
     ngOnInit(){
-        this.router.navigate(['gp.sebestoimosti/factconcseb']);
+        this.router.navigate(['gp.sebestoimosti/rashodnomencl']);
     } 
 
 }

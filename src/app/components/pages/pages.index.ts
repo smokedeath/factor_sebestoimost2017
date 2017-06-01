@@ -1,7 +1,7 @@
-// 404
+// Обшие
+export * from './page.login/page.login';
 export * from './not-found/not-found';
 // Грузоперевозки
-export * from './page.login/page.login';
 export * from './gp/page.index.gp/page.index.gp';
 export * from './gp/page.gp.dateinput/page.gp.dateinput';
 export * from './gp/page.gp.rashodstavok/page.gp.rashodstavok';

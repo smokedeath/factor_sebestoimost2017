@@ -5,7 +5,7 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountCompone
          PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz } from './components/pages/pages.index'; 
 
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
-import { FactConcSebistoimostView } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
+import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
 
 @NgModule({
     imports: [RouterModule.forRoot([            
@@ -30,7 +30,9 @@ import { FactConcSebistoimostView } from './components/pages/gp/page.gp.sebestoi
             { path: "gp.sebestoimosti", component: PageGpSebestoimosti,
                     children: [                        
                         { path: "notfound", component: NotFountComponent },
-                        { path: "factconcseb", component:  FactConcSebistoimostView}
+                        { path: "factconcseb", component:  FactConcSebistoimostView},
+                        { path: "rashodnomencl", component: RazhodPoNomenclature },
+                        { path: "razhodizmer", component: RazhodnieIzmeriteli }
                     ]
             },
             { path: "gp.analiz", component: PageGpAnaliz,
