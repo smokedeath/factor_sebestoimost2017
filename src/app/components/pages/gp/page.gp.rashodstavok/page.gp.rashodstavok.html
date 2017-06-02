@@ -20,7 +20,7 @@
 					<div id="headerselect" class="topbar-actions headerselect ">
 						<combobox-structure-ktzh></combobox-structure-ktzh>
 
-						<button ng-click="Screenshot()" type="button" class="quick-sidebar-toggler" data-toggle="collapse" style="margin:4px 10px 0 0 ;background: #0095BD">
+						<button (click)="op1.toggle($event)" type="button" class="quick-sidebar-toggler" style="margin:4px 10px 0 0 ;background: #0095BD">
 							<span class="sr-only">Toggle Quick Sidebar</span>
 							<i class="fa fa-question-circle"></i>
 						</button>
@@ -60,8 +60,11 @@
 				</div>
 			</div>
 		</div>
-		
-		<error-form-date></error-form-date>
+				
+		<p-overlayPanel #op1>
+			<sidenav-ft-component></sidenav-ft-component>
+		</p-overlayPanel>
+		<!--<error-form-date></error-form-date>-->
 		<!--<a href="index.gp" class="go2top"><i class="icon-arrow-up"></i></a>-->
 	</div>
 </div>

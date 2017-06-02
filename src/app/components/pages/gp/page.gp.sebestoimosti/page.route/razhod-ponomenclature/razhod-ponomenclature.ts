@@ -12,6 +12,8 @@ import { AppService } from './../../../../../../share/app.service';
 export class RazhodPoNomenclature implements OnInit{
     constructor(private service : AppService){}  
 
+    titelName = 'РАСХОДЫ ПО НОМЕНКЛАТУРЕ';
+
     arrtypePeriud = [];
     tableDate = [];
     tableDateColumns = [

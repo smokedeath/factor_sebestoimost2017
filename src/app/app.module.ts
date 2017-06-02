@@ -13,14 +13,14 @@ import 'hammerjs';
 
 // primeng imports
 import {TreeTableModule,TreeNode,SharedModule, TreeTable, GrowlModule, 
-        CalendarModule, CheckboxModule} from 'primeng/primeng';
+        CalendarModule, CheckboxModule, OverlayPanelModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
          PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
          SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent, 
-         MultiComboboxComponent } from './components/components/components.index';
+         MultiComboboxComponent, SidenavFTComponent } from './components/components/components.index';
 
 import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';   
@@ -36,7 +36,7 @@ import { AppService } from './share/app.service';
                 ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput,
                 IodvDataInput, StatPokazInputComponent, RazhodPoNomenclature, RazhodnieIzmeriteli, // View основных страниц
 
-                ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, 
+                ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent // Общие компоненты
   ],
   imports: [
@@ -49,7 +49,7 @@ import { AppService } from './share/app.service';
     JsonpModule,
     AppRoutingModule,
     LeafletModule, 
-    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule
+    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule
   ],
   entryComponents: [
     ErrorDialog

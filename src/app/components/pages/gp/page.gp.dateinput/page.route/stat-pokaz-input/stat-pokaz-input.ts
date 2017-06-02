@@ -11,6 +11,8 @@ import { AppService } from './../../../../../../share/app.service';
 
 export class StatPokazInputComponent implements OnInit{
     constructor(private service : AppService){}  
+
+    titelName = 'ЗАГРУЗКА СТАТИСТИЧЕСКИХ ПОКАЗАТЕЛЕЙ';
     
     arrtypePeriud = [];
     tableDate = [];

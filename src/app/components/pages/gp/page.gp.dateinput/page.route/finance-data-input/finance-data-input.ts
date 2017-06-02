@@ -11,6 +11,8 @@ import { AppService } from './../../../../../../share/app.service';
 export class FinanceDataInput implements OnInit{
     constructor(private service : AppService){}  
 
+    titelName = 'ЗАГРУЗКА ФИНАНСОВЫХ ДАННЫХ';
+
     arrtypePeriud = [];
     tableDate = [];
     tableDateColumns = [

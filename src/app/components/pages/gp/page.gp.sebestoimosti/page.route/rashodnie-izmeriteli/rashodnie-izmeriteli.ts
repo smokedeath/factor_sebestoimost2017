@@ -9,9 +9,10 @@ import { AppService } from './../../../../../../share/app.service';
 
 })
 
-export class RazhodnieIzmeriteli{
-    
+export class RazhodnieIzmeriteli{    
     constructor(private service : AppService){}  
+
+    titelName = 'РАСХОДНЫЕ ИЗМЕРИТЕЛИ';
     
     arrtypePeriud = [];
     tableDate = [];
