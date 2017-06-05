@@ -11,3 +11,4 @@ export * from './tree-table/tree-table';
 export * from './calendar/calendar';
 export * from './multi-combobox.component/multi-combobox.component';
 export * from './sidenav/sidenav-ft-component/sidenav-ft-component';
+export * from './dialogs/pass-ref-dialog/pass-ref-dialog';

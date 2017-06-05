@@ -1,36 +1,59 @@
 <div class="pricing pricing--tashi">
     <div class="pricing__item loginbox">
-        <h1>Авторизация</h1>
+        <h1>Вход в систему</h1>
         <form #f="ngForm" novalidate>
+
+            <div class="form-group">
+                <label>Пользователь</label>
+                <select name="userId" class="form-control" [(ngModel)]="user.userId">
+                    <option *ngFor="let item of users" [value]="item.value">{{item.display}}</option>
+                </select>
+            </div> 
+
             <div class="form-group">
                 <label>Логин</label>
                 <input type="text" class="form-control" name="login" [(ngModel)]="user.login">
             </div>
 
             <div class="form-group">
-                <label>Пароль</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="user.password">
+                <label>Пароль</label> 
+                <div class="row">
+                    <div class="col-lg-11"><input type={{textType}} class="form-control" name="password" [(ngModel)]="user.password"></div>
+                    <span (click)="showPass()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                </div>
+                <a (click)="getRefPass()"><h5 class="pass-ref">Забыли пароль?</h5></a>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" *ngIf="user.userId==1">
                 <label>Предприятие</label>
-                <select name="programmId" class="form-control" [(ngModel)]="user.programmId">
-                    <option *ngFor="let prog of programms" [value]="prog.value">{{prog.display}}</option>
-                </select>
-            </div>  
+                <div class="radio" *ngFor="let prog of programms">
+                    <label>
+                    <input type="radio" name="parogramm" [(ngModel)]="user.programmId" [value]="prog.value">
+                    {{prog.display}}
+                    </label>
+                </div>
+            </div>
 
             <div class="row">
-                <div class="col-md-6"><button type="button" (click)="loginEnter()" class="btn btn-primary btn-lg btn-block"><i class="material-icons">check</i>  Вход</button></div>  
-                <div class="col-md-6"><button type="button" (click)="loginCancel()" class="btn btn-primary btn-lg btn-block"><i class="material-icons">cancel</i>  Отмена</button></div>                  
-                
-                <!--<button class="btn btn-lg" type="button" (click)="loginEnter()"> <i class="material-icons">check</i>  Вход<span class="md-click-circle md-click-animate"                               
-                                                            style="height: 115px; width: 115px; top: -38.5px;"></span>
-                </button>
-
-                <button class="btn btn-lg" type="button" (click)="loginCancel()"> <i class="material-icons">cancel</i>  Отмена<span class="md-click-circle md-click-animate"                               
-                                                            style="height: 115px; width: 115px; top: -38.5px;"></span>
-                </button>-->
+                <div class="col-md-offset-6 col-md-6"><button type="button" (click)="loginEnter()" class="btn btn-primary btn-lg btn-block"><i class="material-icons">check</i>  Вход</button></div>                   
             </div>
         </form>
    </div>
 </div>
+
+<!--<pass-ref-dialog [StatusDialog]=refDialog></pass-ref-dialog>-->
+
+<p-dialog header="Востоновление пароля" [(visible)]="refDialog" modal="modal" width="300" [responsive]="true">
+    <p>Для востоновления пароля укажите почту на каторую зарегестрирован пользователь:</p>
+    <div class="form-group">
+        <label>e-mail:</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="email">
+    </div>
+
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="refDialog=false" label="Отмена"></button>
+                <button type="button" pButton icon="fa-check" (click)="refDialog=false" label="Восстановить"></button>
+            </div>
+        </p-footer>
+</p-dialog>

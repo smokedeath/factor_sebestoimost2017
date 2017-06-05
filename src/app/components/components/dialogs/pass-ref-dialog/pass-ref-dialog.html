@@ -1,0 +1,14 @@
+<p-dialog header="Востоновление пароля" [(visible)]="StatusDialog" modal="modal" width="300" [responsive]="true">
+    <p>Для востоновления пароля укажите почту на каторую зарегестрирован пользователь:</p>
+    <div class="form-group">
+        <label>e-mail</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="email">
+    </div>
+
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="StatusDialog=false" label="Отмена"></button>
+                <button type="button" pButton icon="fa-check" (click)="StatusDialog=false" label="Восстановить"></button>
+            </div>
+        </p-footer>
+</p-dialog>

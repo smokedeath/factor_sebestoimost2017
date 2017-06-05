@@ -12,6 +12,7 @@ export class FinanceDataInput implements OnInit{
     constructor(private service : AppService){}  
 
     titelName = 'ЗАГРУЗКА ФИНАНСОВЫХ ДАННЫХ';
+    defualtDate = Date();
 
     arrtypePeriud = [];
     tableDate = [];
