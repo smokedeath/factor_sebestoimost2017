@@ -9,6 +9,9 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 export class NavbarMegaMenuComponent implements OnInit{
     @Input()
+    navbarLevel: Number;
+
+    @Input()
     logoName: String;
 
     @Input()
@@ -20,6 +23,9 @@ export class NavbarMegaMenuComponent implements OnInit{
     @Output()
     getHelpPane: EventEmitter<any> = new EventEmitter();
 
+    @Output()
+    getMenuPane: EventEmitter<any> = new EventEmitter();
+
     lang = {
         kz: false,
         ru: false,
@@ -28,6 +34,10 @@ export class NavbarMegaMenuComponent implements OnInit{
 
     emitHelpPane(){
         this.getHelpPane.emit(null);
+    }
+
+    emitMenuPane(){
+        this.getMenuPane.emit(null);
     }
 
     langClick(lng: Number){

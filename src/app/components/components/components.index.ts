@@ -13,3 +13,4 @@ export * from './multi-combobox.component/multi-combobox.component';
 export * from './sidenav/sidenav-ft-component/sidenav-ft-component';
 export * from './dialogs/pass-ref-dialog/pass-ref-dialog';
 export * from './navbar/navbar-mega-menu-component/navbar-mega-menu-component';
+export * from './sidenav/sidenav-link-menu-component/sidenav-link-menu-component';

@@ -12,6 +12,7 @@ export class PageIndexGp {
     logoName = '../assets/admin/layout5/img/logo_gp_new.png';
     rExitLink = '/login'; ///login
     currentUser = "Габбасов Марс Беккалиевич";
+    navbarLevel = 1;
 
     getPanel(overlaypanel: OverlayPanel){
         overlaypanel.toggle(event);   

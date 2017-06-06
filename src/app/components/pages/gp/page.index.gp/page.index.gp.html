@@ -1,5 +1,14 @@
 <header class="page-header">
-    <navbar-mega-menu-component (getHelpPane)="getPanel(op)" [currentUser]=currentUser [rLink]=rExitLink [logoName]=logoName></navbar-mega-menu-component>
+    <nav class="navbar mega-menu" role="navigation">
+        <div class="container-fluid">
+            <navbar-mega-menu-component (getHelpPane)="getPanel(op)"
+                                        [currentUser]=currentUser 
+                                        [rLink]=rExitLink 
+                                        [logoName]=logoName 
+                                        [navbarLevel]=navbarLevel>
+            </navbar-mega-menu-component>
+        </div>
+    </nav>
 </header>
 
 

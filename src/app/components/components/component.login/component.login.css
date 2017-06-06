@@ -7,6 +7,8 @@
     color: floralwhite;
 }
 .show-pass{
-    color: floralwhite;
-    vertical-align: middle;
+    /*color: #000;*/
+    display: flex;
+    top: 10px;
+    right: 35px;
 }

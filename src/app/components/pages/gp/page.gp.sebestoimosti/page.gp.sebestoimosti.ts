@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { AppService } from './../../../../share/app.service';
+import { OverlayPanel } from 'primeng/primeng';
 
 @Component({
     moduleId: module.id,
@@ -9,7 +11,18 @@ import { Router } from "@angular/router";
 })
 
 export class PageGpSebestoimosti implements OnInit{       
-    constructor(private router: Router) {} 
+    constructor(private router: Router,
+                private service : AppService) {} 
+
+    logoName = '../assets/admin/layout5/img/logo_gp_new.png';
+    rExitLink = '/index.gp';
+    currentUser = "Габбасов Марс Беккалиевич";
+    navbarLevel = 2;
+    smallMenu = this.service.smallMenuGp;  
+
+    getPanel(overlaypanel: OverlayPanel){
+        overlaypanel.toggle(event); 
+    }      
 
     menu = [
         {

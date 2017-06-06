@@ -1,31 +1,27 @@
-<nav class="navbar mega-menu" role="navigation">
-    <div class="container-fluid">
-        <div class="clearfix navbar-fixed-top">
-            <a class="page-logo" routerLink={{rLink}} routerLinkActive="active">
-                <img src={{logoName}} alt="Logo">
-            </a>
-            <div class="user-btn">
-                <div class="current-user"><h2>{{currentUser}}</h2></div>				
-            </div>
-            <div class="lft-btn">
-                <button type="button" class="btn btn-primary" (click)="emitHelpPane()">
-                    <i class="fa fa-address-card-o"></i> Профиль пользователя
-                </button>
-                <button type="button" class="btn btn-primary" (click)="emitHelpPane()">
-                    <i class="fa fa-question-circle"></i> Помощь
-                </button>
-                <button type="button" class="btn btn-primary" routerLink={{rLink}} routerLinkActive="active">
-                    <i class="fa fa-caret-square-o-right"></i> Выход
-                </button>
-                <!--<button type="button" class="btn btn-primary" routerLink={{rLink}} routerLinkActive="active">
-                    <i class="fa fa-bars"></i>
-                </button>-->
-            </div>
-            <div class="lng-btn">
-                <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.kz}" (click)="langClick(1)">Қазақша</a>>
-                <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.ru}" (click)="langClick(2)">Русский</a>
-                <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.en}" (click)="langClick(3)">English</a>
-            </div>
-        </div>
+<div class="clearfix navbar-fixed-top">
+    <a class="page-logo" routerLink={{rLink}} routerLinkActive="active">
+        <img src={{logoName}} alt="Logo">
+    </a>
+    <div *ngIf="navbarLevel!=0" class="user-btn">
+        <div class="current-user"><h2>{{currentUser}}</h2></div>				
     </div>
-</nav>
+    <div class="lft-btn">
+        <button *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" (click)="emitHelpPane()">
+            <i class="fa fa-address-card-o"></i> Профиль пользователя
+        </button>
+        <button type="button" class="btn btn-primary" (click)="emitHelpPane()">
+            <i class="fa fa-question-circle"></i> Помощь
+        </button>
+        <button *ngIf="navbarLevel==2" type="button" class="btn btn-primary" (click)="emitMenuPane()">
+            <i class="fa fa-bars"></i>
+        </button>
+        <button *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" routerLink={{rLink}} routerLinkActive="active">
+            <i class="fa fa-caret-square-o-right"></i> Выход
+        </button>
+    </div>
+    <div class="lng-btn">
+        <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.kz}" (click)="langClick(1)">Қазақша</a>
+        <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.ru}" (click)="langClick(2)">Русский</a>
+        <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.en}" (click)="langClick(3)">English</a>
+    </div>
+</div>

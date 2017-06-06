@@ -5,6 +5,51 @@ import { Http } from "@angular/http";
 export class AppService {    
     constructor(private http: Http) {}
 
+    smallMenuGp = [
+        {
+            rlink: '/gp.date.input',
+            name: 'загрузка данных',
+            icon_type: 'cloud_download',
+            label: 'Загрузка данных из информационных систем КТЖ'
+        },
+        {
+            rlink: '/gp.rashodstavok',
+            name: 'Расчет расходных ставок',
+            icon_type: 'assignment',
+            label: 'Расчет расходных ставок'
+        },
+        {
+            rlink: '/gp.sebestoimosti',
+            name: 'Расчет себестоимости',
+            icon_type: 'monetization_on',
+            label: 'Расчет себестоимости'
+        },
+        {
+            rlink: '/gp.analiz',
+            name: 'Анализ',
+            icon_type: 'event_note',
+            label: 'Анализ'
+        },
+        {
+            rlink: '/index.gp',
+            name: 'Расчет себестоимости отправок',
+            icon_type: 'attach_money',
+            label: 'Расчет себестоимости отправок'
+        },
+        {
+            rlink: '/index.gp',
+            name: 'Анализ отправок',
+            icon_type: 'storage',
+            label: 'Анализ отправок'
+        },
+        {
+            rlink: '/index.gp',
+            name: 'Выход',
+            icon_type: 'forward',
+            label: 'Выход'    
+        }
+    ];
+
 
 
     baseUrl = "http://192.168.1.20:51984/SpringCost";

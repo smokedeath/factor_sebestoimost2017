@@ -2,32 +2,35 @@
 	<header class="page-header">
 		<nav class="navbar mega-menu" role="navigation">
 			<div class="container-fluid">
-				<div class="clearfix navbar-fixed-top">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-					        data-target=".navbar-responsive-collapse">
-						<span class="sr-only">Toggle navigation</span>
-		                    <span class="toggle-icon">
-		                        <span class="icon-bar"></span>
-		                        <span class="icon-bar"></span>
-		                        <span class="icon-bar"></span>
-		                    </span>
-					</button>
-					<a id="index" class="page-logo" routerLink="/index.gp" routerLinkActive="active">
-						<img src="../assets/admin/layout5/img/logo_gp_new.png" alt="Logo">
-					</a>					
-					<div id="headerselect" class="topbar-actions headerselect ">
-						<combobox-structure-ktzh></combobox-structure-ktzh>
-						<button type="button" class="quick-sidebar-toggler" (click)="op1.toggle($event)" style="margin:4px 10px 0 0 ;background: #0095BD">
-							<span class="sr-only">Toggle Quick Sidebar</span>
-							<i class="fa fa-question-circle"></i>
-						</button>
-					</div>
+				<navbar-mega-menu-component (getHelpPane)="getPanel(op)"
+                                       		(getMenuPane)="getPanel(mp)"
+											[currentUser]=currentUser 
+											[rLink]=rExitLink 
+											[logoName]=logoName 
+											[navbarLevel]=navbarLevel>
+				</navbar-mega-menu-component>
+
+				<div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
+					<ul class="nav navbar-nav text-uppercase">
+						<li class="dropdown dropdown-fw open selected">
+							<ul class="dropdown-menu dropdown-menu-fw">    
+								<li class="dropdown more-dropdown-sub" *ngFor="let tmenu of menu">
+									<a data-close-others="true" routerLink={{tmenu.sref}} routerLinkActive="active">{{tmenu.name}}</a>
+									<ul class="dropdown-menu">
+										<li *ngFor="let smenu of tmenu.subname"><a routerLink={{smenu.sref}} routerLinkActive="active">{{smenu.name}}</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</div>
-				<singl-top-menu [menu]="menu"></singl-top-menu>	
+
+
+
 			</div>
 		</nav>
 	</header>
-	<!--//////-->
 	<div class="container-fluid ">
 		<div class="page-content">
 			<div ui-view class="fade-in-up">
@@ -37,10 +40,12 @@
 				телекоммуникаций"
 			</p>			
 		</div>
-		<!--<error-form-date></error-form-date>-->
-		<p-overlayPanel #op1>
+		<p-overlayPanel #op>
 			<sidenav-ft-component></sidenav-ft-component>
+		</p-overlayPanel>
+		
+		<p-overlayPanel #mp>
+			<sidenav-link-menu-component [smallMenu]=smallMenu></sidenav-link-menu-component>
 		</p-overlayPanel>
 	</div>
 </div>
-

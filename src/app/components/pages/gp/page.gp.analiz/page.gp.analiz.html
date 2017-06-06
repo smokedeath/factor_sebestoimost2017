@@ -2,39 +2,18 @@
 	<header class="page-header">
 		<nav class="navbar mega-menu" role="navigation">
 			<div class="container-fluid">
-				<div class="clearfix navbar-fixed-top">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-					        data-target=".navbar-responsive-collapse">
-						<span class="sr-only">Toggle navigation</span>
-		                    <span class="toggle-icon">
-		                        <span class="icon-bar"></span>
-		                        <span class="icon-bar"></span>
-		                        <span class="icon-bar"></span>
-		                    </span>
-					</button>
-
-					<a id="index" class="page-logo" routerLink="/index.gp" routerLinkActive="active">
-						<img src="../assets/admin/layout5/img/logo_gp_new.png" alt="Logo">
-					</a>
-					
-					<div id="headerselect" class="topbar-actions headerselect ">
-						<combobox-structure-ktzh></combobox-structure-ktzh>
-
-						<button (click)="op1.toggle($event)" type="button" class="quick-sidebar-toggler" style="margin:4px 10px 0 0 ;background: #0095BD">
-							<span class="sr-only">Toggle Quick Sidebar</span>
-							<i class="fa fa-question-circle"></i>
-						</button>
-
-					</div>
-				</div>
-
+				<navbar-mega-menu-component (getHelpPane)="getPanel(op)"
+                                       		(getMenuPane)="getPanel(mp)"
+											[currentUser]=currentUser 
+											[rLink]=rExitLink 
+											[logoName]=logoName 
+											[navbarLevel]=navbarLevel>
+				</navbar-mega-menu-component>
 				<singl-top-menu [menu]="menu"></singl-top-menu>	
-
 			</div>
 		</nav>
 	</header>
-
-	<!--//////-->
+	
 	<div class="container-fluid ">
 		<div class="page-content">
 			<div ui-view class="fade-in-up">
@@ -43,29 +22,15 @@
 			<p class="copyright">2017 © ТОО "Научно-исследовательский институт экономики и информатизации транспорта,
 				телекоммуникаций"
 			</p>
-			<div class="modal fade" id="commonmsg" tabindex="-1" role="coordination" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-							<h4 class="modal-title" id="fortitle"></h4>
-						</div>
-						<div class="modal-body">
-							<p id="forcommonmsg"></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn default" data-dismiss="modal">Закрыть</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		</div>		
 		
-		<p-overlayPanel #op1>
+		<p-overlayPanel #op>
 			<sidenav-ft-component></sidenav-ft-component>
 		</p-overlayPanel>
+		
+		<p-overlayPanel #mp>
+			<sidenav-link-menu-component [smallMenu]=smallMenu></sidenav-link-menu-component>
+		</p-overlayPanel>
 
-		<!--<error-form-date></error-form-date>-->
-		<!--<a href="index.gp" class="go2top"><i class="icon-arrow-up"></i></a>-->
 	</div>
 </div>
