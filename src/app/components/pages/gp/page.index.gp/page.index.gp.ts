@@ -1,3 +1,4 @@
+import { OverlayPanel } from 'primeng/primeng';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,6 +9,14 @@ import { Component } from '@angular/core';
 })
 
 export class PageIndexGp {
+    logoName = '../assets/admin/layout5/img/logo_gp_new.png';
+    rExitLink = '/login'; ///login
+    currentUser = "Габбасов Марс Беккалиевич";
+
+    getPanel(overlaypanel: OverlayPanel){
+        overlaypanel.toggle(event);   
+    }
+
     bigBatton = [
         {
             class: 'pricing__item',

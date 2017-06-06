@@ -1,0 +1,35 @@
+.current-user{
+    color: #fff;
+}
+
+.lft-btn{
+    position: absolute;
+    display: flex;
+    top: 10px;
+    right: 15px;
+    transition-duration: 300ms;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+
+}
+.lng-btn{
+    position: absolute;
+    display: flex;
+    top: 60px;
+    right: 15px;
+    transition-duration: 300ms;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+.btn-lng{
+    margin-right: 10px;
+}
+.user-btn{
+    position: absolute;
+    display: flex;
+    top: 10px;
+    right: 800px;
+    transition-duration: 300ms;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}

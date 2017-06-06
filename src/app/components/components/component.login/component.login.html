@@ -19,7 +19,7 @@
                 <label>Пароль</label> 
                 <div class="row">
                     <div class="col-lg-11"><input type={{textType}} class="form-control" name="password" [(ngModel)]="user.password"></div>
-                    <span (click)="showPass()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                    <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
                 </div>
                 <a (click)="getRefPass()"><h5 class="pass-ref">Забыли пароль?</h5></a>
             </div>
