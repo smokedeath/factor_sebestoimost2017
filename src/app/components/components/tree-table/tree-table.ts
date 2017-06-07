@@ -8,7 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 
 export class TreeTableComponent {                  
-    selectedField: any;  
+    selectedField: any;      
+    preloaderText = 'Подождите. Идет загрузка данных...';
 
     @Input()
     tableDate = [];  

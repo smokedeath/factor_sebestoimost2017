@@ -12,7 +12,7 @@ import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import 'hammerjs';
 
 // primeng imports
-import {TreeTableModule,TreeNode,SharedModule, TreeTable, GrowlModule, 
+import {TreeTableModule,TreeNode,SharedModule, TreeTable, GrowlModule, ToggleButtonModule,
         CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
@@ -21,7 +21,8 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
          SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent, 
          MultiComboboxComponent, SidenavFTComponent, PassRefDialogComponent, NavbarMegaMenuComponent, 
-         SidenavLinkMenuComponent } from './components/components/components.index';
+         SidenavLinkMenuComponent, PreloaderComponent, ViewPositionCcomponent, UserSettingsComponent,
+         ComboboxCheckComponent } from './components/components/components.index';
 
 import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';   
@@ -39,7 +40,8 @@ import { AppService } from './share/app.service';
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,
-                PassRefDialogComponent, NavbarMegaMenuComponent, SidenavLinkMenuComponent // Общие компоненты
+                PassRefDialogComponent, NavbarMegaMenuComponent, SidenavLinkMenuComponent, PreloaderComponent, 
+                ViewPositionCcomponent, UserSettingsComponent, ComboboxCheckComponent // Общие компоненты
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { AppService } from './share/app.service';
     JsonpModule,
     AppRoutingModule,
     LeafletModule, 
-    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule
+    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, 
+                     ToggleButtonModule
   ],
   entryComponents: [
     ErrorDialog

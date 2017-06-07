@@ -4,6 +4,13 @@ import { Http } from "@angular/http";
 @Injectable()
 export class AppService {    
     constructor(private http: Http) {}
+    
+    user = {
+        fam: 'Габбасов',
+        name: 'Марс',
+        otch: 'Беккалиевич',
+        password: ''
+    }
 
     smallMenuGp = [
         {
@@ -21,25 +28,25 @@ export class AppService {
         {
             rlink: '/gp.sebestoimosti',
             name: 'Расчет себестоимости',
-            icon_type: 'monetization_on',
+            icon_type: 'title',
             label: 'Расчет себестоимости'
         },
         {
             rlink: '/gp.analiz',
             name: 'Анализ',
-            icon_type: 'event_note',
+            icon_type: 'multiline_chart',
             label: 'Анализ'
         },
         {
             rlink: '/index.gp',
             name: 'Расчет себестоимости отправок',
-            icon_type: 'attach_money',
+            icon_type: 'directions_railway',
             label: 'Расчет себестоимости отправок'
         },
         {
             rlink: '/index.gp',
             name: 'Анализ отправок',
-            icon_type: 'storage',
+            icon_type: 'equalizer',
             label: 'Анализ отправок'
         },
         {
@@ -141,6 +148,28 @@ export class AppService {
     getFinDataInput() {
         return this.http.get('https://api.myjson.com/bins/p7rnt');
     }   
+    getItemSize(){
+        let itemSize = [
+            {id: 1, name: "одна тенге"},
+            {id: 2, name: "тысяча тенге"},
+            {id: 3, name: "милион тенге"}
+        ];
+        return itemSize;
+    }
+    getItemColumnsTable(){
+        let itemColumnsTable = [
+            {id:1, name: "Расходы на оплату труда", check: true},
+            {id:2, name: "Отчисления от фонда оплаты труда", check: true},
+            {id:3, name: "Материалы", check: true},
+            {id:4, name: "Топливо", check: true},
+            {id:5, name: "Электроэнергия", check: true},
+            {id:6, name: "Оплата работ сторонних организаций", check: true},
+            {id:7, name: "Оплата работ дочерних предприятий", check: true},
+            {id:8, name: "Износ средств", check: true},
+            {id:9, name: "Прочие расходы", check: true}
+        ];
+        return itemColumnsTable;
+    }
     getPostavschik(){
          let arrPostavschik = [{id: 1, name: "Поставщик"}];
          return arrPostavschik;

@@ -1,0 +1,8 @@
+<div class="select">
+	<span>Затраты</span>
+	<div class="select_">
+        <div class="row" *ngFor="let struct of structure">
+            <p-checkbox name="group1" label={{struct.name}}></p-checkbox>
+        </div>
+	</div>
+</div>

@@ -1,4 +1,3 @@
-import { OverlayPanel } from 'primeng/primeng';
 import { Component } from '@angular/core';
 
 @Component({
@@ -11,12 +10,7 @@ import { Component } from '@angular/core';
 export class PageIndexGp {
     logoName = '../assets/admin/layout5/img/logo_gp_new.png';
     rExitLink = '/login'; ///login
-    currentUser = "Габбасов Марс Беккалиевич";
     navbarLevel = 1;
-
-    getPanel(overlaypanel: OverlayPanel){
-        overlaypanel.toggle(event);   
-    }
 
     bigBatton = [
         {
@@ -37,28 +31,28 @@ export class PageIndexGp {
             class: 'pricing__item',
             rlink: '/gp.sebestoimosti',
             name: 'Расчет себестоимости',
-            icon_type: 'monetization_on',
+            icon_type: 'title',
             label: 'Расчет себестоимости'
         },
         {
-            class: 'pricing__item',
+            class: 'pricing__item', 
             rlink: '/gp.analiz',
             name: 'Анализ',
-            icon_type: 'event_note',
+            icon_type: 'multiline_chart',
             label: 'Анализ'
         },
         {
             class: 'pricing__item',
             rlink: '/index.gp',
             name: 'Расчет себестоимости отправок',
-            icon_type: 'attach_money',
+            icon_type: 'directions_railway',
             label: 'Расчет себестоимости отправок'
         },
         {
             class: 'pricing__item',
             rlink: '/index.gp',
             name: 'Анализ отправок',
-            icon_type: 'storage',
+            icon_type: 'equalizer',
             label: 'Анализ отправок'
         }
     ];

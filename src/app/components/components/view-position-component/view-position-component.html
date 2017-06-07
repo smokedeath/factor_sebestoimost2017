@@ -1,0 +1,11 @@
+<div class="row btn-ch">
+    <p-toggleButton [(ngModel)]="checked2" 
+                    onLabel="Скрыть наименование" 
+                    offLabel="Показать наименование" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
+    </p-toggleButton>
+</div>
+<div class="row panel-css" *ngIf="checked2">
+    <div class="alert alert-danger">
+        <h2>{{titelName}}</h2> 
+    </div>
+</div>

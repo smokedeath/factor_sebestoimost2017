@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CalendarComponent implements OnInit{
-    date: Date;
+    date = new Date();
     ru: any;
 
     ngOnInit(){

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { AppService } from './../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
@@ -7,7 +8,9 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
     styleUrls: ['navbar-mega-menu-component.css']
 })
 
-export class NavbarMegaMenuComponent implements OnInit{
+export class NavbarMegaMenuComponent implements OnInit{    
+    constructor(private service : AppService) {} 
+
     @Input()
     navbarLevel: Number;
 
@@ -15,30 +18,25 @@ export class NavbarMegaMenuComponent implements OnInit{
     logoName: String;
 
     @Input()
-    rLink: String;
+    rLink: String;    
 
     @Input()
-    currentUser: String;
+    smallMenu = [];
 
-    @Output()
-    getHelpPane: EventEmitter<any> = new EventEmitter();
-
-    @Output()
-    getMenuPane: EventEmitter<any> = new EventEmitter();
+    user = {
+        fam: this.service.user.fam,
+        name: this.service.user.name,
+        otch: this.service.user.otch,
+        password: this.service.user.password
+    }
+        
+    currentUser = this.user.fam + ' ' + this.user.name + ' ' + this.user.otch;
 
     lang = {
         kz: false,
         ru: false,
         en: false
     } 
-
-    emitHelpPane(){
-        this.getHelpPane.emit(null);
-    }
-
-    emitMenuPane(){
-        this.getMenuPane.emit(null);
-    }
 
     langClick(lng: Number){
         switch (lng) {

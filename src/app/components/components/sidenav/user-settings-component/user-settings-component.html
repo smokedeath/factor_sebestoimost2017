@@ -1,0 +1,90 @@
+<div>   
+    <br>
+    <div class="page-quick-sidebar">  
+        <div id="feedbackform" class="nav-justified" data-id="ГП" >
+        <div class="pp"><p>Профиль пользователя</p></div>
+        <div class="tab-content">
+            <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+                <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+                    <div class="group-css"> 
+                        <div class="form-group">
+                            <label class="label-css">Фамилия</label>
+                            <input type="text" class="form-control" name="fam" [(ngModel)]="user.fam">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="label-css">Имя</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="label-css">Отчество</label>
+                            <input type="text" class="form-control" name="otch" [(ngModel)]="user.otch">
+                        </div>
+                        <br>
+                        <br>              
+                        <div class="form-group">
+                            <div class="checkbox ch-css">
+                                <label class="label-css">
+                                <input (click)="onChClick()" type="checkbox" name="isActive" [(ngModel)]="user.isActive">
+                                 Сменить пароль
+                                </label>
+                            </div>
+                        </div>
+                      
+                        <div *ngIf="!user.isActive">
+                            <div class="form-group">
+                                <label class="label-css">Старый пароль</label>
+                                <input class="form-control" type="text" placeholder="Пароль" disabled>
+                            </div>    
+
+                            <div class="form-group">
+                                <label class="label-css">Новый пароль</label>
+                                <input class="form-control" type="text" placeholder="Пароль" disabled>
+                            </div>    
+
+                            <div class="form-group">
+                                <label class="label-css">Повторите пароль</label>
+                                <input class="form-control" type="text" placeholder="Повторите пароль" disabled>
+                            </div>
+                        </div>
+
+                        <div *ngIf="user.isActive">
+                            <div class="form-group">
+                                <label class="label-css">Старый пароль</label>
+                                <div class="row">
+                                    <div class="col-lg-12"><input type={{textType}} class="form-control" name="password0" [(ngModel)]="pas.oldpass"></div>
+                                    <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
+                                </div>
+                            </div>    
+
+                            <div class="form-group">
+                                <label class="label-css">Новый пароль</label>
+                                <div class="row">
+                                    <div class="col-lg-12"><input type={{textType}} class="form-control" name="password1" [(ngModel)]="pas.firstpass"></div>
+                                    <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
+                                </div>
+                            </div>    
+
+                            <div class="form-group">
+                                <label class="label-css">Повторите пароль</label>
+                                <div class="row">
+                                    <div class="col-lg-12"><input type={{textType}} class="form-control" name="password2" [(ngModel)]="pas.secondpass"></div>
+                                    <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6"><button type="button" class="btn btn-primary">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить изменения</button>
+                            </div>
+                        </div>
+
+                    </div>   
+                </div>
+            </div>
+        </div>    
+        </div>   
+    </div>  
+</div>

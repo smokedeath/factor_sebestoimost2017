@@ -1,0 +1,38 @@
+:host {
+  background: #424242;
+  /*color: #fff;*/
+  position: fixed;
+  left: auto;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  /*min-width: 250px;*/
+  z-index: 9999;
+} 
+.btnclass{
+  text-align: left;
+  margin: 10px;  
+  margin-left: 40px;
+}
+.pp{
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase !important;
+}
+.group-css{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.label-css{
+    color: #fff;
+}
+.ch-css{    
+    margin-left: 20px;
+}
+.show-pass{
+    /*color: #000;*/
+    display: flex;
+    top: 10px;
+    right: 35px;
+}

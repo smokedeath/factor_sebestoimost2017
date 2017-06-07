@@ -2,8 +2,7 @@
     <header class="page-header">
         <nav class="navbar mega-menu" role="navigation">
             <div class="container-fluid">
-				<navbar-mega-menu-component (getHelpPane)="getPanel(op)"
-											[logoName]=logoName 
+				<navbar-mega-menu-component [logoName]=logoName 
 											[navbarLevel]=navbarLevel>
 				</navbar-mega-menu-component>
             </div>
@@ -16,7 +15,4 @@
         <p class="copyright" style="color:#000000;margin-bottom: 0px">2017 © ТОО "Научно-исследовательский институт
             экономики и информатизации транспорта, телекоммуникаций"</p>
     </div>
-    <p-overlayPanel #op>
-        <sidenav-ft-component></sidenav-ft-component>
-    </p-overlayPanel>
 </div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { OverlayPanel } from 'primeng/primeng';
 
 @Component({
     moduleId: module.id,
@@ -11,12 +10,7 @@ import { OverlayPanel } from 'primeng/primeng';
 export class PageIndexMzhs{
     logoName = '../assets/admin/layout5/img/logo_mzhs_new.png';
     rExitLink = '/login'; ///login
-    currentUser = "Габбасов Марс Беккалиевич";
     navbarLevel = 1;
-
-    getPanel(overlaypanel: OverlayPanel){
-        overlaypanel.toggle(event);   
-    }
     
     bigBatton = [ 
         {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from "@angular/router";
-import { OverlayPanel } from 'primeng/primeng';
 import { AppService } from './../../../../share/app.service';
 
 @Component({
@@ -16,13 +15,8 @@ export class PageGpAnaliz implements OnInit{
 
     logoName = '../assets/admin/layout5/img/logo_gp_new.png';
     rExitLink = '/index.gp';
-    currentUser = "Габбасов Марс Беккалиевич";
     navbarLevel = 2;
-    smallMenu = this.service.smallMenuGp;  
-
-    getPanel(overlaypanel: OverlayPanel){
-        overlaypanel.toggle(event); 
-    }     
+    smallMenu = this.service.smallMenuGp;   
     
     menu = [
         {
@@ -40,6 +34,4 @@ export class PageGpAnaliz implements OnInit{
     ngOnInit(){
         this.router.navigate(["gp.analiz/notfound"]);
     }  
-
-
 }

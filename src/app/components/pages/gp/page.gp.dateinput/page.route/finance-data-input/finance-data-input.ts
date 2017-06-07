@@ -13,13 +13,18 @@ export class FinanceDataInput implements OnInit{
 
     titelName = 'ЗАГРУЗКА ФИНАНСОВЫХ ДАННЫХ';
     defualtDate = Date();
+    procentSchow = false;
 
     arrtypePeriud = [];
     tableDate = [];
     tableDateColumns = [
         {
             field: "name",
-            header: "Наименование"
+            header: "Номер статьи"
+        },
+        {
+            field: "name",
+            header: "Наименование статьи"
         },
         {
             field: "size",
@@ -73,6 +78,12 @@ export class FinanceDataInput implements OnInit{
 
     arrStatus = [];
     statusModel: number;
+    
+    arrItemSize = [];    
+    itemSizeModel: number;
+
+    arrItemTableColumn = [];
+    itemTableColumnModel: number;
 
     inputFromTemplate(){
         ///
@@ -82,12 +93,19 @@ export class FinanceDataInput implements OnInit{
         //
     }
 
+    viewTemplateFolder(){
+        //
+    }
+
     ngOnInit(){
         ///////////////////   Типо сервисы   ////////////////////  
         this. arrVladelic = this.service.getVladelic();
         this.arrPostavschik = this.service.getPostavschik();
         this.vladelicModel = this.arrVladelic[0].id;        
         this.postavschikModel = this.arrPostavschik[0].id; 
+        this.arrItemSize = this.service.getItemSize();
+        this.itemSizeModel = this.arrItemSize[0].id;
+        this.arrItemTableColumn = this.service.getItemColumnsTable(); 
 
         //Тип периода
         this.service.getGenPeriodList()

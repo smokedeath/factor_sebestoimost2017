@@ -6,13 +6,13 @@
         <div class="current-user"><h2>{{currentUser}}</h2></div>				
     </div>
     <div class="lft-btn">
-        <button *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" (click)="emitHelpPane()">
+        <button *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" (click)="up.toggle($event)">
             <i class="fa fa-address-card-o"></i> Профиль пользователя
         </button>
-        <button type="button" class="btn btn-primary" (click)="emitHelpPane()">
+        <button type="button" class="btn btn-primary" (click)="op.toggle($event)">
             <i class="fa fa-question-circle"></i> Помощь
         </button>
-        <button *ngIf="navbarLevel==2" type="button" class="btn btn-primary" (click)="emitMenuPane()">
+        <button *ngIf="navbarLevel==2" type="button" class="btn btn-primary" (click)="mp.toggle($event)">
             <i class="fa fa-bars"></i>
         </button>
         <button *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" routerLink={{rLink}} routerLinkActive="active">
@@ -25,3 +25,14 @@
         <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.en}" (click)="langClick(3)">English</a>
     </div>
 </div>
+<p-overlayPanel #up>
+    <user-settings-component></user-settings-component>
+</p-overlayPanel>
+
+<p-overlayPanel #op>
+    <sidenav-ft-component></sidenav-ft-component>
+</p-overlayPanel>
+
+<p-overlayPanel #mp>
+    <sidenav-link-menu-component [smallMenu]=smallMenu></sidenav-link-menu-component>
+</p-overlayPanel>

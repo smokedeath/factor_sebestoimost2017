@@ -2,9 +2,7 @@
 	<header class="page-header">
 		<nav class="navbar mega-menu" role="navigation">
 			<div class="container-fluid">
-				<navbar-mega-menu-component (getHelpPane)="getPanel(op)"
-                                       		(getMenuPane)="getPanel(mp)"
-											[currentUser]=currentUser 
+				<navbar-mega-menu-component [smallMenu]=smallMenu
 											[rLink]=rExitLink 
 											[logoName]=logoName 
 											[navbarLevel]=navbarLevel>
@@ -23,14 +21,5 @@
 				телекоммуникаций"
 			</p>
 		</div>		
-		
-		<p-overlayPanel #op>
-			<sidenav-ft-component></sidenav-ft-component>
-		</p-overlayPanel>
-		
-		<p-overlayPanel #mp>
-			<sidenav-link-menu-component [smallMenu]=smallMenu></sidenav-link-menu-component>
-		</p-overlayPanel>
-
 	</div>
 </div>

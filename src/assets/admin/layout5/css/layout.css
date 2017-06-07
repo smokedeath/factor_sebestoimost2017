@@ -668,8 +668,9 @@
     top: 30px;
     right: 10px;
     color: #6c7b88;
-    font-size: 16px;
-    content: "\f107";
+    font-size: 16px;	
+    /*content: "\f107";*/
+    content: "";
     position: absolute;
     font-weight: normal;
     display: inline-block;
