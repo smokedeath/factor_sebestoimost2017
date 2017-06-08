@@ -4,7 +4,8 @@ import { RouterModule } from "@angular/router";
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountComponent,
          PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz } from './components/pages/pages.index'; 
 
-import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
+import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
+         AsudkrDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
 import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } f
                         { path: "findatainput", component: FinanceDataInput },
                         { path: "iodv", component: IodvDataInput }, 
                         { path: "statpokazinput", component: StatPokazInputComponent},
+                        { path: "asudkr", component: AsudkrDataInputComponent},
                         { path: "sap", component: ViewGpSap }
                     ] 
             },

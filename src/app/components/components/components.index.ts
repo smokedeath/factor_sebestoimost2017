@@ -18,3 +18,4 @@ export * from './sidenav/sidenav-link-menu-component/sidenav-link-menu-component
 export * from './preloader-component/preloader-component';
 export * from './view-position-component/view-position-component';  
 export * from './sidenav/user-settings-component/user-settings-component';
+export * from './table-component/table-component';

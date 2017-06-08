@@ -2,7 +2,10 @@
 	<span>Затраты</span>
 	<div class="select_">
         <div class="row" *ngFor="let struct of structure">
-            <p-checkbox name="group1" label={{struct.name}}></p-checkbox>
+            <label>
+                <input class="checkbox_" type="checkbox" name="isActive" [(ngModel)]="struct.check">
+                {{struct.name}}
+            </label>
         </div>
 	</div>
 </div>

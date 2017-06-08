@@ -68,22 +68,22 @@ export class FinanceDataInput implements OnInit{
         }
     ] 
 
-    typePeriudModel: number;  
+    typePeriudModel: Number;  
 
     arrVladelic = [];   
-    vladelicModel: number; 
+    vladelicModel: Number; 
     
     arrPostavschik = [];
-    postavschikModel: number;
+    postavschikModel: Number;
 
     arrStatus = [];
-    statusModel: number;
+    statusModel: Number;
     
     arrItemSize = [];    
-    itemSizeModel: number;
+    itemSizeModel: Number;
 
     arrItemTableColumn = [];
-    itemTableColumnModel: number;
+    itemTableColumnModel: Number;
 
     inputFromTemplate(){
         ///

@@ -144,10 +144,28 @@ export class AppService {
 
     ////////////////////
     ////////////////////
-    /////////////////////     
+    getAnyData(){
+        let anyData = [
+            {id:1, name: "Данные 1"},
+            {id:2, name: "Данные 2"},
+            {id:3, name: "Данные 3"}
+        ]
+        return anyData;
+    }
+    /////////////////////   
+    getDocVid(){
+        let docVid = [
+            {id: 1, name: "251"},            
+            {id: 2, name: "253"}
+        ]
+        return docVid; 
+    }  
     getFinDataInput() {
         return this.http.get('https://api.myjson.com/bins/p7rnt');
     }   
+    getIODVtable(){
+        return this.http.get('https://api.myjson.com/bins/cvrxx');
+    }
     getItemSize(){
         let itemSize = [
             {id: 1, name: "одна тенге"},

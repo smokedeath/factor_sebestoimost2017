@@ -27,12 +27,12 @@ export class PageGpDateInput implements OnInit{
         {
             name: "Загрузка данных из ЕК ИОДВ",
             subname: [],
-            sref: "notfound"
+            sref: "iodv"
         },
         {
             name: "Загрузка данных из АСУ ДКР",
             subname: [],
-            sref: "notfound"
+            sref: "asudkr"
         },
         {
             name: "Загрузка данных из Ц Расчет",

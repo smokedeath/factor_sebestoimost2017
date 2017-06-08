@@ -31,3 +31,12 @@
 .select:hover > .select_{
     display:block;
     }
+.checkbox_ {    
+    position: static ;
+    margin-left: 5px ;
+    width: 1.125em;
+    height: 1.125em;
+    line-height: 1.125em;
+    border-radius: 2px;
+    text-align: center;
+}
