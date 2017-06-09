@@ -21,17 +21,17 @@ export class PageGpRashodStavok implements OnInit{
     menu = [
         {
             name: "Расходы",
-            sref: "notfound",
+            sref: "rashodi",
             subname: []
         },
         {
             name: "Эксплуатационные показатели",
-            sref: "notfound",
+            sref: "explpokaz",
             subname: []
         },
         {
             name: "Отнесение расходов",
-            sref: "notfound",
+            sref: "otnesenierashodov",
             subname: []
         },
         {

@@ -7,7 +7,7 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountCompone
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
 import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
-import { RashodStavokComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
+import { RashodStavokComponent, OtnesenieRashodovComponent, ExplotationPokazComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
 
 @NgModule({
     imports: [RouterModule.forRoot([            
@@ -29,7 +29,10 @@ import { RashodStavokComponent } from './components/pages/gp/page.gp.rashodstavo
             { path: "gp.rashodstavok", component: PageGpRashodStavok,
                     children: [     
                         { path: "notfound", component: NotFountComponent },
-                        { path: "rashodstavok", component: RashodStavokComponent }
+                        { path: "rashodstavok", component: RashodStavokComponent },
+                        { path: "otnesenierashodov", component: OtnesenieRashodovComponent},
+                        { path: "explpokaz", component: ExplotationPokazComponent},
+                        { path: "rashodi", component: RashodiComponent }
                     ]
             },
             { path: "gp.sebestoimosti", component: PageGpSebestoimosti,

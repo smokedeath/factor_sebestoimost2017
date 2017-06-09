@@ -28,7 +28,8 @@ import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, Tre
 import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent,
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index'; 
-import { RashodStavokComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
+import { RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, 
+         ExplotationPokazComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './share/app.service';
@@ -40,7 +41,8 @@ import { AppService } from './share/app.service';
 
                 ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput, AsudkrDataInputComponent,
                 IodvDataInput, StatPokazInputComponent, RazhodPoNomenclature, RazhodnieIzmeriteli, CraschetDataInputComponent,
-                RashodStavokComponent,  // View основных страниц
+                RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, ExplotationPokazComponent,
+                RashodiComponent,  // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,

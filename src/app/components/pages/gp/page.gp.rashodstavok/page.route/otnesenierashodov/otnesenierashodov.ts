@@ -3,14 +3,14 @@ import { AppService } from './../../../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'rashodstavok',
-    templateUrl: 'rashodstavok.html',
-    styleUrls: ['rashodstavok.css']
+    selector: 'otnesenierashodov',
+    templateUrl: 'otnesenierashodov.html',
+    styleUrls: ['otnesenierashodov.css']
 })
 
-export class RashodStavokComponent {      
+export class OtnesenieRashodovComponent {      
     constructor(private service : AppService){}  
 
-    titelName = 'РАСЧЕТ РАСХОДНЫХ СТАВОК';
+    titelName = 'ОТНЕСЕНИЕ РАСХОДОВ';
     dopFiltr = false;
 }

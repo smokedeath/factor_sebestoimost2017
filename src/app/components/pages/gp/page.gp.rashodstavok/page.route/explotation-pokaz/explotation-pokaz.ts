@@ -4,15 +4,15 @@ import { AppService } from './../../../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'stat-pokaz-input',
-    templateUrl: 'stat-pokaz-input.html',
-    styleUrls: ['stat-pokaz-input.css']
+    selector: 'explotation-pokaz',
+    templateUrl: 'explotation-pokaz.html',
+    styleUrls: ['explotation-pokaz.css']
 })
 
-export class StatPokazInputComponent implements OnInit{
+export class ExplotationPokazComponent implements OnInit{
     constructor(private service : AppService){}  
 
-    titelName = 'ЗАГРУЗКА СТАТИСТИЧЕСКИХ ПОКАЗАТЕЛЕЙ';
+    titelName = 'ЭКСПЛУАТАЦИОННЫЕ ПОКАЗАТЕЛИ';
     
     arrtypePeriud = [];
     tableDate = [];
@@ -33,7 +33,7 @@ export class StatPokazInputComponent implements OnInit{
             field: "size",
             header: "Факт"
         }
-    ]   
+    ]  
 
     typePeriudModel: number;
     
@@ -45,14 +45,6 @@ export class StatPokazInputComponent implements OnInit{
            
     arrStatus = [];
     statusModel: number;
-
-    inputFromTemplate(){
-        ///
-    }
-
-    viewTemplateFolder(){
-        //
-    }
 
     exportToExcell(){
         let options = { 
@@ -76,17 +68,6 @@ export class StatPokazInputComponent implements OnInit{
         //Тип периода
         this.arrtypePeriud = this.service.getGenPeriodList();
         this.typePeriudModel = this.arrtypePeriud[0].id;
-                    // .subscribe(data => {               
-                    //     let dateInJson: any;   
-                    //     dateInJson = data.json();
-                    //     for (let i = 0; i<dateInJson.length; i++){
-                    //         this.arrtypePeriud.push({                        
-                    //             name: dateInJson[i].name_ru,
-                    //             id: dateInJson[i].id
-                    //         });
-                    //     }   
-                    //     this.typePeriudModel = this.arrtypePeriud[0].id;
-                    // });
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
     }    
