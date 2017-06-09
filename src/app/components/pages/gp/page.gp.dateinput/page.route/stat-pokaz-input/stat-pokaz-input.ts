@@ -38,9 +38,16 @@ export class StatPokazInputComponent implements OnInit{
 
     arrGrupZnacheni = [];
     grupZnacheniModel: number;
+           
+    arrStatus = [];
+    statusModel: number;
 
     inputFromTemplate(){
         ///
+    }
+
+    viewTemplateFolder(){
+        //
     }
 
     exportToExcell(){
@@ -51,29 +58,31 @@ export class StatPokazInputComponent implements OnInit{
                 showLabels: true, 
                 showTitle: true 
             };
-        new Angular2Csv(this.tableDate, 'My Report', options);
+        // new Angular2Csv(this.tableDate, 'My Report', options);
     }
 
     ngOnInit(){
-        ///////////////////   Типо сервисы   ////////////////////  
-        this.arrGrupZnacheni = this.service.getGrupZnacheni();
+        ///////////////////   Типо сервисы   ////////////////////          
+        this.arrStatus = this.service.getStatus();
+        this.statusModel = this.arrStatus[0].id;
+
         this.arrVladelic = this.service.getVladelic();
         this.vladelicModel = this.arrVladelic[0].id;        
-        this.grupZnacheniModel = this.arrGrupZnacheni[0].option[0].id; 
 
         //Тип периода
-        this.service.getGenPeriodList()
-                    .subscribe(data => {               
-                        let dateInJson: any;   
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.arrtypePeriud.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.typePeriudModel = this.arrtypePeriud[0].id;
-                    });
+        this.arrtypePeriud = this.service.getGenPeriodList();
+        this.typePeriudModel = this.arrtypePeriud[0].id;
+                    // .subscribe(data => {               
+                    //     let dateInJson: any;   
+                    //     dateInJson = data.json();
+                    //     for (let i = 0; i<dateInJson.length; i++){
+                    //         this.arrtypePeriud.push({                        
+                    //             name: dateInJson[i].name_ru,
+                    //             id: dateInJson[i].id
+                    //         });
+                    //     }   
+                    //     this.typePeriudModel = this.arrtypePeriud[0].id;
+                    // });
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
     }    

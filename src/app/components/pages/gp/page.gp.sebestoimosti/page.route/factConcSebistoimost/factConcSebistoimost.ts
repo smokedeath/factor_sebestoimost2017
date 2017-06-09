@@ -256,20 +256,20 @@ export class FactConcSebistoimostView implements OnInit {
                         }  
                     });
         //Тип периода
-        this.service.getGenPeriodList()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrTypePeriod.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.typePeriodAvalaibleOption = {
-                            id: this.data.arrTypePeriod[0].id,
-                            name: this.data.arrTypePeriod[0].name
-                        }  
-                    });
+        this.data.arrTypePeriod = this.service.getGenPeriodList();
+                    // .subscribe(data => {
+                    //     dateInJson = data.json();
+                    //     for (let i = 0; i<dateInJson.length; i++){
+                    //         this.data.arrTypePeriod.push({                        
+                    //             name: dateInJson[i].name_ru,
+                    //             id: dateInJson[i].id
+                    //         });
+                    //     }   
+                    //     this.data.typePeriodAvalaibleOption = {
+                    //         id: this.data.arrTypePeriod[0].id,
+                    //         name: this.data.arrTypePeriod[0].name
+                    //     }  
+                    // });
         //Род груза
         this.service.getRodgruza()
                     .subscribe(data => {

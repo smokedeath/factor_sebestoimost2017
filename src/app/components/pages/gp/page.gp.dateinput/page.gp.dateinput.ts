@@ -37,7 +37,7 @@ export class PageGpDateInput implements OnInit{
         {
             name: "Загрузка данных из Ц Расчет",
             subname: [],
-            sref: "notfound"
+            sref: "craschet"
         },
         {
             name: "Загрузка статистических показателей",

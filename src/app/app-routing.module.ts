@@ -5,8 +5,9 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountCompone
          PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz } from './components/pages/pages.index'; 
 
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
-         AsudkrDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
+         AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
 import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
+import { RashodStavokComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
 
 @NgModule({
     imports: [RouterModule.forRoot([            
@@ -21,12 +22,14 @@ import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } f
                         { path: "iodv", component: IodvDataInput }, 
                         { path: "statpokazinput", component: StatPokazInputComponent},
                         { path: "asudkr", component: AsudkrDataInputComponent},
+                        { path: "craschet", component: CraschetDataInputComponent},
                         { path: "sap", component: ViewGpSap }
                     ] 
             },
             { path: "gp.rashodstavok", component: PageGpRashodStavok,
                     children: [     
-                        { path: "notfound", component: NotFountComponent }
+                        { path: "notfound", component: NotFountComponent },
+                        { path: "rashodstavok", component: RashodStavokComponent }
                     ]
             },
             { path: "gp.sebestoimosti", component: PageGpSebestoimosti,

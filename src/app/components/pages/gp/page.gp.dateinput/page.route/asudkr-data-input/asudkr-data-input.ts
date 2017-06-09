@@ -75,20 +75,21 @@ export class AsudkrDataInputComponent implements OnInit{
         this.anyDataModel = this.arrAnyData[0].id;
 
         //Тип периода
-        this.service.getGenPeriodList()
-                    .subscribe(data => {               
-                        let dateInJson: any;   
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.arrtypePeriud.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.typePeriudModel = this.arrtypePeriud[0].id;
-                    });
+        this.arrtypePeriud = this.service.getGenPeriodList();
+        this.typePeriudModel = this.arrtypePeriud[2].id;
+                    // .subscribe(data => {               
+                    //     let dateInJson: any;   
+                    //     dateInJson = data.json();
+                    //     for (let i = 0; i<dateInJson.length; i++){
+                    //         this.arrtypePeriud.push({                        
+                    //             name: dateInJson[i].name_ru,
+                    //             id: dateInJson[i].id
+                    //         });
+                    //     }   
+                    //     this.typePeriudModel = this.arrtypePeriud[0].id;
+                    // });
 
-        this.arrDocVid = this.service.getDocVid();
+        this.arrDocVid = this.service.getDocVidASUOIKDR();
         this.docVidModel = this.arrDocVid[0].id;
 
         this.service.getIODVtable().subscribe(data => {

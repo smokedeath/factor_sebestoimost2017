@@ -20,51 +20,29 @@ export class PageGpRashodStavok implements OnInit{
 
     menu = [
         {
-            name: "Алгоритмы отнесения",
+            name: "Расходы",
             sref: "notfound",
-            subname: [
-                {
-                    name: "Деление на зависящие и условно-постоянные части",
-                    sref: "notfound"
-                },
-                {
-                    name: "Расчет полных расходов по расходным измерителям",
-                    sref: "notfound"
-                }
-            ]
+            subname: []
         },
         {
-            name: "Алгоритмы расчета расходных ставок (фактических)",
+            name: "Эксплуатационные показатели",
             sref: "notfound",
-            subname: [
-                {
-                    name: "Расчет зависящих и условно-постоянных расходных ставок",
-                    sref: "notfound"
-                },
-                {
-                    name: "Расчет полных расходных ставок",
-                    sref: "notfound"
-                }
-            ]
+            subname: []
         },
         {
-            name: "Алгоритмы расчета расходных ставок (плановых)",
+            name: "Отнесение расходов",
             sref: "notfound",
-            subname: [
-                {
-                    name: "Расчет зависящих и условно-постоянных расходных ставок",
-                    sref: "notfound"
-                },
-                {
-                    name: "Расчет полных расходных ставок",
-                    sref: "notfound"
-                }
-            ]
+            subname: []
+        },
+        {
+            name: "Расчет расходных ставок",
+            sref: "rashodstavok",
+            subname: []
         }
     ]; 
 
     ngOnInit(){
-        this.router.navigate(['gp.rashodstavok/notfound']);
+        this.router.navigate(['gp.rashodstavok/rashodstavok']);
     }
 
 }

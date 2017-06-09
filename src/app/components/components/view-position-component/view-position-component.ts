@@ -10,5 +10,5 @@ import { Component, Input } from '@angular/core';
 export class ViewPositionCcomponent{
     @Input()
     titelName: String;
-    checked2: boolean = true;
+    checked2: boolean = false;
 }

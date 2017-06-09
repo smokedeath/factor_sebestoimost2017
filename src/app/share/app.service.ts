@@ -90,8 +90,14 @@ export class AppService {
         return this.http.get(this.baseUrl + apiUrl);
     }  
     getGenPeriodList() {  //Тип периода
-        let apiUrl = "/api/sebestoimost/genperiodlist"; 
-        return this.http.get(this.baseUrl + apiUrl);
+        let priodList = [
+            {id: 1, name: "Год"},
+            {id: 2, name: "Квартал"},
+            {id: 3, name: "Месяц"}
+        ]
+        return priodList;
+        // let apiUrl = "/api/sebestoimost/genperiodlist"; 
+        // return this.http.get(this.baseUrl + apiUrl);
     } 
     getRodgruza() {  //Род груза
         let apiUrl = "/api/sebestoimost/gp/koncretsebest/rodgruza"; 
@@ -138,8 +144,13 @@ export class AppService {
         return this.http.post(this.baseUrl + apiUrl, data);
     } 
     getStatus() {  // Генерирует статусы для комбобокса в расчете плановой себестоимости
-        let apiUrl = "/api/sebestoimost/sredsebest/getstatus"; 
-        return this.http.get(this.baseUrl + apiUrl);
+        let statusList = [
+            {id: 1, name: "Факт"},
+            {id: 2, name: "План"}
+        ];
+        return statusList;
+        // let apiUrl = "/api/sebestoimost/sredsebest/getstatus"; 
+        // return this.http.get(this.baseUrl + apiUrl);
     } 
 
     ////////////////////
@@ -157,6 +168,13 @@ export class AppService {
         let docVid = [
             {id: 1, name: "251"},            
             {id: 2, name: "253"}
+        ]
+        return docVid; 
+    }    
+    getDocVidASUOIKDR(){
+        let docVid = [
+            {id: 1, name: "Основной"},            
+            {id: 2, name: "Дополнительный"}
         ]
         return docVid; 
     }  
