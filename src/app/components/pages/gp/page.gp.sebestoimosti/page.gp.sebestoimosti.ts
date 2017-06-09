@@ -16,77 +16,38 @@ export class PageGpSebestoimosti implements OnInit{
     logoName = '../assets/admin/layout5/img/logo_gp_new.png';
     rExitLink = '/index.gp';
     navbarLevel = 2;
-    smallMenu = this.service.smallMenuGp;    
+    smallMenu = this.service.smallMenuGp;  
 
     menu = [
         {
-            name: "Исходные данные",
-            sref: "notfound",
-            subname: [
-                {
-                    name: "Расходы по номенклатуре",
-                    sref: "rashodnomencl"
-                },
-                {
-                    name: "Расходные измерители",
-                    sref: "razhodizmer"
-                },
-                {
-                    name: "Эксплуатационные показатели",
-                    sref: "notfound"
-                }
-            ]
+            name: "Эксплуатационные показатели",
+            sref: "explpokaz",
+            subname: []
         },
         {
-            name: "Промежуточные результаты расчетов",
-            sref: "notfound",
-            subname: [
-                {
-                    name: "Отнесение статей расходов по РИ",
-                    sref: "notfound"
-                },
-                {
-                    name: "Расходы по расходным измерителям",
-                    sref: "notfound"
-                },
-                {
-                    name: "Расходные ставки",
-                    sref: "notfound"
-                }
-            ]
+            name: "Расходы по расходным измерителям",
+            sref: "razhodizmer",
+            subname: []
+        },
+        {
+            name: "Расходные ставки",
+            sref: "rashodniestavki",
+            subname: []
         },
         {
             name: "Расчет средней себестоимости",
             sref: "notfound",
-            subname: [
-                {
-                    name: "Расчет фактической средней себестоимости",
-                    sref: "notfound"
-                },
-                {
-                    name: "Расчет плановой средней себестоимости",
-                    sref: "notfound"
-                }
-            ]
+            subname: []
         },
         {
             name: "Расчет конкретной себестоимости",
-            sref: "factconcseb",
-            subname: [
-                {
-                    name: "Расчет фактической конкретной себестоимости",
-                    sref: "factconcseb"
-                },
-                {
-                    name: "Расчет плановой конкретной себестоимости",
-                    sref: "notfound"
-                }
-            ]
+            sref: "notfound",
+            subname: []
         }
     ];
 
     ngOnInit(){
-        this.router.navigate(['gp.sebestoimosti/rashodnomencl']);
+        this.router.navigate(['gp.sebestoimosti/explpokaz']);
     } 
 
 }

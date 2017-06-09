@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
-import { AppService } from './../../../../../../share/app.service';
+import { AppService } from './../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'explotation-pokaz',
-    templateUrl: 'explotation-pokaz.html',
-    styleUrls: ['explotation-pokaz.css']
+    selector: 'explotation-pokaz-template-component',
+    templateUrl: 'explotation-pokaz-template-component.html',
+    styleUrls: ['explotation-pokaz-template-component.css']
 })
 
-export class ExplotationPokazComponent implements OnInit{
+export class ExplotationPokazTemplateComponent implements OnInit{
     constructor(private service : AppService){}  
-
-    titelName = 'ЭКСПЛУАТАЦИОННЫЕ ПОКАЗАТЕЛИ';
     
     arrtypePeriud = [];
     tableDate = [];

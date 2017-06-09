@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './../../../../../../share/app.service';
+import { AppService } from './../../../../share/app.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'razhod-ponomenclature',
-    templateUrl: 'razhod-ponomenclature.html',
-    styleUrls: ['razhod-ponomenclature.css']
-
+    selector: 'raskodstavok-template-sebistoimost-component',
+    templateUrl: 'raskodstavok-template-sebistoimost-component.html',
+    styleUrls: ['raskodstavok-template-sebistoimost-component.css']
 })
 
-export class RazhodPoNomenclature implements OnInit{
-    constructor(private service : AppService){}  
 
-    titelName = 'РАСХОДЫ ПО НОМЕНКЛАТУРЕ';
+export class RaskodstavokTemplateSebistoimostComponent implements OnInit{      
+    constructor(private service : AppService){}  
+    //
+    defualtDate = Date();
 
     arrtypePeriud = [];
     tableDate = [];
+
     tableDateColumns = [
         {
             field: "name",
-            header: "Наименование"
+            header: "Номер статьи"
+        },
+        {
+            field: "name",
+            header: "Наименование статьи"
         },
         {
             field: "size",
@@ -63,60 +68,49 @@ export class RazhodPoNomenclature implements OnInit{
         }
     ] 
 
-    typePeriudModel: number;   
-     
-    arrVladelic = [];   
-    vladelicModel: number; 
+    typePeriudModel: Number;  
 
-    arrPostavschik = [{id: 1, name: "Поставщик"}];
-    postavschikModel: number;
+    arrVladelic = [];   
+    vladelicModel: Number; 
+    
+    arrPostavschik = [];
+    postavschikModel: Number;
 
     arrStatus = [];
-    statusModel: number;
+    statusModel: Number;
+    
+    arrItemSize = [];    
+    itemSizeModel: Number;
 
-    inputFromTemplate(){
-        ///
-    }
+    arrItemTableColumn = [];
+    itemTableColumnModel: Number;
 
     exportToExcell(){
         //
     }
 
+    viewTemplateFolder(){
+        //
+    }
+
     ngOnInit(){
         ///////////////////   Типо сервисы   ////////////////////  
-        this.arrVladelic = this.service.getVladelic();
+        this. arrVladelic = this.service.getVladelic();
+        this.arrPostavschik = this.service.getPostavschik();
         this.vladelicModel = this.arrVladelic[0].id;        
         this.postavschikModel = this.arrPostavschik[0].id; 
+        this.arrItemSize = this.service.getItemSize();
+        this.itemSizeModel = this.arrItemSize[0].id;
+        this.arrItemTableColumn = this.service.getItemColumnsTable(); 
 
         //Тип периода
         this.arrtypePeriud = this.service.getGenPeriodList();
         this.typePeriudModel = this.arrtypePeriud[0].id;
-                    // .subscribe(data => {               
-                    //     let dateInJson: any;   
-                    //     dateInJson = data.json();
-                    //     for (let i = 0; i<dateInJson.length; i++){
-                    //         this.arrtypePeriud.push({                        
-                    //             name: dateInJson[i].name_ru,
-                    //             id: dateInJson[i].id
-                    //         });
-                    //     }   
-                    //     this.typePeriudModel = this.arrtypePeriud[0].id;
-                    // });
         //статусы
         this.arrStatus = this.service.getStatus();
         this.statusModel = this.arrStatus[0].id;
-                    // .subscribe(data => {               
-                    //     let dateInJson: any;   
-                    //     dateInJson = data.json();
-                    //     for (let i = 0; i<dateInJson.length; i++){
-                    //         this.arrStatus.push({                        
-                    //             name: dateInJson[i].name_ru,
-                    //             id: dateInJson[i].id
-                    //         });
-                    //     }   
-                    //     this.statusModel = this.arrStatus[0].id;
-                    // });
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
-    }    
+
+    }
 }

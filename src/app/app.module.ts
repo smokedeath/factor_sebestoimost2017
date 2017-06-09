@@ -25,11 +25,15 @@ import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, Tre
          SidenavLinkMenuComponent, PreloaderComponent, ViewPositionCcomponent, UserSettingsComponent,
          ComboboxCheckComponent, MyTableComponent } from './components/components/components.index';
 
-import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
+import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, 
+         ExplotationPokazSebestoimost } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent,
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index'; 
-import { RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, 
-         ExplotationPokazComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
+import { RashodStavokComponent, OtnesenieRashodovComponent, 
+         ExplotationPokazRashodStavokComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
+
+import { RaskodStavokTemplateComponent, ExplotationPokazTemplateComponent, RaskodIzmerirelTemplateComponent,
+         RaskodstavokTemplateSebistoimostComponent } from './components/pages/genera-views/view.index';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './share/app.service';
@@ -40,9 +44,10 @@ import { AppService } from './share/app.service';
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
 
                 ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput, AsudkrDataInputComponent,
-                IodvDataInput, StatPokazInputComponent, RazhodPoNomenclature, RazhodnieIzmeriteli, CraschetDataInputComponent,
-                RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, ExplotationPokazComponent,
-                RashodiComponent,  // View основных страниц
+                IodvDataInput, StatPokazInputComponent, RazhodnieIzmeriteli, CraschetDataInputComponent, RashodnieStavkiComponent,
+                RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, ExplotationPokazRashodStavokComponent,
+                RashodiComponent,  ExplotationPokazSebestoimost, ExplotationPokazTemplateComponent, RaskodIzmerirelTemplateComponent,
+                RaskodstavokTemplateSebistoimostComponent,  // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,

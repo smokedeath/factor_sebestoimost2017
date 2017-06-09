@@ -6,8 +6,10 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountCompone
 
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
-import { FactConcSebistoimostView, RazhodPoNomenclature, RazhodnieIzmeriteli } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
-import { RashodStavokComponent, OtnesenieRashodovComponent, ExplotationPokazComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
+import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, 
+         ExplotationPokazSebestoimost } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
+import { RashodStavokComponent, OtnesenieRashodovComponent, 
+         ExplotationPokazRashodStavokComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
 
 @NgModule({
     imports: [RouterModule.forRoot([            
@@ -31,16 +33,19 @@ import { RashodStavokComponent, OtnesenieRashodovComponent, ExplotationPokazComp
                         { path: "notfound", component: NotFountComponent },
                         { path: "rashodstavok", component: RashodStavokComponent },
                         { path: "otnesenierashodov", component: OtnesenieRashodovComponent},
-                        { path: "explpokaz", component: ExplotationPokazComponent},
+                        { path: "explpokaz", component: ExplotationPokazRashodStavokComponent},
                         { path: "rashodi", component: RashodiComponent }
                     ]
             },
             { path: "gp.sebestoimosti", component: PageGpSebestoimosti,
                     children: [                        
                         { path: "notfound", component: NotFountComponent },
-                        { path: "factconcseb", component:  FactConcSebistoimostView},
-                        { path: "rashodnomencl", component: RazhodPoNomenclature },
-                        { path: "razhodizmer", component: RazhodnieIzmeriteli }
+                        { path: "explpokaz", component: ExplotationPokazSebestoimost },
+                        { path: "razhodizmer", component: RazhodnieIzmeriteli },
+                        { path: "rashodniestavki", component: RashodnieStavkiComponent },
+
+
+                        { path: "factconcseb", component:  FactConcSebistoimostView}
                     ]
             },
             { path: "gp.analiz", component: PageGpAnaliz,
