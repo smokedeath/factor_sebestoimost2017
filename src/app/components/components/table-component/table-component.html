@@ -8,7 +8,7 @@
 
         <ng-template pTemplate="filter" let-col>
             <p-multiSelect [options]="tableDataFilter" defaultLabel="Фильтр" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" 
-                                              styleClass="ui-column-filter"></p-multiSelect>
+                            styleClass="ui-column-filter" *ngIf="tableFilter" [displaySelectedLabel]=false></p-multiSelect>
         </ng-template>
 
     </p-column>
@@ -21,11 +21,9 @@
 
 
 <!--
-
-
   scrollable="true"  scrollWidth="auto"
   [style]="{'width':'200px'}"
-
+    [style]="{'overflow':'visible','min-height':'200px'}"
     <p-column field="color" header="Color (Custom)" [filter]="true" filterMatchMode="in" [style]="{'overflow':'visible'}">
         <ng-template pTemplate="filter" let-col>
             <p-multiSelect [options]="colors" defaultLabel="All Colors" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>

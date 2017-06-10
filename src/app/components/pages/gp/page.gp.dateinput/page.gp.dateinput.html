@@ -6,26 +6,10 @@
 											[rLink]=rExitLink 
 											[logoName]=logoName 
 											[navbarLevel]=navbarLevel>
-				</navbar-mega-menu-component>
+				</navbar-mega-menu-component>	
 
-				<div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
-					<ul class="nav navbar-nav text-uppercase">
-						<li class="dropdown dropdown-fw open selected">
-							<ul class="dropdown-menu dropdown-menu-fw">    
-								<li class="dropdown more-dropdown-sub" *ngFor="let tmenu of menu">
-									<a data-close-others="true" routerLink={{tmenu.sref}} routerLinkActive="active">{{tmenu.name}}</a>
-									<ul class="dropdown-menu">
-										<li *ngFor="let smenu of tmenu.subname"><a routerLink={{smenu.sref}} routerLinkActive="active">{{smenu.name}}</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-
-
-
+				<singl-top-menu [menu]="menu"></singl-top-menu>	
+				
 			</div>
 		</nav>
 	</header>

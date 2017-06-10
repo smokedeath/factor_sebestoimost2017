@@ -18,4 +18,7 @@ export class MyTableComponent{
 
     @Input()
     tableDataFilter = [];
+
+    @Input()
+    tableFilter: Boolean;
 }

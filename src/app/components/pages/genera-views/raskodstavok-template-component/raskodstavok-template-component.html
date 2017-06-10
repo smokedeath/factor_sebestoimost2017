@@ -35,10 +35,8 @@
         </div>
     </div>
     <div class="col-lg-3">
-        <div class="row">
-        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Элементы затрат:</label></div>
-        <div class="col-lg-6"><combobox-check-component [structure]=arrItemTableColumn></combobox-check-component></div>
-        </div>
+      <div class="col-lg-6"><combobox-multi-select-component [option]=tableDateOptions [selectModel]=tableDateColumns [defaultLabel]=defaultLabel>
+                            </combobox-multi-select-component></div>
     </div>
     <div class="col-lg-3">
         <p-checkbox name="group1" label="Показать в процентах" [(ngModel)]="procentSchow"></p-checkbox>

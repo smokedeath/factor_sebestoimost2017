@@ -50,8 +50,4 @@ export class PageGpDateInput implements OnInit{
         this.router.navigate(["gp.date.input/findatainput"]);
     }   
 
-    selectRout(){
-        this.router.navigate(["/gp.date.input/sap"]);
-    }
-
 }

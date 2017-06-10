@@ -13,6 +13,7 @@ export class AsudkrDataInputComponent implements OnInit{
 
     titelName = 'ЗАГРУЗКА ДАННЫХ ИЗ АСУ ДКР';
     dopFiltr = false;
+    tableFiltr = false;
     defualtDate = Date();
     //////////////////////////////
     arrAnyData = [];

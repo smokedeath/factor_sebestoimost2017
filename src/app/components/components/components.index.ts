@@ -8,6 +8,7 @@ export * from './combobox/combobox.structure.ktzh/combobox.structure.ktzh'
 export * from './combobox/combobox.component/combobox.component';
 export * from './combobox/combobox-check-component/combobox-check-component';
 export * from './combobox/multi-combobox.component/multi-combobox.component';
+export * from './combobox/combobox-multi-select-component/combobox-multi-select-component'; 
 export * from './leaflet-map/leaflet-map';
 export * from './tree-table/tree-table';
 export * from './calendar/calendar';

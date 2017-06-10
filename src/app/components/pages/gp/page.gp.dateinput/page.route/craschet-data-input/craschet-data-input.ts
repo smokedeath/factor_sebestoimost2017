@@ -13,6 +13,7 @@ export class CraschetDataInputComponent implements OnInit{
 
     titelName = 'ЗАГРУЗКА ДАННЫХ ИЗ Ц РАСЧЕТ';
     dopFiltr = false;
+    tableFiltr = false;
     defualtDate = Date();
     //////////////////////////////
     arrAnyData = [];

@@ -14,6 +14,7 @@ export class IodvDataInput implements OnInit{
 
     titelName = 'ЗАГРУЗКА ДАННЫХ ИЗ ЕК ИОДВ';
     dopFiltr = false;
+    tableFiltr = false;
     defualtDate = Date();
 
     seriaFilter: SelectItem[];

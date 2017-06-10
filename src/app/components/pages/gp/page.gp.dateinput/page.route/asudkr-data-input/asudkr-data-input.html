@@ -102,6 +102,14 @@
                             </div>    
                         </div>
                     </div>
+                    <div class="col-lg-3">
+                        <div class="row" style="text-align: center">                            
+                            <p-toggleButton [(ngModel)]="tableFiltr" 
+                                            onLabel="Скрыть фильтры" 
+                                            offLabel="Показать фильтры" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
+                            </p-toggleButton>
+                        </div>
+                    </div>
                 </div>
             </div>
         </p-panel>
@@ -109,5 +117,5 @@
 </div>
 
 <div class="row row-margin">
-    <table-component [value]=tableDate [cols]=tableDateColumns></table-component>
+    <table-component [value]=tableDate [cols]=tableDateColumns [tableFilter]=tableFiltr></table-component>
 </div>
