@@ -14,15 +14,22 @@ export class ExplotationPokazTemplateComponent implements OnInit{
     
     arrtypePeriud = [];
     tableDate = [];
-    tableDateColumns = [
+    defaultLabel = 'Статус';
+    tableDateOptions = [];
+    tableDateColumns = []; 
+    
+    fixetColumns = [
         {
             field: "name",
             header: "Наименование измерителей"
         },
         {
             field: "size",
-            header: "Еденица измерения"
-        },
+            header: "Единица измерения"
+        }
+    ];
+
+    noFixetColumns = [
         {
             field: "size",
             header: "План"
@@ -31,7 +38,7 @@ export class ExplotationPokazTemplateComponent implements OnInit{
             field: "size",
             header: "Факт"
         }
-    ]  
+    ];
 
     typePeriudModel: number;
     
@@ -54,11 +61,33 @@ export class ExplotationPokazTemplateComponent implements OnInit{
             };
         // new Angular2Csv(this.tableDate, 'My Report', options);
     }
+    updateTableColumns(columns: any[]){
+        let newColumns = columns;
+        this.tableDateColumns = [];
+        for (let i=0; i<this.fixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
+        }
+        for (let i=0; i<newColumns.length; i++){
+            this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
+        }
+    }
+
 
     ngOnInit(){
+        this.tableDateColumns = [];
+        for (let i=0; i<this.fixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
+        }
+        for (let i=0; i<this.noFixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
+        }
+
+        for(let i=0; i<this.noFixetColumns.length; i++){    
+            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
+        }
         ///////////////////   Типо сервисы   ////////////////////          
-        this.arrStatus = this.service.getStatus();
-        this.statusModel = this.arrStatus[0].id;
+        // this.arrStatus = this.service.getStatus();
+        // this.statusModel = this.arrStatus[0].id;
 
         this.arrVladelic = this.service.getVladelic();
         this.vladelicModel = this.arrVladelic[0].id;        

@@ -34,8 +34,8 @@
         </div>
     </div>
     <div class="col-lg-3">
-      <div class="col-lg-6"><combobox-multi-select-component (updateTableColumns)="tableDateColumns=$event" [option]=tableDateOptions 
-                                                             [selectModel]=tableDateColumns [defaultLabel]=defaultLabel>
+      <div class="col-lg-6"><combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions 
+                                                             [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
                             </combobox-multi-select-component></div>
     </div>
     <div class="col-lg-3">

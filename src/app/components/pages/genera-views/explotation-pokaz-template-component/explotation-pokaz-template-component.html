@@ -17,8 +17,9 @@
       <div class="row">
           <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Статус:</label></div>  
           <div class="col-lg-6 lbl-css">
-            <combobox-component [iNgModel]=statusModel 
-                                [structure]=arrStatus></combobox-component>     
+            <combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions 
+                                                             [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
+                            </combobox-multi-select-component>      
           </div>    
       </div>       
     </div>

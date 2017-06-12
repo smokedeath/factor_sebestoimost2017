@@ -19,7 +19,7 @@ export class RaskodStavokTemplateComponent implements OnInit{
     tableDate = [];
     tableDateOptions = [];
 
-    tableDateColumns = [
+    fixetColumns = [
         {
             field: "name",
             header: "Номер статьи"
@@ -27,7 +27,9 @@ export class RaskodStavokTemplateComponent implements OnInit{
         {
             field: "name",
             header: "Наименование статьи"
-        },
+        }
+    ];
+    noFixetColumns = [
         {
             field: "size",
             header: "Расходы на оплату труда"
@@ -68,6 +70,9 @@ export class RaskodStavokTemplateComponent implements OnInit{
             field: "size",
             header: "Сумма по элементам"
         }
+    ];
+
+    tableDateColumns = [
     ] 
 
     typePeriudModel: Number;  
@@ -95,10 +100,28 @@ export class RaskodStavokTemplateComponent implements OnInit{
     viewTemplateFolder(){
         //
     }
+    updateTableColumns(columns: any[]){
+        let newColumns = columns;
+        this.tableDateColumns = [];
+        for (let i=0; i<this.fixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
+        }
+        for (let i=0; i<newColumns.length; i++){
+            this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
+        }
+    }
 
     ngOnInit(){
-        for(let i=0;i<this.tableDateColumns.length;i++){    
-            this.tableDateOptions.push({label: this.tableDateColumns[i].header, value: this.tableDateColumns[i]});  
+        this.tableDateColumns = [];
+        for (let i=0; i<this.fixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
+        }
+        for (let i=0; i<this.noFixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
+        }
+
+        for(let i=0; i<this.noFixetColumns.length; i++){    
+            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
         }
         ///////////////////   Типо сервисы   ////////////////////  
         this. arrVladelic = this.service.getVladelic();
