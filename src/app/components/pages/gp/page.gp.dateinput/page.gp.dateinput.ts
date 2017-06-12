@@ -17,6 +17,7 @@ export class PageGpDateInput implements OnInit{
     rExitLink = '/index.gp';
     navbarLevel = 2;
     smallMenu = this.service.smallMenuGp;  
+    curentMenuItem: String;
 
     menu = [
         {
@@ -47,6 +48,7 @@ export class PageGpDateInput implements OnInit{
     ];
 
     ngOnInit(){
+        this.curentMenuItem = 'findatainput';
         this.router.navigate(["gp.date.input/findatainput"]);
     }   
 

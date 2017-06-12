@@ -16,7 +16,8 @@ export class PageGpRashodStavok implements OnInit{
     logoName = '../assets/admin/layout5/img/logo_gp_new.png';
     rExitLink = '/index.gp';
     navbarLevel = 2;
-    smallMenu = this.service.smallMenuGp;   
+    smallMenu = this.service.smallMenuGp;    
+    curentMenuItem: String;
 
     menu = [
         {
@@ -42,6 +43,7 @@ export class PageGpRashodStavok implements OnInit{
     ]; 
 
     ngOnInit(){
+        this.curentMenuItem = 'rashodstavok';
         this.router.navigate(['gp.rashodstavok/rashodstavok']);
     }
 

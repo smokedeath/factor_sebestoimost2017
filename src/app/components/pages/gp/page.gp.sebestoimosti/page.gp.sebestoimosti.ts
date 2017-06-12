@@ -16,7 +16,8 @@ export class PageGpSebestoimosti implements OnInit{
     logoName = '../assets/admin/layout5/img/logo_gp_new.png';
     rExitLink = '/index.gp';
     navbarLevel = 2;
-    smallMenu = this.service.smallMenuGp;  
+    smallMenu = this.service.smallMenuGp;   
+    curentMenuItem: String;
 
     menu = [
         {
@@ -47,6 +48,7 @@ export class PageGpSebestoimosti implements OnInit{
     ];
 
     ngOnInit(){
+        this.curentMenuItem = 'explpokaz';
         this.router.navigate(['gp.sebestoimosti/explpokaz']);
     } 
 

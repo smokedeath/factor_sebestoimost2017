@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http"; 
+import { SelectItem } from './interface.service';
 
 @Injectable()
 export class AppService {    
@@ -57,6 +58,18 @@ export class AppService {
         }
     ];
 
+
+    getTabelFilters(tableDate: any[], tableDateColumns: any[]){
+        let seriaFilter: SelectItem[];
+        for (let i = 0; i < tableDateColumns.length; i++){
+            seriaFilter = [];
+            for (let a = 0; a < tableDate.length; a++ ){
+                seriaFilter.push({label: tableDate[a][tableDateColumns[i].field], value: tableDate[a][tableDateColumns[i].field]});
+            }
+            tableDateColumns[i].dataFilter = seriaFilter;
+        }
+        return tableDateColumns;
+    }
 
 
     baseUrl = "http://192.168.1.20:51984/SpringCost";

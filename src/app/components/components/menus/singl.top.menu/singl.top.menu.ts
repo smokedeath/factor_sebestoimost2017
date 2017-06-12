@@ -9,15 +9,12 @@ import { Component, Input } from '@angular/core';
 
 export class SinglTopMenu{ 
     @Input() 
-    menu = [
-        {
-            name: "",
-            subname: [
-                {
-                    name: "",
-                    sref: ""
-                }
-            ]
-        }
-    ]; 
+    menu = []; 
+
+    @Input()
+    curentMenuItem: String;
+
+    setMenustate(sref){
+        this.curentMenuItem = sref;
+    }    
 }

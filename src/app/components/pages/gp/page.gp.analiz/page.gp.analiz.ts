@@ -17,6 +17,7 @@ export class PageGpAnaliz implements OnInit{
     rExitLink = '/index.gp';
     navbarLevel = 2;
     smallMenu = this.service.smallMenuGp;   
+    curentMenuItem: String;
     
     menu = [
         {
@@ -32,6 +33,7 @@ export class PageGpAnaliz implements OnInit{
     ];
 
     ngOnInit(){
+        this.curentMenuItem = 'notfound';
         this.router.navigate(["gp.analiz/notfound"]);
     }  
 }

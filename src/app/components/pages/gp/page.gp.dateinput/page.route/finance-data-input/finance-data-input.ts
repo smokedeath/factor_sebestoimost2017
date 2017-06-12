@@ -19,6 +19,7 @@ export class FinanceDataInput implements OnInit{
     arrtypePeriud = [];
     tableDate = [];
     tableDateOptions = [];
+
     tableDateColumns = [
         {
             field: "name",
@@ -95,10 +96,9 @@ export class FinanceDataInput implements OnInit{
     viewTemplateFolder(){
         //
     }
-
     ngOnInit(){
-        for(let i=0;i<this.tableDateColumns.length;i++){    
-            this.tableDateOptions.push({label: this.tableDateColumns[i].header, value: this.tableDateColumns[i]});  
+        for(let i=0;i<this.tableDateColumns.length; i++){    
+            this.tableDateOptions.push({label: this.tableDateColumns[i].header, value: this.tableDateColumns[i], check: true});  
         }
         ///////////////////   Типо сервисы   ////////////////////  
         this. arrVladelic = this.service.getVladelic();

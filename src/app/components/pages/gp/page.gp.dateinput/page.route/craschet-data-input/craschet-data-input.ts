@@ -24,32 +24,32 @@ export class CraschetDataInputComponent implements OnInit{
     
     tableDate = [];    
     tableDateColumns = [
-        {field:"seria", header:"Номер отправки"} ,
-        {field:"vid_plan", header:"Код экспедитора"} ,
-        {field:"vid_message", header:"Подкод экспедитора"} ,
-        {field:"id_admin_out", header:"Код экспедитора сопредельного государства"} ,
-        {field:"id_country_out", header:"Код дороги-составитель"} ,
-        {field:"date12", header:"Код дороги отправления"} ,
-        {field:"date_pogruz", header:"Код дороги назначения"} ,
-        {field:"id_nomenclature_grup", header:"Код страны отправления"} ,
-        {field:"id_gruz_out", header:"Код страны назначения"} ,
-        {field:"name_gruz_out", header:"Код станции отправления"} ,
-        {field:"id_gruz_in", header:"Код станции назначения"} ,
-        {field:"name_gruz_in", header:"Код станции входа"} ,
-        {field:"esrid_sttion_out", header:"Код станции выхода"} ,
-        {field:"id_country_in", header:"Дата отправления"} ,
-        {field:"id_road_in", header:"Дата входа"} ,
-        {field:"esp_id_station_in", header:"Дата выхода"} ,
-        {field:"id_gruz_etsng", header:"Номер вагона"} ,
-        {field:"id_grus_gng", header:"Принадлежность вагона"} ,
-        {field:"id_vagon_rod", header:"Номер контейнера"} ,
-        {field:"conteiner_type", header:"Принадлежность контейнера"} ,
-        {field:"vagon_prinadlezhnost", header:"Код груза ЕТ СНГ"} ,
-        {field:"conteiner_prinadlezhnost", header:"Код груза ГНГ"} ,
-        {field:"vagon_count", header:"Вес груза в кг"} ,
-        {field:"tonna_count", header:"Сумма в тенге"} ,
-        {field:"conteiner_count", header:"Код получателя"} ,
-        {field:"id_zhd_admin", header:"Вид отправки"} 
+        {field:"seria", header:"Номер отправки", dataFilter: []} ,
+        {field:"vid_plan", header:"Код экспедитора", dataFilter: []} ,
+        {field:"vid_message", header:"Подкод экспедитора", dataFilter: []} ,
+        {field:"id_admin_out", header:"Код экспедитора сопредельного государства", dataFilter: []} ,
+        {field:"id_country_out", header:"Код дороги-составитель", dataFilter: []} ,
+        {field:"date12", header:"Код дороги отправления", dataFilter: []} ,
+        {field:"date_pogruz", header:"Код дороги назначения", dataFilter: []} ,
+        {field:"id_nomenclature_grup", header:"Код страны отправления", dataFilter: []} ,
+        {field:"id_gruz_out", header:"Код страны назначения", dataFilter: []} ,
+        {field:"name_gruz_out", header:"Код станции отправления", dataFilter: []} ,
+        {field:"id_gruz_in", header:"Код станции назначения", dataFilter: []} ,
+        {field:"name_gruz_in", header:"Код станции входа", dataFilter: []} ,
+        {field:"esrid_sttion_out", header:"Код станции выхода", dataFilter: []} ,
+        {field:"id_country_in", header:"Дата отправления", dataFilter: []} ,
+        {field:"id_road_in", header:"Дата входа", dataFilter: []} ,
+        {field:"esp_id_station_in", header:"Дата выхода", dataFilter: []} ,
+        {field:"id_gruz_etsng", header:"Номер вагона", dataFilter: []} ,
+        {field:"id_grus_gng", header:"Принадлежность вагона", dataFilter: []} ,
+        {field:"id_vagon_rod", header:"Номер контейнера", dataFilter: []} ,
+        {field:"conteiner_type", header:"Принадлежность контейнера", dataFilter: []} ,
+        {field:"vagon_prinadlezhnost", header:"Код груза ЕТ СНГ", dataFilter: []} ,
+        {field:"conteiner_prinadlezhnost", header:"Код груза ГНГ", dataFilter: []} ,
+        {field:"vagon_count", header:"Вес груза в кг", dataFilter: []} ,
+        {field:"tonna_count", header:"Сумма в тенге", dataFilter: []} ,
+        {field:"conteiner_count", header:"Код получателя", dataFilter: []} ,
+        {field:"id_zhd_admin", header:"Вид отправки", dataFilter: []} 
     ] 
 
     viewTemplateFolder(){
@@ -84,6 +84,7 @@ export class CraschetDataInputComponent implements OnInit{
 
         this.service.getIODVtable().subscribe(data => {
             this.tableDate = data.json();
+            this.tableDateColumns = this.service.getTabelFilters(this.tableDate, this.tableDateColumns);
         });
     }
 }

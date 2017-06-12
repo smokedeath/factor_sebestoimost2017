@@ -27,37 +27,37 @@ export class AsudkrDataInputComponent implements OnInit{
     
     tableDate = [];    
     tableDateColumns = [
-        {field:"seria", header:"Номер заявки"} ,
-        {field:"vid_plan", header:"Вид плана"} ,
-        {field:"vid_message", header:"Вид сообщения"} ,
-        {field:"id_admin_out", header:"Код жд администрации отправления"} ,
-        {field:"id_country_out", header:"Код страны отправления"} ,
-        {field:"date12", header:"Дата утверждения заявки ГУ-12 к перевозке"} ,
-        {field:"date_pogruz", header:"Предполагаемая дата погрузки"} ,
-        {field:"id_nomenclature_grup", header:"Код номенклатурной группы"} ,
-        {field:"id_gruz_out", header:"Код грузоотправителя"} ,
-        {field:"name_gruz_out", header:"Наименование грузоотправителя"} ,
-        {field:"id_gruz_in", header:"Код грузополучателя"} ,
-        {field:"name_gruz_in", header:"Наименование грузополучателя"} ,
-        {field:"esrid_sttion_out", header:"ЕСР-код станции отправления"} ,
-        {field:"id_country_in", header:"Код страны назначения"} ,
-        {field:"id_road_in", header:"Код дороги назначения"} ,
-        {field:"esp_id_station_in", header:"ЕСР-код станции назначения"} ,
-        {field:"id_gruz_etsng", header:"Код груза по ЕТСНГ"} ,
-        {field:"id_grus_gng", header:"Код груза по ГНГ"} ,
-        {field:"id_vagon_rod", header:"Код рода вагона"} ,
-        {field:"conteiner_type", header:"Тип контейнера"} ,
-        {field:"vagon_prinadlezhnost", header:"Принадлежность вагона"} ,
-        {field:"conteiner_prinadlezhnost", header:"Принадлежность контейнера"} ,
-        {field:"vagon_count", header:"Количество вагонов"} ,
-        {field:"tonna_count", header:"Количество тонн"} ,
-        {field:"conteiner_count", header:"Количество контейнеров"} ,
-        {field:"id_zhd_admin", header:"Код ЖД администрации"} ,
-        {field:"esp_world_in", header:"ЕСР-код межгосударственного стыкового пункта приема"} ,
-        {field:"esp_world_Out", header:"ЕСР-код межгосударственного стыкового пункта сдачи"} ,
-        {field:"Код ekspeditor_id", header:"Код экспедитора"} ,
-        {field:"ekspeditor_name", header:"Наименование экспедитора"} ,
-        {field:"other", header:"Примечание"} 
+        {field:"seria", header:"Номер заявки", dataFilter: []} ,
+        {field:"vid_plan", header:"Вид плана", dataFilter: []} ,
+        {field:"vid_message", header:"Вид сообщения", dataFilter: []} ,
+        {field:"id_admin_out", header:"Код жд администрации отправления", dataFilter: []} ,
+        {field:"id_country_out", header:"Код страны отправления", dataFilter: []} ,
+        {field:"date12", header:"Дата утверждения заявки ГУ-12 к перевозке", dataFilter: []} ,
+        {field:"date_pogruz", header:"Предполагаемая дата погрузки", dataFilter: []} ,
+        {field:"id_nomenclature_grup", header:"Код номенклатурной группы", dataFilter: []} ,
+        {field:"id_gruz_out", header:"Код грузоотправителя", dataFilter: []} ,
+        {field:"name_gruz_out", header:"Наименование грузоотправителя", dataFilter: []} ,
+        {field:"id_gruz_in", header:"Код грузополучателя", dataFilter: []} ,
+        {field:"name_gruz_in", header:"Наименование грузополучателя", dataFilter: []} ,
+        {field:"esrid_sttion_out", header:"ЕСР-код станции отправления", dataFilter: []} ,
+        {field:"id_country_in", header:"Код страны назначения", dataFilter: []} ,
+        {field:"id_road_in", header:"Код дороги назначения", dataFilter: []} ,
+        {field:"esp_id_station_in", header:"ЕСР-код станции назначения", dataFilter: []} ,
+        {field:"id_gruz_etsng", header:"Код груза по ЕТСНГ", dataFilter: []} ,
+        {field:"id_grus_gng", header:"Код груза по ГНГ", dataFilter: []} ,
+        {field:"id_vagon_rod", header:"Код рода вагона", dataFilter: []} ,
+        {field:"conteiner_type", header:"Тип контейнера", dataFilter: []} ,
+        {field:"vagon_prinadlezhnost", header:"Принадлежность вагона", dataFilter: []} ,
+        {field:"conteiner_prinadlezhnost", header:"Принадлежность контейнера", dataFilter: []} ,
+        {field:"vagon_count", header:"Количество вагонов", dataFilter: []} ,
+        {field:"tonna_count", header:"Количество тонн", dataFilter: []} ,
+        {field:"conteiner_count", header:"Количество контейнеров", dataFilter: []} ,
+        {field:"id_zhd_admin", header:"Код ЖД администрации", dataFilter: []} ,
+        {field:"esp_world_in", header:"ЕСР-код межгосударственного стыкового пункта приема", dataFilter: []} ,
+        {field:"esp_world_Out", header:"ЕСР-код межгосударственного стыкового пункта сдачи", dataFilter: []} ,
+        {field:"Код ekspeditor_id", header:"Код экспедитора", dataFilter: []} ,
+        {field:"ekspeditor_name", header:"Наименование экспедитора", dataFilter: []} ,
+        {field:"other", header:"Примечание", dataFilter: []} 
     ] 
 
     viewTemplateFolder(){
@@ -94,7 +94,8 @@ export class AsudkrDataInputComponent implements OnInit{
         this.docVidModel = this.arrDocVid[0].id;
 
         this.service.getIODVtable().subscribe(data => {
-            this.tableDate = data.json();
+            this.tableDate = data.json();            
+            this.tableDateColumns = this.service.getTabelFilters(this.tableDate, this.tableDateColumns);
         });
 
     }

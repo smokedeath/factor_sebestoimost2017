@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../../../share/app.service';
-import { SelectItem } from './../../../../../../share/interface.service';
 
 @Component({
     moduleId: module.id,
@@ -17,7 +16,6 @@ export class IodvDataInput implements OnInit{
     tableFiltr = false;
     defualtDate = Date();
 
-    seriaFilter: SelectItem[];
     //////////////////////////////
     arrAnyData = [];
     anyDataModel: Number;
@@ -29,67 +27,81 @@ export class IodvDataInput implements OnInit{
     docVidModel: Number;
     
     tableDate = [];  
-    tableDataFilter = [];  
     tableDateColumns = [
         {
             field: "seria",
-            header: "Серия и номер дорожного документа"
+            header: "Серия и номер дорожного документа",
+            dataFilter: []
         },
         {
             field: "datetime",
-            header: "Время и дата отправления"
+            header: "Время и дата отправления",
+            dataFilter: []
         },
         {
             field: "out_stantion",
-            header: "Станция отправления"
+            header: "Станция отправления",
+            dataFilter: []
         },
         {
             field: "in_stantion",
-            header: "Станция назначения"
+            header: "Станция назначения",
+            dataFilter: []
         },
         {
             field: "message_type",
-            header: "Вид сообщения"
+            header: "Вид сообщения",
+            dataFilter: []
         },
         {
             field: "rod_gruza",
-            header: "Род груза"
+            header: "Род груза",
+            dataFilter: []
         },
         {
             field: "gruz_weight",
-            header: "Вес груза"
+            header: "Вес груза",
+            dataFilter: []
         },
         {
             field: "output_type",
-            header: "Вид отправки"
+            header: "Вид отправки",
+            dataFilter: []
         },
         {
             field: "vagon_count",
-            header: "Количество вагонов"
+            header: "Количество вагонов",
+            dataFilter: []
         },
         {
             field: "vagon_type",
-            header: "Тип вагона"
+            header: "Тип вагона",
+            dataFilter: []
         },
         {
             field: "conteiner_type",
-            header: "Тип контейнера"
+            header: "Тип контейнера",
+            dataFilter: []
         },
         {
             field: "vagon_prinadlezhnost",
-            header: "Принадлежность вагона"
+            header: "Принадлежность вагона",
+            dataFilter: []
         },
         {
             field: "security",
-            header: "Охраняемость"
+            header: "Охраняемость",
+            dataFilter: []
         },
         {
             field: "money",
-            header: "доход с НДС, тенге"
+            header: "доход с НДС, тенге",
+            dataFilter: []
         },
         {
             field: "sost_tarif",
-            header: "Состовляющие тарифа"
+            header: "Состовляющие тарифа",
+            dataFilter: []
         }
     ] 
 
@@ -128,11 +140,7 @@ export class IodvDataInput implements OnInit{
 
         this.service.getIODVtable().subscribe(data => {
             this.tableDate = data.json();
-            this.seriaFilter = [];
-            for (let i=0;i < this.tableDate.length;i++){
-                this.seriaFilter.push({label: this.tableDate[i].seria, value: this.tableDate[i].seria});
-            }
-            this.tableDataFilter = this.seriaFilter;
+            this.tableDateColumns = this.service.getTabelFilters(this.tableDate, this.tableDateColumns);
         });
 
     }
