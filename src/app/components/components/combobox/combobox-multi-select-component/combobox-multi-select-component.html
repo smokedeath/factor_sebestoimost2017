@@ -1,2 +1,2 @@
-<p-multiSelect onChange="selectItem()" [options]="option" [(ngModel)]="selectModel" [defaultLabel]=defaultLabel 
-               [displaySelectedLabel]=false [style]="{'width':'200px'}"></p-multiSelect>
+<p-multiSelect [options]="option" [defaultLabel]=defaultLabel (onChange)="selectItem($event.value)"
+               [displaySelectedLabel]=false [style]="{'width':'200px'}" [(ngModel)]="selectModel"></p-multiSelect>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SelectItem } from './../../../../share/interface.service';
 
 @Component({
@@ -19,10 +19,11 @@ export class ComboboxMultiSelectComponent{
     @Input()
     defaultLabel: String;
 
-    selectItem(){
-        console.log(this.selectModel);
-        console.log('---');
+    @Output()
+    updateTableColumns: EventEmitter<any> = new EventEmitter();
+
+    selectItem(value){
+        // console.log(value);
+        this.updateTableColumns.emit(value);
     }
-
-
 }

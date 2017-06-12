@@ -186,7 +186,7 @@ export class AppService {
     }
     getItemSize(){
         let itemSize = [
-            {id: 1, name: "одна тенге"},
+            {id: 1, name: "Тенге"},
             {id: 2, name: "тысяча тенге"},
             {id: 3, name: "милион тенге"}
         ];

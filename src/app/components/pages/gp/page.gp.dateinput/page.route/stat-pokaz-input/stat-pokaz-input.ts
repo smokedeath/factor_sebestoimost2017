@@ -23,7 +23,7 @@ export class StatPokazInputComponent implements OnInit{
         },
         {
             field: "size",
-            header: "Еденица измерения"
+            header: "Единица измерения"
         },
         {
             field: "size",
