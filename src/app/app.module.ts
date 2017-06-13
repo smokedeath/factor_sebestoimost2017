@@ -12,7 +12,7 @@ import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import 'hammerjs';
 
 // primeng imports
-import {TreeTableModule, SharedModule, TreeTable, GrowlModule, ToggleButtonModule,
+import {TreeTableModule, SharedModule, TreeTable, GrowlModule, ToggleButtonModule, TreeModule,
         CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, PanelModule, 
         DataTableModule, MultiSelectModule, TabViewModule, TooltipModule, SpinnerModule } from 'primeng/primeng';
 
@@ -66,7 +66,7 @@ import { AppService } from './share/app.service';
     AppRoutingModule,
     LeafletModule, 
     TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, SpinnerModule,
-                     ToggleButtonModule, PanelModule, DataTableModule, MultiSelectModule, TabViewModule, TooltipModule
+                     ToggleButtonModule, PanelModule, DataTableModule, MultiSelectModule, TabViewModule, TooltipModule, TreeModule                     
   ],
   entryComponents: [
     ErrorDialog

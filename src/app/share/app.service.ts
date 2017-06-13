@@ -87,6 +87,120 @@ export class AppService {
         return priodList;
 
     }
+    getSebestoimostFacGP(){        
+        let factorTree =
+                            [
+                                {
+                                    "label": "Тип тяги",
+                                    "expandedIcon": "fa fa-list-ul",
+                                    "collapsedIcon": "fa fa-list-ul",
+                                    "children": [
+                                            {
+                                                "label": "электротяга",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "теплотяга",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            }
+                                        ]
+                                },
+                                {
+                                    "label": "Вид сообщения",
+                                    "expandedIcon": "fa fa-list-ul",
+                                    "collapsedIcon": "fa fa-list-ul",
+                                    "children": [
+                                            {
+                                                "label": "внутриреспубликанское сообщение",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },            
+                                            {
+                                                "label": "импорт",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },            
+                                            {
+                                                "label": "экспорт",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },            
+                                            {
+                                                "label": "транзит",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            }
+                                        ]
+                                },
+                                {
+                                    "label": "Тип грузового вагона",
+                                    "expandedIcon": "fa fa-list-ul",
+                                    "collapsedIcon": "fa fa-list-ul",
+                                    "children": [
+                                            {
+                                                "label": "полувагон",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "крытый вагон",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "цистерна",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "платформа",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "рефрижератор",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "прочий вагон",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "цементовозы",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "зерновозы",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "фитинговые платформы",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "минераловозы",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            },
+                                            {
+                                                "label": "транспортер",
+                                                "expandedIcon": "fa fa-angle-double-right",
+                                                "collapsedIcon": "fa fa-angle-double-right"
+                                            }
+                                        ]
+                                }
+                            ];
+        return factorTree;
+        // let apiUrl = "/api/sebestoimost/gp/getfacttree"; 
+        // return this.http.get(this.baseUrl + apiUrl);
+    }
     getGenPeriodList() {  //Тип периода
         let priodList = [
             {id: 1, name: "Год"},

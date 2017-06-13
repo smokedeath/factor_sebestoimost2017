@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../../../share/app.service';
+import { TreeNode } from 'primeng/primeng';
 
 @Component({
     moduleId: module.id,
@@ -32,12 +33,24 @@ export class FactSrednSebeStoimostComponent implements OnInit{
     balansStatus: boolean = false;
     combinaciaStatus: boolean = false;
 
+    nameFactors: TreeNode[];
+    selectedNameFactors: TreeNode;
+
     colculateSebestoimost(){
         //
     }
 
    resetParams(){
-       //
+        this.balansStatus = false;
+        this.combinaciaStatus = false;
+        this.operaciaValue = 2;
+        this.izmeritelValue = 2;
+        this.poezdUchastokModel = 0;
+        this.periudModel = 0;
+        this.uslugaModel = 0;
+        this.metodikaModel = 0;
+        this.metodikaModel = 0;
+        this.defualtDate = Date();
    }
 
     ngOnInit(){
@@ -49,6 +62,18 @@ export class FactSrednSebeStoimostComponent implements OnInit{
 
         this.arrPeriud = this.service.getPeriodSebestoimost();
         this.periudModel = this.arrPeriud[0].id;
+
+        this.nameFactors = this.service.getSebestoimostFacGP();        
+                // .subscribe(data => {               
+                //     let dateInJson: any;   
+                //     dateInJson = data.json();
+                    // for (let i = 0; i<dateInJson.length; i++){
+                    //     this.arrtypePeriud.push({                        
+                    //         name: dateInJson[i].name_ru,
+                    //         id: dateInJson[i].id
+                    //     });
+                    // }   
+                // });
 
     }
 }

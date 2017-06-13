@@ -28,11 +28,10 @@
 
 
  }
- .fa{
-
-	color: #fff;
- }
-
+ 
+ /*.fa{
+	 color: #fff; 
+ }*/
 
 .pricing {
 	display: -webkit-flex;
