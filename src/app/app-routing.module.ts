@@ -7,7 +7,7 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountCompone
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
 import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, 
-         ExplotationPokazSebestoimost } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
+         ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
 import { RashodStavokComponent, OtnesenieRashodovComponent, 
          ExplotationPokazRashodStavokComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
 
@@ -43,8 +43,7 @@ import { RashodStavokComponent, OtnesenieRashodovComponent,
                         { path: "explpokaz", component: ExplotationPokazSebestoimost },
                         { path: "razhodizmer", component: RazhodnieIzmeriteli },
                         { path: "rashodniestavki", component: RashodnieStavkiComponent },
-
-
+                        { path: 'factsrednseb', component: FactSrednSebeStoimostComponent},
                         { path: "factconcseb", component:  FactConcSebistoimostView}
                     ]
             },

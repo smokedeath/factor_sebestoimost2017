@@ -1,0 +1,57 @@
+<div class="row" style="text-align: center"> 
+  <view-position-component [titelName]=titelName></view-position-component>
+</div>
+<p-tabView>
+    <p-tabPanel header="Исходные данные">
+       <div class="row">
+           <div class="col-lg-4">
+               <div class="row row-margin">
+                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Методика : </label></div>
+                   <div class="col-lg-6"><combobox-component [iNgModel]=metodikaModel 
+                                                             [structure]=arrMetodika></combobox-component></div>
+               </div>
+               <div class="row row-margin">
+                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Услуга : </label></div>
+                   <div class="col-lg-6"><combobox-component [iNgModel]=uslugaModel 
+                                                             [structure]=arrUsluga></combobox-component></div>
+               </div>
+               <div class="row row-margin">
+                   <div class="row" style="text-align: left">Период:</div>
+                   <div class="row">
+                    <div class="col-lg-6"><my-calendar></my-calendar></div>
+                    <div class="col-lg-6"><combobox-component [iNgModel]=periudModel 
+                                                                [structure]=arrPeriud></combobox-component></div>
+                   </div>
+               </div>
+               <div class="row row-margin">
+                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Поездоучасток: </label>
+                        <i class="material-icons icon-togl-css" pTooltip="Для расчёта по всей дороге оставить поле пустым" tooltipPosition="top">error</i></div>
+                   <div class="col-lg-6"><combobox-component [iNgModel]=poezdUchastokModel 
+                                                             [structure]=arrPoezdUchastok></combobox-component></div>
+               </div>
+               <div class="row row-margin">
+                   <div class="row"><h6>Уровень операций:</h6></div>
+                   <div class="row"><p-spinner size="30" [(ngModel)]="operaciaValue" [min]="0" [max]="100"></p-spinner></div>  
+               </div>
+               <div class="row row-margin">
+                   <div class="row"><h6>Уровень измерителей:</h6></div>
+                   <div class="row"><p-spinner size="30" [(ngModel)]="izmeritelValue" [min]="0" [max]="100"></p-spinner></div>  
+               </div>
+               <div class="row" style="margin-top: 50px">
+                   <div class="row chbox-css"><p-checkbox name="group1" label="Вывести балансовые соотношения" [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
+                   <div class="row chbox-css"><p-checkbox name="group2" label="Рассчитать по всем комбинациям" [(ngModel)]="combinaciaStatus" binary="true"></p-checkbox></div>
+               </div>
+               <div class="row row-margin">                   
+                    <button type="button" class="btn btn-primary" (click)="colculateSebestoimost()"><i class="material-icons">subtitles</i>Рассчитать</button>
+                    <button type="button" class="btn btn-primary" (click)="resetParams()"><i class="material-icons">view_list</i>Сбросить параметры</button>
+               </div>
+
+
+           </div>
+           <div class="col-lg-8"></div>
+       </div>
+    </p-tabPanel>
+    <p-tabPanel header="Расчёт">
+        Content 2
+    </p-tabPanel>
+</p-tabView>

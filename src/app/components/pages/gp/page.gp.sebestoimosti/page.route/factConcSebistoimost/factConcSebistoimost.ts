@@ -165,246 +165,246 @@ export class FactConcSebistoimostView implements OnInit {
         this.showprogressmap = false;
 
         //  Поставщики услуг
-        this.service.postPostavshikUslug(this.data)
-                    .subscribe(data => { 
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrProviderOfServices.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.providerOfServicesAvalaibleOption = {
-                            id: this.data.arrProviderOfServices[0].id,
-                            name: this.data.arrProviderOfServices[0].name
-                        }       
-                    })  
+        // this.service.postPostavshikUslug(this.data)
+        //             .subscribe(data => { 
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrProviderOfServices.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.providerOfServicesAvalaibleOption = {
+        //                     id: this.data.arrProviderOfServices[0].id,
+        //                     name: this.data.arrProviderOfServices[0].name
+        //                 }       
+        //             })  
 
-        // Услуга
-        this.service.getUsluga()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrUsluga.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.uslugaAvalaibleOption = {
-                            id: this.data.arrProviderOfServices[0].id,
-                            name: this.data.arrProviderOfServices[0].name
-                        }  
-                    });
-        // Вид себестоимости
-        this.service.getSebistoimostVid()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrTypeOfCost.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.typeOfCostAvalaibleOption = {
-                            id: this.data.arrTypeOfCost[0].id,
-                            name: this.data.arrTypeOfCost[0].name
-                        }  
-                    });
-        // Тип себестоимости перевозки груза  
-        this.service.getTypSebestPerevozkiGruzi()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.costType.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.costTypeAvalaibleOption = {
-                            id: this.data.costType[0].id,
-                            name: this.data.costType[0].name
-                        }  
-                    });
-        //Метод Расчета(Поставщики)
-        this.service.getMetodRascheta()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.calcMethod.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.calcMethodAvalaibleOption = {
-                            id: this.data.calcMethod[0].id,
-                            name: this.data.calcMethod[0].name
-                        }  
-                    });
-        //Использовать расходные ставки  
-        this.service.getViRrahodStavki()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.suppliesRates.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.suppliesRatesAvalaibleOption = {
-                            id: this.data.suppliesRates[0].id,
-                            name: this.data.suppliesRates[0].name
-                        }  
-                    });
-        //Тип периода
-        this.data.arrTypePeriod = this.service.getGenPeriodList();
-                    // .subscribe(data => {
-                    //     dateInJson = data.json();
-                    //     for (let i = 0; i<dateInJson.length; i++){
-                    //         this.data.arrTypePeriod.push({                        
-                    //             name: dateInJson[i].name_ru,
-                    //             id: dateInJson[i].id
-                    //         });
-                    //     }   
-                    //     this.data.typePeriodAvalaibleOption = {
-                    //         id: this.data.arrTypePeriod[0].id,
-                    //         name: this.data.arrTypePeriod[0].name
-                    //     }  
-                    // });
-        //Род груза
-        this.service.getRodgruza()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrRodGruza.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.rodGruzaAvalaibleOption = {
-                            id: this.data.arrRodGruza[0].id,
-                            name: this.data.arrRodGruza[0].name
-                        }  
-                    });
-        //Характеристика груза
-        this.service.getHarakteristikaGruza()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrHaraktGruz.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.haraktGruzAvalaibleOption = {
-                            id: this.data.arrHaraktGruz[0].id,
-                            name: this.data.arrHaraktGruz[0].name
-                        }  
-                    }); 
-        //Вид сообщения
-        this.service.getVidsoobsheniya()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrVidSoob.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.vidSoobAvalaibleOption = {
-                            id: this.data.arrVidSoob[0].id,
-                            name: this.data.arrVidSoob[0].name
-                        }  
-                    });
-        // Вид грузовой отправки
-        this.service.getVidGruzotpravki()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrVidGruzOtpr.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.vidGruzOtprAvalaibleOption = {
-                            id: this.data.arrVidGruzOtpr[0].id,
-                            name: this.data.arrVidGruzOtpr[0].name
-                        }  
-                    });
-        // Тип грузового вагона
-        this.service.getTypGruzVagon()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrTypGpVagon.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.typGpVagonAvalaibleOption = {
-                            id: this.data.arrTypGpVagon[0].id,
-                            name: this.data.arrTypGpVagon[0].name
-                        }  
-                    });
-        // Принадлежность вагона
-        this.service.getPrinadlezhnostVagona()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrPrinadlVagon.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.prinadlVagonAvalaibleOption = {
-                            id: this.data.arrPrinadlVagon[0].id,
-                            name: this.data.arrPrinadlVagon[0].name
-                        }  
-                    });
-        // Тип контейнера
-        this.service.getTypKonteinera()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrTypCont.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.typContAvalaibleOption = {
-                            id: this.data.arrTypCont[0].id,
-                            name: this.data.arrTypCont[0].name
-                        }  
-                    });
-        // Возвращяет список Принадлежность инвентарного вагона
-        this.service.getPrinadlezhnostInventarnogoVagona()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrPrinadlInvVagon.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.prinadlInvVagonContAvalaibleOption = {
-                            id: this.data.arrPrinadlInvVagon[0].id,
-                            name: this.data.arrPrinadlInvVagon[0].name
-                        }  
-                    });
-        // Принадлежность контейнера
-        this.service.getPrinadlezhnostKonteinera()
-                    .subscribe(data => {
-                        dateInJson = data.json();
-                        for (let i = 0; i<dateInJson.length; i++){
-                            this.data.arrPrinadlCont.push({                        
-                                name: dateInJson[i].name_ru,
-                                id: dateInJson[i].id
-                            });
-                        }   
-                        this.data.prinadlContAvalaibleOption = {
-                            id: this.data.arrPrinadlCont[0].id,
-                            name: this.data.arrPrinadlCont[0].name
-                        }  
-                    });
+        // // Услуга
+        // this.service.getUsluga()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrUsluga.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.uslugaAvalaibleOption = {
+        //                     id: this.data.arrProviderOfServices[0].id,
+        //                     name: this.data.arrProviderOfServices[0].name
+        //                 }  
+        //             });
+        // // Вид себестоимости
+        // this.service.getSebistoimostVid()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrTypeOfCost.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.typeOfCostAvalaibleOption = {
+        //                     id: this.data.arrTypeOfCost[0].id,
+        //                     name: this.data.arrTypeOfCost[0].name
+        //                 }  
+        //             });
+        // // Тип себестоимости перевозки груза  
+        // this.service.getTypSebestPerevozkiGruzi()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.costType.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.costTypeAvalaibleOption = {
+        //                     id: this.data.costType[0].id,
+        //                     name: this.data.costType[0].name
+        //                 }  
+        //             });
+        // //Метод Расчета(Поставщики)
+        // this.service.getMetodRascheta()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.calcMethod.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.calcMethodAvalaibleOption = {
+        //                     id: this.data.calcMethod[0].id,
+        //                     name: this.data.calcMethod[0].name
+        //                 }  
+        //             });
+        // //Использовать расходные ставки  
+        // this.service.getViRrahodStavki()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.suppliesRates.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.suppliesRatesAvalaibleOption = {
+        //                     id: this.data.suppliesRates[0].id,
+        //                     name: this.data.suppliesRates[0].name
+        //                 }  
+        //             });
+        // //Тип периода
+        // this.data.arrTypePeriod = this.service.getGenPeriodList();
+        //             // .subscribe(data => {
+        //             //     dateInJson = data.json();
+        //             //     for (let i = 0; i<dateInJson.length; i++){
+        //             //         this.data.arrTypePeriod.push({                        
+        //             //             name: dateInJson[i].name_ru,
+        //             //             id: dateInJson[i].id
+        //             //         });
+        //             //     }   
+        //             //     this.data.typePeriodAvalaibleOption = {
+        //             //         id: this.data.arrTypePeriod[0].id,
+        //             //         name: this.data.arrTypePeriod[0].name
+        //             //     }  
+        //             // });
+        // //Род груза
+        // this.service.getRodgruza()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrRodGruza.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.rodGruzaAvalaibleOption = {
+        //                     id: this.data.arrRodGruza[0].id,
+        //                     name: this.data.arrRodGruza[0].name
+        //                 }  
+        //             });
+        // //Характеристика груза
+        // this.service.getHarakteristikaGruza()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrHaraktGruz.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.haraktGruzAvalaibleOption = {
+        //                     id: this.data.arrHaraktGruz[0].id,
+        //                     name: this.data.arrHaraktGruz[0].name
+        //                 }  
+        //             }); 
+        // //Вид сообщения
+        // this.service.getVidsoobsheniya()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrVidSoob.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.vidSoobAvalaibleOption = {
+        //                     id: this.data.arrVidSoob[0].id,
+        //                     name: this.data.arrVidSoob[0].name
+        //                 }  
+        //             });
+        // // Вид грузовой отправки
+        // this.service.getVidGruzotpravki()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrVidGruzOtpr.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.vidGruzOtprAvalaibleOption = {
+        //                     id: this.data.arrVidGruzOtpr[0].id,
+        //                     name: this.data.arrVidGruzOtpr[0].name
+        //                 }  
+        //             });
+        // // Тип грузового вагона
+        // this.service.getTypGruzVagon()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrTypGpVagon.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.typGpVagonAvalaibleOption = {
+        //                     id: this.data.arrTypGpVagon[0].id,
+        //                     name: this.data.arrTypGpVagon[0].name
+        //                 }  
+        //             });
+        // // Принадлежность вагона
+        // this.service.getPrinadlezhnostVagona()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrPrinadlVagon.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.prinadlVagonAvalaibleOption = {
+        //                     id: this.data.arrPrinadlVagon[0].id,
+        //                     name: this.data.arrPrinadlVagon[0].name
+        //                 }  
+        //             });
+        // // Тип контейнера
+        // this.service.getTypKonteinera()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrTypCont.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.typContAvalaibleOption = {
+        //                     id: this.data.arrTypCont[0].id,
+        //                     name: this.data.arrTypCont[0].name
+        //                 }  
+        //             });
+        // // Возвращяет список Принадлежность инвентарного вагона
+        // this.service.getPrinadlezhnostInventarnogoVagona()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrPrinadlInvVagon.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.prinadlInvVagonContAvalaibleOption = {
+        //                     id: this.data.arrPrinadlInvVagon[0].id,
+        //                     name: this.data.arrPrinadlInvVagon[0].name
+        //                 }  
+        //             });
+        // // Принадлежность контейнера
+        // this.service.getPrinadlezhnostKonteinera()
+        //             .subscribe(data => {
+        //                 dateInJson = data.json();
+        //                 for (let i = 0; i<dateInJson.length; i++){
+        //                     this.data.arrPrinadlCont.push({                        
+        //                         name: dateInJson[i].name_ru,
+        //                         id: dateInJson[i].id
+        //                     });
+        //                 }   
+        //                 this.data.prinadlContAvalaibleOption = {
+        //                     id: this.data.arrPrinadlCont[0].id,
+        //                     name: this.data.arrPrinadlCont[0].name
+        //                 }  
+        //             });
         // Загружает список раздельных пунктов для указания маршрута в ГП 
         // this.service.postLoadStations(this.data)
         //             .subscribe(data => {

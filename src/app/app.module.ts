@@ -14,7 +14,7 @@ import 'hammerjs';
 // primeng imports
 import {TreeTableModule, SharedModule, TreeTable, GrowlModule, ToggleButtonModule,
         CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, PanelModule, 
-        DataTableModule, MultiSelectModule, TabViewModule } from 'primeng/primeng';
+        DataTableModule, MultiSelectModule, TabViewModule, TooltipModule, SpinnerModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
@@ -26,7 +26,7 @@ import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, Tre
          ComboboxCheckComponent, MyTableComponent, ComboboxMultiSelectComponent } from './components/components/components.index';
 
 import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, 
-         ExplotationPokazSebestoimost } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
+         ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent,
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index'; 
 import { RashodStavokComponent, OtnesenieRashodovComponent, 
@@ -47,7 +47,7 @@ import { AppService } from './share/app.service';
                 IodvDataInput, StatPokazInputComponent, RazhodnieIzmeriteli, CraschetDataInputComponent, RashodnieStavkiComponent,
                 RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, ExplotationPokazRashodStavokComponent,
                 RashodiComponent,  ExplotationPokazSebestoimost, ExplotationPokazTemplateComponent,
-                RaskodstavokTemplateSebistoimostComponent,  // View основных страниц
+                RaskodstavokTemplateSebistoimostComponent, FactSrednSebeStoimostComponent,  // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,
@@ -65,8 +65,8 @@ import { AppService } from './share/app.service';
     JsonpModule,
     AppRoutingModule,
     LeafletModule, 
-    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, 
-                     ToggleButtonModule, PanelModule, DataTableModule, MultiSelectModule, TabViewModule
+    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, SpinnerModule,
+                     ToggleButtonModule, PanelModule, DataTableModule, MultiSelectModule, TabViewModule, TooltipModule
   ],
   entryComponents: [
     ErrorDialog

@@ -37,12 +37,12 @@ export class PageGpSebestoimosti implements OnInit{
         },
         {
             name: "Расчет средней себестоимости",
-            sref: "notfound",
+            sref: "factsrednseb",
             subname: []
         },
         {
             name: "Расчет конкретной себестоимости",
-            sref: "notfound",
+            sref: "notfound",   //factconcseb
             subname: []
         }
     ];

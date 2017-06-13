@@ -1,0 +1,27 @@
+.row-margin{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.table-margin{
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.btn-margin{
+    margin-top: 20px;
+    margin-left: 35px;
+}
+.lbl-css{
+    text-align: right;
+}
+.lbl-text-css{
+    margin-top: 7px;
+}
+
+.icon-togl-css{
+    vertical-align: middle;
+    font-size: 18px;
+}
+.chbox-css{
+    margin-top: 20px;
+}
