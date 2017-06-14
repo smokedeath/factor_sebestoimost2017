@@ -12,8 +12,12 @@ import { TreeNode } from 'primeng/primeng';
 export class FactSrednSebeStoimostComponent implements OnInit{
     constructor(private service: AppService){};
 
-    titelName = 'РАСЧЕТ СРЕДНЕЙ СЕБЕСТОИМОСТИ';    
-    defualtDate = Date();
+    titelName = 'РАСЧЕТ СРЕДНЕЙ СЕБЕСТОИМОСТИ';   
+    preloaderText = 'Подождите. Идёт расчет...'; 
+    disabled = false;
+    colculate = 0;
+    curentDate = Date();
+    activTabPanel: Number;
 
     arrMetodika = [];
     metodikaModel: Number;
@@ -37,22 +41,59 @@ export class FactSrednSebeStoimostComponent implements OnInit{
     selectedNameFactors: TreeNode;
 
     colculateSebestoimost(){
-        //
+        if (!this.disabled){
+            this.activTabPanel = 1;
+            this.colculate = 1;
+            this.disabled = true;
+        }
+    }
+    canselColculateSebestoimost(){
+        if (this.disabled){
+            this.activTabPanel = 0;
+            this.colculate = 0;
+            this.disabled =false;
+        }
     }
 
    resetParams(){
-        this.balansStatus = false;
-        this.combinaciaStatus = false;
-        this.operaciaValue = 2;
-        this.izmeritelValue = 2;
-        this.poezdUchastokModel = 0;
-        this.periudModel = 0;
-        this.uslugaModel = 0;
-        this.metodikaModel = 0;
-        this.metodikaModel = 0;
-        this.defualtDate = Date();
+        if (!this.disabled){
+            this.balansStatus = false;
+            this.combinaciaStatus = false;
+            this.operaciaValue = 2;
+            this.izmeritelValue = 2;
+            this.poezdUchastokModel = 0;
+            this.periudModel = 0;
+            this.uslugaModel = 0;
+            this.metodikaModel = 0;
+            this.metodikaModel = 0;
+            this.curentDate = Date();
+        }
    }
 
+   getDate(datepar: Date){
+     datepar = new Date(datepar);
+     let day = datepar.getDate();  
+     let m = datepar.getMonth() + 1;
+     let month: String;
+     if (m < 10){ month = '0' + m };
+     let year = datepar.getFullYear();
+     return year + "-" + month + "-" + day;
+  }
+
+   handleChange(e) {
+        this.activTabPanel = e.index;
+   }
+
+   exportToExcell(){
+       //
+   }   
+   getNameByid(arr: any[], id: Number){
+        let name: String = '';
+        for (let i=0; i<arr.length; i++){
+            if (arr[i].id==id) {name = arr[i].name};
+        }
+        return name;
+   }
     ngOnInit(){
         this.arrMetodika = this.service.getMetodSebestoimost();
         this.metodikaModel = this.arrMetodika[0].id;

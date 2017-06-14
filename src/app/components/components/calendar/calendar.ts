@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -8,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CalendarComponent implements OnInit{
+    @Output()
+    dateOut: EventEmitter<Date> = new EventEmitter(); 
+        
     date = new Date();
     ru: any;
-
+   
+    getCrentDate(){
+        this.dateOut.emit(this.date);
+    }
+    
     ngOnInit(){
         this.ru = {
                     firstDayOfWeek: 0,

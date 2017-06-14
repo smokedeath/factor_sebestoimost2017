@@ -1,27 +1,30 @@
 <div class="row" style="text-align: center"> 
   <view-position-component [titelName]=titelName></view-position-component>
 </div>
-<p-tabView>
+<p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">
     <p-tabPanel header="Исходные данные">
        <div class="row">
            <div class="col-lg-4">
                <div class="row row-margin">
                    <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Методика : </label></div>
                    <div class="col-lg-6"><combobox-component [iNgModel]=metodikaModel 
+                                                             (oNgModel)="metodikaModel = $event"  
                                                              [structure]=arrMetodika></combobox-component></div>
                </div>
                <div><HR></div>
                <div class="row row-margin">
                    <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Услуга : </label></div>
                    <div class="col-lg-6"><combobox-component [iNgModel]=uslugaModel 
+                                                             (oNgModel)="uslugaModel = $event"   
                                                              [structure]=arrUsluga></combobox-component></div>
                </div>
                <div><HR></div>
                <div class="row row-margin">
                    <div class="row" style="text-align: left">Период:</div>
                    <div class="row">
-                    <div class="col-lg-6"><my-calendar></my-calendar></div>
+                    <div class="col-lg-6"><my-calendar (dateOut)="curentDate = $event"></my-calendar></div>
                     <div class="col-lg-6"><combobox-component [iNgModel]=periudModel 
+                                                                 (oNgModel)="periudModel = $event" 
                                                                 [structure]=arrPeriud></combobox-component></div>
                    </div>
                </div>
@@ -30,6 +33,7 @@
                    <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Поездоучасток: </label>
                         <i class="material-icons icon-togl-css" pTooltip="Для расчёта по всей дороге оставить поле пустым" tooltipPosition="top">error</i></div>
                    <div class="col-lg-6"><combobox-component [iNgModel]=poezdUchastokModel 
+                                                             (oNgModel)="poezdUchastokModel = $event" 
                                                              [structure]=arrPoezdUchastok></combobox-component></div>
                </div>
                <div><HR></div>
@@ -47,9 +51,9 @@
                    <div class="row chbox-css"><p-checkbox name="group1" label="Вывести балансовые соотношения" [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
                    <div class="row chbox-css"><p-checkbox name="group2" label="Рассчитать по всем комбинациям" [(ngModel)]="combinaciaStatus" binary="true"></p-checkbox></div>
                </div>
-               <div class="row row-margin">                   
-                    <button type="button" class="btn btn-primary" (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>Рассчитать</button>
-                    <button type="button" class="btn btn-primary" (click)="resetParams()"><i class="material-icons">not_interested</i>Сбросить параметры</button>
+               <div class="row row-margin">                 
+                    <button type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  Рассчитать</button>
+                    <button type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" (click)="resetParams()"><i class="material-icons">clear</i>  Сбросить параметры</button>
                </div>
            </div>
            <div class="col-lg-8">
@@ -60,6 +64,46 @@
        </div>
     </p-tabPanel>
     <p-tabPanel header="Расчёт">
-        Content 2
+        <div class="row row-margin">
+            <button type="button" class="btn btn-primary" (click)="canselColculateSebestoimost()"><i class="material-icons">undo</i>  Отменить</button>
+            <button type="button" class="btn btn-primary" (click)="exportToExcell()"><i class="material-icons">file_download</i>  Выгрузить в Excell</button>
+        </div>
+        <div class="row row-margin">
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <td>Вид себестоимости</td>
+                    <td>{{getNameByid(arrUsluga, uslugaModel)}}</td>
+                </tr>
+                <tr>
+                    <td>Поездоучасток</td>
+                    <td>{{getNameByid(arrPoezdUchastok, poezdUchastokModel)}}</td>
+                </tr>
+                <tr>
+                    <td>Единица измерения себестоимости</td>
+                    <td>тенге/10 тонно-км</td>
+                </tr>
+                <tr>
+                    <td>Период</td>
+                    <td>{{getDate(curentDate)}}   {{getNameByid(arrPeriud, periudModel)}}</td>
+                </tr>
+                <tr>
+                    <td>Уровень операций</td>
+                    <td>{{operaciaValue}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row row-margin">
+            <h4>РЕЗУЛЬТАТЫ РАСЧЁТА</h4>
+            <div class="row">
+
+            </div>
+            <div class="row">
+                <div *ngIf="colculate!=0">
+                    <preloader-component [captionText]=preloaderText></preloader-component>
+                </div>                
+            </div>
+        </div>
     </p-tabPanel>
 </p-tabView>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -13,4 +13,11 @@ export class ComboboxComponent{
      
     @Input()
     iNgModel: any;
+
+    @Output()    
+    oNgModel: EventEmitter<Number> = new EventEmitter();
+
+    onComboboxChenge(){
+        this.oNgModel.emit(this.iNgModel);
+    }
 }

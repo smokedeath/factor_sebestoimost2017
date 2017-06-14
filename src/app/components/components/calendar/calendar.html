@@ -1,1 +1,2 @@
-<p-calendar [(ngModel)]="date" [showIcon]="true" [locale]="ru" [monthNavigator]="true" [yearNavigator]="true" yearRange="1992:2030"></p-calendar>   
+<p-calendar (onSelect)="getCrentDate()" [(ngModel)]="date" [showIcon]="true" 
+            [locale]="ru" [monthNavigator]="true" [yearNavigator]="true" yearRange="1992:2030"></p-calendar>   
