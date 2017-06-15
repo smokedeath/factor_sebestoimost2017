@@ -14,6 +14,7 @@ export class AppService {
     };
     
     user = {
+        login: 'sysadmin',
         fam: 'Габбасов',
         name: 'Марс',
         otch: 'Беккалиевич',

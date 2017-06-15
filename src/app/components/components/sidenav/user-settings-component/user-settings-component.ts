@@ -15,11 +15,11 @@ export class UserSettingsComponent{
     closeSide: EventEmitter<any> = new EventEmitter();
 
     user = {
+        login: this.service.user.login,
         fam: this.service.user.fam,
         name: this.service.user.name,
         otch: this.service.user.otch,
-        password: '',
-        isActive:  false
+        password: ''
     }
 
     pas = {

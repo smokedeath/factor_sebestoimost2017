@@ -21,20 +21,20 @@
     </div>
     <div class="lng-btn">
         <i class="material-icons btn-lng-ico">translate</i>
-        <a class="label label-primary btn-lng" (click)="ol.toggle($event)">{{diction[108][langId]}}</a>
+        <a class="label label-primary btn-lng" (click)="ol.toggle($event)" style="min-width: 70px">{{diction[108][langId]}}</a>
     </div>
 </div>
 
 <p-overlayPanel #up>
-    <user-settings-component (closeSide)="closePanel(up)"></user-settings-component>
+    <user-settings-component (closeSide)="closePanelOut(up)"></user-settings-component>
 </p-overlayPanel>
 
 <p-overlayPanel #op>
-    <sidenav-ft-component (closeSide)="closePanel(op)"></sidenav-ft-component>
+    <sidenav-ft-component (closeSide)="closePanelOut(op)"></sidenav-ft-component>
 </p-overlayPanel>
 
 <p-overlayPanel #mp>
-    <sidenav-link-menu-component [smallMenu]=smallMenu (closeSide)="closePanel(mp)"></sidenav-link-menu-component>
+    <sidenav-link-menu-component [smallMenu]=smallMenu (closeSide)="closePanelOut(mp)"></sidenav-link-menu-component>
 </p-overlayPanel>
 
 <p-overlayPanel #ol>

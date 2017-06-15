@@ -46,10 +46,14 @@ export class NavbarMegaMenuComponent implements OnInit{
         ru: false,
         en: false
     } 
-
     closePanel(overlaypanel: OverlayPanel){
         overlaypanel.toggle(event);   
-    }
+    }    
+
+    closePanelOut(overlaypanel: OverlayPanel){
+        overlaypanel.toggle(event);
+        overlaypanel.toggle(event);
+    }   
 
     langClick(lng: Number){
         this.langId = lng;
