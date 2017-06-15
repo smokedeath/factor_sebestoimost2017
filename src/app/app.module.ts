@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
+import {Ng2Webstorage} from 'ngx-webstorage';
 
 //LeafletModule
 import { LeafletModule } from '@asymmetrik/angular2-leaflet';
@@ -25,8 +26,9 @@ import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, Tre
          SidenavLinkMenuComponent, PreloaderComponent, ViewPositionCcomponent, UserSettingsComponent,
          ComboboxCheckComponent, MyTableComponent, ComboboxMultiSelectComponent } from './components/components/components.index';
 
-import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, 
-         ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
+import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, AllParametrsViewComponent,
+         ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent, 
+         ViborMarschrutaViewComponent } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent,
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index'; 
 import { RashodStavokComponent, OtnesenieRashodovComponent, 
@@ -37,6 +39,7 @@ import { RaskodStavokTemplateComponent, ExplotationPokazTemplateComponent,
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './share/app.service';
+import { Dictionary } from './../assets/dictionary';
 
 @NgModule({
   declarations: [AppComponent, 
@@ -46,8 +49,8 @@ import { AppService } from './share/app.service';
                 ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput, AsudkrDataInputComponent,
                 IodvDataInput, StatPokazInputComponent, RazhodnieIzmeriteli, CraschetDataInputComponent, RashodnieStavkiComponent,
                 RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, ExplotationPokazRashodStavokComponent,
-                RashodiComponent,  ExplotationPokazSebestoimost, ExplotationPokazTemplateComponent,
-                RaskodstavokTemplateSebistoimostComponent, FactSrednSebeStoimostComponent,  // View основных страниц
+                RashodiComponent,  ExplotationPokazSebestoimost, ExplotationPokazTemplateComponent, ViborMarschrutaViewComponent,
+                RaskodstavokTemplateSebistoimostComponent, FactSrednSebeStoimostComponent, AllParametrsViewComponent,  // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,
@@ -56,6 +59,7 @@ import { AppService } from './share/app.service';
                 ComboboxMultiSelectComponent // Общие компоненты
   ],
   imports: [
+    Ng2Webstorage,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -71,7 +75,7 @@ import { AppService } from './share/app.service';
   entryComponents: [
     ErrorDialog
   ],
-  providers: [AppService],
+  providers: [AppService, Dictionary],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

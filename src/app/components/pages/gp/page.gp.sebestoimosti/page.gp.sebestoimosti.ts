@@ -42,14 +42,16 @@ export class PageGpSebestoimosti implements OnInit{
         },
         {
             name: "Расчет конкретной себестоимости",
-            sref: "notfound",   //factconcseb
+            sref: "factconcseb",  
             subname: []
         }
     ];
 
     ngOnInit(){
-        this.curentMenuItem = 'explpokaz';
-        this.router.navigate(['gp.sebestoimosti/explpokaz']);
+        // this.curentMenuItem = 'explpokaz';
+        // this.router.navigate(['gp.sebestoimosti/explpokaz']);
+        this.curentMenuItem = 'factconcseb';
+        this.router.navigate(['gp.sebestoimosti/factconcseb']);
     } 
 
 }

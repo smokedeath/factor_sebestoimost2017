@@ -1,0 +1,225 @@
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Поставщик услуг : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=postavschikUslugModel 
+                                                        (oNgModel)="postavschikUslugModel = $event"  
+                                                        [structure]=arrPostavschikUslug></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Услуга : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=UslugaModel 
+                                                        (oNgModel)="UslugaModel = $event"  
+                                                        [structure]=arrusluga></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид Себестоимости : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=vidSebestoimostiModel 
+                                                        (oNgModel)="vidSebestoimostiModel = $event"  
+                                                        [structure]=arrVidSebestoimosti></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Тип себестоимости перевозки груза : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=typeSebestoimostiModel 
+                                                        (oNgModel)="typeSebestoimostiModel = $event"  
+                                                        [structure]=arrtypeSebestoimostiModel></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Метод расчета : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=metodRaschetaModel 
+                                                        (oNgModel)="metodRaschetaModel = $event"  
+                                                        [structure]=arrMetodRascheta></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Учитывать план формирования : </label></div>
+            <div class="col-lg-6 chbox-css">
+                <p-checkbox name="planFormirovanie" label="" [(ngModel)]="planFormirovanieBoolean" binary="true">
+                </p-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Использовать расходные ставки : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=metodRaschetaModel 
+                                                        (oNgModel)="metodRaschetaModel = $event"  
+                                                        [structure]=arrMetodRascheta></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вычислять отсутствующие значения : </label></div>
+            <div class="col-lg-6 chbox-css">
+                <p-checkbox name="noItemsSearch" label="" [(ngModel)]="noItemsSearchBoolean" binary="true">
+                </p-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Дата : </label></div>
+            <div class="col-lg-6"><my-calendar (dateOut)="curentDate = $event"></my-calendar></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Тип периода : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=periudTypeModel 
+                                                        (oNgModel)="periudTypeModel = $event"  
+                                                        [structure]=arrPeriudType></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+<div class="row"><HR></div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Род груза : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=rodGruzaModel 
+                                                        (oNgModel)="rodGruzaModel = $event"  
+                                                        [structure]=arrRodGruza></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Характеристика груза : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=horakteristikGruzaModel 
+                                                        (oNgModel)="horakteristikGruzaModel = $event"  
+                                                        [structure]=arrHorakteristikGruza></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид сообщения : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=vidsoobsheniaModel 
+                                                        (oNgModel)="vidsoobsheniaModel = $event"  
+                                                        [structure]=arrVidSoobshenia></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид грузовой отправки : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=vidGruzovoiOtpravkiModel 
+                                                        (oNgModel)="vidGruzovoiOtpravkiModel = $event"  
+                                                        [structure]=arrVidGruzovoiOtpravki></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Тип грузового вагона  : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=gruzVagonTypeModel 
+                                                        (oNgModel)="gruzVagonTypeModel = $event"  
+                                                        [structure]=arrGruzVagonType></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Принадлежность вагона : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=vagonPrinadlezhnostModel 
+                                                        (oNgModel)="vagonPrinadlezhnostModel = $event"  
+                                                        [structure]=arrVagonPrinadlezhnost></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Тип контейнера : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=conteinerTypeModel 
+                                                        (oNgModel)="conteinerTypeModel = $event"  
+                                                        [structure]=arrConteinerType></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Принадлежность инвентарного вагона : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=invemterVagonPrinadlezhnostModel 
+                                                        (oNgModel)="invemterVagonPrinadlezhnostModel = $event"  
+                                                        [structure]=arrInvemterVagonPrinadlezhnost></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row row-margin">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Принадлежность контейнера : </label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=conteinerPrinadlezhnostModel 
+                                                        (oNgModel)="conteinerPrinadlezhnostModel = $event"  
+                                                        [structure]=arrConteinerPrinadlezhnost></combobox-component></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Производится охрана груза : </label></div>
+            <div class="col-lg-6 chbox-css">
+                <p-checkbox name="ohranaGruza" label="" [(ngModel)]="ohranaGruzaBoolean" binary="true">
+                </p-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+<div class="row row-margin"><HR></div>
+
+<div class="row row-margin">
+    <div class="col-lg-3">				
+        <div class="row">
+            <div class="row"><h6>Вес груза:</h6></div>
+            <div class="row"><p-spinner size="30" [(ngModel)]="vesGruzaModel" [min]="0"></p-spinner></div>  
+        </div>
+    </div>	
+    <div class="col-lg-3">			
+        <div class="row">
+            <div class="row"><h6>Количество вагонов в отправке:</h6></div>
+            <div class="row"><p-spinner size="30" [(ngModel)]="vagonCountModel" [min]="0"></p-spinner></div>  
+        </div>
+    </div>
+    <div class="col-lg-3">			
+        <div class="row">
+            <div class="row"><h6>Количество контейнеров:</h6></div>
+            <div class="row"><p-spinner size="30" [(ngModel)]="conteinerCountModel" [min]="0"></p-spinner></div>  
+        </div>				
+    </div>
+    <div class="col-lg-3"></div>	
+</div>

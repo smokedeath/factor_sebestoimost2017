@@ -1,5 +1,6 @@
 <div class="clearfix navbar-fixed-top">
     <a class="page-logo" routerLink={{rLink}} routerLinkActive="active">
+        <!--<h1>{{getDiction(108, langId)}}</h1>-->
         <img src={{logoName}} alt="Logo">
     </a>
     <div *ngIf="navbarLevel!=0" class="user-btn">
@@ -25,6 +26,7 @@
         <a class="label label-primary btn-lng" [ngClass]="{'label-success': lang.en}" (click)="langClick(3)">English</a>
     </div>
 </div>
+
 <p-overlayPanel #up>
     <user-settings-component></user-settings-component>
 </p-overlayPanel>
