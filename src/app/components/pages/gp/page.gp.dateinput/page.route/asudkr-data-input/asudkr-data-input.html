@@ -22,98 +22,100 @@
     </div>
   </div>   
 
-  <div class="col-md-3">
-    <button type="button" class="btn btn-primary" (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> Просмотр шаблона</button>
-    <button type="button" class="btn btn-primary" (click)="inputFromTemplate()"><i class="material-icons">view_list</i> Загрузить</button>
+  <div class="col-md-3 btn-css">
+    <button pTooltip="Просмотр шаблона" tooltipPosition="left" type="button" class="btn btn-primary"     
+            (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> <label *ngIf="visibleLabel">  Просмотр шаблона</label></button>
+    <button pTooltip="Загрузить" tooltipPosition="left"  type="button" class="btn btn-primary" 
+            (click)="inputFromTemplate()"><i class="material-icons">file_upload</i> <label *ngIf="visibleLabel">  Загрузить</label></button>
   </div>  
 </div>
 
 <div class="row row-margin">
-  <div class="col-lg-3 col-md-offset-9">
-    <button type="button" class="btn btn-primary" (click)="exportToExcell()"><i class="material-icons">file_download</i> Выгрузить в Excell</button>
-    <button type="button" class="btn btn-primary"><i class="material-icons">autorenew</i> Обновить</button>
+  <div class="col-lg-3 col-md-offset-9 btn-css">
+    <button pTooltip="Выгрузить в Excell" tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel"> Выгрузить в Excell</label></button>
+    <button pTooltip="Обновить" tooltipPosition="left" type="button" 
+            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  Обновить</label></button>
   </div>
 </div>
 
 <div class="row row-margin">  
-    <div class="row">
-        <p-panel>
-            <p-header>
-                <p-toggleButton [(ngModel)]="dopFiltr" 
-                                onLabel="Скрыть расширенные фильтры" 
-                                offLabel="Показать расширенные фильтры" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'260px'}">
-                </p-toggleButton>
-            </p-header>
-            <div *ngIf="dopFiltr">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Станция отправления:</label></div>  
-                            <div class="col-lg-6 lbl-css">
-                                <combobox-component [iNgModel]=anyDataModel 
-                                                    [structure]=arrAnyData></combobox-component>  
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид сообщения:</label></div>  
-                            <div class="col-lg-6 lbl-css">
-                                <combobox-component [iNgModel]=anyDataModel 
-                                                    [structure]=arrAnyData></combobox-component>   
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид отправки:</label></div>  
-                            <div class="col-lg-6 lbl-css">
-                                <combobox-component [iNgModel]=anyDataModel 
-                                                    [structure]=arrAnyData></combobox-component>    
-                            </div>    
-                        </div>
+    <p-panel>
+        <p-header>
+            <p-toggleButton [(ngModel)]="dopFiltr" 
+                            onLabel="Скрыть расширенные фильтры" 
+                            offLabel="Показать расширенные фильтры" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'260px'}">
+            </p-toggleButton>
+        </p-header>
+        <div *ngIf="dopFiltr">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Станция отправления:</label></div>  
+                        <div class="col-lg-6 lbl-css">
+                            <combobox-component [iNgModel]=anyDataModel 
+                                                [structure]=arrAnyData></combobox-component>  
+                        </div>    
                     </div>
                 </div>
-                <div class="row" style="margin-top: 20px">
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Станция назначения:</label></div>  
-                            <div class="col-lg-6 lbl-css">
-                                <combobox-component [iNgModel]=anyDataModel 
-                                                    [structure]=arrAnyData></combobox-component>   
-                            </div>    
-                        </div>
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид сообщения:</label></div>  
+                        <div class="col-lg-6 lbl-css">
+                            <combobox-component [iNgModel]=anyDataModel 
+                                                [structure]=arrAnyData></combobox-component>   
+                        </div>    
                     </div>
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Род груза:</label></div>  
-                            <div class="col-lg-6 lbl-css">
-                                <combobox-component [iNgModel]=anyDataModel 
-                                                    [structure]=arrAnyData></combobox-component>    
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Тип вагона:</label></div>  
-                            <div class="col-lg-6 lbl-css">
-                                <combobox-component [iNgModel]=anyDataModel 
-                                                    [structure]=arrAnyData></combobox-component>    
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="row" style="text-align: center">                            
-                            <p-toggleButton [(ngModel)]="tableFiltr" 
-                                            onLabel="Скрыть фильтры" 
-                                            offLabel="Показать фильтры" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
-                            </p-toggleButton>
-                        </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид отправки:</label></div>  
+                        <div class="col-lg-6 lbl-css">
+                            <combobox-component [iNgModel]=anyDataModel 
+                                                [structure]=arrAnyData></combobox-component>    
+                        </div>    
                     </div>
                 </div>
             </div>
-        </p-panel>
-    </div>
+            <div class="row" style="margin-top: 20px">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Станция назначения:</label></div>  
+                        <div class="col-lg-6 lbl-css">
+                            <combobox-component [iNgModel]=anyDataModel 
+                                                [structure]=arrAnyData></combobox-component>   
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Род груза:</label></div>  
+                        <div class="col-lg-6 lbl-css">
+                            <combobox-component [iNgModel]=anyDataModel 
+                                                [structure]=arrAnyData></combobox-component>    
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Тип вагона:</label></div>  
+                        <div class="col-lg-6 lbl-css">
+                            <combobox-component [iNgModel]=anyDataModel 
+                                                [structure]=arrAnyData></combobox-component>    
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row" style="text-align: center">                            
+                        <p-toggleButton [(ngModel)]="tableFiltr" 
+                                        onLabel="Скрыть фильтры" 
+                                        offLabel="Показать фильтры" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
+                        </p-toggleButton>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-panel>
 </div>
 
 <div class="row row-margin">

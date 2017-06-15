@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../../../share/app.service';
 import { TreeNode } from 'primeng/primeng';
+import { Dictionary } from './../../../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -10,7 +12,12 @@ import { TreeNode } from 'primeng/primeng';
 })
 
 export class FactSrednSebeStoimostComponent implements OnInit{
-    constructor(private service: AppService){};
+    constructor(private service: AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService){};
+    langId: any;
+    diction: any;
+    visibleLabel: Boolean = false;
 
     titelName = 'РАСЧЕТ СРЕДНЕЙ СЕБЕСТОИМОСТИ';   
     preloaderText = 'Подождите. Идёт расчет...'; 
@@ -95,6 +102,15 @@ export class FactSrednSebeStoimostComponent implements OnInit{
         return name;
    }
     ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
+        
         this.arrMetodika = this.service.getMetodSebestoimost();
         this.metodikaModel = this.arrMetodika[0].id;
 

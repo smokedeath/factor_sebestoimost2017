@@ -311,8 +311,10 @@
 }
 .page-header .navbar .navbar-nav .dropdown-menu > li {
   display: inline-block;
+  max-height: 40px;
 }
 .page-header .navbar .navbar-nav .dropdown-menu > li > a {
+  margin-top: -15px;
   color: #6c7b88;
   font-size: 14px;
   font-weight: 600;
@@ -1433,7 +1435,7 @@ body {
   .page-content {
     z-index: 1;
     margin-top: -4px;
-    padding-top: 105px;
+    padding-top: 50px;
     position: relative;
     -webkit-border-top-right-radius: 2px;
     -moz-border-top-right-radius: 2px;

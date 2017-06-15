@@ -1,6 +1,6 @@
 .row-margin{
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .table-margin{
     margin-top: 20px;
@@ -16,4 +16,7 @@
 }
 .lbl-text-css{
     margin-top: 7px;
+}
+.btn-css{
+    text-align: right;
 }

@@ -1,19 +1,20 @@
 .row-margin{
     margin-top: 20px;
-    margin-left: 20px;
+    max-width: 100%;
+    margin-left: 0px;
+    /*margin-left: 20px;*/
 }
 .table-margin{
     margin-top: 20px;
     margin-left: 50px;
     margin-right: 50px;
 }
-.btn-margin{
-    margin-top: 20px;
-    margin-left: 35px;
-}
 .lbl-css{
     text-align: right;
 }
 .lbl-text-css{
     margin-top: 7px;
+}
+.btn-css{
+    text-align: right;
 }

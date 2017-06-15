@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../share/app.service';
+import { Dictionary } from './../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -10,10 +12,15 @@ import { AppService } from './../../../../share/app.service';
 
 
 export class RaskodStavokTemplateComponent implements OnInit{      
-    constructor(private service : AppService){}  
+    constructor(private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService){}  
     //
     defualtDate = Date();
     defaultLabel = "Элементы затрат:";
+    langId: any;
+    diction: any;
+    visibleLabel: Boolean = false;
 
     arrtypePeriud = [];
     tableDate = [];
@@ -112,6 +119,15 @@ export class RaskodStavokTemplateComponent implements OnInit{
     }
 
     ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
+
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});

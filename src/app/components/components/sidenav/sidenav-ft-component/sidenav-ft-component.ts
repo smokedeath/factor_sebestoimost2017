@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['sidenav-ft-component.css']
 })
 export class SidenavFTComponent implements OnInit {
+  @Output()
+  closeSide: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  closeSidClicke(){
+      this.closeSide.emit(null);
+  }
 
   ngOnInit() {
   }

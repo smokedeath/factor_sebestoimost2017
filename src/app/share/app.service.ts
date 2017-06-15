@@ -1,16 +1,29 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http"; 
 import { SelectItem } from './interface.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Injectable()
 export class AppService {    
-    constructor(private http: Http) {}
+    constructor(private http: Http,
+                private storage : LocalStorageService) {}
+
+    userSetings = {
+        userLang: 0,
+        visibleLabel: false 
+    };
     
     user = {
         fam: 'Габбасов',
         name: 'Марс',
         otch: 'Беккалиевич',
         password: ''
+    }
+
+    loadUserSetings(){
+        // Загрузка данных о настройках пользователя с сервера
+            this.storage.store('UserSetings', this.userSetings);
+
     }
 
     smallMenuGp = [

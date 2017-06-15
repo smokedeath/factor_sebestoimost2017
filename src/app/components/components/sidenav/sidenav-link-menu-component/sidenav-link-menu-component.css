@@ -20,3 +20,7 @@
   text-align: center;
   text-transform: uppercase !important;
 }
+.btn-close-css{    
+    text-align: right;
+    margin-top: -35px;
+}

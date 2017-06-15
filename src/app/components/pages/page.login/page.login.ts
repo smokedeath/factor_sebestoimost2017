@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Dictionary } from './../../../../assets/dictionary';
-import {LocalStorageService} from 'ngx-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
+import { AppService } from './../../../share/app.service';
 
 @Component({
     moduleId: module.id,
@@ -10,28 +11,25 @@ import {LocalStorageService} from 'ngx-webstorage';
 })
 
 export class PageLogin implements OnInit{
-    constructor(private dictionary : Dictionary,
+    constructor(private service : AppService,
+                private dictionary : Dictionary,
                 private storage : LocalStorageService){}
     
-    langId: Number;
+    langId: any;
+    diction: any;
     logoName = '../assets/admin/layout5/img/logo.png';
 
-    getDiction(id: any, lang: Number){
-        return this.dictionary.getDictionById(id, lang);
-    };
-
-
-    // logoName =  this.dictionary.getDictionById(108,this.langId);
     navbarLevel = 0;     
-    lo: String = this.logoName;
 
     ngOnInit(){
-        this.langId = this.storage.retrieve('langId');
-        if (this.langId==0 || this.langId == null){
-            this.langId = 1;            
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
             this.storage.store('langId', this.langId);
         }
-
     }
 
 }

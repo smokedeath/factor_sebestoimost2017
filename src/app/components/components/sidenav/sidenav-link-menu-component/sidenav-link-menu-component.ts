@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -7,7 +7,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['sidenav-link-menu-component.css']
 })
 export class SidenavLinkMenuComponent {
+  @Output()
+  closeSide: EventEmitter<any> = new EventEmitter();
+
   @Input()
   smallMenu = []; 
+  
+  closeSidClicke(){
+      this.closeSide.emit(null);
+  }
 
 }

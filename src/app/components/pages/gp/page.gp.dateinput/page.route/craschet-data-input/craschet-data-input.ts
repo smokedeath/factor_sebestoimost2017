@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../../../share/app.service';
+import { Dictionary } from './../../../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -9,12 +11,17 @@ import { AppService } from './../../../../../../share/app.service';
 })
 
 export class CraschetDataInputComponent implements OnInit{
-    constructor(private service : AppService){}      
+    constructor(private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService){}      
 
     titelName = 'ЗАГРУЗКА ДАННЫХ ИЗ Ц РАСЧЕТ';
     dopFiltr = false;
     tableFiltr = false;
     defualtDate = Date();
+    langId: any;
+    diction: any;
+    visibleLabel: Boolean = false;
     //////////////////////////////
     arrAnyData = [];
     anyDataModel: Number;
@@ -63,6 +70,14 @@ export class CraschetDataInputComponent implements OnInit{
     }
     
     ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
         // Загрузка по умолчанию (Пока нет api)
         this.arrAnyData = this.service.getAnyData();
         this.anyDataModel = this.arrAnyData[0].id;

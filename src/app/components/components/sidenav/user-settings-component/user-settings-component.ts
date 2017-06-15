@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { AppService } from './../../../../share/app.service';
 
 @Component({
@@ -10,6 +10,9 @@ import { AppService } from './../../../../share/app.service';
 
 export class UserSettingsComponent{ 
     constructor(private service : AppService) {} 
+
+    @Output()
+    closeSide: EventEmitter<any> = new EventEmitter();
 
     user = {
         fam: this.service.user.fam,
@@ -27,6 +30,10 @@ export class UserSettingsComponent{
 
     passShow: boolean = true;
     textType = 'password';
+
+    closeSidClicke(){
+        this.closeSide.emit(null);
+    }
 
     showPass(){
         if (this.passShow){this.textType = "text"}else{this.textType = "password"}

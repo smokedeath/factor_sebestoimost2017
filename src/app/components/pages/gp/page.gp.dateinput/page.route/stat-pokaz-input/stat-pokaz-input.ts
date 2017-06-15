@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { AppService } from './../../../../../../share/app.service';
+import { Dictionary } from './../../../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -10,10 +12,15 @@ import { AppService } from './../../../../../../share/app.service';
 })
 
 export class StatPokazInputComponent implements OnInit{
-    constructor(private service : AppService){}  
+    constructor(private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService){}  
 
     titelName = 'ЗАГРУЗКА СТАТИСТИЧЕСКИХ ПОКАЗАТЕЛЕЙ';
     defaultLabel = 'Статус';
+    langId: any;
+    diction: any;
+    visibleLabel: Boolean = false;
     
     arrtypePeriud = [];
     tableDate = [];
@@ -83,6 +90,14 @@ export class StatPokazInputComponent implements OnInit{
     }
 
     ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});

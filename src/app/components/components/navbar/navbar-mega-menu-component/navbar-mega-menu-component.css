@@ -1,7 +1,6 @@
 .current-user{
     color: #fff;
 }
-
 .lft-btn{
     position: absolute;
     display: flex;
@@ -23,7 +22,7 @@
 }
 .btn-lng{
     margin-right: 10px;
-    padding: 5px 6px 4px 6px;
+    padding: 7px 6px 4px 6px;
 }
 .user-btn{
     position: absolute;
@@ -33,4 +32,11 @@
     transition-duration: 300ms;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+.btn-tooltip-marg{
+    margin-top: 5px;
+} 
+.btn-lng-ico{ 
+    margin-right: 15px;
+    color: #fff;   
 }

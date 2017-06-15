@@ -52,8 +52,10 @@
                    <div class="row chbox-css"><p-checkbox name="group2" label="Рассчитать по всем комбинациям" [(ngModel)]="combinaciaStatus" binary="true"></p-checkbox></div>
                </div>
                <div class="row row-margin">                 
-                    <button type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  Рассчитать</button>
-                    <button type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" (click)="resetParams()"><i class="material-icons">clear</i>  Сбросить параметры</button>
+                    <button  pTooltip="Рассчитать" tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                            (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  <label *ngIf="visibleLabel">  Рассчитать</label></button>
+                    <button  pTooltip="Сбросить параметры" tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                            (click)="resetParams()"><i class="material-icons">clear</i>  <label *ngIf="visibleLabel">  Сбросить параметры</label></button>
                </div>
            </div>
            <div class="col-lg-8">
@@ -65,8 +67,10 @@
     </p-tabPanel>
     <p-tabPanel header="Расчёт">
         <div class="row row-margin">
-            <button type="button" class="btn btn-primary" (click)="canselColculateSebestoimost()"><i class="material-icons">undo</i>  Отменить</button>
-            <button type="button" class="btn btn-primary" (click)="exportToExcell()"><i class="material-icons">file_download</i>  Выгрузить в Excell</button>
+            <button pTooltip="Отменить" tooltipPosition="left" type="button" class="btn btn-primary" 
+                    (click)="canselColculateSebestoimost()"><i class="material-icons">undo</i>  <label *ngIf="visibleLabel">  Отменить</label></button>
+            <button pTooltip="Выгрузить в Excell" tooltipPosition="left" type="button" class="btn btn-primary"
+                    (click)="exportToExcell()"><i class="material-icons">file_download</i>  <label *ngIf="visibleLabel">  Выгрузить в Excell</label></button>
         </div>
         <div class="row row-margin">
             <table class="table table-bordered">

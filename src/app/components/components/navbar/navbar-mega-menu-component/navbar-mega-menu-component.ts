@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { OverlayPanel } from 'primeng/primeng';
 import { AppService } from './../../../../share/app.service';
+import { Dictionary } from './../../../../../assets/dictionary';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -9,7 +12,9 @@ import { AppService } from './../../../../share/app.service';
 })
 
 export class NavbarMegaMenuComponent implements OnInit{    
-    constructor(private service : AppService) {} 
+    constructor(private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService) {} 
 
     @Input()
     navbarLevel: Number;
@@ -22,6 +27,10 @@ export class NavbarMegaMenuComponent implements OnInit{
 
     @Input()
     smallMenu = [];
+    
+    langId: any;
+    diction: any;
+    visibleLabel: Boolean = false;
 
     user = {
         fam: this.service.user.fam,
@@ -38,33 +47,23 @@ export class NavbarMegaMenuComponent implements OnInit{
         en: false
     } 
 
+    closePanel(overlaypanel: OverlayPanel){
+        overlaypanel.toggle(event);   
+    }
+
     langClick(lng: Number){
-        switch (lng) {
-            case 1: {
-                this.lang.kz = true;
-                this.lang.ru = false;
-                this.lang.en = false;
-                break;
-            }
-            case 2: {
-                this.lang.kz = false;
-                this.lang.ru = true;
-                this.lang.en = false;
-                break;
-            }
-            case 3: {
-                this.lang.kz = false;
-                this.lang.ru = false;
-                this.lang.en = true;
-                break;
-            }
-            default: { 
-                break; 
-            } 
-        }
+        this.langId = lng;
+        this.storage.store('langId', this.langId);
     }
 
     ngOnInit(){
-        this.lang.kz = true;
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
     }
 }

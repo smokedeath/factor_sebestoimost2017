@@ -1,28 +1,32 @@
-<div class="row row-margin">
-    <div class="col-md-9">
-        <div class="col-md-2">
-        <my-calendar></my-calendar>       
-        </div>
-        <div class="col-md-2">
-        <combobox-component [iNgModel]=typePeriudModel 
-                            [structure]=arrtypePeriud></combobox-component>      
-        </div>
-        <div class="col-md-2"> 
-        <combobox-component [iNgModel]=vladelicModel 
-                            [structure]=arrVladelic></combobox-component>    
-        </div>
-        <div class="col-md-2">
-        <combobox-component [iNgModel]=postavschikModel 
-                            [structure]=arrPostavschik></combobox-component>  
-        </div>    
-        <div class="col-md-2">
-        <combobox-component [iNgModel]=statusModel 
-                            [structure]=arrStatus></combobox-component>  
-        </div>   
-    </div>   
+<div class="row row-margin">    
+    <p-panel>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="col-md-2">
+                <my-calendar></my-calendar>       
+                </div>
+                <div class="col-md-2">
+                <combobox-component [iNgModel]=typePeriudModel 
+                                    [structure]=arrtypePeriud></combobox-component>      
+                </div>
+                <div class="col-md-2"> 
+                <combobox-component [iNgModel]=vladelicModel 
+                                    [structure]=arrVladelic></combobox-component>    
+                </div>
+                <div class="col-md-2">
+                <combobox-component [iNgModel]=postavschikModel 
+                                    [structure]=arrPostavschik></combobox-component>  
+                </div>    
+                <div class="col-md-2">
+                <combobox-component [iNgModel]=statusModel 
+                                    [structure]=arrStatus></combobox-component>  
+                </div>   
+            </div>   
 
-    <div class="col-md-3">
-    </div>  
+            <div class="col-md-3">
+            </div> 
+        </div>
+    </p-panel>   
 </div>
 
 <div class="row row-margin">
@@ -41,9 +45,11 @@
     <div class="col-lg-3">
         <p-checkbox name="group1" label="Показать в процентах" [(ngModel)]="procentSchow"></p-checkbox>
     </div>
-    <div class="col-lg-3">
-        <button type="button" class="btn btn-primary" (click)="exportToExcell()"><i class="material-icons">file_download</i> Выгрузить в Excell</button>
-        <button type="button" class="btn btn-primary"><i class="material-icons">autorenew</i> Обновить</button>
+    <div class="col-lg-3 btn-css">
+        <button pTooltip="Выгрузить в Excell" tooltipPosition="left" type="button" class="btn btn-primary" 
+                (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  Выгрузить в Excell</label></button>
+        <button pTooltip="Обновить" tooltipPosition="left" type="button" 
+                class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  Обновить</label></button>
     </div>
 </div>
 

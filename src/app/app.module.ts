@@ -13,18 +13,19 @@ import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import 'hammerjs';
 
 // primeng imports
-import {TreeTableModule, SharedModule, TreeTable, GrowlModule, ToggleButtonModule, TreeModule,
-        CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, PanelModule, 
+import {TreeTableModule, SharedModule, TreeTable, GrowlModule, ToggleButtonModule, TreeModule, 
+        CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, PanelModule, BreadcrumbModule,
         DataTableModule, MultiSelectModule, TabViewModule, TooltipModule, SpinnerModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
          PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
+
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
          SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent, 
          MultiComboboxComponent, SidenavFTComponent, PassRefDialogComponent, NavbarMegaMenuComponent, 
          SidenavLinkMenuComponent, PreloaderComponent, ViewPositionCcomponent, UserSettingsComponent,
-         ComboboxCheckComponent, MyTableComponent, ComboboxMultiSelectComponent } from './components/components/components.index';
+         ComboboxCheckComponent, MyTableComponent, ComboboxMultiSelectComponent, BreadCrumbComponent } from './components/components/components.index';
 
 import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, AllParametrsViewComponent,
          ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent, 
@@ -56,7 +57,7 @@ import { Dictionary } from './../assets/dictionary';
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,
                 PassRefDialogComponent, NavbarMegaMenuComponent, SidenavLinkMenuComponent, PreloaderComponent, 
                 ViewPositionCcomponent, UserSettingsComponent, ComboboxCheckComponent , MyTableComponent, 
-                ComboboxMultiSelectComponent // Общие компоненты
+                ComboboxMultiSelectComponent, BreadCrumbComponent // Общие компоненты
   ],
   imports: [
     Ng2Webstorage,
@@ -69,8 +70,8 @@ import { Dictionary } from './../assets/dictionary';
     JsonpModule,
     AppRoutingModule,
     LeafletModule, 
-    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, SpinnerModule,
-                     ToggleButtonModule, PanelModule, DataTableModule, MultiSelectModule, TabViewModule, TooltipModule, TreeModule                     
+    TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, SpinnerModule, BreadcrumbModule,
+                     ToggleButtonModule, PanelModule, DataTableModule, MultiSelectModule, TabViewModule, TooltipModule, TreeModule,                       
   ],
   entryComponents: [
     ErrorDialog
