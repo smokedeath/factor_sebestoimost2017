@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class FactorSebestoimost2017Page {
   navigateTo() {
-    return browser.get('/');
+    return browser.get('');
   }
 
   getParagraphText() {

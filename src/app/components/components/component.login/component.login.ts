@@ -21,8 +21,8 @@ export class ComponentLogin{
     user = {
         login: '',
         password: '',
-        programmId: "1",
-        userId: "1"
+        programmId: 1,
+        userId: 1
     }
 
     public users = [
@@ -32,8 +32,8 @@ export class ComponentLogin{
     ]
 
     public programms = [
-        { value: "1", display: 'АО "КТЖ-Грузовые перевозки"' },
-        { value: "2", display: 'Магистральная железнодорожная сеть' }
+        { value: 1, display: 'АО "КТЖ-Грузовые перевозки"' },
+        { value: 2, display: 'Магистральная железнодорожная сеть' }
     ]
 
     showPass(){
@@ -50,14 +50,14 @@ export class ComponentLogin{
         if (this.user.login.length>0 && this.user.password.length>0) {
             // тут будет проверка пароля
             if (this.user.login=='sysadmin' && this.user.password=='111') {  
-                switch(this.user.userId){
-                    case "1": { 
+                switch(Number(this.user.userId)){
+                    case 1: { 
                         switch(this.user.programmId) { 
-                            case "1": { 
+                            case 1: { 
                                 this.router.navigate(["index.gp"]);
                                 break; 
                             } 
-                            case "2": { 
+                            case 2: { 
                                 this.router.navigate(["index.mzhs"]);
                                 break; 
                             } 
@@ -67,11 +67,11 @@ export class ComponentLogin{
                         } 
                         break; 
                     } 
-                    case "2": { 
+                    case 2: { 
                         window.location.href='http://192.168.1.20:8080/xtofi/a/webmod/default/ru'
                         break; 
                     } 
-                    case "3": { 
+                    case 3: { 
                         window.location.href='http://192.168.1.20:8080/xtofi/a/usr/default/ru/'
                         break; 
                     } 

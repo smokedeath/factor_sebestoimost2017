@@ -21,6 +21,7 @@ export class RaskodStavokTemplateComponent implements OnInit{
     langId: any;
     diction: any;
     visibleLabel: Boolean = false;
+    procentSchow: Boolean = false;
 
     arrtypePeriud = [];
     tableDate = [];

@@ -5,11 +5,11 @@
   top: 9%;
   right: 0;
   bottom: 0;
-  max-width: 100%;
+  max-width: 30%;
   z-index: 9999;
 } 
 .btnclass{
-  text-align: left;
+  text-align: center;
   margin: 10px;  
   margin-left: 40px;
 }
@@ -21,4 +21,8 @@
 .btn-close-css{    
     text-align: right;
     margin-top: -35px;
+}
+.form-panel-css{
+  margin-left: 5px;
+  margin-right: 20px;
 }

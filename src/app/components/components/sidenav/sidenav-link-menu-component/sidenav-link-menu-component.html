@@ -1,21 +1,21 @@
 <div>   
     <br>
     <div class="page-quick-sidebar">  
-        <div id="feedbackform" class="nav-justified" data-id="ГП" >
-        <div class="pp"><p>Меню разделов</p></div>        
-        <div class="btn-close-css"><a (click)="closeSidClicke()"><i class="material-icons" style="color: #fff">highlight_off</i></a></div>
-        <div class="tab-content">
-            <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
-                <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
-                    <div class="row" *ngFor="let item of smallMenu">
-                        <div class="btnclass">
-                            <button class="btn btn-primary btn-lg btn-block" 
-                                    type="button" routerLink="{{item.rlink}}" routerLinkActive="active">
-                                    <i class="material-icons">{{item.icon_type}}</i>  {{item.label}}</button></div>
+        <div class="form-panel-css">
+            <div class="pp"><p>Меню разделов</p></div>        
+            <div class="btn-close-css"><a (click)="closeSidClicke()"><i class="material-icons" style="color: #fff">highlight_off</i></a></div>
+            <div class="tab-content">
+                <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+                    <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+                        <div class="row" *ngFor="let item of smallMenu">
+                            <div class="btnclass">
+                                <button class="btn btn-primary btn-lg btn-block" 
+                                        type="button" routerLink="{{item.rlink}}" routerLinkActive="active">
+                                        <i class="material-icons">{{item.icon_type}}</i>  {{item.label}}</button></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>    
+            </div>    
         </div>   
     </div>  
 </div>

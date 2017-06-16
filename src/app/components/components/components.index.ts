@@ -21,3 +21,4 @@ export * from './view-position-component/view-position-component';
 export * from './sidenav/user-settings-component/user-settings-component';
 export * from './table-component/table-component';
 export * from './bread-crumb-component/bread-crumb-component';
+export * from './footer-component/footer-component';

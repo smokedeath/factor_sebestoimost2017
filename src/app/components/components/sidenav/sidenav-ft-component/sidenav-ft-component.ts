@@ -14,6 +14,10 @@ export class SidenavFTComponent implements OnInit {
       this.closeSide.emit(null);
   }
 
+  questionsClick(){    
+    window.open('faq')
+  }
+
   ngOnInit() {
   }
 

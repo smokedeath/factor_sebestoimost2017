@@ -1,0 +1,24 @@
+.footer-css{
+    background: #2f373e;
+    color: #fff;
+    bottom: 0px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    min-height: 50px;
+}
+.copir{
+    margin-left: 15px;
+}
+.key-css {
+    display: inline-block;
+    font-weight: 500;
+    text-align: left;
+    width: 80px;
+}
+.value-css {
+    display: inline-block;
+    text-align: left;
+    width: 240px;
+}

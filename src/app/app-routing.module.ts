@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountComponent,
-         PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz } from './components/pages/pages.index'; 
+         PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz, FaqComponent } from './components/pages/pages.index'; 
 
 import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
@@ -15,6 +15,7 @@ import { RashodStavokComponent, OtnesenieRashodovComponent,
     imports: [RouterModule.forRoot([            
             { path: "", redirectTo: "login", pathMatch: "full" },
             { path: "login", component: PageLogin },
+            { path: "faq", component: FaqComponent },
             { path: "index.gp", component: PageIndexGp },
             { path: "index.mzhs", component: PageIndexMzhs },
             { path: "gp.date.input", component: PageGpDateInput, 
@@ -43,8 +44,8 @@ import { RashodStavokComponent, OtnesenieRashodovComponent,
                         { path: "explpokaz", component: ExplotationPokazSebestoimost },
                         { path: "razhodizmer", component: RazhodnieIzmeriteli },
                         { path: "rashodniestavki", component: RashodnieStavkiComponent },
-                        { path: 'factsrednseb', component: FactSrednSebeStoimostComponent},
-                        { path: "factconcseb", component:  FactConcSebistoimostView}
+                        { path: 'factsrednseb', component: FactSrednSebeStoimostComponent },
+                        { path: "factconcseb", component:  FactConcSebistoimostView }
                     ]
             },
             { path: "gp.analiz", component: PageGpAnaliz,

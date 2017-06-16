@@ -77,12 +77,15 @@ export class FactSrednSebeStoimostComponent implements OnInit{
         }
    }
 
-   getDate(datepar: Date){
+   getDate(datepar: Date): String{
      datepar = new Date(datepar);
-     let day = datepar.getDate();  
-     let m = datepar.getMonth() + 1;
      let month: String;
-     if (m < 10){ month = '0' + m };
+     let day: String;
+     let d = datepar.getDate();  
+     if (d<10){ day = '0' + d }else{ day = String(d)}
+
+     let m = datepar.getMonth() + 1;
+     if (m < 10){ month = '0' + m }else{ month = String(m)};
      let year = datepar.getFullYear();
      return year + "-" + month + "-" + day;
   }

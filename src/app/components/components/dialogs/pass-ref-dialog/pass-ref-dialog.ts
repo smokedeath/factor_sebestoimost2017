@@ -10,4 +10,6 @@ import { Component, Input } from '@angular/core';
 export class PassRefDialogComponent{
     @Input()
     StatusDialog: boolean = false;
+
+    email: String = '';
 }

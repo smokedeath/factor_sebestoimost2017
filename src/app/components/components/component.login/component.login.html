@@ -5,8 +5,8 @@
 
             <div class="form-group">
                 <label>Пользователь</label>
-                <select name="userId" class="form-control" [(ngModel)]="user.userId">
-                    <option *ngFor="let item of users" [value]="item.value">{{item.display}}</option>
+                <select name="userId" class="form-control" [(ngModel)]=user.userId>
+                    <option *ngFor="let item of users" [value]=item.value>{{item.display}}</option>
                 </select>
             </div> 
 
@@ -28,7 +28,7 @@
                 <label>Предприятие</label>
                 <div class="radio" *ngFor="let prog of programms">
                     <label>
-                    <input type="radio" name="parogramm" [(ngModel)]="user.programmId" [value]="prog.value">
+                    <input type="radio" name="parogramm" [(ngModel)]=user.programmId [value]=prog.value>
                     {{prog.display}}
                     </label>
                 </div>

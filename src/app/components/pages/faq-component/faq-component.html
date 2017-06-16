@@ -1,0 +1,26 @@
+<div class="centeral-form">
+  <p-panel header="Часто задаваемые вопросы">   
+    <div class="row">
+      <div class="col-lg-4">
+        <p-panel header="Вопросы">
+          <div class="row quest-panel" *ngFor="let vop of faq">
+            <h4>Вопрос {{vop.id}}: </h4>       
+            <a style="cursor: pointer" (click)="panelClick(vop.id)">{{vop.quest}}</a> 
+          </div>
+        </p-panel>
+      </div>
+      <div class="col-lg-8">
+        <p-panel header="Ответы">
+          <p-tabView [activeIndex]=aindex>  
+            <p-tabPanel [closable]="true" header="Ответ {{otv.id}}" *ngFor="let otv of faq">
+              <div class="label-css" *ngFor="let otvet of otv.otvet" >
+                <label>{{otvet.text}}</label>
+              </div>
+            </p-tabPanel>
+          </p-tabView> 
+        </p-panel>
+      </div>
+    </div>
+</p-panel>
+</div>
+<footer-component></footer-component>
