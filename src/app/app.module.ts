@@ -19,7 +19,7 @@ import {TreeTableModule, SharedModule, TreeTable, GrowlModule, ToggleButtonModul
 
 import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
-         PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, FaqComponent }  from './components/pages/pages.index';
+         PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
 
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
          SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent, FooterComponent,
@@ -57,7 +57,7 @@ import { Dictionary } from './../assets/dictionary';
                 SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,
                 PassRefDialogComponent, NavbarMegaMenuComponent, SidenavLinkMenuComponent, PreloaderComponent, 
                 ViewPositionCcomponent, UserSettingsComponent, ComboboxCheckComponent , MyTableComponent, 
-                ComboboxMultiSelectComponent, BreadCrumbComponent, FaqComponent, FooterComponent // Общие компоненты
+                ComboboxMultiSelectComponent, BreadCrumbComponent, FooterComponent // Общие компоненты
   ],
   imports: [
     Ng2Webstorage,

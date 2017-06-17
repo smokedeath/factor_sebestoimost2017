@@ -15,7 +15,7 @@ export class SidenavFTComponent implements OnInit {
   }
 
   questionsClick(){    
-    window.open('faq')
+    window.open('/faq')
   }
 
   ngOnInit() {
