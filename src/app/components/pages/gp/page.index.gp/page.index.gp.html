@@ -3,7 +3,8 @@
         <div class="container-fluid">
             <navbar-mega-menu-component [rLink]=rExitLink 
                                         [logoName]=logoName 
-                                        [navbarLevel]=navbarLevel>
+                                        [navbarLevel]=navbarLevel
+                                        (updateIdLang)="updIdLang($event)">
             </navbar-mega-menu-component>
         </div>
     </nav>
@@ -24,4 +25,4 @@
         </component-big-batton> 
 </div> 
 
-<footer-component></footer-component>
+<footer-component [langId]=langId></footer-component>

@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Dictionary } from './../../../../assets/dictionary';
-import { LocalStorageService } from 'ngx-webstorage';
-import { AppService } from './../../../share/app.service';
 
 @Component({
     moduleId: module.id,
@@ -11,21 +9,14 @@ import { AppService } from './../../../share/app.service';
 })
 
 export class FooterComponent implements OnInit{        
-    constructor(private service : AppService,
-                private dictionary : Dictionary,
-                private storage : LocalStorageService){}
-    langId: any;
+    constructor(private dictionary : Dictionary){}
+
+    @Input()
+    langId: any = 0;
     diction: any;
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
-        this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
     }
 }
 

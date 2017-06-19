@@ -5,7 +5,8 @@
 				<navbar-mega-menu-component [smallMenu]=smallMenu
 											[rLink]=rExitLink 
 											[logoName]=logoName 
-											[navbarLevel]=navbarLevel>
+											[navbarLevel]=navbarLevel
+											(updateIdLang)="updIdLang($event)">
 				</navbar-mega-menu-component>
 				<singl-top-menu [menu]="menu" [curentMenuItem]=curentMenuItem></singl-top-menu>	
 			</div>
@@ -19,5 +20,5 @@
 			</div>
 		</div>
 	</div>
-	<footer-component></footer-component>
+	<footer-component [langId]=langId></footer-component>
 </div>

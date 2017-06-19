@@ -1,31 +1,31 @@
 <div class="pricing pricing--tashi">
     <div class="pricing__item loginbox">
-        <h1>Вход в систему</h1>
+        <h1>{{diction[110][langId]}}</h1>   
         <form #f="ngForm" novalidate>
 
             <div class="form-group">
-                <label>Пользователь</label>
+                <label>{{diction[111][langId]}}</label>
                 <select name="userId" class="form-control" [(ngModel)]=user.userId>
                     <option *ngFor="let item of users" [value]=item.value>{{item.display}}</option>
                 </select>
             </div> 
 
             <div class="form-group">
-                <label>Логин</label>
+                <label>{{diction[112][langId]}}</label>
                 <input type="text" class="form-control" name="login" [(ngModel)]="user.login">
             </div>
 
             <div class="form-group">
-                <label>Пароль</label> 
+                <label>{{diction[113][langId]}}</label> 
                 <div class="row">
                     <div class="col-lg-12"><input type={{textType}} class="form-control" name="password" [(ngModel)]="user.password"></div>
                     <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
                 </div>
-                <a (click)="getRefPass()"><h5 class="pass-ref">Забыли пароль?</h5></a>
+                <a (click)="getRefPass()"><h5 class="pass-ref">{{diction[114][langId]}}</h5></a>
             </div>
 
             <div class="form-group" *ngIf="user.userId==1">
-                <label>Предприятие</label>
+                <label>{{diction[115][langId]}}</label>
                 <div class="radio" *ngFor="let prog of programms">
                     <label>
                     <input type="radio" name="parogramm" [(ngModel)]=user.programmId [value]=prog.value>
@@ -35,7 +35,9 @@
             </div>
 
             <div class="row">
-                <div class="col-md-offset-6 col-md-6"><button type="button" (click)="loginEnter()" class="btn btn-primary btn-lg btn-block"><i class="material-icons">check</i>  Вход</button></div>                   
+                <div class="col-md-offset-6 col-md-6">
+                    <button type="button" (click)="loginEnter()" 
+                            class="btn btn-primary btn-lg btn-block"><i class="material-icons">check</i>  {{diction[116][langId]}}</button></div>                   
             </div>
         </form>
    </div>
@@ -44,7 +46,7 @@
 <!--<pass-ref-dialog [StatusDialog]=refDialog></pass-ref-dialog>-->
 
 <p-dialog header="Востоновление пароля" [(visible)]="refDialog" modal="modal" width="300" [responsive]="true">
-    <p>Для востоновления пароля укажите почту на каторую зарегестрирован пользователь:</p>
+    <p>{{diction[117][langId]}}</p>
     <div class="form-group">
         <label>e-mail:</label>
         <input type="text" class="form-control" name="email" [(ngModel)]="email">

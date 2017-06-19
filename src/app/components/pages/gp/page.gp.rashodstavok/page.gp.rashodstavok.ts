@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AppService } from './../../../../share/app.service';
+import { Dictionary } from './../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -11,38 +13,58 @@ import { AppService } from './../../../../share/app.service';
 
 export class PageGpRashodStavok implements OnInit{          
     constructor(private router: Router,
-                private service : AppService) {} 
+                private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService) {} 
 
-    logoName = '../assets/admin/layout5/img/logo_gp_new.png';
+    logoName = '';
     rExitLink = '/index.gp';
     navbarLevel = 2;
     smallMenu = this.service.smallMenuGp;    
     curentMenuItem: String;
+    diction = [];
+    langId: any = 0;
 
-    menu = [
-        {
-            name: "Расходы",
-            sref: "rashodi",
-            subname: []
-        },
-        {
-            name: "Эксплуатационные показатели",
-            sref: "explpokaz",
-            subname: []
-        },
-        {
-            name: "Отнесение расходов",
-            sref: "otnesenierashodov",
-            subname: []
-        },
-        {
-            name: "Расчет расходных ставок",
-            sref: "rashodstavok",
-            subname: []
-        }
-    ]; 
+    menu = []; 
+
+    updIdLang(idLang){
+        this.langId = idLang;
+        this.logoName = this.diction[1][this.langId];
+
+        this.menu = [
+                {
+                    name: this.diction[86][this.langId],
+                    sref: "rashodi",
+                    subname: []
+                },
+                {
+                    name: this.diction[13][this.langId],
+                    sref: "explpokaz",
+                    subname: []
+                },
+                {
+                    name:  this.diction[121][this.langId],
+                    sref: "otnesenierashodov",
+                    subname: []
+                },
+                {
+                    name: this.diction[5][this.langId],
+                    sref: "rashodstavok",
+                    subname: []
+                }
+            ]; 
+    }
 
     ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
+        this.updIdLang(this.langId);
         this.curentMenuItem = 'rashodstavok';
         this.router.navigate(['gp.rashodstavok/rashodstavok']);
     }

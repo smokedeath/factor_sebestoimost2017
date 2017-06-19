@@ -3,13 +3,14 @@
         <nav class="navbar mega-menu" role="navigation">
             <div class="container-fluid">
 				<navbar-mega-menu-component [logoName]=logoName 
-											[navbarLevel]=navbarLevel>
+											[navbarLevel]=navbarLevel
+                                             (updateIdLang)="updIdLang($event)">
 				</navbar-mega-menu-component>
             </div>
         </nav>
     </header>
 
-    <componentlogin></componentlogin>
+    <componentlogin [langId]=langId></componentlogin>
 
-    <footer-component></footer-component>
+    <footer-component [langId]=langId></footer-component>
 </div>

@@ -27,6 +27,9 @@ export class NavbarMegaMenuComponent implements OnInit{
 
     @Input()
     smallMenu = [];
+
+    @Output()
+    updateIdLang: EventEmitter<number> = new EventEmitter();
     
     langId: any;
     diction: any;
@@ -57,7 +60,10 @@ export class NavbarMegaMenuComponent implements OnInit{
 
     langClick(lng: Number){
         this.langId = lng;
-        this.storage.store('langId', this.langId);
+        let userSetings = this.storage.retrieve('UserSetings');
+        userSetings.userLang = this.langId;
+        this.storage.store('UserSetings', userSetings);
+        this.updateIdLang.emit(this.langId);
     }
 
     ngOnInit(){

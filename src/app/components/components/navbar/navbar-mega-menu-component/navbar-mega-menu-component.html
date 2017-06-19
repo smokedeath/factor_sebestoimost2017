@@ -1,27 +1,31 @@
 <div class="clearfix navbar-fixed-top">
-    <a class="page-logo" routerLink={{rLink}} routerLinkActive="active">
-        <!--<h1>{{diction[0][langId]}}</h1>-->
-        <img src={{logoName}} alt="Logo">
-    </a>
-    <div class="lft-btn">
-        <button pTooltip="Профиль пользователя" tooltipPosition="bottom"
-                *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" (click)="closePanel(up)">
-            <i class="fa fa-address-card-o"></i> {{currentUser}}
-        </button>
-        <button pTooltip="Помощь" tooltipPosition="bottom" type="button" class="btn btn-primary" (click)="closePanel(op)">
-            <i class="fa fa-question-circle">  <label *ngIf="visibleLabel">Помощь</label></i>
-        </button>
-        <button pTooltip="МЕНЮ РАЗДЕЛОВ" tooltipPosition="bottom" *ngIf="navbarLevel==2" type="button" class="btn btn-primary" (click)="closePanel(mp)">  
-            <i class="fa fa-bars"></i>
-        </button>
-        <button pTooltip="Выход" tooltipPosition="bottom" *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" 
-                                                                        routerLink={{rLink}} routerLinkActive="active">
-            <i class="fa fa-caret-square-o-right">  <label *ngIf="visibleLabel">Выход</label></i>   
-        </button>
-    </div>
-    <div class="lng-btn">
-        <i class="material-icons btn-lng-ico">translate</i>
-        <a class="label label-primary btn-lng" (click)="ol.toggle($event)" style="min-width: 70px">{{diction[108][langId]}}</a>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="logo-css"><h1>{{logoName}}</h1></div>
+        </div>
+        <div class="col-lg-6">
+            <div class="lft-btn-css">
+                <button pTooltip={{diction[92][langId]}} tooltipPosition="bottom"
+                        *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" (click)="closePanel(up)">
+                    <i class="fa fa-address-card-o"></i> {{currentUser}}
+                </button>   
+
+                <button type="button" class="btn btn-primary" (click)="ol.toggle($event)" style="min-width: 90px">
+                    {{diction[108][langId]}}
+                </button>  
+
+                <button pTooltip={{diction[109][langId]}} tooltipPosition="bottom" type="button" class="btn btn-primary" (click)="closePanel(op)">
+                    <i class="fa fa-question-circle">  <label *ngIf="visibleLabel">{{diction[109][langId]}}</label></i>
+                </button>
+                <button pTooltip={{diction[102][langId]}} tooltipPosition="bottom" *ngIf="navbarLevel==2" type="button" class="btn btn-primary" (click)="closePanel(mp)">  
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button pTooltip= {{diction[10][langId]}} tooltipPosition="bottom" *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" 
+                                                                                routerLink={{rLink}} routerLinkActive="active">
+                    <i class="fa fa-caret-square-o-right">  <label *ngIf="visibleLabel">{{diction[10][langId]}}</label></i>   
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -37,7 +41,7 @@
     <sidenav-link-menu-component [smallMenu]=smallMenu (closeSide)="closePanelOut(mp)"></sidenav-link-menu-component>
 </p-overlayPanel>
 
-<p-overlayPanel #ol>
+<p-overlayPanel #ol [style]="{'background':'#2f373e','min-width':'50px'}">
     <div class="row btn-tooltip-marg"><a class="label label-primary btn-lng btn-block" (click)="langClick(0)">{{diction[108][0]}}</a></div>
     <div class="row btn-tooltip-marg"><a class="label label-primary btn-lng btn-block" (click)="langClick(1)">{{diction[108][1]}}</a></div>
     <div class="row btn-tooltip-marg"><a class="label label-primary btn-lng btn-block" (click)="langClick(2)">{{diction[108][2]}}</a></div>

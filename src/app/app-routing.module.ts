@@ -15,7 +15,7 @@ import { RashodStavokComponent, OtnesenieRashodovComponent,
     imports: [RouterModule.forRoot([            
             { path: "", redirectTo: "login", pathMatch: "full" },
             { path: "login", component: PageLogin },
-            { path: "faq", component: FaqComponent },
+            { path: "sebestoimost_faq", component: FaqComponent },
             { path: "index.gp", component: PageIndexGp },
             { path: "index.mzhs", component: PageIndexMzhs },
             { path: "gp.date.input", component: PageGpDateInput, 

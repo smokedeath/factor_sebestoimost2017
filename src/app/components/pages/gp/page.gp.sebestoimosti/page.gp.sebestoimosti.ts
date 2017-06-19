@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AppService } from './../../../../share/app.service';
+import { Dictionary } from './../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -11,47 +13,64 @@ import { AppService } from './../../../../share/app.service';
 
 export class PageGpSebestoimosti implements OnInit{       
     constructor(private router: Router,
-                private service : AppService) {} 
+                private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService) {} 
 
-    logoName = '../assets/admin/layout5/img/logo_gp_new.png';
+    logoName = '';
     rExitLink = '/index.gp';
     navbarLevel = 2;
     smallMenu = this.service.smallMenuGp;   
     curentMenuItem: String;
+    diction = [];
+    langId: any = 0;
 
-    menu = [
-        {
-            name: "Эксплуатационные показатели",
-            sref: "explpokaz",
-            subname: []
-        },
-        {
-            name: "Расходы по расходным измерителям",
-            sref: "razhodizmer",
-            subname: []
-        },
-        {
-            name: "Расходные ставки",
-            sref: "rashodniestavki",
-            subname: []
-        },
-        {
-            name: "Расчет средней себестоимости",
-            sref: "factsrednseb",
-            subname: []
-        },
-        {
-            name: "Расчет конкретной себестоимости",
-            sref: "factconcseb",  
-            subname: []
-        }
-    ];
+    menu = [];
+
+    updIdLang(idLang){
+        this.langId = idLang;
+        this.logoName = this.diction[1][this.langId];
+        this.menu = [
+                {
+                    name: this.diction[13][this.langId],
+                    sref: "explpokaz",
+                    subname: []
+                },
+                {
+                    name: this.diction[14][this.langId],
+                    sref: "razhodizmer",
+                    subname: []
+                },
+                {
+                    name: this.diction[15][this.langId],
+                    sref: "rashodniestavki",
+                    subname: []
+                },
+                {
+                    name: this.diction[16][this.langId],
+                    sref: "factsrednseb",
+                    subname: []
+                },
+                {
+                    name: this.diction[17][this.langId],
+                    sref: "factconcseb",  
+                    subname: []
+                }
+            ];
+    }
 
     ngOnInit(){
-        // this.curentMenuItem = 'explpokaz';
-        // this.router.navigate(['gp.sebestoimosti/explpokaz']);
-        this.curentMenuItem = 'factconcseb';
-        this.router.navigate(['gp.sebestoimosti/factconcseb']);
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
+        this.updIdLang(this.langId);
+        this.curentMenuItem = 'explpokaz';
+        this.router.navigate(['gp.sebestoimosti/explpokaz']);
     } 
 
 }

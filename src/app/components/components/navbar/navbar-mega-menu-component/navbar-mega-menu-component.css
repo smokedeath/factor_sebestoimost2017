@@ -1,6 +1,28 @@
-.current-user{
-    color: #fff;
+.logo-css{
+    text-align: left;
+    color: white;
+    margin-left: 15px;
 }
+.lft-btn-css{
+    text-align: right;
+    margin-right: 10px;    
+    margin-top: 15px;
+}
+.btn-tooltip-marg{
+    margin-top: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.navbar-fixed-top-css 
+{    
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+     
+}
+/*
+
 .lft-btn{
     position: absolute;
     display: flex;
@@ -10,15 +32,6 @@
     transition-property: all;
     transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
 
-}
-.lng-btn{
-    position: absolute;
-    display: flex;
-    top: 60px;
-    right: 15px;
-    transition-duration: 300ms;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
 }
 .btn-lng{
     margin-right: 10px;
@@ -33,10 +46,8 @@
     transition-property: all;
     transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
 }
-.btn-tooltip-marg{
-    margin-top: 5px;
-} 
 .btn-lng-ico{ 
     margin-right: 15px;
     color: #fff;   
 }
+*/

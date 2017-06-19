@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { Router} from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { Dictionary } from './../../../../assets/dictionary';
 
 @Component({
     moduleId: module.id,
@@ -9,9 +10,13 @@ import { MdDialog } from '@angular/material';
     styleUrls: ['component.login.css']
 })
 
-export class ComponentLogin{
-    constructor(
-        private router: Router) {}
+export class ComponentLogin implements OnInit{
+    constructor(private router: Router,
+                private dictionary : Dictionary) {}
+
+    @Input()
+    langId: any = 0;
+    diction = [];
 
     refDialog: boolean = false;
     email: String;
@@ -35,6 +40,10 @@ export class ComponentLogin{
         { value: 1, display: 'АО "КТЖ-Грузовые перевозки"' },
         { value: 2, display: 'Магистральная железнодорожная сеть' }
     ]
+    
+    updIdLang(idLang){
+        this.langId = idLang;
+    }
 
     showPass(){
         if (this.passShow){this.textType = "text"}else{this.textType = "password"}
@@ -84,5 +93,10 @@ export class ComponentLogin{
         }else{                        
             alert("Не заполнены Логин или Пароль...");
         }
+    }
+
+    ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.updIdLang(this.langId);
     }
 }

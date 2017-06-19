@@ -17,9 +17,14 @@ export class PageLogin implements OnInit{
     
     langId: any;
     diction: any;
-    logoName = '../assets/admin/layout5/img/logo.png';
+    logoName = '';
 
     navbarLevel = 0;     
+    
+    updIdLang(idLang){
+        this.langId = idLang;
+        this.logoName = this.diction[0][this.langId];
+    }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
@@ -30,6 +35,7 @@ export class PageLogin implements OnInit{
             this.langId = 0;            
             this.storage.store('langId', this.langId);
         }
+        this.updIdLang(this.langId);
     }
 
 }

@@ -16,3 +16,22 @@
     font-size: 18px;
     margin-top: 5px;
 }
+.btn-close-css{
+   text-align: right;
+   cursor: pointer;
+}
+.left {
+    height: 100%;
+    /*background-color: #ddf;*/
+}
+.right {
+    height: 100%;
+    /*background-color: #dfd;*/
+}
+.align-css{
+    text-align: left;
+    margin: 5px;
+}
+.vert-align{
+    vertical-align: inherit;
+}

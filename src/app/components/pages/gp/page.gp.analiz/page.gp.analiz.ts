@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from "@angular/router";
 import { AppService } from './../../../../share/app.service';
+import { Dictionary } from './../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -11,28 +13,47 @@ import { AppService } from './../../../../share/app.service';
 
 export class PageGpAnaliz implements OnInit{
     constructor(private router: Router,
-                private service : AppService) {}
+                private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService) {}
 
-    logoName = '../assets/admin/layout5/img/logo_gp_new.png';
+    logoName = '';
     rExitLink = '/index.gp';
     navbarLevel = 2;
     smallMenu = this.service.smallMenuGp;   
     curentMenuItem: String;
+    diction = [];
+    langId: any = 0;
     
-    menu = [
-        {
-            name: "Анализ себестоимости",
-            subname: [],
-            sref: "notfound"
-        },
-        {
-            name: "Анализ расходов",
-            subname: [],
-            sref: "notfound"
-        }
-    ];
+    menu = [];
+
+    updIdLang(idLang){
+        this.langId = idLang;
+        this.logoName = this.diction[1][this.langId];
+        this.menu = [
+            {
+                name: this.diction[122][this.langId],
+                subname: [],
+                sref: "notfound"
+            },
+            {
+                name: this.diction[123][this.langId],
+                subname: [],
+                sref: "notfound"
+            }
+        ];
+    }
 
     ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
+        this.updIdLang(this.langId);
         this.curentMenuItem = 'notfound';
         this.router.navigate(["gp.analiz/notfound"]);
     }  

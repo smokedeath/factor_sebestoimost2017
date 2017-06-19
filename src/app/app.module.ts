@@ -7,6 +7,8 @@ import {Ng2Webstorage} from 'ngx-webstorage';
 //LeafletModule
 import { LeafletModule } from '@asymmetrik/angular2-leaflet';
 
+import { SplitPaneModule } from 'ng2-split-pane/lib/ng2-split-pane';
+
 //Angular Material imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule, MdNativeDateModule } from '@angular/material';
@@ -19,7 +21,7 @@ import {TreeTableModule, SharedModule, TreeTable, GrowlModule, ToggleButtonModul
 
 import { AppComponent } from './app.component';
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
-         PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti }  from './components/pages/pages.index';
+         PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, FaqComponent }  from './components/pages/pages.index';
 
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
          SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent, FooterComponent,
@@ -43,7 +45,7 @@ import { AppService } from './share/app.service';
 import { Dictionary } from './../assets/dictionary';
 
 @NgModule({
-  declarations: [AppComponent, 
+  declarations: [AppComponent, FaqComponent,
                 PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
 
@@ -70,6 +72,7 @@ import { Dictionary } from './../assets/dictionary';
     JsonpModule,
     AppRoutingModule,
     LeafletModule, 
+    SplitPaneModule,
     TreeTableModule, SharedModule, GrowlModule, CalendarModule, CheckboxModule, OverlayPanelModule, DialogModule, SpinnerModule, BreadcrumbModule,
                      ToggleButtonModule, PanelModule, DataTableModule, MultiSelectModule, TabViewModule, TooltipModule, TreeModule,                       
   ],
