@@ -20,16 +20,17 @@ export class PageGpRashodStavok implements OnInit{
     logoName = '';
     rExitLink = '/index.gp';
     navbarLevel = 2;
-    smallMenu = this.service.smallMenuGp;    
     curentMenuItem: String;
     diction = [];
     langId: any = 0;
+    smallMenu = [];    
 
     menu = []; 
 
     updIdLang(idLang){
         this.langId = idLang;
-        this.logoName = this.diction[1][this.langId];
+        this.logoName = this.diction[1][this.langId];        
+        this.smallMenu = this.service.getSmalMenuGP(this.langId);  
 
         this.menu = [
                 {

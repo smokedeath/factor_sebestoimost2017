@@ -29,16 +29,16 @@
     </div>
 </div>
 
-<p-overlayPanel #up>
-    <user-settings-component (closeSide)="closePanelOut(up)"></user-settings-component>
+<p-overlayPanel #up [style]="{'background':'#2f373e','border':'1px solid #2f373e'}">
+    <user-settings-component [langId]=langId (closeSide)="closePanelOut(up)"></user-settings-component>
 </p-overlayPanel>
 
-<p-overlayPanel #op>
-    <sidenav-ft-component (closeSide)="closePanelOut(op)"></sidenav-ft-component>
+<p-overlayPanel #op [style]="{'background':'#2f373e','border':'1px solid #2f373e'}">>
+    <sidenav-ft-component [langId]=langId (closeSide)="closePanelOut(op)"></sidenav-ft-component>
 </p-overlayPanel>
 
-<p-overlayPanel #mp>
-    <sidenav-link-menu-component [smallMenu]=smallMenu (closeSide)="closePanelOut(mp)"></sidenav-link-menu-component>
+<p-overlayPanel #mp [style]="{'background':'#2f373e','border':'1px solid #2f373e'}">>
+    <sidenav-link-menu-component [langId]=langId [smallMenu]=smallMenu (closeSide)="closePanelOut(mp)"></sidenav-link-menu-component>
 </p-overlayPanel>
 
 <p-overlayPanel #ol [style]="{'background':'#2f373e','min-width':'50px'}">

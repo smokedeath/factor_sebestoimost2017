@@ -20,7 +20,7 @@ export class PageGpDateInput implements OnInit{
     logoName = '';
     rExitLink = '/index.gp';
     navbarLevel = 2;
-    smallMenu = this.service.smallMenuGp;  
+    smallMenu = [];  
     curentMenuItem: String;
     diction = [];
     langId: any = 0;
@@ -29,7 +29,8 @@ export class PageGpDateInput implements OnInit{
 
     updIdLang(idLang){
         this.langId = idLang;
-        this.logoName = this.diction[1][this.langId];
+        this.logoName = this.diction[1][this.langId];        
+        this.smallMenu = this.service.getSmalMenuGP(this.langId);  
         this.menu = [
                 {
                     name: this.diction[75][this.langId],

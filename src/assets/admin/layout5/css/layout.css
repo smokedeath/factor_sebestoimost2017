@@ -594,7 +594,7 @@
     transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
   }
   .page-header .navbar-collapse {
-    margin-top: 83px;
+    margin-top: 65px;  /*83*/
   }
   .page-header .navbar-collapse .navbar-nav {
     /* More Dropdown */

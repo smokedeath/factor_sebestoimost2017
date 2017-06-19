@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { AppService } from './../../../../share/app.service';
+import { Dictionary } from './../../../../../assets/dictionary';
 
 @Component({
     moduleId: module.id,
@@ -8,11 +9,17 @@ import { AppService } from './../../../../share/app.service';
     styleUrls: ['user-settings-component.css']
 })
 
-export class UserSettingsComponent{ 
-    constructor(private service : AppService) {} 
+export class UserSettingsComponent implements OnInit{ 
+    constructor(private service : AppService,
+                private dictionary : Dictionary) {} 
+
+    @Input()
+    langId: any = 0;
 
     @Output()
     closeSide: EventEmitter<any> = new EventEmitter();
+
+    diction = [];
 
     user = {
         login: this.service.user.login,
@@ -45,5 +52,9 @@ export class UserSettingsComponent{
         this.pas.secondpass = '';
         this.pas.oldpass = '';
     }
+
+  ngOnInit(){
+      this.diction = this.dictionary.dictionary;
+  }
 
 }

@@ -2,7 +2,7 @@
     <br>
     <div class="page-quick-sidebar">  
         <div id="feedbackform" class="nav-justified" data-id="ГП" >
-        <div class="pp"><p>Профиль пользователя</p></div>
+        <div class="pp"><p>{{diction[92][langId]}}</p></div> 
         <div class="btn-close-css"><a (click)="closeSidClicke()"><i class="material-icons" style="color: #fff">highlight_off</i></a></div>
         <div class="tab-content">
             <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
@@ -10,29 +10,29 @@
                     <div class="group-css"> 
                         <div class="form-group">
                             <div class="row" style="text-align: center">
-                                <label class="label-css">Логин: </label>                             
+                                <label class="label-css">{{diction[112][langId]}} </label>                             
                                 <label class="label-css" class="label-css">{{user.login}}</label>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="label-css">Фамилия</label>
+                            <label class="label-css">{{diction[93][langId]}}</label>
                             <input type="text" class="form-control" name="fam" [(ngModel)]="user.fam">
                         </div>
 
                         <div class="form-group">
-                            <label class="label-css">Имя</label>
+                            <label class="label-css">{{diction[94][langId]}}</label>
                             <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
                         </div>
 
                         <div class="form-group">
-                            <label class="label-css">Отчество</label>
+                            <label class="label-css">{{diction[95][langId]}}</label>
                             <input type="text" class="form-control" name="otch" [(ngModel)]="user.otch">
                         </div>
                         <br>
-                        <p-panel header="Сменить пароль" [toggleable]="true" [collapsed]="true">
+                        <p-panel header={{diction[96][langId]}} [toggleable]="true" [collapsed]="true">
                             <div class="form-group">
-                                <label class="label-pass-css">Старый пароль</label>
+                                <label class="label-pass-css">{{diction[97][langId]}}</label>
                                 <div class="row">
                                     <div class="col-lg-12"><input type={{textType}} class="form-control" name="password0" [(ngModel)]="pas.oldpass"></div>
                                     <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
@@ -40,7 +40,7 @@
                             </div>    
 
                             <div class="form-group">
-                                <label class="label-pass-css">Новый пароль</label>
+                                <label class="label-pass-css">{{diction[98][langId]}}</label>
                                 <div class="row">
                                     <div class="col-lg-12"><input type={{textType}} class="form-control" name="password1" [(ngModel)]="pas.firstpass"></div>
                                     <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
@@ -48,7 +48,7 @@
                             </div>    
 
                             <div class="form-group">
-                                <label class="label-pass-css">Повторите пароль</label>
+                                <label class="label-pass-css">{{diction[99][langId]}}</label>
                                 <div class="row">
                                     <div class="col-lg-12"><input type={{textType}} class="form-control" name="password2" [(ngModel)]="pas.secondpass"></div>
                                     <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
@@ -58,7 +58,7 @@
 
                         <div class="row margin-row">
                             <div class="col-lg-6"><button type="button" class="btn btn-primary">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить изменения</button>
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
                             </div>
                         </div>
 

@@ -2,11 +2,16 @@ import { Injectable } from "@angular/core";
 import { Http } from "@angular/http"; 
 import { SelectItem } from './interface.service';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Dictionary } from './../../assets/dictionary';
 
 @Injectable()
 export class AppService {    
     constructor(private http: Http,
-                private storage : LocalStorageService) {}
+                private storage : LocalStorageService,
+                private dictionary : Dictionary) {}
+
+                
+    diction = this.dictionary.dictionary;
 
     userSetings = {
         userLang: 0,
@@ -20,6 +25,7 @@ export class AppService {
         otch: 'Беккалиевич',
         password: ''
     }
+    smallMenuGp = [];
 
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
@@ -27,51 +33,47 @@ export class AppService {
 
     }
 
-    smallMenuGp = [
-        {
-            rlink: '/gp.date.input',
-            name: 'загрузка данных',
-            icon_type: 'cloud_download',
-            label: 'Загрузка данных из информационных систем КТЖ'
-        },
-        {
-            rlink: '/gp.rashodstavok',
-            name: 'Расчет расходных ставок',
-            icon_type: 'assignment',
-            label: 'Расчет расходных ставок'
-        },
-        {
-            rlink: '/gp.sebestoimosti',
-            name: 'Расчет себестоимости',
-            icon_type: 'title',
-            label: 'Расчет себестоимости'
-        },
-        {
-            rlink: '/gp.analiz',
-            name: 'Анализ',
-            icon_type: 'multiline_chart',
-            label: 'Анализ'
-        },
-        {
-            rlink: '/index.gp',
-            name: 'Расчет себестоимости отправок',
-            icon_type: 'directions_railway',
-            label: 'Расчет себестоимости отправок'
-        },
-        {
-            rlink: '/index.gp',
-            name: 'Анализ отправок',
-            icon_type: 'equalizer',
-            label: 'Анализ отправок'
-        },
-        {
-            rlink: '/index.gp',
-            name: 'Выход',
-            icon_type: 'forward',
-            label: 'Выход'    
-        }
-    ];
-
+    getSmalMenuGP(langId){
+        this.smallMenuGp = [
+            {
+                rlink: '/gp.date.input',
+                name: this.diction[3][langId],
+                icon_type: 'cloud_download',
+                label: this.diction[4][langId]
+            },
+            {
+                rlink: '/gp.rashodstavok',
+                name: this.diction[5][langId],
+                icon_type: 'assignment',
+                label: this.diction[5][langId]
+            },
+            {
+                rlink: '/gp.sebestoimosti',
+                name: this.diction[6][langId],
+                icon_type: 'title',
+                label: this.diction[6][langId]
+            },
+            {
+                rlink: '/gp.analiz',
+                name: this.diction[7][langId],
+                icon_type: 'multiline_chart',
+                label: this.diction[7][langId]
+            },
+            {
+                rlink: '/index.gp',
+                name: this.diction[8][langId],
+                icon_type: 'directions_railway',
+                label: this.diction[8][langId]
+            },
+            {
+                rlink: '/index.gp',
+                name: this.diction[9][langId],
+                icon_type: 'equalizer',
+                label: this.diction[9][langId]
+            }
+        ];
+        return this.smallMenuGp;
+    }
 
     getTabelFilters(tableDate: any[], tableDateColumns: any[]){
         let seriaFilter: SelectItem[];
