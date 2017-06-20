@@ -2,13 +2,14 @@
   <view-position-component [titelName]=titelName></view-position-component>
 </div>
 <p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">
-	<p-tabPanel header="ОБЩИЕ ПАРАМЕТРЫ">
+	<p-tabPanel header={{diction[24][langId]}}>
 		<all-parametrs-view-component></all-parametrs-view-component>
 	</p-tabPanel>
-	<p-tabPanel header="ВЫБОР МАРШРУТА">
+	<p-tabPanel header={{diction[25][langId]}}>
 	</p-tabPanel>
-	<p-tabPanel header="ВЫБОР ПАРАМЕТРОВ">
+	<p-tabPanel header={{diction[26][langId]}}>
 	</p-tabPanel>
-	<p-tabPanel header="РЕЗУЛЬТАТЫ РАСЧЕТА">
+	<p-tabPanel header={{diction[27][langId]}}>
 	</p-tabPanel>
 </p-tabView>
+<div>{{updateIdLang()}}</div>

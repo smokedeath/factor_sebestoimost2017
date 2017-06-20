@@ -1,14 +1,15 @@
 <div class="row" style="text-align: center"> 
   <view-position-component [titelName]=titelName></view-position-component>
 </div>
+<div>{{updateIdLang()}}</div>
 <p-tabView>
-    <p-tabPanel header="Зависящие расходы по расходным измерителям">
+    <p-tabPanel header={{diction[21][langId]}}> 
         <raskodstavok-template-component></raskodstavok-template-component>      
     </p-tabPanel>
-    <p-tabPanel header="Условно-постоянные расходы по расходным измерителям">
+    <p-tabPanel header={{diction[22][langId]}}>
         <raskodstavok-template-component></raskodstavok-template-component>  
     </p-tabPanel>
-    <p-tabPanel header="Полные расходы по расходным измерителям">
+    <p-tabPanel header={{diction[23][langId]}}>
         <raskodstavok-template-component></raskodstavok-template-component>  
     </p-tabPanel>
 </p-tabView>

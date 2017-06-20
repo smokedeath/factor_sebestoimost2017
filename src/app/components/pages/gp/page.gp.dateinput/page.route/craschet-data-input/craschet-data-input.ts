@@ -68,6 +68,11 @@ export class CraschetDataInputComponent implements OnInit{
     exportToExcell(){
         //
     }
+
+    updateIdLang(){
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+    }
     
     ngOnInit(){
         this.diction = this.dictionary.dictionary;

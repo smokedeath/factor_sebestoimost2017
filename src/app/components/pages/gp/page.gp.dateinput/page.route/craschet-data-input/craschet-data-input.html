@@ -2,6 +2,8 @@
   <view-position-component [titelName]=titelName></view-position-component>
 </div>
 
+<div>{{updateIdLang()}}</div>
+
 <div class="row row-margin">
   <div class="col-md-9">
     <div class="col-md-3">
@@ -17,19 +19,19 @@
   </div>   
 
   <div class="col-md-3 btn-css">
-    <button pTooltip="Просмотр шаблона" tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> <label *ngIf="visibleLabel">  Просмотр шаблона</label></button>
-    <button pTooltip="Загрузить" tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="inputFromTemplate()"><i class="material-icons">file_upload</i> <label *ngIf="visibleLabel">  Загрузить</label></button>
+    <button pTooltip={{diction[81][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> <label *ngIf="visibleLabel">  {{diction[81][langId]}}</label></button>
+    <button pTooltip={{diction[82][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="inputFromTemplate()"><i class="material-icons">file_upload</i> <label *ngIf="visibleLabel">  {{diction[82][langId]}}</label></button>
   </div>  
 </div>
 
 <div class="row row-margin">
   <div class="col-lg-3 col-md-offset-9 btn-css">
-    <button pTooltip="Выгрузить в Excell" tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  Выгрузить в Excell</label></button>
-    <button pTooltip="Обновить" tooltipPosition="left" type="button" 
-            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  Обновить</label></button>
+    <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
+    <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" 
+            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
   </div>
 </div>
 
@@ -37,15 +39,15 @@
     <p-panel>
         <p-header>
             <p-toggleButton [(ngModel)]="dopFiltr" 
-                            onLabel="Скрыть расширенные фильтры" 
-                            offLabel="Показать расширенные фильтры" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'260px'}">
+                            onLabel={{diction[126][langId]}}
+                            offLabel={{diction[127][langId]}} onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'260px'}">
             </p-toggleButton>
         </p-header>
         <div *ngIf="dopFiltr">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Станция отправления:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[85][langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>  
@@ -54,7 +56,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид сообщения:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[40][langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>   
@@ -63,7 +65,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Вид отправки:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[86][langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>    
@@ -74,7 +76,7 @@
             <div class="row" style="margin-top: 20px">
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Станция назначения:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[87][langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>   
@@ -83,7 +85,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Род груза:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[38][langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>    
@@ -92,7 +94,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Тип вагона:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[88][langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>    
@@ -102,8 +104,8 @@
                 <div class="col-lg-3">
                     <div class="row" style="text-align: center">                            
                         <p-toggleButton [(ngModel)]="tableFiltr" 
-                                        onLabel="Скрыть фильтры" 
-                                        offLabel="Показать фильтры" onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
+                                        onLabel={{diction[128][langId]}} 
+                                        offLabel={{diction[129][langId]}}  onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
                         </p-toggleButton>
                     </div>
                 </div>

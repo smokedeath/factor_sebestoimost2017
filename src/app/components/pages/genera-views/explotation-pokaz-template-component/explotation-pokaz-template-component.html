@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-2"> 
       <div class="row">
-          <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Статус:</label></div>  
+          <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[80][langId]}}:</label></div>  
           <div class="col-lg-6 lbl-css">
             <combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions 
                                                              [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
@@ -26,10 +26,10 @@
   </div>   
 
   <div class="col-md-3 btn-css">
-    <button pTooltip="Выгрузить в Excell" tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  Выгрузить в Excell</label></button>
-    <button pTooltip="Обновить" tooltipPosition="left" type="button" 
-            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  Обновить</label></button>
+    <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary"  
+            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
+    <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" 
+            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
   </div>  
 </div>
 
@@ -38,3 +38,4 @@
         <tree-table [tableDate]=tableDate [tableDateColumns]=tableDateColumns></tree-table>
       </div>
 </div> 
+<div>{{updateIdLang()}}</div>

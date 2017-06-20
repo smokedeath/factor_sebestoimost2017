@@ -2,13 +2,14 @@
   <view-position-component [titelName]=titelName></view-position-component>
 </div>
 <p-tabView>
-    <p-tabPanel header="Зависящие расходные ставки">
+    <p-tabPanel header={{diction[18][langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>      
     </p-tabPanel>
-    <p-tabPanel header="Условно-постоянные расходные ставки">
+    <p-tabPanel header={{diction[19][langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>    
     </p-tabPanel>
-    <p-tabPanel header="Полные расходные ставки">
+    <p-tabPanel header={{diction[20][langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>   
     </p-tabPanel>
 </p-tabView>
+<div>{{updateIdLang()}}</div>

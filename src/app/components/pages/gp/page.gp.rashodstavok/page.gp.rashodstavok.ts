@@ -34,7 +34,7 @@ export class PageGpRashodStavok implements OnInit{
 
         this.menu = [
                 {
-                    name: this.diction[86][this.langId],
+                    name: this.diction[68][this.langId],
                     sref: "rashodi",
                     subname: []
                 },

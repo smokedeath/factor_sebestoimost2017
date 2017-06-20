@@ -1,26 +1,27 @@
 <div class="row" style="text-align: center"> 
   <view-position-component [titelName]=titelName></view-position-component>
 </div>
+<div>{{updateIdLang()}}</div>
 <p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">
-    <p-tabPanel header="Исходные данные">
+    <p-tabPanel header={{diction[137][langId]}}>
        <div class="row">
            <div class="col-lg-4">
                <div class="row row-margin">
-                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Методика : </label></div>
+                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[52][langId]}} : </label></div>  
                    <div class="col-lg-6"><combobox-component [iNgModel]=metodikaModel 
                                                              (oNgModel)="metodikaModel = $event"  
                                                              [structure]=arrMetodika></combobox-component></div>
                </div>
                <div><HR></div>
                <div class="row row-margin">
-                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Услуга : </label></div>
+                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[53][langId]}} : </label></div>
                    <div class="col-lg-6"><combobox-component [iNgModel]=uslugaModel 
                                                              (oNgModel)="uslugaModel = $event"   
                                                              [structure]=arrUsluga></combobox-component></div>
                </div>
                <div><HR></div>
                <div class="row row-margin">
-                   <div class="row" style="text-align: left">Период:</div>
+                   <div class="row" style="text-align: left">{{diction[54][langId]}} : </div>
                    <div class="row">
                     <div class="col-lg-6"><my-calendar (dateOut)="curentDate = $event"></my-calendar></div>
                     <div class="col-lg-6"><combobox-component [iNgModel]=periudModel 
@@ -30,76 +31,76 @@
                </div>
                <div><HR></div>
                <div class="row row-margin">
-                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">Поездоучасток: </label>
-                        <i class="material-icons icon-togl-css" pTooltip="Для расчёта по всей дороге оставить поле пустым" tooltipPosition="top">error</i></div>
+                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[55][langId]}} : </label>
+                        <i class="material-icons icon-togl-css" pTooltip={{diction[131][langId]}} tooltipPosition="top">error</i></div>
                    <div class="col-lg-6"><combobox-component [iNgModel]=poezdUchastokModel 
                                                              (oNgModel)="poezdUchastokModel = $event" 
                                                              [structure]=arrPoezdUchastok></combobox-component></div>
                </div>
                <div><HR></div>
                <div class="row row-margin">
-                   <div class="row"><h6>Уровень операций:</h6></div>
+                   <div class="row"><h6>{{diction[56][langId]}} : </h6></div>
                    <div class="row"><p-spinner size="30" [(ngModel)]="operaciaValue" [min]="0" [max]="100"></p-spinner></div>  
                </div>
                <div><HR></div>
                <div class="row row-margin">
-                   <div class="row"><h6>Уровень измерителей:</h6></div>
+                   <div class="row"><h6>{{diction[57][langId]}} : </h6></div>
                    <div class="row"><p-spinner size="30" [(ngModel)]="izmeritelValue" [min]="0" [max]="100"></p-spinner></div>  
                </div>
                <div><HR></div>
                <div class="row" style="margin-top: 50px">
-                   <div class="row chbox-css"><p-checkbox name="group1" label="Вывести балансовые соотношения" [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
-                   <div class="row chbox-css"><p-checkbox name="group2" label="Рассчитать по всем комбинациям" [(ngModel)]="combinaciaStatus" binary="true"></p-checkbox></div>
+                   <div class="row chbox-css"><p-checkbox name="group1" label={{diction[132][langId]}} [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
+                   <div class="row chbox-css"><p-checkbox name="group2" label={{diction[133][langId]}} [(ngModel)]="combinaciaStatus" binary="true"></p-checkbox></div>
                </div>
                <div class="row row-margin">                 
-                    <button  pTooltip="Рассчитать" tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
-                            (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  <label *ngIf="visibleLabel">  Рассчитать</label></button>
-                    <button  pTooltip="Сбросить параметры" tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
-                            (click)="resetParams()"><i class="material-icons">clear</i>  <label *ngIf="visibleLabel">  Сбросить параметры</label></button>
+                    <button  pTooltip={{diction[134][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                            (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  <label *ngIf="visibleLabel">  {{diction[134][langId]}}</label></button>
+                    <button  pTooltip={{diction[58][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                            (click)="resetParams()"><i class="material-icons">clear</i>  <label *ngIf="visibleLabel">  {{diction[58][langId]}}</label></button>
                </div>
            </div>
            <div class="col-lg-8">
-               <div class="row"><label>Наименование:</label></div>
+               <div class="row"><label>{{diction[59][langId]}} : </label></div>
                <div class="row"><p-tree [value]="nameFactors" selectionMode="checkbox" [style]="{'width':'100%','height':'100%'}"
                                         [(selection)]="selectedNameFactors" ></p-tree></div>
            </div>
        </div>
     </p-tabPanel>
-    <p-tabPanel header="Расчёт">
+    <p-tabPanel header={{diction[135][langId]}}>
         <div class="row row-margin">
-            <button pTooltip="Отменить" tooltipPosition="left" type="button" class="btn btn-primary" 
-                    (click)="canselColculateSebestoimost()"><i class="material-icons">undo</i>  <label *ngIf="visibleLabel">  Отменить</label></button>
-            <button pTooltip="Выгрузить в Excell" tooltipPosition="left" type="button" class="btn btn-primary"
-                    (click)="exportToExcell()"><i class="material-icons">file_download</i>  <label *ngIf="visibleLabel">  Выгрузить в Excell</label></button>
+            <button pTooltip={{diction[60][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+                    (click)="canselColculateSebestoimost()"><i class="material-icons">undo</i>  <label *ngIf="visibleLabel">  {{diction[60][langId]}}</label></button>
+            <button pTooltip= {{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary"
+                    (click)="exportToExcell()"><i class="material-icons">file_download</i>  <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
         </div>
         <div class="row row-margin">
             <table class="table table-bordered">
                 <tbody>
                 <tr>
-                    <td>Вид себестоимости</td>
+                    <td>{{diction[30][langId]}}</td>
                     <td>{{getNameByid(arrUsluga, uslugaModel)}}</td>
                 </tr>
                 <tr>
-                    <td>Поездоучасток</td>
+                    <td>{{diction[55][langId]}}</td>
                     <td>{{getNameByid(arrPoezdUchastok, poezdUchastokModel)}}</td>
                 </tr>
                 <tr>
-                    <td>Единица измерения себестоимости</td>
-                    <td>тенге/10 тонно-км</td>
+                    <td>{{diction[64][langId]}}</td>
+                    <td>{{diction[136][langId]}}</td>
                 </tr>
                 <tr>
-                    <td>Период</td>
+                    <td>{{diction[54][langId]}}</td>
                     <td>{{getDate(curentDate)}}   {{getNameByid(arrPeriud, periudModel)}}</td>
                 </tr>
                 <tr>
-                    <td>Уровень операций</td>
+                    <td>{{diction[56][langId]}}</td>
                     <td>{{operaciaValue}}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
         <div class="row row-margin">
-            <h4>РЕЗУЛЬТАТЫ РАСЧЁТА</h4>
+            <h4>{{diction[67][langId]}}</h4>
             <div class="row">
 
             </div>

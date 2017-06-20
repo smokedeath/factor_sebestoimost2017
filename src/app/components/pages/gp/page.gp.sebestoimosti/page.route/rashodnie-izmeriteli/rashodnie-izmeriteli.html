@@ -3,13 +3,14 @@
 </div>
 
 <p-tabView>
-    <p-tabPanel header="Зависящие расходы по расходным измерителям">
+    <p-tabPanel header={{diction[72][langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>      
     </p-tabPanel>
-    <p-tabPanel header="Условно-постоянные расходы по расходным измерителям">
+    <p-tabPanel header={{diction[73][langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>  
     </p-tabPanel>
-    <p-tabPanel header="Полные расходы по расходным измерителям">
+    <p-tabPanel header={{diction[74][langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>   
     </p-tabPanel>
 </p-tabView>
+<div>{{updateIdLang()}}</div>

@@ -107,6 +107,7 @@ export class FinanceDataInput implements OnInit{
     viewTemplateFolder(){
         //
     }
+
     updateTableColumns(columns: any[]){
         let newColumns = columns;
         this.tableDateColumns = [];
@@ -116,6 +117,11 @@ export class FinanceDataInput implements OnInit{
         for (let i=0; i<newColumns.length; i++){
             this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
         }
+    }
+
+    updateIdLang(){
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
     }
 
     ngOnInit(){
