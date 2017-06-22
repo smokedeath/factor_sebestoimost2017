@@ -58,12 +58,14 @@ export class NavbarMegaMenuComponent implements OnInit{
         overlaypanel.toggle(event);
     }   
 
-    langClick(lng: Number){
+    langClick(lng: Number, overlaypanel: OverlayPanel){
         this.langId = lng;
         let userSetings = this.storage.retrieve('UserSetings');
         userSetings.userLang = this.langId;
         this.storage.store('UserSetings', userSetings);
-        this.updateIdLang.emit(this.langId);
+        this.updateIdLang.emit(this.langId);        
+        overlaypanel.toggle(event);  
+        overlaypanel.toggle(event); 
     }
 
     ngOnInit(){

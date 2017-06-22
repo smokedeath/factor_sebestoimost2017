@@ -31,28 +31,32 @@
     </p-panel>
 </div>
 
-<div class="row row-margin">
-    <div class="col-lg-3">
-        <div class="row">
-        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][langId]}}:</label></div>
-        <div class="col-lg-6"><combobox-component [iNgModel]=itemSizeModel 
-                            [structure]=arrItemSize></combobox-component></div>
+<div class="row row-margin">    
+  <p-panel [toggleable]="true">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="row">
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][langId]}}:</label></div>
+            <div class="col-lg-6"><combobox-component [iNgModel]=itemSizeModel 
+                                [structure]=arrItemSize></combobox-component></div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+        <div class="col-lg-6"><combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions
+                                                                [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
+                                </combobox-multi-select-component></div>
+        </div>
+        <div class="col-lg-3">
+            <p-checkbox name="group1" label={{diction[125][langId]}} [(ngModel)]="procentSchow"></p-checkbox>
+        </div>
+        <div class="col-lg-3 btn-css">
+            <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+                    (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
+            <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" 
+                    class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
         </div>
     </div>
-    <div class="col-lg-3">
-      <div class="col-lg-6"><combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions
-                                                             [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
-                            </combobox-multi-select-component></div>
-    </div>
-    <div class="col-lg-3">
-        <p-checkbox name="group1" label={{diction[125][langId]}} [(ngModel)]="procentSchow"></p-checkbox>
-    </div>
-    <div class="col-lg-3 btn-css">
-        <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-                (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
-        <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" 
-                class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
-    </div>
+  </p-panel>
 </div>
 
 <div class="row">

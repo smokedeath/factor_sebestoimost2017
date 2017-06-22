@@ -70,8 +70,8 @@ export class PageGpSebestoimosti implements OnInit{
             this.storage.store('langId', this.langId);
         }
         this.updIdLang(this.langId);
-        this.curentMenuItem = 'explpokaz';
-        this.router.navigate(['gp.sebestoimosti/explpokaz']);
+        this.curentMenuItem = 'factsrednseb';
+        this.router.navigate(['gp.sebestoimosti/factsrednseb']);
     } 
 
 }

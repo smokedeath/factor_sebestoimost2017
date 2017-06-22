@@ -49,16 +49,16 @@ export class FactSrednSebeStoimostComponent implements OnInit{
 
     colculateSebestoimost(){
         if (!this.disabled){
+            this.disabled = true;
             this.activTabPanel = 1;
             this.colculate = 1;
-            this.disabled = true;
         }
     }
     canselColculateSebestoimost(){
         if (this.disabled){
+            this.disabled =false;
             this.activTabPanel = 0;
             this.colculate = 0;
-            this.disabled =false;
         }
     }
 
