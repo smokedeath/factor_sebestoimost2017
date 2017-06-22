@@ -17,6 +17,8 @@ export class AppService {
         userLang: 0,
         visibleLabel: false 
     };
+
+    breadcrumb = [];
     
     user = {
         login: 'sysadmin',

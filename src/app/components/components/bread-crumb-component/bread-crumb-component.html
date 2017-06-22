@@ -1,1 +1,13 @@
-<p-breadcrumb [model]="mitems"></p-breadcrumb>
+<!--<p-breadcrumb [model]="items"></p-breadcrumb>-->
+<!--<div #template>
+    <ng-content></ng-content>
+</div> -->
+<!--<div class="container" *ngIf="template.children.length == 0">-->
+    <div class="nav-wrapper">
+        <div class="breadcrumb" *ngFor="let route of breadcrumbs" [ngClass]="{'last': route.terminal}">
+            <!-- disable link of last item -->
+            <a href="" *ngIf="!route.terminal" [routerLink]="[route.url]">{{ diction[route.index][langId] }}</a>
+            <span *ngIf="route.terminal">{{ diction[route.index][langId] }}</span>
+        </div>
+    </div>
+<!--</div>-->

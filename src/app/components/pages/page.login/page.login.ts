@@ -17,6 +17,7 @@ export class PageLogin implements OnInit{
     
     langId: any;
     diction: any;
+    breadcrumb = [];
     logoName = '';
 
     navbarLevel = 0;     

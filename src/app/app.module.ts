@@ -43,6 +43,7 @@ import { RaskodStavokTemplateComponent, ExplotationPokazTemplateComponent,
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from './share/app.service';
 import { Dictionary } from './../assets/dictionary';
+import { BreadcrumbService } from './share/breadcrumb.service';
 
 @NgModule({
   declarations: [AppComponent, FaqComponent, 
@@ -79,7 +80,7 @@ import { Dictionary } from './../assets/dictionary';
   entryComponents: [
     ErrorDialog
   ],
-  providers: [AppService, Dictionary],
+  providers: [AppService, Dictionary, BreadcrumbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
