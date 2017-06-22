@@ -5,71 +5,104 @@
 <!--<p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">-->
 <p-tabView *ngIf="!disabled">  
     <p-tabPanel header={{diction[137][langId]}}>        
-        <div class="row row-margin">                 
-            <button  pTooltip={{diction[134][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
-                    (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  <label *ngIf="visibleLabel">  {{diction[134][langId]}}</label></button>
-            <button  pTooltip={{diction[58][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
-                    (click)="resetParams()"><i class="material-icons">clear</i>  <label *ngIf="visibleLabel">  {{diction[58][langId]}}</label></button>
+        <div class="row row-margin">  
+                <button  pTooltip={{diction[134][langId]}} tooltipPosition="top" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                        (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  <label *ngIf="visibleLabel">  {{diction[134][langId]}}</label></button>
+                <button  pTooltip={{diction[58][langId]}} tooltipPosition="top" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                        (click)="resetParams()"><i class="material-icons">clear</i>  <label *ngIf="visibleLabel">  {{diction[58][langId]}}</label></button>       
+        </div>       
+        <div class="row row-margin">  
+            <p-panel>
+                <div class="row">
+                    <div class="col-lg-1">
+                        <label class="lbl-text-css">{{diction[53][langId]}} : </label>
+                    </div>
+                    <div class="col-lg-2">
+                        <combobox-component [iNgModel]=uslugaModel 
+                                            (oNgModel)="uslugaModel = $event"   
+                                            [structure]=arrUsluga>
+                        </combobox-component>
+                    </div>
+                    <div class="col-lg-1">
+                        <label class="lbl-text-css">{{diction[54][langId]}} : </label>
+                    </div>
+                    <div class="col-lg-2">
+                        <my-calendar (dateOut)="curentDate = $event"></my-calendar>
+                    </div>
+                    <div class="col-lg-2"><combobox-component [iNgModel]=periudModel 
+                                                                    (oNgModel)="periudModel = $event" 
+                                                                    [structure]=arrPeriud>
+                                        </combobox-component>
+                    </div>
+                    <div class="col-lg-1">
+                        <label class="lbl-text-css">{{diction[52][langId]}} : </label>
+                    </div>
+                    <div class="col-lg-2">
+                        <combobox-component [iNgModel]=metodikaModel 
+                                            (oNgModel)="metodikaModel = $event"  
+                                            [structure]=arrMetodika>
+                        </combobox-component>
+                    </div>
+                </div>
+            </p-panel>
         </div>
-       <div class="row">
-           <div class="col-lg-4">     
-               <div class="row row-margin">
-                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[53][langId]}} : </label></div>
-                   <div class="col-lg-6"><combobox-component [iNgModel]=uslugaModel 
-                                                             (oNgModel)="uslugaModel = $event"   
-                                                             [structure]=arrUsluga></combobox-component></div>
-               </div>
-               <div><HR></div>
-               <div class="row row-margin">
-                   <div class="row" style="text-align: left">{{diction[54][langId]}} : </div>
-                   <div class="row">
-                    <div class="col-lg-6"><my-calendar (dateOut)="curentDate = $event"></my-calendar></div>
-                    <div class="col-lg-6"><combobox-component [iNgModel]=periudModel 
-                                                                 (oNgModel)="periudModel = $event" 
-                                                                [structure]=arrPeriud></combobox-component></div>
-                   </div>
-               </div>
-               <div><HR></div>  
-               <div class="row row-margin">
-                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[52][langId]}} : </label></div>  
-                   <div class="col-lg-6"><combobox-component [iNgModel]=metodikaModel 
-                                                             (oNgModel)="metodikaModel = $event"  
-                                                             [structure]=arrMetodika></combobox-component></div>
-               </div>
-               <div><HR></div>
-               <div class="row row-margin">
-                   <div class="col-lg-6 col-md-offset-6">
+
+        <div class="row row-margin">  
+            <p-panel>
+                <div class="row facotr-css">  
+                    <div class="col-lg-3">
+                        <div class="row"><label>{{diction[59][langId]}} : </label></div>
+                        <div class="row"><p-tree [value]="nameFactors1" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                [(selection)]="selectedNameFactors1" ></p-tree>
+                        </div>
+                    </div>    
+                    <div class="col-lg-3">
+                        <div class="row"><label>{{diction[59][langId]}} : </label></div>
+                        <div class="row"><p-tree [value]="nameFactors2" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                [(selection)]="selectedNameFactors2" ></p-tree>
+                        </div>
+                    </div>   
+                    <div class="col-lg-3">
+                        <div class="row"><label>{{diction[59][langId]}} : </label></div>
+                        <div class="row"><p-tree [value]="nameFactors3" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                [(selection)]="selectedNameFactors3" ></p-tree>
+                        </div>
+                    </div>  
+                    <div class="col-lg-3">
+                        <div class="row"><label>{{diction[59][langId]}} : </label></div>
+                        <div class="row"><p-tree [value]="nameFactors4" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                [(selection)]="selectedNameFactors4" ></p-tree>
+                        </div>
+                    </div>  
+                </div>
+            </p-panel>    
+        </div>
+
+       <div class="row row-margin">
+           <p-panel header={{diction[139][langId]}} [toggleable]="true" [collapsed]="true">
+               <div class="row">
+                   <div class="col-lg-2" style="margin-left: 15px">
                         <div class="row"><h6>{{diction[56][langId]}} : </h6></div>
                         <div class="row"><p-spinner size="30" [(ngModel)]="operaciaValue" [min]="0" [max]="100"></p-spinner></div>  
                    </div>
-               </div>
-               <div><HR></div>
-               <div class="row row-margin">
-                   <div class="col-lg-6 col-md-offset-6">
+                   <div class="col-lg-2">
                         <div class="row"><h6>{{diction[57][langId]}} : </h6></div>
                         <div class="row"><p-spinner size="30" [(ngModel)]="izmeritelValue" [min]="0" [max]="100"></p-spinner></div>  
                    </div>
+                   <div class="col-lg-2 css-dop-box  lbl-css">
+                        <label class="lbl-text-css">{{diction[55][langId]}} : </label>
+                        <i class="material-icons icon-togl-css" pTooltip={{diction[131][langId]}} tooltipPosition="top">error</i>
+                   </div>
+                   <div class="col-lg-2 css-dop-box">
+                        <combobox-component [iNgModel]=poezdUchastokModel 
+                                            (oNgModel)="poezdUchastokModel = $event" 
+                                            [structure]=arrPoezdUchastok></combobox-component>
+                   </div>
+                   <div class="col-lg-2 css-dop-box">
+                       <div class="row chbox-css"><p-checkbox name="group1" label={{diction[132][langId]}} [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
+                   </div>
                </div>
-               <div><HR></div>
-               <div class="row row-margin">
-                   <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[55][langId]}} : </label>
-                        <i class="material-icons icon-togl-css" pTooltip={{diction[131][langId]}} tooltipPosition="top">error</i></div>
-                   <div class="col-lg-6"><combobox-component [iNgModel]=poezdUchastokModel 
-                                                             (oNgModel)="poezdUchastokModel = $event" 
-                                                             [structure]=arrPoezdUchastok></combobox-component></div>
-               </div>
-               <div><HR></div>
-               <div class="row row-margin">
-                    <p-panel header={{diction[139][langId]}} [toggleable]="true">
-                        <div class="row chbox-css"><p-checkbox name="group1" label={{diction[132][langId]}} [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
-                    </p-panel>
-               </div>
-           </div>
-           <div class="col-lg-8">
-               <div class="row"><label>{{diction[59][langId]}} : </label></div>
-               <div class="row"><p-tree [value]="nameFactors" selectionMode="checkbox" [style]="{'width':'100%','height':'100%'}"
-                                        [(selection)]="selectedNameFactors" ></p-tree></div>
-           </div>
+           </p-panel>
        </div>
     </p-tabPanel>
 </p-tabView>

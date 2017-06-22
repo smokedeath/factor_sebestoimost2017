@@ -45,7 +45,7 @@ import { AppService } from './share/app.service';
 import { Dictionary } from './../assets/dictionary';
 
 @NgModule({
-  declarations: [AppComponent, FaqComponent,
+  declarations: [AppComponent, FaqComponent, 
                 PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
 

@@ -1,6 +1,6 @@
 .row-margin{
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .table-margin{
     margin-top: 20px;
@@ -24,4 +24,10 @@
 }
 .chbox-css{    
     margin-left: 5px;
+}
+.css-dop-box{    
+    margin-top: 25px;
+}
+.facotr-css{
+    margin-left: 15px;
 }

@@ -1,7 +1,7 @@
 // Обшие
 export * from './page.login/page.login';
 export * from './not-found/not-found';
-export * from './faq-component/faq-component'
+export * from './faq-component/faq-component';
 // Грузоперевозки
 export * from './gp/page.index.gp/page.index.gp';
 export * from './gp/page.gp.dateinput/page.gp.dateinput';

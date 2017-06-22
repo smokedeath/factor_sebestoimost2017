@@ -1,9 +1,12 @@
 .centeral-form{
     margin-left: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-right: 50px;
     margin-bottom: 50px;
     text-align: center;
+}
+.margin-faq{
+    margin-top: 10px;
 }
 .quest-panel{
     text-align: left;
@@ -34,4 +37,9 @@
 }
 .vert-align{
     vertical-align: inherit;
+}
+.btn-tooltip-marg{
+    margin-top: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
 }

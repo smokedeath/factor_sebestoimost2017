@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { OverlayPanel } from 'primeng/primeng';
+import { AppService } from './../../../share/app.service';
+import { Dictionary } from './../../../../assets/dictionary';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -8,12 +12,27 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FaqComponent implements OnInit {
+    constructor(private service : AppService,
+                private dictionary : Dictionary,
+                private storage : LocalStorageService) {} 
+
   title = 'app works!';
   aindex: any;
   visibleOtvPanel = false;
   search = '';
   searchModel = [];
   otvModel = [];
+  diction = [];
+  langId: any;
+
+  langClick(lng: Number, overlaypanel: OverlayPanel){
+      this.langId = lng;
+      let userSetings = this.storage.retrieve('UserSetings');
+      userSetings.userLang = this.langId;
+      this.storage.store('UserSetings', userSetings);      
+      overlaypanel.toggle(event);  
+      overlaypanel.toggle(event); 
+  }
 
   searchVop(){
     let vopId = 0;
@@ -182,6 +201,15 @@ export class FaqComponent implements OnInit {
   ];
 
   ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        let userSetings = this.storage.retrieve('UserSetings');
+        this.langId = userSetings.userLang;
+        if (this.langId == null){
+            this.langId = 0;            
+            this.storage.store('langId', this.langId);
+        }
+
     this.getotvModel();
     this.clearsearchVop();
   }

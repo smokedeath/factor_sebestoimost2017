@@ -44,8 +44,14 @@ export class FactSrednSebeStoimostComponent implements OnInit{
     balansStatus: boolean = false;
     combinaciaStatus: boolean = false;
 
-    nameFactors: TreeNode[];
-    selectedNameFactors: TreeNode;
+    nameFactors1: TreeNode[];
+    selectedNameFactors1: TreeNode;
+    nameFactors2: TreeNode[];
+    selectedNameFactors2: TreeNode;
+    nameFactors3: TreeNode[];
+    selectedNameFactors3: TreeNode;
+    nameFactors4: TreeNode[];
+    selectedNameFactors4: TreeNode;
 
     colculateSebestoimost(){
         if (!this.disabled){
@@ -129,7 +135,10 @@ export class FactSrednSebeStoimostComponent implements OnInit{
         this.arrPeriud = this.service.getPeriodSebestoimost();
         this.periudModel = this.arrPeriud[0].id;
 
-        this.nameFactors = this.service.getSebestoimostFacGP();        
+        this.nameFactors1 = this.service.getSebestoimostFacGP();  
+        this.nameFactors2 = this.service.getSebestoimostFacGP(); 
+        this.nameFactors3 = this.service.getSebestoimostFacGP(); 
+        this.nameFactors4 = this.service.getSebestoimostFacGP();       
                 // .subscribe(data => {               
                 //     let dateInJson: any;   
                 //     dateInJson = data.json();
