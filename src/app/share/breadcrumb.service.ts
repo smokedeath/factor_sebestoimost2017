@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Rx";
 export class Breadcrumb {
     displayName: string;
     index: any;
+    cIndex: any;
     terminal: boolean;
     url: string;
 }
@@ -52,6 +53,7 @@ export class BreadcrumbService {
     private createBreadcrumb(route: ActivatedRouteSnapshot, url: string): Breadcrumb {
         return {
             index: route.data["index"], 
+            cIndex: route.data["cIndex"], 
             displayName: String(route.data["index"]),
             terminal: route.children.length === 0 || !route.firstChild.routeConfig.path,
             url: url

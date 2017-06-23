@@ -1,6 +1,4 @@
-<div class="row" style="text-align: center"> 
-  <view-position-component [titelName]=titelName></view-position-component>
-</div>
+<bread-crumb-component [langId]=langId></bread-crumb-component>
 <p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">
 	<p-tabPanel header={{diction[24][langId]}}>
 		<all-parametrs-view-component></all-parametrs-view-component>

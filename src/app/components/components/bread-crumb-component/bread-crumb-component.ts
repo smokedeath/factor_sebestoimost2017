@@ -16,28 +16,44 @@ export class BreadCrumbComponent{
                 private storage : LocalStorageService,
                 private breadcrumbService: BreadcrumbService) {
                     breadcrumbService.onBreadcrumbChange.subscribe((crumbs: Breadcrumb[]) => {
-                        this.breadcrumbs = crumbs;
+                        this.breadcrumbs = crumbs;    
+                        this.getBreadcrumbs();
                     });                    
                 } 
 
     @Input()
     langId: any = 0;    
-    breadcrumbs: Breadcrumb[];
 
+    localIdLang: any = this.langId;
+
+    breadcrumbs: Breadcrumb[];
     diction = [];
 
     private items: MenuItem[];
+
+    getBreadcrumbs(){
+        if (this.breadcrumbs!=null && this.breadcrumbs.length>0){
+            this.localIdLang = this.langId;
+            this.items = [];
+            this.items.push({label:this. diction[0][this.langId].toUpperCase(), routerLink: '/login'});
+            if (this.breadcrumbs[0].cIndex==1){
+                this.items.push({label:this. diction[1][this.langId].toUpperCase(), routerLink: '/index.gp'});
+            }else{
+                this.items.push({label:this. diction[1][this.langId].toUpperCase(), routerLink: '/index.mzhs'});
+            }
+            for (let i=0; i<this.breadcrumbs.length; i++){
+                this.items.push({label:this. diction[this.breadcrumbs[i].index][this.langId].toUpperCase()});
+            }
+        }
+    }
+
+    updateIdlang(){
+        if (this.localIdLang!=this.langId){
+            this.getBreadcrumbs();
+        }
+    }
     
     ngOnInit() {
         this.diction = this.dictionary.dictionary;
-        this.items = [];
-        this.items.push({label:'Categories'});   //diction[101][langId]
-        this.items.push({label:'Sports'});
-        this.items.push({label:'Football'});
-        this.items.push({label:'Countries'});
-        this.items.push({label:'Spain'});
-        this.items.push({label:'F.C. Barcelona'});
-        this.items.push({label:'Squad'});
-        this.items.push({label:'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi'});
     }
 }
