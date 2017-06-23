@@ -80,8 +80,8 @@ export class ExplotationPokazTemplateComponent implements OnInit{
     }
 
     updateIdLang(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+            let userSetings = this.storage.retrieve('UserSetings');
+            this.langId = userSetings.userLang;
     }
 
     ngOnInit(){

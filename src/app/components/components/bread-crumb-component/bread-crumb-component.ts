@@ -23,7 +23,6 @@ export class BreadCrumbComponent{
 
     @Input()
     langId: any = 0;    
-
     localIdLang: any = this.langId;
 
     breadcrumbs: Breadcrumb[];
@@ -33,7 +32,6 @@ export class BreadCrumbComponent{
 
     getBreadcrumbs(){
         if (this.breadcrumbs!=null && this.breadcrumbs.length>0){
-            this.localIdLang = this.langId;
             this.items = [];
             this.items.push({label:this. diction[0][this.langId].toUpperCase(), routerLink: '/login'});
             if (this.breadcrumbs[0].cIndex==1){
@@ -49,6 +47,7 @@ export class BreadCrumbComponent{
 
     updateIdlang(){
         if (this.localIdLang!=this.langId){
+            this.localIdLang = this.langId;
             this.getBreadcrumbs();
         }
     }

@@ -18,3 +18,8 @@
 .btn-css{
     text-align: right;
 }
+.filter-css{    
+    max-width: 650px;
+    max-height: 450px;
+    overflow: scroll;
+}

@@ -2671,7 +2671,7 @@ Dropdown Menu
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: 999;
   display: none;
   float: left;
   list-style: none;

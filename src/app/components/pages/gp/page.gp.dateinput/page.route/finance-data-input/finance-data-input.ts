@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../../../share/app.service';
 import { Dictionary } from './../../../../../../../assets/dictionary';
 import { LocalStorageService } from 'ngx-webstorage';
+import { TreeNode } from 'primeng/primeng';
 
 @Component({
     moduleId: module.id,
@@ -21,7 +22,11 @@ export class FinanceDataInput implements OnInit{
     titelName = 'ЗАГРУЗКА ФИНАНСОВЫХ ДАННЫХ';
     defualtDate = Date();
     procentSchow: boolean = false;
-    defaultLabel = "Элементы затрат:";
+    defaultLabel = "Элементы затрат:"; 
+    filterColumnIdStatValue : TreeNode[];
+    selectefilterColumnIdStatValue: TreeNode;
+    filterColumnNameStatValue : TreeNode[];
+    selectefilterColumnNameStatValue: TreeNode;
 
     arrtypePeriud = [];
     tableDate = [];
@@ -29,7 +34,7 @@ export class FinanceDataInput implements OnInit{
 
     fixetColumns = [
         {
-            field: "name",
+            field: "id",
             header: "Номер статьи"
         },
         {
@@ -124,6 +129,28 @@ export class FinanceDataInput implements OnInit{
         this.langId = userSetings.userLang;
     }
 
+    getChildDate(inDate: TreeNode[], typeColumn: Number): TreeNode[]{
+        let outDate: TreeNode[];
+        let children: TreeNode[];
+
+        outDate = [];
+        for (let i=0; i<inDate.length; i++){
+            let ch = 0;          
+            if (inDate[i].children != null && inDate[i].children.length>0){
+                children = this.getChildDate(inDate[i].children, typeColumn);
+                ch = 1;
+            }             
+            if (typeColumn==0){
+                if (ch==0)outDate.push({  label: inDate[i].data.id });
+                else outDate.push({label: inDate[i].data.id, children: children});
+            }else{
+                if (ch==0)outDate.push({  label: inDate[i].data.name });
+                else outDate.push({label: inDate[i].data.name, children: children});
+            }
+        }
+        return outDate;
+    }
+
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
@@ -182,7 +209,16 @@ export class FinanceDataInput implements OnInit{
                     //     this.statusModel = this.arrStatus[0].id;
                     // });
         // Таблица            
-        this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
+        this.service.getFinDataInput().subscribe(data => {
+            this.tableDate = data.json().data
+            this.filterColumnIdStatValue = [];
+            let children: TreeNode[];
+            this.filterColumnIdStatValue = this.getChildDate(this.tableDate, 0);
+            this.filterColumnNameStatValue = this.getChildDate(this.tableDate, 1);
+
+            console.log(this.filterColumnIdStatValue);
+            console.log(this.filterColumnNameStatValue);            
+        });
     }    
 
 }

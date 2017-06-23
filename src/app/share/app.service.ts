@@ -14,7 +14,7 @@ export class AppService {
     diction = this.dictionary.dictionary;
 
     userSetings = {
-        userLang: 0,
+        userLang: 1,
         visibleLabel: false 
     };
 
@@ -281,7 +281,8 @@ export class AppService {
         return docVid; 
     }  
     getFinDataInput() {
-        return this.http.get('https://api.myjson.com/bins/p7rnt');
+        // return this.http.get('https://api.myjson.com/bins/p7rnt');
+        return this.http.get('https://api.myjson.com/bins/9fpa7');
     }   
     getIODVtable(){
         return this.http.get('https://api.myjson.com/bins/cvrxx');
