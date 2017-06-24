@@ -23,3 +23,8 @@
     max-height: 450px;
     overflow: scroll;
 }
+.btn-filter-css{
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px; 
+}

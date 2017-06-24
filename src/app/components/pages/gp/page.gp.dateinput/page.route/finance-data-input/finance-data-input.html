@@ -62,7 +62,7 @@
       <div class="col-lg-1 btn-css">
         <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
                 (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
-        <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" class="btn btn-primary">
+        <button (click)="onRefresch()" pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" class="btn btn-primary">
                 <i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
       </div>
     </div>
@@ -71,16 +71,18 @@
 
 <div class="row">
       <div class="table-margin">
-        <tree-table [tableDate]=tableDate [tableDateColumns]=tableDateColumns></tree-table>
+        <tree-table [tableDate]=FilterTableDate [tableDateColumns]=tableDateColumns></tree-table>
       </div>
 </div> 
 
-<p-overlayPanel #fpidname [showCloseIcon]="true" [dismissable]="false">
+<p-overlayPanel #fpidname [showCloseIcon]="true">
   <div class="row filter-css">
     <div class="col-lg-5">
         <h4>{{fixetColumns[0].header}}</h4>
         <p-tree [value]="filterColumnIdStatValue" selectionMode="checkbox" [style]="{'width':'200px'}"
-                                                  [(selection)]="selectefilterColumnIdStatValue">    
+                                                  [(selection)]="selectefilterColumnIdStatValue"
+                                                  (onNodeSelect)="filterTreeId($event)"
+                                                  (onNodeUnselect)="filterTreeId($event)">    
         </p-tree>   
     </div>
     <div class="col-lg-7">
