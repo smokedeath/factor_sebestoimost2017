@@ -101,8 +101,7 @@ export class FinanceDataInput implements OnInit{
         ///
     }
     onRefresch(){        
-        this.FilterTableDate = [];
-        for (let i=0; i<this.tableDate.length; i++) this.FilterTableDate.push(this.tableDate[i]);
+        //
     }
     exportToExcell(){
         //
@@ -121,16 +120,16 @@ export class FinanceDataInput implements OnInit{
         }
     }
 
-    updateIdLang(){
+    updateSetings(){
         let userSetings = this.storage.retrieve('UserSetings');
         this.langId = userSetings.userLang;
+        this.visibleLabel = userSetings.visibleLabel;
     }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+        this.updateSetings();
         if (this.langId == null){
             this.langId = 0;            
             this.storage.store('langId', this.langId);

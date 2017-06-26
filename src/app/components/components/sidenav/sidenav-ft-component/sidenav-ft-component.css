@@ -13,6 +13,15 @@
   margin: 10px;  
   margin-left: 40px;
 }
+.call-form-css{
+  margin-left: 40px;
+  margin-right: 10px;
+}
+.call-error-text-css{
+  margin: 0px -5px 0px 0px;
+  height: 162px;
+  width: 100%;
+}
 .pp{
   color: #fff;
   text-align: center;

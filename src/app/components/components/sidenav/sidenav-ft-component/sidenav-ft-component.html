@@ -1,3 +1,4 @@
+<p-growl [(value)]="msgs"></p-growl>
 <div>   
     <br>
     <div class="page-quick-sidebar"> 
@@ -8,10 +9,31 @@
                 <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
                     <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
                         <div class="row">
-                            <div class="btnclass"><button class="btn btn-primary btn-block" type="button">{{diction[106][langId]}}</button></div>
+                            <div class="btnclass"><button class="btn btn-primary btn-block" type="button">
+                                <i class="material-icons">local_library</i> {{diction[106][langId]}}
+                            </button></div>
                         </div>
                         <div class="row">
-                            <div class="btnclass"><button (click)="questionsClick()" class="btn btn-primary btn-block" type="button">{{diction[107][langId]}}</button></div>
+                            <div class="btnclass"><button (click)="questionsClick()" class="btn btn-primary btn-block" type="button">
+                                <i class="material-icons">live_help</i> {{diction[107][langId]}}
+                            </button></div>
+                        </div>
+                        <div class="row">
+                            <div class="btnclass"><button (click)="callToFactor()" class="btn btn-primary btn-block" type="button">
+                                <i class="material-icons">perm_phone_msg</i> {{diction[149][langId]}}
+                            </button></div>
+                            <div class="call-form-css" *ngIf="callFormStat">
+                                <p-panel>
+                                    <textarea  [(ngModel)]="errorText" class="call-error-text-css" placeholder={{diction[150][langId]}} 
+                                            aria-multiline="true" aria-invalid="false">
+                                    </textarea>
+                                    <div style="text-align: right">
+                                        <button (click)="sendError()" type="button" class="btn btn-primary">
+                                            <i class="material-icons">check_circle</i> {{diction[151][langId]}}
+                                        </button>
+                                    </div>
+                                </p-panel>
+                            </div>
                         </div>
                     </div>
                 </div>

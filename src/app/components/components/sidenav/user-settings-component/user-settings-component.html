@@ -7,28 +7,36 @@
         <div class="tab-content">
             <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
                 <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
-                    <div class="group-css"> 
+                    <div class="group-css">
                         <div class="form-group">
                             <div class="row" style="text-align: center">
                                 <label class="label-css">{{diction[112][langId]}} </label>                             
                                 <label class="label-css" class="label-css">{{user.login}}</label>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="label-css">{{diction[93][langId]}}</label>
-                            <input type="text" class="form-control" name="fam" [(ngModel)]="user.fam">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="label-css">{{diction[94][langId]}}</label>
-                            <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="label-css">{{diction[95][langId]}}</label>
-                            <input type="text" class="form-control" name="otch" [(ngModel)]="user.otch">
-                        </div>
+                        <p-panel header={{diction[158][langId]}} [toggleable]="true" [collapsed]="true">                            
+                            <div class="form-group">
+                                <label class="label-css">{{diction[93][langId]}}</label>
+                                <input type="text" class="form-control" name="fam" [(ngModel)]="user.fam">
+                            </div>
+                            <div class="form-group">
+                                <label class="label-css">{{diction[94][langId]}}</label>
+                                <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
+                            </div>
+                            <div class="form-group">
+                                <label class="label-css">{{diction[95][langId]}}</label>
+                                <input type="text" class="form-control" name="otch" [(ngModel)]="user.otch">
+                            </div>
+                            <div class="form-group">
+                                <label class="label-css">{{diction[155][langId]}}</label>
+                                <input type='email' class="form-control" name="email" placeholder='user.example@example.com' [(ngModel)]="newEmail">
+                            </div>
+                            <div class="row margin-row">
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
+                                </div>
+                            </div>
+                        </p-panel>
                         <br>
                         <p-panel header={{diction[96][langId]}} [toggleable]="true" [collapsed]="true">
                             <div class="form-group">
@@ -37,16 +45,14 @@
                                     <div class="col-lg-12"><input type={{textType}} class="form-control" name="password0" [(ngModel)]="pas.oldpass"></div>
                                     <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
                                 </div>
-                            </div>    
-
+                            </div>  
                             <div class="form-group">
                                 <label class="label-pass-css">{{diction[98][langId]}}</label>
                                 <div class="row">
                                     <div class="col-lg-12"><input type={{textType}} class="form-control" name="password1" [(ngModel)]="pas.firstpass"></div>
                                     <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
                                 </div>
-                            </div>    
-
+                            </div>  
                             <div class="form-group">
                                 <label class="label-pass-css">{{diction[99][langId]}}</label>
                                 <div class="row">
@@ -54,14 +60,29 @@
                                     <div><a><span (click)="showPass()" class="glyphicon glyphicon-eye-open show-pass" aria-hidden="true"></span></a></div>
                                 </div>
                             </div>
-                        </p-panel>
-
-                        <div class="row margin-row">
-                            <div class="col-lg-6"><button type="button" class="btn btn-primary">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
+                            <div class="row margin-row">
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
+                                </div>
                             </div>
-                        </div>
-
+                        </p-panel>
+                        <br>
+                        <p-panel header={{diction[156][langId]}} [toggleable]="true" [collapsed]="true">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-5"><label>{{diction[157][langId]}} : </label></div>
+                                    <div class="col-lg-7">
+                                        <p-checkbox (onChange)='updateProgramSetings()' name="buttonText" label="" [(ngModel)]="userSetings.visibleLabel" binary="true">
+                                        </p-checkbox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-row">
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
+                                </div>
+                            </div>
+                        </p-panel>
                     </div>   
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { AppService } from './../../../../share/app.service';
 import { Dictionary } from './../../../../../assets/dictionary';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +12,8 @@ import { Dictionary } from './../../../../../assets/dictionary';
 
 export class UserSettingsComponent implements OnInit{ 
     constructor(private service : AppService,
-                private dictionary : Dictionary) {} 
+                private dictionary : Dictionary,
+                private storage : LocalStorageService) {} 
 
     @Input()
     langId: any = 0;
@@ -20,6 +22,7 @@ export class UserSettingsComponent implements OnInit{
     closeSide: EventEmitter<any> = new EventEmitter();
 
     diction = [];
+    userSetings;
 
     user = {
         login: this.service.user.login,
@@ -28,6 +31,8 @@ export class UserSettingsComponent implements OnInit{
         otch: this.service.user.otch,
         password: ''
     }
+
+    newEmail: String = '';
 
     pas = {
         firstpass: '',
@@ -53,8 +58,13 @@ export class UserSettingsComponent implements OnInit{
         this.pas.oldpass = '';
     }
 
-  ngOnInit(){
-      this.diction = this.dictionary.dictionary;
-  }
+    updateProgramSetings(){
+        this.storage.store('UserSetings', this.userSetings);
+    }
+
+    ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.userSetings = this.service.userSetings;
+    }
 
 }

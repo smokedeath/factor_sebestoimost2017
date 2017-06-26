@@ -127,6 +127,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
         this.service.loadUserSetings();
         let userSetings = this.storage.retrieve('UserSetings');
         this.langId = userSetings.userLang;
+        this.visibleLabel = userSetings.visibleLabel;
         if (this.langId == null){
             this.langId = 0;            
             this.storage.store('langId', this.langId);
