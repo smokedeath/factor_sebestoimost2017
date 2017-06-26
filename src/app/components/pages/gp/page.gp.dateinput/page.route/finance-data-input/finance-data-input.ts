@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../../../../../share/app.service';
 import { Dictionary } from './../../../../../../../assets/dictionary';
 import { LocalStorageService } from 'ngx-webstorage';
-import { TreeNode } from 'primeng/primeng';
-import { TreeTabelDate } from './../../../../../../share/treeTabelDate.service';
 
 @Component({
     moduleId: module.id,
@@ -24,10 +22,6 @@ export class FinanceDataInput implements OnInit{
     defualtDate = Date();
     procentSchow: boolean = false;
     defaultLabel = "Элементы затрат:"; 
-    filterColumnIdStatValue : TreeNode[];
-    selectefilterColumnIdStatValue: TreeNode[];
-    filterColumnNameStatValue : TreeNode[];
-    selectefilterColumnNameStatValue: TreeNode[];
 
     arrtypePeriud = [];
     tableDate = [];
@@ -131,62 +125,6 @@ export class FinanceDataInput implements OnInit{
         let userSetings = this.storage.retrieve('UserSetings');
         this.langId = userSetings.userLang;
     }
-    searchFilter(id: Number): Boolean{
-        let res: Boolean = false;
-        for (let i=0; i< this.selectefilterColumnIdStatValue.length; i++){
-            if (this.selectefilterColumnIdStatValue[i].label == id.toString()){
-                res = true;
-                break; 
-            }
-        }
-        return res;
-    }    
-    filterTreeId(e){
-        console.log(this.tableDate);
-        this.FilterTableDate = [];
-        for(let i=0; i<this.tableDate.length; i++){
-            if(this.searchFilter(this.tableDate[i].data.id)){
-                this.FilterTableDate.push(this.tableDate[i]);   //  {data: this.tableDate[i].data});
-            }
-        }
-        console.log(this.FilterTableDate);
-    }
-    addChildDate(inDate: TreeTabelDate[]): any[]{
-        let outDate = [];
-        let children = [];
-        for (let i=0; i<inDate.length; i++){
-            let ch=0;
-            if (inDate[i].children != null && inDate[i].children.length>0){
-                ch=1;
-                children = this.addChildDate(inDate[i].children);
-            }
-            if (ch==0)outDate.push({data: inDate[i].data});
-            else outDate.push({data: inDate[i].data, children: children});
-        }
-
-        return outDate;
-    }
-    getChildDate(inDate: TreeNode[], typeColumn: Number): TreeNode[]{
-        let outDate: TreeNode[];
-        let children: TreeNode[];
-
-        outDate = [];
-        for (let i=0; i<inDate.length; i++){
-            let ch = 0;          
-            if (inDate[i].children != null && inDate[i].children.length>0){
-                children = this.getChildDate(inDate[i].children, typeColumn);
-                ch = 1;
-            }             
-            if (typeColumn==0){
-                if (ch==0)outDate.push({  label: inDate[i].data.id });
-                else outDate.push({label: inDate[i].data.id, children: children});
-            }else{
-                if (ch==0)outDate.push({  label: inDate[i].data.name });
-                else outDate.push({label: inDate[i].data.name, children: children});
-            }
-        }
-        return outDate;
-    }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
@@ -237,11 +175,6 @@ export class FinanceDataInput implements OnInit{
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {
             this.tableDate = data.json().data
-            this.filterColumnIdStatValue = [];
-            let children: TreeNode[];
-            this.filterColumnIdStatValue = this.getChildDate(this.tableDate, 0);
-            this.filterColumnNameStatValue = this.getChildDate(this.tableDate, 1);
-            for (let i=0; i<this.tableDate.length; i++) this.FilterTableDate.push(this.tableDate[i]);
         });
     }    
 

@@ -41,9 +41,6 @@
 <div class="row row-margin">
   <p-panel [toggleable]="true">
     <div class="row">
-      <div class="col-lg-1">
-        <button type="button" (click)="fpidname.show($event)" class="btn btn-primary">{{diction[147][langId]}}</button>
-      </div>
       <div class="col-lg-3">
         <div class="row">
           <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][langId]}}</label></div>
@@ -59,7 +56,7 @@
       <div class="col-lg-3">
         <p-checkbox name="group1" label={{diction[125][langId]}} [(ngModel)]="procentSchow" binary="true"></p-checkbox>
       </div>
-      <div class="col-lg-1 btn-css">
+      <div class="col-lg-3 btn-css">
         <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
                 (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
         <button (click)="onRefresch()" pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" class="btn btn-primary">
@@ -69,28 +66,6 @@
   </p-panel>
 </div>
 
-<div class="row">
-      <div class="table-margin">
-        <tree-table [tableDate]=FilterTableDate [tableDateColumns]=tableDateColumns></tree-table>
-      </div>
+<div class="table-margin">
+  <tree-table [tableDate]=tableDate [langId]=langId [langId]=langId [tableDateColumns]=tableDateColumns></tree-table>
 </div> 
-
-<p-overlayPanel #fpidname [showCloseIcon]="true">
-  <div class="row filter-css">
-    <div class="col-lg-5">
-        <h4>{{fixetColumns[0].header}}</h4>
-        <p-tree [value]="filterColumnIdStatValue" selectionMode="checkbox" [style]="{'width':'200px'}"
-                                                  [(selection)]="selectefilterColumnIdStatValue"
-                                                  (onNodeSelect)="filterTreeId($event)"
-                                                  (onNodeUnselect)="filterTreeId($event)">    
-        </p-tree>   
-    </div>
-    <div class="col-lg-7">
-        <h4>{{fixetColumns[1].header}}</h4>
-        <p-tree [value]="filterColumnNameStatValue" selectionMode="checkbox" [style]="{'width':'300px'}"
-                                                  [(selection)]="selectefilterColumnNameStatValue">
-                                                  
-        </p-tree>
-    </div>
-  </div>
-</p-overlayPanel>

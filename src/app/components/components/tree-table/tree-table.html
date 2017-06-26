@@ -1,6 +1,24 @@
-<p-treeTable [value]="tableDate" selectionMode="single" [(selection)]="selectedField">
-    <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header}}></p-column>
-</p-treeTable>
-<div *ngIf="tableDate.length==0">
-  <preloader-component [captionText]=preloaderText></preloader-component>
+<div class="row filtr-btn-css">
+  <button type="button" class="btn btn-default btn-xs" (click)="selectFilter(fpidname)">{{diction[147][langId]}}</button>
 </div>
+<p-treeTable [value]="FilterTableDate" selectionMode="single" [(selection)]="selectedField">
+  <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header}} (click)="onColumnClick()">
+  </p-column>
+</p-treeTable>
+
+<div *ngIf="FilterTableDate.length==0">
+  <preloader-component [captionText]=diction[91][langId]></preloader-component>  
+</div>
+
+<p-overlayPanel #fpidname [showCloseIcon]="true" appendTo="body">
+  <div class="row filter-css">
+    <div class="col-lg-6">
+        <h4>{{tableDateColumns[0].header}}</h4>
+        <p-tree [value]="filterColumnIdStatValue" selectionMode="checkbox" [style]="{'width':'200px'}"
+                                                  [(selection)]="selectefilterColumnIdStatValue"
+                                                  (onNodeSelect)="filterTreeId($event)"
+                                                  (onNodeUnselect)="filterTreeId($event)">    
+        </p-tree>   
+    </div>
+  </div>
+</p-overlayPanel>

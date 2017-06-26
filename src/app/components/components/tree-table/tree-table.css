@@ -1,0 +1,8 @@
+.filtr-btn-css{
+    margin-left: 0px;
+}
+.filter-css{    
+    max-width: 650px;
+    max-height: 450px;
+    overflow: scroll;
+}

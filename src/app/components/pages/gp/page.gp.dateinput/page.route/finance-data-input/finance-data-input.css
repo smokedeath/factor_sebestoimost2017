@@ -5,9 +5,7 @@
     /*margin-left: 20px;*/
 }
 .table-margin{
-    margin-top: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-top: 5px;
 }
 .lbl-css{
     text-align: right;
@@ -17,14 +15,4 @@
 }
 .btn-css{
     text-align: right;
-}
-.filter-css{    
-    max-width: 650px;
-    max-height: 450px;
-    overflow: scroll;
-}
-.btn-filter-css{
-    margin-left: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px; 
 }
