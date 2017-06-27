@@ -55,7 +55,6 @@ export class TreeTableComponent {
     }   
 
     filterTreeId(e){
-        console.log(this.tableDate);
         this.FilterTableDate = [];
         for(let i=0; i<this.tableDate.length; i++){
             if(this.searchFilter(this.tableDate[i].data.id)){
@@ -68,7 +67,6 @@ export class TreeTableComponent {
                 }
             }
         }
-        console.log(this.FilterTableDate);
     }
 
     addChildDate(inDate: TreeTabelDate[]): TreeTabelDate[]{

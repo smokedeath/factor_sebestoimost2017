@@ -14,9 +14,8 @@ export class FinanceDataInput implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
                 private storage : LocalStorageService){}  
-    langId: any;
     diction: any;
-    visibleLabel: Boolean = false;
+    userSetings  = this.service.userSetings;
 
     titelName = 'ЗАГРУЗКА ФИНАНСОВЫХ ДАННЫХ';
     defualtDate = Date();
@@ -119,21 +118,14 @@ export class FinanceDataInput implements OnInit{
             this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
         }
     }
-
     updateSetings(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        this.visibleLabel = userSetings.visibleLabel;
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.updateSetings();
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
 
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
@@ -147,7 +139,7 @@ export class FinanceDataInput implements OnInit{
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
         }
         ///////////////////   Типо сервисы   ////////////////////  
-        this. arrVladelic = this.service.getVladelic();
+        this.arrVladelic = this.service.getVladelic();
         this.arrPostavschik = this.service.getPostavschik();
         this.vladelicModel = this.arrVladelic[0].id;        
         this.postavschikModel = this.arrPostavschik[0].id; 

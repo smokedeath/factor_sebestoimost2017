@@ -17,23 +17,17 @@ export class RazhodnieIzmeriteli implements OnInit{
                 private storage : LocalStorageService){}  
 
     titelName = 'РАСХОДЫ ПО РАСХОДНЫМ ИЗМЕРИТЕЛЯМ'; 
-    langId = 0;
     diction = [];
+    userSetings;
 
     updateIdLang(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
 
 }

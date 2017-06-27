@@ -13,30 +13,22 @@ import { AppService } from './../../../share/app.service';
 export class PageLogin implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
-                private storage : LocalStorageService){}
-    
-    langId: any;
+                private storage : LocalStorageService){}    
+
     diction: any;
     breadcrumb = [];
     logoName = '';
-
+    userSetings;
     navbarLevel = 0;     
     
     updIdLang(idLang){
-        this.langId = idLang;
-        this.logoName = this.diction[0][this.langId];
+        this.userSetings.langId = idLang;
+        this.logoName = this.diction[0][this.userSetings.langId];
     }
-
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
-        this.updIdLang(this.langId);
+        this.userSetings = this.storage.retrieve('UserSetings');
+        this.updIdLang(this.userSetings.langId);
     }
-
 }

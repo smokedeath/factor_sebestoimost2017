@@ -1,4 +1,4 @@
-<bread-crumb-component [langId]=langId></bread-crumb-component>
+<bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
 
 <div>{{updateIdLang()}}</div>
 
@@ -17,19 +17,23 @@
   </div>   
 
   <div class="col-md-3 btn-css">
-    <button pTooltip={{diction[81][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> <label *ngIf="visibleLabel">  {{diction[81][langId]}}</label></button>
-    <button pTooltip={{diction[82][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="inputFromTemplate()"><i class="material-icons">file_upload</i> <label *ngIf="visibleLabel">  {{diction[82][langId]}}</label></button>
+    <button pTooltip={{diction[81][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> 
+            <label *ngIf="userSetings.visibleLabel">  {{diction[81][userSetings.langId]}}</label></button>
+    <button pTooltip={{diction[82][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="inputFromTemplate()"><i class="material-icons">file_upload</i> 
+            <label *ngIf="userSetings.visibleLabel">  {{diction[82][userSetings.langId]}}</label></button>
   </div>  
 </div>
 
 <div class="row row-margin">
   <div class="col-lg-3 col-md-offset-9 btn-css">
-    <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
-    <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" 
-            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
+    <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="exportToExcell()"><i class="material-icons">file_download</i> 
+            <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
+    <button pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
+            class="btn btn-primary"><i class="material-icons">autorenew</i> 
+            <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
   </div>
 </div>
 
@@ -37,15 +41,15 @@
     <p-panel>
         <p-header>
             <p-toggleButton [(ngModel)]="dopFiltr" 
-                            onLabel={{diction[126][langId]}}
-                            offLabel={{diction[127][langId]}} onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'260px'}">
+                            onLabel={{diction[126][userSetings.langId]}}
+                            offLabel={{diction[127][userSetings.langId]}} onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'260px'}">
             </p-toggleButton>
         </p-header>
         <div *ngIf="dopFiltr">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[85][langId]}}:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[85][userSetings.langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>  
@@ -54,7 +58,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[40][langId]}}:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[40][userSetings.langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>   
@@ -63,7 +67,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[86][langId]}}:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[86][userSetings.langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>    
@@ -74,7 +78,7 @@
             <div class="row" style="margin-top: 20px">
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[87][langId]}}:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[87][userSetings.langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>   
@@ -83,7 +87,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[38][langId]}}:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[38][userSetings.langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>    
@@ -92,7 +96,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[88][langId]}}:</label></div>  
+                        <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[88][userSetings.langId]}}:</label></div>  
                         <div class="col-lg-6 lbl-css">
                             <combobox-component [iNgModel]=anyDataModel 
                                                 [structure]=arrAnyData></combobox-component>    
@@ -102,8 +106,8 @@
                 <div class="col-lg-3">
                     <div class="row" style="text-align: center">                            
                         <p-toggleButton [(ngModel)]="tableFiltr" 
-                                        onLabel={{diction[128][langId]}} 
-                                        offLabel={{diction[129][langId]}}  onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
+                                        onLabel={{diction[128][userSetings.langId]}} 
+                                        offLabel={{diction[129][userSetings.langId]}}  onIcon="fa-check-square" offIcon="fa-square" [style]="{'width':'220px'}">
                         </p-toggleButton>
                     </div>
                 </div>

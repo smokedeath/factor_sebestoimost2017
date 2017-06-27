@@ -18,9 +18,8 @@ export class StatPokazInputComponent implements OnInit{
 
     titelName = 'ЗАГРУЗКА СТАТИСТИЧЕСКИХ ПОКАЗАТЕЛЕЙ';
     defaultLabel = 'Статус';
-    langId: any;
     diction: any;
-    visibleLabel: Boolean = false;
+    userSetings;
     
     arrtypePeriud = [];
     tableDate = [];
@@ -90,20 +89,13 @@ export class StatPokazInputComponent implements OnInit{
     }
 
     updateIdLang(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        this.visibleLabel = userSetings.visibleLabel;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
+        this.userSetings = this.storage.retrieve('UserSetings');
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});

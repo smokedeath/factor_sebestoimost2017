@@ -24,8 +24,9 @@
             </div>   
 
             <div class="col-md-3 btn-css">
-                <button pTooltip={{diction[130][langId]}} tooltipPosition="left" type="button" class="btn btn-primary"
-                        (click)="summaryResult()"><i class="material-icons">broken_image</i> <label *ngIf="visibleLabel">  {{diction[130][langId]}}</label></button>
+                <button pTooltip={{diction[130][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary"
+                        (click)="summaryResult()"><i class="material-icons">broken_image</i> 
+                        <label *ngIf="userSetings.visibleLabel">  {{diction[130][userSetings.langId]}}</label></button>
             </div>  
         </div>
     </p-panel>
@@ -36,7 +37,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][langId]}}:</label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][userSetings.langId]}}:</label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=itemSizeModel 
                                 [structure]=arrItemSize></combobox-component></div>
             </div>
@@ -47,19 +48,21 @@
                                 </combobox-multi-select-component></div>
         </div>
         <div class="col-lg-3">
-            <p-checkbox name="group1" label={{diction[125][langId]}} [(ngModel)]="procentSchow"></p-checkbox>
+            <p-checkbox name="group1" label={{diction[125][userSetings.langId]}} [(ngModel)]="procentSchow"></p-checkbox>
         </div>
         <div class="col-lg-3 btn-css">
-            <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-                    (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
-            <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" 
-                    class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
+            <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+                    (click)="exportToExcell()"><i class="material-icons">file_download</i> 
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
+            <button pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
+                    class="btn btn-primary"><i class="material-icons">autorenew</i> 
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
         </div>
     </div>
   </p-panel>
 </div>
 
 <div class="row row-margin">
-    <tree-table [tableDate]=tableDate [langId]=langId [tableDateColumns]=tableDateColumns></tree-table>
+    <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns></tree-table>
 </div>   
 <div>{{updateIdLang()}}</div>

@@ -1,13 +1,13 @@
-<bread-crumb-component [langId]=langId></bread-crumb-component>
+<bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
 <p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">
-	<p-tabPanel header={{diction[24][langId]}}>
+	<p-tabPanel header={{diction[24][userSetings.langId]}}>
 		<all-parametrs-view-component></all-parametrs-view-component>
 	</p-tabPanel>
-	<p-tabPanel header={{diction[25][langId]}}>
+	<p-tabPanel header={{diction[25][userSetings.langId]}}>
 	</p-tabPanel>
-	<p-tabPanel header={{diction[26][langId]}}>
+	<p-tabPanel header={{diction[26][userSetings.langId]}}>
 	</p-tabPanel>
-	<p-tabPanel header={{diction[27][langId]}}>
+	<p-tabPanel header={{diction[27][userSetings.langId]}}>
 	</p-tabPanel>
 </p-tabView>
 <div>{{updateIdLang()}}</div>

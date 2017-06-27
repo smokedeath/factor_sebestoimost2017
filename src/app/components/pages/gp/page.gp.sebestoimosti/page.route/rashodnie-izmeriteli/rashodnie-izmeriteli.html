@@ -1,13 +1,13 @@
-<bread-crumb-component [langId]=langId></bread-crumb-component>
+<bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
 
 <p-tabView>
-    <p-tabPanel header={{diction[72][langId]}}>
+    <p-tabPanel header={{diction[72][userSetings.langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>      
     </p-tabPanel>
-    <p-tabPanel header={{diction[73][langId]}}>
+    <p-tabPanel header={{diction[73][userSetings.langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>  
     </p-tabPanel>
-    <p-tabPanel header={{diction[74][langId]}}>
+    <p-tabPanel header={{diction[74][userSetings.langId]}}>
         <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>   
     </p-tabPanel>
 </p-tabView>

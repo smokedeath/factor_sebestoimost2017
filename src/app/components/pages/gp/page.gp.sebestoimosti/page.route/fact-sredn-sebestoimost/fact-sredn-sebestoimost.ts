@@ -15,9 +15,8 @@ export class FactSrednSebeStoimostComponent implements OnInit{
     constructor(private service: AppService,
                 private dictionary : Dictionary,
                 private storage : LocalStorageService){};
-    langId: any;
     diction: any;
-    visibleLabel: Boolean = false;
+    userSetings;
 
     titelName = 'РАСЧЕТ СРЕДНЕЙ СЕБЕСТОИМОСТИ';   
     preloaderText = 'Подождите. Идёт расчет...'; 
@@ -67,7 +66,6 @@ export class FactSrednSebeStoimostComponent implements OnInit{
             this.colculate = 0;
         }
     }
-
    resetParams(){
         if (!this.disabled){
             this.balansStatus = false;
@@ -82,24 +80,21 @@ export class FactSrednSebeStoimostComponent implements OnInit{
             this.curentDate = Date();
         }
    }
+    getDate(datepar: Date): String{
+        datepar = new Date(datepar);
+        let month: String;
+        let day: String;
+        let d = datepar.getDate();  
+        if (d<10){ day = '0' + d }else{ day = String(d)}
 
-   getDate(datepar: Date): String{
-     datepar = new Date(datepar);
-     let month: String;
-     let day: String;
-     let d = datepar.getDate();  
-     if (d<10){ day = '0' + d }else{ day = String(d)}
-
-     let m = datepar.getMonth() + 1;
-     if (m < 10){ month = '0' + m }else{ month = String(m)};
-     let year = datepar.getFullYear();
-     return year + "-" + month + "-" + day;
-  }
-
+        let m = datepar.getMonth() + 1;
+        if (m < 10){ month = '0' + m }else{ month = String(m)};
+        let year = datepar.getFullYear();
+        return year + "-" + month + "-" + day;
+    }
    handleChange(e) {
         this.activTabPanel = e.index;
    }
-
    exportToExcell(){
        //
    }   
@@ -110,22 +105,13 @@ export class FactSrednSebeStoimostComponent implements OnInit{
         }
         return name;
    }
-
     updateIdLang(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-    }
-    
+        this.userSetings = this.storage.retrieve('UserSetings');
+    }    
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        this.visibleLabel = userSetings.visibleLabel;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
+        this.userSetings = this.storage.retrieve('UserSetings');
         
         this.arrMetodika = this.service.getMetodSebestoimost();
         this.metodikaModel = this.arrMetodika[0].id;

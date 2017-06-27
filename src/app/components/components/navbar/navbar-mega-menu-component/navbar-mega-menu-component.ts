@@ -61,7 +61,7 @@ export class NavbarMegaMenuComponent implements OnInit{
     langClick(lng: Number, overlaypanel: OverlayPanel){
         this.langId = lng;
         let userSetings = this.storage.retrieve('UserSetings');
-        userSetings.userLang = this.langId;
+        userSetings.langId = this.langId;
         this.storage.store('UserSetings', userSetings);
         this.updateIdLang.emit(this.langId);        
         overlaypanel.toggle(event);  
@@ -72,7 +72,7 @@ export class NavbarMegaMenuComponent implements OnInit{
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+        this.langId = userSetings.langId;
         this.visibleLabel = userSetings.visibleLabel;
         if (this.langId == null){
             this.langId = 0;            

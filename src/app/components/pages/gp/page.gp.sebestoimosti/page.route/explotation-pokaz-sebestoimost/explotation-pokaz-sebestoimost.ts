@@ -15,23 +15,17 @@ export class ExplotationPokazSebestoimost implements OnInit{
                 private storage : LocalStorageService){}  
 
     titelName = 'ЭКСПЛУАТАЦИОННЫЕ ПОКАЗАТЕЛИ';
-    langId: any = 0;
+    userSetings;
     diction = [];
 
     updateIdLang(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
     
 }

@@ -19,9 +19,8 @@ export class AsudkrDataInputComponent implements OnInit{
     dopFiltr = false;
     tableFiltr = false;
     defualtDate = Date();
-    langId: any;
     diction: any;
-    visibleLabel: Boolean = false;
+    userSetings;
     //////////////////////////////
     arrAnyData = [];
     anyDataModel: Number;
@@ -76,22 +75,13 @@ export class AsudkrDataInputComponent implements OnInit{
     exportToExcell(){
         //
     }
-
     updateIdLang(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
-
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        this.visibleLabel = userSetings.visibleLabel;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
+        this.userSetings = this.storage.retrieve('UserSetings');
         // Загрузка по умолчанию (Пока нет api)
         this.arrAnyData = this.service.getAnyData();
         this.anyDataModel = this.arrAnyData[0].id;

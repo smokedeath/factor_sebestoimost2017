@@ -22,34 +22,34 @@ export class PageGpRashodStavok implements OnInit{
     navbarLevel = 2;
     curentMenuItem: String;
     diction = [];
-    langId: any = 0;
-    smallMenu = [];    
+    smallMenu = [];   
+    userSetings; 
 
     menu = []; 
 
     updIdLang(idLang){
-        this.langId = idLang;
-        this.logoName = this.diction[1][this.langId];        
-        this.smallMenu = this.service.getSmalMenuGP(this.langId);  
+        this.userSetings.langId = idLang;
+        this.logoName = this.diction[1][this.userSetings.langId];        
+        this.smallMenu = this.service.getSmalMenuGP(this.userSetings.langId);  
 
         this.menu = [
                 {
-                    name: this.diction[68][this.langId],
+                    name: this.diction[68][this.userSetings.langId],
                     sref: "rashodi",
                     subname: []
                 },
                 {
-                    name: this.diction[13][this.langId],
+                    name: this.diction[13][this.userSetings.langId],
                     sref: "explpokaz",
                     subname: []
                 },
                 {
-                    name:  this.diction[121][this.langId],
+                    name:  this.diction[121][this.userSetings.langId],
                     sref: "otnesenierashodov",
                     subname: []
                 },
                 {
-                    name: this.diction[5][this.langId],
+                    name: this.diction[5][this.userSetings.langId],
                     sref: "rashodstavok",
                     subname: []
                 }
@@ -59,13 +59,8 @@ export class PageGpRashodStavok implements OnInit{
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
-        this.updIdLang(this.langId);
+        this.userSetings = this.storage.retrieve('UserSetings');
+        this.updIdLang(this.userSetings.langId);
         this.curentMenuItem = 'rashodstavok';
         this.router.navigate(['gp.rashodstavok/rashodstavok']);
     }

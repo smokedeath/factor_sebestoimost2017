@@ -1,4 +1,4 @@
-<bread-crumb-component [langId]=langId></bread-crumb-component>
+<bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
 
 <div>{{updateIdLang()}}</div>
 
@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-2"> 
       <div class="row">
-          <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[80][langId]}}:</label></div>  
+          <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[80][userSetings.langId]}}:</label></div>  
           <div class="col-lg-6 lbl-css">
             <combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions 
                                                              [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
@@ -30,20 +30,20 @@
   </div>   
 
   <div class="col-md-3 btn-css">
-    <button pTooltip={{diction[81][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> <label *ngIf="visibleLabel">  {{diction[81][langId]}}</label></button>
-    <button pTooltip={{diction[82][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="inputFromTemplate()"><i class="material-icons">file_upload</i> <label *ngIf="visibleLabel">  {{diction[82][langId]}}</label></button>
+    <button pTooltip={{diction[81][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="viewTemplateFolder()"><i class="material-icons">subtitles</i> <label *ngIf="userSetings.visibleLabel">  {{diction[81][userSetings.langId]}}</label></button>
+    <button pTooltip={{diction[82][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="inputFromTemplate()"><i class="material-icons">file_upload</i> <label *ngIf="userSetings.visibleLabel">  {{diction[82][userSetings.langId]}}</label></button>
   </div>  
 </div>
 
 <div class="row row-margin">
   <div class="col-lg-3 col-md-offset-9 btn-css">
-    <button pTooltip={{diction[61][langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="visibleLabel">  {{diction[61][langId]}}</label></button>
-    <button pTooltip={{diction[83][langId]}} tooltipPosition="left" type="button" 
-            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="visibleLabel">  {{diction[83][langId]}}</label></button>
+    <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+            (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
+    <button pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
+            class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
   </div>
 </div>
 
-<tree-table [tableDate]=tableDate [langId]=langId [tableDateColumns]=tableDateColumns></tree-table>
+<tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns></tree-table>

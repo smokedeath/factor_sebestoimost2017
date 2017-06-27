@@ -23,37 +23,37 @@ export class PageGpDateInput implements OnInit{
     smallMenu = [];  
     curentMenuItem: String;
     diction = [];
-    langId: any = 0;
+    userSetings;
 
     menu = [];
 
     updIdLang(idLang){
-        this.langId = idLang;
-        this.logoName = this.diction[1][this.langId];        
-        this.smallMenu = this.service.getSmalMenuGP(this.langId);  
+        this.userSetings.langId = idLang;
+        this.logoName = this.diction[1][this.userSetings.langId];        
+        this.smallMenu = this.service.getSmalMenuGP(this.userSetings.langId);  
         this.menu = [
                 {
-                    name: this.diction[75][this.langId],
+                    name: this.diction[75][this.userSetings.langId],
                     subname: [],
                     sref: "findatainput"
                 },
                 {
-                    name: this.diction[76][this.langId],
+                    name: this.diction[76][this.userSetings.langId],
                     subname: [],
                     sref: "iodv"
                 },
                 {
-                    name: this.diction[77][this.langId],
+                    name: this.diction[77][this.userSetings.langId],
                     subname: [],
                     sref: "asudkr"
                 },
                 {
-                    name: this.diction[78][this.langId],
+                    name: this.diction[78][this.userSetings.langId],
                     subname: [],
                     sref: "craschet"
                 },
                 {
-                    name: this.diction[79][this.langId],
+                    name: this.diction[79][this.userSetings.langId],
                     subname: [],
                     sref: "statpokazinput"
                 }
@@ -63,13 +63,8 @@ export class PageGpDateInput implements OnInit{
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
-        this.updIdLang(this.langId);
+        this.userSetings = this.storage.retrieve('UserSetings');
+        this.updIdLang(this.userSetings.langId);
         this.curentMenuItem = 'findatainput';
         this.router.navigate(["gp.date.input/findatainput"]);
     }   

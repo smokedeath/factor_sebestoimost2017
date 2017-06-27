@@ -23,22 +23,22 @@ export class PageGpAnaliz implements OnInit{
     smallMenu = [];   
     curentMenuItem: String;
     diction = [];
-    langId: any = 0;
+    userSetings;
     
     menu = [];
 
     updIdLang(idLang){
-        this.langId = idLang;
-        this.logoName = this.diction[1][this.langId];
-        this.smallMenu = this.service.getSmalMenuGP(this.langId);  
+        this.userSetings.langId = idLang;
+        this.logoName = this.diction[1][this.userSetings.langId];
+        this.smallMenu = this.service.getSmalMenuGP(this.userSetings.langId);  
         this.menu = [
             {
-                name: this.diction[122][this.langId],
+                name: this.diction[122][this.userSetings.langId],
                 subname: [],
                 sref: "notfound"
             },
             {
-                name: this.diction[123][this.langId],
+                name: this.diction[123][this.userSetings.langId],
                 subname: [],
                 sref: "notfound"
             }
@@ -48,13 +48,8 @@ export class PageGpAnaliz implements OnInit{
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
-        this.updIdLang(this.langId);
+        this.userSetings = this.storage.retrieve('UserSetings');
+        this.updIdLang(this.userSetings.langId);
         this.curentMenuItem = 'notfound';
         this.router.navigate(["gp.analiz/notfound"]);
     }  

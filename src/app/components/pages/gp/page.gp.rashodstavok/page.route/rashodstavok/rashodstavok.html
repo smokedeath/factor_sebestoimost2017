@@ -1,13 +1,13 @@
-<bread-crumb-component [langId]=langId></bread-crumb-component>
+<bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
 <div>{{updateIdLang()}}</div>
 <p-tabView>
-    <p-tabPanel header={{diction[69][langId]}}> 
+    <p-tabPanel header={{diction[69][userSetings.langId]}}> 
         <raskodstavok-template-component></raskodstavok-template-component>      
     </p-tabPanel>
-    <p-tabPanel header={{diction[70][langId]}}>
+    <p-tabPanel header={{diction[70][userSetings.langId]}}>
         <raskodstavok-template-component></raskodstavok-template-component>  
     </p-tabPanel>
-    <p-tabPanel header={{diction[71][langId]}}>
+    <p-tabPanel header={{diction[71][userSetings.langId]}}>
         <raskodstavok-template-component></raskodstavok-template-component>  
     </p-tabPanel>
 </p-tabView>

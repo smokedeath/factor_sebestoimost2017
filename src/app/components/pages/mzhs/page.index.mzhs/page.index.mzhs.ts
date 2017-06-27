@@ -17,42 +17,42 @@ export class PageIndexMzhs implements OnInit{
     logoName = ''; //'../assets/admin/layout5/img/logo_mzhs_new.png';
     rExitLink = '/login'; ///login
     navbarLevel = 1;    
-    langId: any;    
     diction = [];
+    userSetings;
     
     bigBatton = [];    
 
     updIdLang(idLang){
-        this.langId = idLang;
-        this.logoName = this.diction[2][this.langId];
+        this.userSetings.langId = idLang;
+        this.logoName = this.diction[2][this.userSetings.langId];
         this.bigBatton = [ 
                 {
                     class: 'pricing__item',
                     rlink: '/index.mzhs',
-                    name: this.diction[3][this.langId],
+                    name: this.diction[3][this.userSetings.langId],
                     icon_type: 'cloud_download',
-                    label: this.diction[4][this.langId]
+                    label: this.diction[4][this.userSetings.langId]
                 },
                 {
                     class: 'pricing__item',
                     rlink: '/index.mzhs',
-                    name: this.diction[5][this.langId],
+                    name: this.diction[5][this.userSetings.langId],
                     icon_type: 'assignment',
-                    label: this.diction[5][this.langId]
+                    label: this.diction[5][this.userSetings.langId]
                 },
                 {
                     class: 'pricing__item',
                     rlink: '/index.mzhs',
-                    name: this.diction[6][this.langId],
+                    name: this.diction[6][this.userSetings.langId],
                     icon_type: 'monetization_on',
-                    label: this.diction[6][this.langId]
+                    label: this.diction[6][this.userSetings.langId]
                 },
                 {
                     class: 'pricing__item',
                     rlink: '/index.mzhs',
-                    name: this.diction[7][this.langId],
+                    name: this.diction[7][this.userSetings.langId],
                     icon_type: 'event_note',
-                    label: this.diction[7][this.langId]
+                    label: this.diction[7][this.userSetings.langId]
                 }
             ];   
     }
@@ -60,12 +60,7 @@ export class PageIndexMzhs implements OnInit{
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
-        this.updIdLang(this.langId);
+        this.userSetings = this.storage.retrieve('UserSetings');
+        this.updIdLang(this.userSetings.langId);
     }
 }

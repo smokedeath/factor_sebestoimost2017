@@ -14,7 +14,7 @@ export class AppService {
     diction = this.dictionary.dictionary;
 
     userSetings = {
-        userLang: 1,
+        langId: 0,
         visibleLabel: false 
     };
 
@@ -31,8 +31,8 @@ export class AppService {
 
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
-            this.storage.store('UserSetings', this.userSetings);
-
+            let userSetings = this.storage.retrieve('UserSetings');
+            if (userSetings == null) this.storage.store('UserSetings', this.userSetings);
     }
 
     getSmalMenuGP(langId){

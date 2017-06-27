@@ -2,7 +2,7 @@
 <div class="row row-margin">
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[28][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[28][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=postavschikUslugModel 
                                                         (oNgModel)="postavschikUslugModel = $event"  
                                                         [structure]=arrPostavschikUslug></combobox-component></div>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[29][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[29][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=UslugaModel 
                                                         (oNgModel)="UslugaModel = $event"  
                                                         [structure]=arrusluga></combobox-component></div>
@@ -22,7 +22,7 @@
 <div class="row row-margin">
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[30][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[30][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=vidSebestoimostiModel 
                                                         (oNgModel)="vidSebestoimostiModel = $event"  
                                                         [structure]=arrVidSebestoimosti></combobox-component></div>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[31][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[31][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=typeSebestoimostiModel 
                                                         (oNgModel)="typeSebestoimostiModel = $event"  
                                                         [structure]=arrtypeSebestoimostiModel></combobox-component></div>
@@ -42,7 +42,7 @@
 <div class="row row-margin">
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[32][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[32][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=metodRaschetaModel 
                                                         (oNgModel)="metodRaschetaModel = $event"  
                                                         [structure]=arrMetodRascheta></combobox-component></div>
@@ -50,7 +50,7 @@
     </div>
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[33][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[33][userSetings.langId]}} : </label></div>
             <div class="col-lg-6 chbox-css">
                 <p-checkbox name="planFormirovanie" label="" [(ngModel)]="planFormirovanieBoolean" binary="true">
                 </p-checkbox>
@@ -63,7 +63,7 @@
 <div class="row row-margin">
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[34][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[34][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=metodRaschetaModel 
                                                         (oNgModel)="metodRaschetaModel = $event"  
                                                         [structure]=arrMetodRascheta></combobox-component></div>
@@ -71,7 +71,7 @@
     </div>
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[35][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[35][userSetings.langId]}} : </label></div>
             <div class="col-lg-6 chbox-css">
                 <p-checkbox name="noItemsSearch" label="" [(ngModel)]="noItemsSearchBoolean" binary="true">
                 </p-checkbox>
@@ -84,13 +84,13 @@
 <div class="row row-margin">
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[36][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[36][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><my-calendar (dateOut)="curentDate = $event"></my-calendar></div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="row">
-            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[37][langId]}} : </label></div>
+            <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[37][userSetings.langId]}} : </label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=periudTypeModel 
                                                         (oNgModel)="periudTypeModel = $event"  
                                                         [structure]=arrPeriudType></combobox-component></div>
@@ -103,7 +103,7 @@
     <div class="row row-margin">
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[38][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[38][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=rodGruzaModel 
                                                             (oNgModel)="rodGruzaModel = $event"  
                                                             [structure]=arrRodGruza></combobox-component></div>
@@ -111,7 +111,7 @@
         </div>
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[39][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[39][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=horakteristikGruzaModel 
                                                             (oNgModel)="horakteristikGruzaModel = $event"  
                                                             [structure]=arrHorakteristikGruza></combobox-component></div>
@@ -123,7 +123,7 @@
     <div class="row row-margin">
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[40][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[40][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=vidsoobsheniaModel 
                                                             (oNgModel)="vidsoobsheniaModel = $event"  
                                                             [structure]=arrVidSoobshenia></combobox-component></div>
@@ -131,7 +131,7 @@
         </div>
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[41][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[41][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=vidGruzovoiOtpravkiModel 
                                                             (oNgModel)="vidGruzovoiOtpravkiModel = $event"  
                                                             [structure]=arrVidGruzovoiOtpravki></combobox-component></div>
@@ -143,7 +143,7 @@
     <div class="row row-margin">
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[42][langId]}}  : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[42][userSetings.langId]}}  : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=gruzVagonTypeModel 
                                                             (oNgModel)="gruzVagonTypeModel = $event"  
                                                             [structure]=arrGruzVagonType></combobox-component></div>
@@ -163,7 +163,7 @@
     <div class="row row-margin">
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[44][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[44][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=conteinerTypeModel 
                                                             (oNgModel)="conteinerTypeModel = $event"  
                                                             [structure]=arrConteinerType></combobox-component></div>
@@ -171,7 +171,7 @@
         </div>
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[45][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[45][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=invemterVagonPrinadlezhnostModel 
                                                             (oNgModel)="invemterVagonPrinadlezhnostModel = $event"  
                                                             [structure]=arrInvemterVagonPrinadlezhnost></combobox-component></div>
@@ -183,7 +183,7 @@
     <div class="row row-margin">
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[46][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[46][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=conteinerPrinadlezhnostModel 
                                                             (oNgModel)="conteinerPrinadlezhnostModel = $event"  
                                                             [structure]=arrConteinerPrinadlezhnost></combobox-component></div>
@@ -191,7 +191,7 @@
         </div>
         <div class="col-lg-4">
             <div class="row">
-                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[47][langId]}} : </label></div>
+                <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[47][userSetings.langId]}} : </label></div>
                 <div class="col-lg-6 chbox-css">
                     <p-checkbox name="ohranaGruza" label="" [(ngModel)]="ohranaGruzaBoolean" binary="true">
                     </p-checkbox>
@@ -205,19 +205,19 @@
 <div class="row row-margin">
     <div class="col-lg-3">				
         <div class="row">
-            <div class="row"><h6>{{diction[48][langId]}} : </h6></div>
+            <div class="row"><h6>{{diction[48][userSetings.langId]}} : </h6></div>
             <div class="row"><p-spinner size="30" [(ngModel)]="vesGruzaModel" [min]="0"></p-spinner></div>  
         </div>
     </div>	
     <div class="col-lg-3">			
         <div class="row">
-            <div class="row"><h6>{{diction[49][langId]}} : </h6></div>
+            <div class="row"><h6>{{diction[49][userSetings.langId]}} : </h6></div>
             <div class="row"><p-spinner size="30" [(ngModel)]="vagonCountModel" [min]="0"></p-spinner></div>  
         </div>
     </div>
     <div class="col-lg-3">			
         <div class="row">
-            <div class="row"><h6>{{diction[50][langId]}} : </h6></div>
+            <div class="row"><h6>{{diction[50][userSetings.langId]}} : </h6></div>
             <div class="row"><p-spinner size="30" [(ngModel)]="conteinerCountModel" [min]="0"></p-spinner></div>  
         </div>				
     </div>

@@ -18,21 +18,15 @@ export class OtnesenieRashodovComponent implements OnInit{
     titelName = 'ОТНЕСЕНИЕ РАСХОДОВ';
     dopFiltr = false;
     diction = [];
-    langId = 0;
+    userSetings;
 
     updateIdLang(){
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.userLang;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
 
 }
