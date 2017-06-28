@@ -64,7 +64,8 @@ export class UserSettingsComponent implements OnInit{
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
-        this.userSetings = this.service.userSetings;
+        this.service.loadUserSetings();
+        this.userSetings = this.storage.retrieve('UserSetings');
     }
 
 }

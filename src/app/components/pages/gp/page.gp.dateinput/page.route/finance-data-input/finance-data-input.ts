@@ -99,8 +99,10 @@ export class FinanceDataInput implements OnInit{
     inputFromTemplate(){
         ///
     }
-    onRefresch(){        
-        //
+    onRefresch(){          
+        this.service.getFinDataInput().subscribe(data => {
+            this.tableDate = data.json().data
+        });
     }
     exportToExcell(){
         //

@@ -1,3 +1,57 @@
+<div>{{updateIdLang()}}</div>
 <div class="row">
-    //
+    <div class="col-md-2 btn-map">
+        <button type="button" class="btn btn-success">
+            <img src="./../../../../../../../../../assets/img/placeholder.png" width="32" height="32">
+        </button>
+        <button type="button" class="btn btn-success">
+            <img src="./../../../../../../../../../assets/img/trafficsignal.png" width="32" height="32">
+        </button>
+        <button type="button" class="btn btn-success">
+            <img src="./../../../../../../../../../assets/img/subway.png" width="32" height="32">
+        </button>
+    </div>
+    <div class="col-md-8 boxs-map">
+        <div class="col-md-3">
+            <combobox-component [iNgModel]=station1Model 
+                                (oNgModel)="station1Model = $event"  
+                                [style]="{'width':'250px'}"
+                                [structure]=arrStation1></combobox-component>
+        </div>
+        <div class="col-md-1 fa-right-css">
+            <span class="fa fa-arrow-circle-right"></span>
+        </div>
+        <div class="col-md-3">
+            <combobox-component [iNgModel]=station2Model 
+                                (oNgModel)="station2Model = $event"  
+                                [style]="{'width':'250px'}"
+                                [structure]=arrStation2></combobox-component>
+        </div>
+        <div class="col-md-1 fa-right-css">
+            <span class="fa fa-arrow-circle-right"></span>
+        </div>
+        <div class="col-md-3">
+            <combobox-component [iNgModel]=station3Model 
+                                (oNgModel)="station3Model = $event"  
+                                [style]="{'width':'250px'}"
+                                [structure]=arrStation3></combobox-component>
+        </div>
+    </div>
+    <div class="col-md-2 btn-search-col">
+        <div class="col-md-2">
+            <button (click)="btnSearch()" type="button" class="btn btn-success">
+                <img src="./../../../../../../../../../assets/img/magnifying-glass.png" width="32" height="32">
+            </button>
+        </div>
+        <div class="col-md-10 distance-col">
+            <a class="text-css">{{diction[159][userSetings.langId]}} : </a>
+            <h4 class="distance-css" *ngIf="distance>0"><span class="label label-warning large">{{distance}}</span></h4>
+        </div>
+    </div>
+</div>
+<div class="map-panel-css">
+    <p-panel header={{diction[160][userSetings.langId]}} [toggleable]="true">
+        <leaflet-map>
+        </leaflet-map>
+    </p-panel>
 </div>

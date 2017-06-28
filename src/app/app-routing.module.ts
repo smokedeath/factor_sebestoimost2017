@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpDateInput, NotFountComponent,
          PageGpRashodStavok, PageGpSebestoimosti, PageGpAnaliz, FaqComponent } from './components/pages/pages.index'; 
 
-import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
+import { FinanceDataInput, IodvDataInput, StatPokazInputComponent, 
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index';
 import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, 
          ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';
@@ -25,8 +25,7 @@ import { RashodStavokComponent, OtnesenieRashodovComponent,
                         { path: "iodv", component: IodvDataInput, data: { index: 76, cIndex: 1 }}, 
                         { path: "statpokazinput", component: StatPokazInputComponent, data: { index: 79, cIndex: 1 }},
                         { path: "asudkr", component: AsudkrDataInputComponent, data: { index: 77, cIndex: 1 }},
-                        { path: "craschet", component: CraschetDataInputComponent, data: { index: 78, cIndex: 1 }},
-                        { path: "sap", component: ViewGpSap, data: { index: 0, cIndex: 1 }}
+                        { path: "craschet", component: CraschetDataInputComponent, data: { index: 78, cIndex: 1 }}
                     ] 
             },
             { path: "gp.rashodstavok", component: PageGpRashodStavok, data: { index: 5, cIndex: 1 },

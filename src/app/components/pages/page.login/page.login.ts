@@ -26,9 +26,12 @@ export class PageLogin implements OnInit{
         this.logoName = this.diction[0][this.userSetings.langId];
     }
     ngOnInit(){
-        this.diction = this.dictionary.dictionary;
-        this.service.loadUserSetings();
-        this.userSetings = this.storage.retrieve('UserSetings');
+        this.diction = this.dictionary.dictionary;    
+        this.userSetings = this.storage.retrieve('UserSetings');    
+        if (this.userSetings == null) {
+            this.storage.store('UserSetings', this.service.userSetings);
+            this.userSetings = this.service.userSetings;
+        }
         this.updIdLang(this.userSetings.langId);
     }
 }

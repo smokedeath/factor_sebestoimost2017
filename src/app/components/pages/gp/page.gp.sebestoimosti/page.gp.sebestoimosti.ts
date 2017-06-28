@@ -65,8 +65,10 @@ export class PageGpSebestoimosti implements OnInit{
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');
         this.updIdLang(this.userSetings.langId);
-        this.curentMenuItem = 'factsrednseb';
-        this.router.navigate(['gp.sebestoimosti/factsrednseb']);
+        // this.curentMenuItem = 'factsrednseb';
+        // this.router.navigate(['gp.sebestoimosti/factsrednseb']);
+        this.curentMenuItem = 'factconcseb';
+        this.router.navigate(['gp.sebestoimosti/factconcseb']);
     } 
 
 }

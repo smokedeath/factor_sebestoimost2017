@@ -72,7 +72,6 @@ export class AllParametrsViewComponent implements OnInit {
     arrConteinerPrinadlezhnost = [];
     conteinerPrinadlezhnostModel: Number;
 
-
     updateIdLang(){
         this.userSetings = this.storage.retrieve('UserSetings');
     }

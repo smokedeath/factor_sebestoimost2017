@@ -14,6 +14,9 @@ export class ComboboxComponent{
     @Input()
     iNgModel: any;
 
+    @Input()
+    style: any;
+
     @Output()    
     oNgModel: EventEmitter<Number> = new EventEmitter();
 

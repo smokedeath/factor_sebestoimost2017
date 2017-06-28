@@ -1,26 +1,32 @@
-.row-margin{
-    margin-top: 10px;
-    margin-left: 10px;
-}
-.table-margin{
-    margin-top: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-.btn-margin{
-    margin-top: 20px;
-    margin-left: 35px;
-}
-.lbl-css{
-    text-align: left;
-}
-.lbl-text-css{
-    margin-top: 7px;
-}
-.icon-togl-css{
-    vertical-align: middle;
+.text-css{
     font-size: 18px;
+    text-decoration: none; 
+    cursor:default;
 }
-.chbox-css{
-    margin-top: 5px;
+.distance-css{
+    margin:3px 0 0 5px;
+}
+.btn-search-col{
+    width: 350px;
+    padding-left: 0px;
+}
+.distance-col{    
+    display: -webkit-box;
+    padding-top: 9px;
+    padding-left: 40px;
+}
+.btn-map{
+    width: 230px;
+}
+.boxs-map{    
+    width: 870px;
+    padding-top: 8px;
+    padding-right: 0px;
+}
+.fa-right-css{    
+    padding-left: 56px;
+    padding-top: inherit;
+}
+.map-panel-css{
+    margin-top: 15px;
 }

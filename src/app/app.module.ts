@@ -32,7 +32,7 @@ import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, Tre
 import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, AllParametrsViewComponent,
          ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent, 
          ViborMarschrutaViewComponent } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
-import { ViewGpSap, FinanceDataInput, IodvDataInput, StatPokazInputComponent,
+import { FinanceDataInput, IodvDataInput, StatPokazInputComponent,
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index'; 
 import { RashodStavokComponent, OtnesenieRashodovComponent, 
          ExplotationPokazRashodStavokComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
@@ -50,7 +50,7 @@ import { BreadcrumbService } from './share/breadcrumb.service';
                 PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, 
                 PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, //Основные страницы
 
-                ViewGpSap, FactConcSebistoimostView, NotFountComponent, FinanceDataInput, AsudkrDataInputComponent,
+                FactConcSebistoimostView, NotFountComponent, FinanceDataInput, AsudkrDataInputComponent,
                 IodvDataInput, StatPokazInputComponent, RazhodnieIzmeriteli, CraschetDataInputComponent, RashodnieStavkiComponent,
                 RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, ExplotationPokazRashodStavokComponent,
                 RashodiComponent,  ExplotationPokazSebestoimost, ExplotationPokazTemplateComponent, ViborMarschrutaViewComponent,
