@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http"; 
+import { Http, Response, RequestOptions, Headers } from "@angular/http"; 
 import { SelectItem } from './interface.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Dictionary } from './../../assets/dictionary';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AppService {    
     constructor(private http: Http,
                 private storage : LocalStorageService,
                 private dictionary : Dictionary) {}
-
                 
     diction = this.dictionary.dictionary;
 
@@ -19,6 +19,7 @@ export class AppService {
     };
 
     breadcrumb = [];
+    sessionCookie = '';    
     
     user = {
         login: 'sysadmin',
@@ -28,6 +29,46 @@ export class AppService {
         password: ''
     }
     smallMenuGp = [];
+    
+    baseUrl = "http://192.168.1.20:51984/SpringCost";
+
+    getBaseUrl(moduleId, langId){
+        let url = '';
+        let moduleName = 'gp';
+        let lang = 'kz';
+
+        if (moduleId==1) moduleName = 'gp'; 
+        if (moduleId==2) moduleName = 'mgs'; 
+
+        if (langId==0) lang = 'kz';
+        if (langId==1) lang = 'ru';
+        if (langId==2) lang = 'en';
+
+        url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang + "/session";
+
+        return url;
+    }
+    postSessionIn(data, moduleId, langId) {
+        let apiUrl = "/sessionIn";  
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+    getTest(data, moduleId, langId){
+        let apiUrl = "/test"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+    private extractData(res: Response) {
+	    let body = res.json();
+        return body.data;
+    }
+    private handleError (error: Response | any) {
+        return Observable.throw(error.json() || error);
+    }
 
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
@@ -88,9 +129,6 @@ export class AppService {
         }
         return tableDateColumns;
     }
-
-
-    baseUrl = "http://192.168.1.20:51984/SpringCost";
     // Карта РК
     getMapRk(){
         let apiUrl = "/api/ks/getGeoRK";
@@ -343,8 +381,4 @@ export class AppService {
                           ];
         return arrVladelic;
     }
-
-
-
-
 }

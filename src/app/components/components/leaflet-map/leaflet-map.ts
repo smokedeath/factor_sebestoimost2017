@@ -11,7 +11,13 @@ import { Component, Input } from '@angular/core';
 
 export class LefletMap{      
     @Input()
-    options = { };
+    options = {};
+
+    @Input()
+    layers = {};
+    
+    @Input()
+    layersControl = {}
 }
 
 

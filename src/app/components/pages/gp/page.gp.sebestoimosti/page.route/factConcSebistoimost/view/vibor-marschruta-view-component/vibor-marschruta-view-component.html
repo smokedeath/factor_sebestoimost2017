@@ -51,7 +51,9 @@
 </div>
 <div class="map-panel-css">
     <p-panel header={{diction[160][userSetings.langId]}} [toggleable]="true">
-        <leaflet-map>
+        <leaflet-map [options]="options"
+                     [layers]="layers"
+                     [layersControl]="layersControl">
         </leaflet-map>
     </p-panel>
 </div>

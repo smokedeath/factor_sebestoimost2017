@@ -122,7 +122,6 @@ export class ViewGpSap implements OnInit{
             [ this.circle, this.polygon, this.square, this.marker, this.geoJSON ]
         );
     }    
-
     
 	onApply() {
 		// Get the active base layer
@@ -162,12 +161,6 @@ export class ViewGpSap implements OnInit{
                         this.jscoordinates = dateInJson.geometry.coordinates;  
                         this.onJsAfterget();                      
                         this.onApply();    
-                    });
-
-
-
-
-
-
+					});
     }
 }

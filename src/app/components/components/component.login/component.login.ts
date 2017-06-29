@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Dictionary } from './../../../../assets/dictionary';
+import { AppService } from './../../../share/app.service';
 
 @Component({
     moduleId: module.id,
@@ -12,7 +13,8 @@ import { Dictionary } from './../../../../assets/dictionary';
 
 export class ComponentLogin implements OnInit{
     constructor(private router: Router,
-                private dictionary : Dictionary) {}
+                private dictionary : Dictionary,
+                private service: AppService,) {}
 
     @Input()
     langId: any = 0;
@@ -54,44 +56,67 @@ export class ComponentLogin implements OnInit{
         this.email= "";
         this.refDialog = true;
     }
-
+    	
     loginEnter(){
         if (this.user.login.length>0 && this.user.password.length>0) {
             // тут будет проверка пароля
-            if (this.user.login=='sysadmin' && this.user.password=='111') {  
-                switch(Number(this.user.userId)){
-                    case 1: { 
-                        switch(this.user.programmId) { 
-                            case 1: { 
-                                this.router.navigate(["index.gp"]);
-                                break; 
-                            } 
-                            case 2: { 
-                                this.router.navigate(["index.mzhs"]);
-                                break; 
-                            } 
-                            default: { 
-                                break; 
-                            } 
-                        } 
-                        break; 
-                    } 
-                    case 2: { 
-                        window.location.href='http://192.168.1.20:8080/xtofi/a/webmod/default/ru'
-                        break; 
-                    } 
-                    case 3: { 
-                        window.location.href='http://192.168.1.20:8080/xtofi/a/usr/default/ru/'
-                        break; 
-                    } 
-                    default: { 
-                        break; 
-                    } 
-                }
-            }
-            else alert("Неверный Логин или Пароль...");
+        let data = {
+            login: this.user.login,
+            passwd: this.user.password
+        }         
+
+        this.service.postSessionIn(data, this.user.programmId, this.langId)
+                    .subscribe(
+                            data => {  
+                                console.log(data);
+                                this.service.getTest(data.session, this.user.programmId, this.langId)
+                                            .subscribe(
+                                                data => {
+                                                    console.log(data);
+                                                }, error => {
+                                                    let errorMessage = <any>error;
+                                                    console.log(errorMessage);
+                                                }
+                                            );
+
+                                // switch(Number(this.user.userId)){
+                                //     case 1: { 
+                                //         switch(this.user.programmId) { 
+                                //             case 1: { 
+                                //                 this.router.navigate(["index.gp"]);
+                                //                 break; 
+                                //             } 
+                                //             case 2: { 
+                                //                 this.router.navigate(["index.mzhs"]);
+                                //                 break; 
+                                //             } 
+                                //             default: { 
+                                //                 break; 
+                                //             } 
+                                //         } 
+                                //         break; 
+                                //     } 
+                                //     case 2: { 
+                                //         window.location.href='http://192.168.1.20:8080/xtofi/a/webmod/default/ru'
+                                //         break; 
+                                //     } 
+                                //     case 3: { 
+                                //         window.location.href='http://192.168.1.20:8080/xtofi/a/usr/default/ru/'
+                                //         break; 
+                                //     } 
+                                //     default: { 
+                                //         break; 
+                                //     } 
+                                // }
+                        }, error =>  {
+                            let errorMessage = <any>error;
+                            let message = errorMessage.message;
+                            let body = errorMessage.stack;
+                            console.log(errorMessage);
+                        }
+                    );                  
         }else{                        
-            alert("Не заполнены Логин или Пароль...");
+            alert(this.diction[161][this.langId]);
         }
     }
 
