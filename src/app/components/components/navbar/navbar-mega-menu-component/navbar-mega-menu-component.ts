@@ -34,15 +34,8 @@ export class NavbarMegaMenuComponent implements OnInit{
     langId: any;
     diction: any;
     visibleLabel: Boolean = false;
-
-    user = {
-        fam: this.service.user.fam,
-        name: this.service.user.name,
-        otch: this.service.user.otch,
-        password: this.service.user.password
-    }
         
-    currentUser = this.user.fam + ' ' + this.user.name + ' ' + this.user.otch;
+    currentUser: String;
 
     lang = {
         kz: false,
@@ -73,10 +66,7 @@ export class NavbarMegaMenuComponent implements OnInit{
         this.service.loadUserSetings();
         let userSetings = this.storage.retrieve('UserSetings');
         this.langId = userSetings.langId;
-        this.visibleLabel = userSetings.visibleLabel;
-        if (this.langId == null){
-            this.langId = 0;            
-            this.storage.store('langId', this.langId);
-        }
+        this.visibleLabel = userSetings.visibleLabel;        
+        this.currentUser = this.service.user.name;
     }
 }

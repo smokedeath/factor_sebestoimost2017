@@ -37,13 +37,18 @@
             <div class="row">
                 <div class="col-md-offset-6 col-md-6">
                     <button type="button" (click)="loginEnter()" 
-                            class="btn btn-primary btn-lg btn-block"><i class="material-icons">check</i>  {{diction[116][langId]}}</button></div>                   
+                            class="btn btn-primary btn-lg btn-block"><i class="material-icons">check</i>  {{diction[116][langId]}}</button>
+                </div>                                  
             </div>
+            <!--<br>
+            <div class="row">
+                <div class="col-md-offset-6 col-md-6">
+                    <button type="button" (click)="test()" class="btn btn-primary btn-lg btn-block">Test</button> 
+                </div>
+            </div>-->
         </form>
    </div>
 </div>
-
-<!--<pass-ref-dialog [StatusDialog]=refDialog></pass-ref-dialog>-->
 
 <p-dialog header={{diction[138][langId]}} [(visible)]="refDialog" modal="modal" width="300" [responsive]="true">
     <p>{{diction[117][langId]}}</p>
@@ -56,6 +61,15 @@
             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
                 <button type="button" pButton icon="fa-close" (click)="refDialog=false" label="Отмена"></button>
                 <button type="button" pButton icon="fa-check" (click)="refDialog=false" label="Восстановить"></button>
+            </div>
+        </p-footer>
+</p-dialog>
+
+<p-dialog header={{diction[152][langId]}} [(visible)]="display" modal="modal" width="300" [responsive]="true">
+    <p>{{displayText}}</p>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-check" (click)="display=false" label="Ok"></button>
             </div>
         </p-footer>
 </p-dialog>

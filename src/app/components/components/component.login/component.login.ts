@@ -3,6 +3,7 @@ import { MdDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Dictionary } from './../../../../assets/dictionary';
 import { AppService } from './../../../share/app.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
@@ -14,6 +15,7 @@ import { AppService } from './../../../share/app.service';
 export class ComponentLogin implements OnInit{
     constructor(private router: Router,
                 private dictionary : Dictionary,
+                private storage : LocalStorageService,
                 private service: AppService,) {}
 
     @Input()
@@ -24,6 +26,8 @@ export class ComponentLogin implements OnInit{
     email: String;
     passShow: boolean = true;
     textType = "password";
+    display: boolean = false;
+    displayText: String = '';
          
     user = {
         login: '',
@@ -42,7 +46,11 @@ export class ComponentLogin implements OnInit{
         { value: 1, display: 'АО "КТЖ-Грузовые перевозки"' },
         { value: 2, display: 'Магистральная железнодорожная сеть' }
     ]
-    
+    showDialog(displayText) {
+        this.displayText = displayText;
+        this.display = true;
+    }
+
     updIdLang(idLang){
         this.langId = idLang;
     }
@@ -68,55 +76,54 @@ export class ComponentLogin implements OnInit{
         this.service.postSessionIn(data, this.user.programmId, this.langId)
                     .subscribe(
                             data => {  
-                                console.log(data);
-                                this.service.getTest(data.session, this.user.programmId, this.langId)
-                                            .subscribe(
-                                                data => {
-                                                    console.log(data);
-                                                }, error => {
-                                                    let errorMessage = <any>error;
-                                                    console.log(errorMessage);
-                                                }
-                                            );
-
-                                // switch(Number(this.user.userId)){
-                                //     case 1: { 
-                                //         switch(this.user.programmId) { 
-                                //             case 1: { 
-                                //                 this.router.navigate(["index.gp"]);
-                                //                 break; 
-                                //             } 
-                                //             case 2: { 
-                                //                 this.router.navigate(["index.mzhs"]);
-                                //                 break; 
-                                //             } 
-                                //             default: { 
-                                //                 break; 
-                                //             } 
-                                //         } 
-                                //         break; 
-                                //     } 
-                                //     case 2: { 
-                                //         window.location.href='http://192.168.1.20:8080/xtofi/a/webmod/default/ru'
-                                //         break; 
-                                //     } 
-                                //     case 3: { 
-                                //         window.location.href='http://192.168.1.20:8080/xtofi/a/usr/default/ru/'
-                                //         break; 
-                                //     } 
-                                //     default: { 
-                                //         break; 
-                                //     } 
-                                // }
+                                let user = {
+                                        email: data.email,
+                                        login: this.user.login,
+                                        name: data.name,
+                                        phoneNumber: data.phoneNumber,
+                                        session: data.session,
+                                        userSetings: data.userSetings
+                                    };
+                                this.storage.store('userData', user);
+                                switch(Number(this.user.userId)){
+                                    case 1: { 
+                                        switch(this.user.programmId) { 
+                                            case 1: { 
+                                                this.router.navigate(["index.gp"]);
+                                                break; 
+                                            } 
+                                            case 2: { 
+                                                this.router.navigate(["index.mzhs"]);
+                                                break; 
+                                            } 
+                                            default: { 
+                                                break; 
+                                            } 
+                                        } 
+                                        break; 
+                                    } 
+                                    case 2: { 
+                                        window.location.href='http://192.168.1.20:8080/xtofi/a/webmod/default/ru'
+                                        break; 
+                                    } 
+                                    case 3: { 
+                                        window.location.href='http://192.168.1.20:8080/xtofi/a/usr/default/ru/'
+                                        break; 
+                                    } 
+                                    default: { 
+                                        break; 
+                                    } 
+                                }
                         }, error =>  {
                             let errorMessage = <any>error;
                             let message = errorMessage.message;
                             let body = errorMessage.stack;
                             console.log(errorMessage);
+                            this.showDialog(this.diction[163][this.langId]);
                         }
                     );                  
-        }else{                        
-            alert(this.diction[161][this.langId]);
+        }else{           
+            this.showDialog(this.diction[161][this.langId]); 
         }
     }
 

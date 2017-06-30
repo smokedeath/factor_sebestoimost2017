@@ -11,25 +11,26 @@ export class AppService {
                 private storage : LocalStorageService,
                 private dictionary : Dictionary) {}
                 
-    diction = this.dictionary.dictionary;
-
+    diction = this.dictionary.dictionary;       
+    
     userSetings = {
         langId: 0,
         visibleLabel: false 
+    };  
+    
+    user = {
+        email: '',
+        login: 'sysadmin',
+        name: '',
+        phoneNumber: '',
+        session: '',
+        userSetings: this.userSetings
     };
 
     breadcrumb = [];
-    sessionCookie = '';    
-    
-    user = {
-        login: 'sysadmin',
-        fam: 'Габбасов',
-        name: 'Марс',
-        otch: 'Беккалиевич',
-        password: ''
-    }
-    smallMenuGp = [];
-    
+    sessionCookie = ''; 
+    smallMenuGp = []; 
+   
     baseUrl = "http://192.168.1.20:51984/SpringCost";
 
     getBaseUrl(moduleId, langId){
@@ -48,14 +49,14 @@ export class AppService {
 
         return url;
     }
-    postSessionIn(data, moduleId, langId) {
+    postSessionIn(data, moduleId, langId) { // Авторизация пользователя
         let apiUrl = "/sessionIn";  
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
-    getTest(data, moduleId, langId){
+    getTest(data, moduleId, langId){ // Просто тест session
         let apiUrl = "/test"; 
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
@@ -72,8 +73,9 @@ export class AppService {
 
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
-            let userSetings = this.storage.retrieve('UserSetings');
-            if (userSetings == null) this.storage.store('UserSetings', this.userSetings);
+            this.user = this.storage.retrieve('userData');
+            if (this.user.userSetings == null){ this.user.userSetings = this.userSetings }
+            this.storage.store('UserSetings', this.user.userSetings);
     }
 
     getSmalMenuGP(langId){

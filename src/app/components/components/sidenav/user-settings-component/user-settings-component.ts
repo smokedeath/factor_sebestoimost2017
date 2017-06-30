@@ -25,12 +25,13 @@ export class UserSettingsComponent implements OnInit{
     userSetings;
 
     user = {
+        email: this.service.user.email,
         login: this.service.user.login,
-        fam: this.service.user.fam,
         name: this.service.user.name,
-        otch: this.service.user.otch,
-        password: ''
-    }
+        phoneNumber: this.service.user.phoneNumber,
+        session: this.service.user.session,
+        userSetings: this.service.user.userSetings
+    };
 
     newEmail: String = '';
 
@@ -66,6 +67,7 @@ export class UserSettingsComponent implements OnInit{
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');
+        this.user = this.service.user;
     }
 
 }
