@@ -5,24 +5,27 @@
         </div>
         <div class="col-lg-6">
             <div class="lft-btn-css">
-                <button pTooltip={{diction[92][langId]}} tooltipPosition="bottom"
+                <button pTooltip={{diction[92][userSetings.langId]}} tooltipPosition="bottom"
                         *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" (click)="closePanel(up)">
                     <i class="fa fa-address-card-o"></i> {{currentUser}}
                 </button>   
 
                 <button type="button" class="btn btn-primary" (click)="ol.toggle($event)" style="min-width: 90px">
-                    {{diction[108][langId]}}
+                    {{diction[108][userSetings.langId]}}
                 </button>  
 
-                <button pTooltip={{diction[109][langId]}} tooltipPosition="bottom" type="button" class="btn btn-primary" (click)="closePanel(op)">
-                    <i class="fa fa-question-circle">  <label *ngIf="visibleLabel">{{diction[109][langId]}}</label></i>
+                <button pTooltip={{diction[109][userSetings.langId]}} tooltipPosition="bottom" type="button" class="btn btn-primary" (click)="closePanel(op)">
+                    <i class="fa fa-question-circle">  <label *ngIf="userSetings.visibleLabel">{{diction[109][userSetings.langId]}}</label></i>
                 </button>
-                <button pTooltip={{diction[102][langId]}} tooltipPosition="bottom" *ngIf="navbarLevel==2" type="button" class="btn btn-primary" (click)="closePanel(mp)">  
+                <button pTooltip={{diction[102][userSetings.langId]}} tooltipPosition="bottom" *ngIf="navbarLevel==2" type="button" class="btn btn-primary" (click)="closePanel(mp)">  
                     <i class="fa fa-bars"></i>
                 </button>
-                <button pTooltip= {{diction[10][langId]}} tooltipPosition="bottom" *ngIf="navbarLevel!=0" type="button" class="btn btn-primary" 
+                <button pTooltip= {{diction[10][userSetings.langId]}} tooltipPosition="bottom" *ngIf="navbarLevel>1" type="button" class="btn btn-primary" 
                                                                                 routerLink={{rLink}} routerLinkActive="active">
-                    <i class="fa fa-caret-square-o-right">  <label *ngIf="visibleLabel">{{diction[10][langId]}}</label></i>   
+                    <i class="fa fa-caret-square-o-right">  <label *ngIf="userSetings.visibleLabel">{{diction[10][userSetings.langId]}}</label></i>   
+                </button>
+                <button (click)="exitToLogin()" pTooltip= {{diction[10][userSetings.langId]}} tooltipPosition="bottom" *ngIf="navbarLevel==1" type="button" class="btn btn-primary">
+                    <i class="fa fa-caret-square-o-right">  <label *ngIf="userSetings.visibleLabel">{{diction[10][userSetings.langId]}}</label></i>   
                 </button>
             </div>
         </div>
@@ -30,15 +33,15 @@
 </div>
 
 <p-overlayPanel #up [style]="{'background':'#2f373e','border':'1px solid #2f373e'}">
-    <user-settings-component [langId]=langId (closeSide)="closePanelOut(up)"></user-settings-component>
+    <user-settings-component [langId]=userSetings.langId (closeSide)="closePanelOut(up)"></user-settings-component>
 </p-overlayPanel>
 
 <p-overlayPanel #op [style]="{'background':'#2f373e','border':'1px solid #2f373e'}">>
-    <sidenav-ft-component [langId]=langId (closeSide)="closePanelOut(op)"></sidenav-ft-component>
+    <sidenav-ft-component [langId]=userSetings.langId (closeSide)="closePanelOut(op)"></sidenav-ft-component>
 </p-overlayPanel>
 
 <p-overlayPanel #mp [style]="{'background':'#2f373e','border':'1px solid #2f373e'}">>
-    <sidenav-link-menu-component [langId]=langId [smallMenu]=smallMenu (closeSide)="closePanelOut(mp)"></sidenav-link-menu-component>
+    <sidenav-link-menu-component [langId]=userSetings.langId [smallMenu]=smallMenu (closeSide)="closePanelOut(mp)"></sidenav-link-menu-component>
 </p-overlayPanel>
 
 <p-overlayPanel #ol [style]="{'background':'#2f373e','min-width':'50px'}">
@@ -46,3 +49,13 @@
     <div class="row btn-tooltip-marg"><a class="label label-primary btn-lng btn-block" (click)="langClick(1,ol)">{{diction[108][1]}}</a></div>
     <div class="row btn-tooltip-marg"><a class="label label-primary btn-lng btn-block" (click)="langClick(2,ol)">{{diction[108][2]}}</a></div>
 </p-overlayPanel>
+
+<p-dialog header={{diction[152][userSetings.langId]}} [(visible)]="display" modal="modal" width="300" [responsive]="true">
+    <h4>{{diction[164][userSetings.langId]}}</h4>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="CancelExit()" label={{diction[166][userSetings.langId]}}></button>
+                <button type="button" pButton icon="fa-check" (click)="ConfirmExit()" label={{diction[165][userSetings.langId]}}></button>
+            </div>
+        </p-footer>
+</p-dialog>

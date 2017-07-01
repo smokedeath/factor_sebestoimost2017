@@ -29,7 +29,7 @@
                             </div>
                             <div class="row margin-row">
                                 <div class="col-lg-6">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
+                                    <button (click)="saveUserProfile()" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
                                 </div>
                             </div>
                         </p-panel>
@@ -66,8 +66,18 @@
                         <p-panel header={{diction[156][langId]}} [toggleable]="true" [collapsed]="true">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-lg-5"><label>{{diction[157][langId]}} : </label></div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-6"><label class="vertical-label-css">{{diction[167][langId]}} : </label></div>
+                                    <div class="col-lg-6">
+                                        <combobox-component (oNgModel)="userSetings.langId = $event" 
+                                                            [iNgModel]=userSetings.langId 
+                                                            [structure]=arrLangs>                                                            
+                                        </combobox-component>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-6"><label>{{diction[157][langId]}} : </label></div>
+                                    <div class="col-lg-6">
                                         <p-checkbox (onChange)='updateProgramSetings()' name="buttonText" label="" [(ngModel)]="userSetings.visibleLabel" binary="true">
                                         </p-checkbox>
                                     </div>
@@ -75,7 +85,7 @@
                             </div>
                             <div class="row margin-row">
                                 <div class="col-lg-6">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
+                                    <button (click)="saveProgramSetings()" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{diction[101][langId]}}</button>
                                 </div>
                             </div>
                         </p-panel>
@@ -86,3 +96,14 @@
         </div>   
     </div>  
 </div>
+
+<p-growl [(value)]="msgs"></p-growl>
+
+<p-dialog header={{diction[152][langId]}} [(visible)]="display" modal="modal" width="300" [responsive]="true">
+    <p>{{displayText}}</p>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-check" (click)="display = false" label="Ok"></button>
+            </div>
+        </p-footer>
+</p-dialog>

@@ -3,6 +3,7 @@ import { OverlayPanel } from 'primeng/primeng';
 import { AppService } from './../../../../share/app.service';
 import { Dictionary } from './../../../../../assets/dictionary';
 import {LocalStorageService} from 'ngx-webstorage';
+import { Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -14,6 +15,7 @@ import {LocalStorageService} from 'ngx-webstorage';
 export class NavbarMegaMenuComponent implements OnInit{    
     constructor(private service : AppService,
                 private dictionary : Dictionary,
+                private router: Router,
                 private storage : LocalStorageService) {} 
 
     @Input()
@@ -31,9 +33,10 @@ export class NavbarMegaMenuComponent implements OnInit{
     @Output()
     updateIdLang: EventEmitter<number> = new EventEmitter();
     
-    langId: any;
     diction: any;
-    visibleLabel: Boolean = false;
+    userSetings;
+    user;
+    display: boolean = false;
         
     currentUser: String;
 
@@ -44,29 +47,36 @@ export class NavbarMegaMenuComponent implements OnInit{
     } 
     closePanel(overlaypanel: OverlayPanel){
         overlaypanel.toggle(event);   
-    }    
-
+    }   
     closePanelOut(overlaypanel: OverlayPanel){
         overlaypanel.toggle(event);
         overlaypanel.toggle(event);
     }   
-
     langClick(lng: Number, overlaypanel: OverlayPanel){
-        this.langId = lng;
-        let userSetings = this.storage.retrieve('UserSetings');
-        userSetings.langId = this.langId;
-        this.storage.store('UserSetings', userSetings);
-        this.updateIdLang.emit(this.langId);        
+        this.userSetings.langId = lng;
+        this.storage.store('UserSetings', this.userSetings);
+        this.updateIdLang.emit(this.userSetings.langId);        
         overlaypanel.toggle(event);  
         overlaypanel.toggle(event); 
+    }
+    exitToLogin(){
+        this.display = true;
+    }
+    CancelExit(){        
+        this.display = false;
+    }
+    ConfirmExit(){
+        this.display = false;
+        this.service.sessionOut(this.user.session ,this.user.programmId, this.userSetings.langId);
+        this.service.clearProgrammSession();
+        this.router.navigate(["login"]);
     }
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        let userSetings = this.storage.retrieve('UserSetings');
-        this.langId = userSetings.langId;
-        this.visibleLabel = userSetings.visibleLabel;        
+        this.userSetings = this.storage.retrieve('UserSetings');
+        this.user = this.storage.retrieve('userData');
         this.currentUser = this.service.user.name;
     }
 }

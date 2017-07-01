@@ -16,16 +16,30 @@ export class AppService {
     userSetings = {
         langId: 0,
         visibleLabel: false 
-    };  
-    
+    };      
     user = {
         email: '',
         login: 'sysadmin',
         name: '',
         phoneNumber: '',
         session: '',
+        programmId: 0,
         userSetings: this.userSetings
     };
+    arrLangs = [
+        {
+            id: 0,
+            name: this.diction[108][0]
+        },
+        {
+            id: 1,
+            name: this.diction[108][1]
+        },
+        {
+            id: 2,
+            name: this.diction[108][2]
+        }
+    ];
 
     breadcrumb = [];
     sessionCookie = ''; 
@@ -63,19 +77,80 @@ export class AppService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+    sessionOut(data, moduleId, langId){ // Закрытие сессии
+        let apiUrl = "/sessionOut";  
+        let param = { session: data}
+        let options = new RequestOptions({ params: param });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options);
+    }
+    saveSettings(data, moduleId, langId){ // Сохронение настроек программы
+        let apiUrl = "/saveSettings"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+    changeProfile(data, moduleId, langId){ // Изменения данных профиля пользователя
+        let apiUrl = "/changeProfile"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
-	    let body = res.json();
-        return body.data;
+	    // let body = res.json();
+        return res;
     }
     private handleError (error: Response | any) {
-        return Observable.throw(error.json() || error);
+        return Observable.throw(error || error);
+    }
+    objecToString(obj: Object){
+        let str: String = '';
+        let q = [];
+        for (let a in obj){
+            q.push(a + '=' + obj[a]);
+        }
+        str = q.join('&');
+        return str;
+    }
+    getErrorFromData(data, sStr, eStr){
+        let searchStr = data;
+        let startStr = searchStr.indexOf(sStr);
+        startStr = startStr + sStr.length;
+        let endStr = searchStr.indexOf(eStr, startStr);
+        let errorStr = searchStr.substr(startStr, endStr-startStr);
+        return errorStr;
     }
 
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
+            let user = this.storage.retrieve('userData');
+            if (user == null) this.storage.store('userData', this.user);            
             this.user = this.storage.retrieve('userData');
-            if (this.user.userSetings == null){ this.user.userSetings = this.userSetings }
-            this.storage.store('UserSetings', this.user.userSetings);
+
+            let userSetings = this.storage.retrieve('UserSetings');
+            if (userSetings == null)this.storage.store('UserSetings', this.userSetings);                        
+            this.userSetings = this.storage.retrieve('userData'); 
+            this.user.userSetings = this.userSetings
+    }
+
+    clearProgrammSession(){        
+        this.storage.clear('UserSetings');
+        this.storage.clear('UserData');    
+        this.userSetings = {
+            langId: 0,
+            visibleLabel: false 
+        };      
+        this.user = {
+            email: '',
+            login: 'sysadmin',
+            name: '',
+            phoneNumber: '',
+            session: '',
+            programmId: 0,
+            userSetings: this.userSetings
+        };
     }
 
     getSmalMenuGP(langId){

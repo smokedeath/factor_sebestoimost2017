@@ -76,55 +76,61 @@ export class ComponentLogin implements OnInit{
         this.service.postSessionIn(data, this.user.programmId, this.langId)
                     .subscribe(
                             data => {  
-                                let user = {
-                                        email: data.email,
-                                        login: this.user.login,
-                                        name: data.name,
-                                        phoneNumber: data.phoneNumber,
-                                        session: data.session,
-                                        userSetings: data.userSetings
-                                    };
-                                this.storage.store('userData', user);
-                                switch(Number(this.user.userId)){
-                                    case 1: { 
-                                        switch(this.user.programmId) { 
-                                            case 1: { 
-                                                this.router.navigate(["index.gp"]);
-                                                break; 
+                                if (data.status==200){
+                                    data = data.json();
+                                    data = data.data;
+                                    let user = {
+                                            email: data.email,
+                                            login: this.user.login,
+                                            name: data.name,
+                                            phoneNumber: data.phoneNumber,
+                                            session: data.session,
+                                            programmId: this.user.programmId,
+                                            userSetings: data.userSettings
+                                        };
+                                    this.storage.store('userData', user);
+                                    switch(Number(this.user.userId)){
+                                        case 1: { 
+                                            switch(this.user.programmId) { 
+                                                case 1: { 
+                                                    this.router.navigate(["index.gp"]);
+                                                    break; 
+                                                } 
+                                                case 2: { 
+                                                    this.router.navigate(["index.mzhs"]);
+                                                    break; 
+                                                } 
+                                                default: { 
+                                                    break; 
+                                                } 
                                             } 
-                                            case 2: { 
-                                                this.router.navigate(["index.mzhs"]);
-                                                break; 
-                                            } 
-                                            default: { 
-                                                break; 
-                                            } 
+                                            break; 
                                         } 
-                                        break; 
-                                    } 
-                                    case 2: { 
-                                        window.location.href='http://192.168.1.20:8080/xtofi/a/webmod/default/ru'
-                                        break; 
-                                    } 
-                                    case 3: { 
-                                        window.location.href='http://192.168.1.20:8080/xtofi/a/usr/default/ru/'
-                                        break; 
-                                    } 
-                                    default: { 
-                                        break; 
-                                    } 
+                                        case 2: { 
+                                            window.location.href='http://192.168.1.20:8080/xtofi/a/webmod/default/ru'
+                                            break; 
+                                        } 
+                                        case 3: { 
+                                            window.location.href='http://192.168.1.20:8080/xtofi/a/usr/default/ru/'
+                                            break; 
+                                        } 
+                                        default: { 
+                                            break; 
+                                        } 
+                                    }
+                                } else {
+                                   console.log(data);
                                 }
                         }, error =>  {
-                            let errorMessage = <any>error;
-                            let message = errorMessage.message;
-                            let body = errorMessage.stack;
-                            console.log(errorMessage);
-                            this.showDialog(this.diction[163][this.langId]);
+                            this.getErrorDialog(this.service.getErrorFromData(error._body, 'class="error">', 'dao:'));
                         }
                     );                  
         }else{           
             this.showDialog(this.diction[161][this.langId]); 
         }
+    }
+    getErrorDialog(error){
+        this.showDialog(error);
     }
 
     ngOnInit(){
