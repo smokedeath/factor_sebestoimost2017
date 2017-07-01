@@ -88,6 +88,8 @@ export class ComponentLogin implements OnInit{
                                             programmId: this.user.programmId,
                                             userSetings: data.userSettings
                                         };
+                                    let md5 = this.service.getMD5fromString(this.user.password);
+                                    this.storage.store('md5', md5);
                                     this.storage.store('userData', user);
                                     switch(Number(this.user.userId)){
                                         case 1: { 

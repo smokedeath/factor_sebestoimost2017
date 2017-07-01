@@ -4,12 +4,14 @@ import { SelectItem } from './interface.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Dictionary } from './../../assets/dictionary';
 import { Observable } from 'rxjs';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable()
 export class AppService {    
     constructor(private http: Http,
                 private storage : LocalStorageService,
-                private dictionary : Dictionary) {}
+                private dictionary : Dictionary,
+                private _md5: Md5) {}
                 
     diction = this.dictionary.dictionary;       
     
@@ -97,6 +99,13 @@ export class AppService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+    changePassword(data, moduleId, langId){ //Изменение пароля
+        let apiUrl = "/changePassword"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 
     private extractData(res: Response) {
 	    // let body = res.json();
@@ -122,6 +131,10 @@ export class AppService {
         let errorStr = searchStr.substr(startStr, endStr-startStr);
         return errorStr;
     }
+    getMD5fromString(data){
+        let hash = Md5.hashStr(data);
+        return hash;
+    }
 
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
@@ -138,6 +151,7 @@ export class AppService {
     clearProgrammSession(){        
         this.storage.clear('UserSetings');
         this.storage.clear('UserData');    
+        this.storage.clear('md5'); 
         this.userSetings = {
             langId: 0,
             visibleLabel: false 

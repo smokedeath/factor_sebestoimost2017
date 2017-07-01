@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
+import { Md5 } from 'ts-md5/dist/md5';
 
 //LeafletModule
 import { LeafletModule } from '@asymmetrik/angular2-leaflet';
@@ -80,7 +81,7 @@ import { BreadcrumbService } from './share/breadcrumb.service';
   entryComponents: [
     ErrorDialog
   ],
-  providers: [AppService, Dictionary, BreadcrumbService],
+  providers: [AppService, Dictionary, BreadcrumbService, Md5],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

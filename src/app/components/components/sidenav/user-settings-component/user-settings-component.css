@@ -49,3 +49,6 @@
 .vertical-label-css{    
     margin-top: 5px;
 }
+.error-label{
+    color: red;
+}

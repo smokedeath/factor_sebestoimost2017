@@ -106,7 +106,10 @@ export class UserSettingsComponent implements OnInit{
                             if (error.status==403){
                                 this.showDialog(this.diction[169][this.langId]);
                                 this.router.navigate(["login"]);
-                            }else  if(error.status==500) this.showWarn(this.diction[170][this.langId]); else  console.log(error);
+                            }else  if(error.status==500){
+                                this.showWarn(this.diction[170][this.langId]); 
+                                console.log(error);
+                            } else  console.log(error);
                         }
                     );
     }
@@ -131,10 +134,51 @@ export class UserSettingsComponent implements OnInit{
                             if (error.status==403){
                                 this.showDialog(this.diction[169][this.langId]);
                                 this.router.navigate(["login"]);
-                            }else  if(error.status==500) this.showWarn(this.diction[170][this.langId]); else  console.log(error);
+                            }else  if(error.status==500) {
+                                this.showWarn(this.service.getErrorFromData(error._body, 'class="error">', 'dao:')); 
+                                console.log(error);
+                            } else  console.log(error);
                         }
                     );
     }
+    updatePassword(oldpass: String, pass1: String, pass2: String){
+        let oldhash = this.storage.retrieve('md5'); 
+        let oldpasshash = this.service.getMD5fromString(oldpass);
+        if (oldhash==oldpasshash){
+            if (this.getCorectPassword(oldpass)&&this.getCorectPassword(pass1)&&this.getCorectPassword(pass2)){
+                if (pass1===pass2){
+                    if (oldpass!=pass1){  
+                        let data = {
+                            session: this.user.session,
+                            passwd: oldpass,
+                            newPasswd: pass1
+                        }
+                        this.service.changePassword(data, this.user.programmId, this.userSetings.langId)
+                                    .subscribe(
+                                        data => {   
+                                            if (data.status==200){
+                                                this.showSuccess();
+                                            } else console.log(data);
+                                        }, error => {
+                                            if (error.status==403){
+                                                this.showDialog(this.diction[169][this.langId]);
+                                                this.router.navigate(["login"]);
+                                            }else  if(error.status==500) {
+                                                this.showWarn(this.service.getErrorFromData(error._body, 'class="error">', 'dao:')); 
+                                                console.log(error);
+                                            } else  console.log(error);
+                                        }
+                                    );
+                    }else this.showWarn(this.diction[172][this.langId]);
+                } else this.showWarn(this.diction[171][this.langId]);
+            }else this.showWarn(this.diction[173][this.langId]);
+        }else this.showWarn(this.diction[174][this.langId]);
+    }
+    getCorectPassword(pass: String): Boolean{
+        let result=true;
+        if (pass.indexOf(' ')>0) result=false;
+        return result;
+    };
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
