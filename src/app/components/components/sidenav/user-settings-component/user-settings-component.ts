@@ -41,6 +41,12 @@ export class UserSettingsComponent implements OnInit{
         userSetings: this.service.user.userSetings
     };
 
+    nUser = {
+        email: this.service.user.email,
+        name: this.service.user.name,
+        phoneNumber: this.service.user.phoneNumber
+    };  
+
     newEmail: String = '';
 
     pas = {
@@ -87,6 +93,10 @@ export class UserSettingsComponent implements OnInit{
     updateProgramSetings(){
         this.storage.store('UserSetings', this.userSetings);
     }
+    cbLangChang(e){
+        this.userSetings.langId = e;
+        this.updateProgramSetings();
+    }
     saveProgramSetings(){       
         let userSetings: String = this.service.objecToString(this.userSetings); 
         console.log(userSetings);
@@ -114,32 +124,49 @@ export class UserSettingsComponent implements OnInit{
                     );
     }
     saveUserProfile(){
-        let data = {
-            session: this.user.session,
-            phoneNumber: this.user.phoneNumber,
-            email: this.user.email,
-            name: this.user.name
+        let isSave = true;
+        let errorText = '';
+        if (this.nUser.name.length==0) {
+            isSave = false;
+            if (errorText.length>0) errorText = errorText + ', ' + this.diction[162][this.langId]  
+            else errorText = this.diction[162][this.langId];
         }
-        this.service.changeProfile(data, this.user.programmId, this.userSetings.langId)
-                    .subscribe(
-                        data => {   
-                            if (data.status==200){
-                                this.showSuccess();
-                                // this.user.email = data.email;
-                                // this.user.phoneNumber = data.phoneNumber;
-                                // this.user.name = data.name;
-                                // this.storage.store('userData', this.user); 
-                            } else console.log(data);
-                        }, error => {
-                            if (error.status==403){
-                                this.showDialog(this.diction[169][this.langId]);
-                                this.router.navigate(["login"]);
-                            }else  if(error.status==500) {
-                                this.showWarn(this.service.getErrorFromData(error._body, 'class="error">', 'dao:')); 
-                                console.log(error);
-                            } else  console.log(error);
-                        }
-                    );
+        if (this.nUser.phoneNumber.length==0) {
+            isSave = false;
+            if (errorText.length>0) errorText = errorText + ', ' + this.diction[120][this.langId]  
+            else errorText = this.diction[120][this.langId];
+        }
+        if (this.nUser.email.length==0) {
+            isSave = false;
+            if (errorText.length>0) errorText = errorText + ', ' + this.diction[155][this.langId]  
+            else errorText = this.diction[155][this.langId];
+        }
+
+        if (isSave) {
+            let data = {
+                session: this.user.session,
+                phoneNumber: this.nUser.phoneNumber,
+                email: this.nUser.email,
+                name: this.nUser.name
+            }
+            this.service.changeProfile(data, this.user.programmId, this.userSetings.langId)
+                        .subscribe(
+                            data => {   
+                                if (data.status==200){
+                                    this.showSuccess();
+                                    this.storage.store('userData', this.nUser); 
+                                } else console.log(data);
+                            }, error => {
+                                if (error.status==403){
+                                    this.showDialog(this.diction[169][this.langId]);
+                                    this.router.navigate(["login"]);
+                                }else  if(error.status==500) {
+                                    this.showWarn(this.service.getErrorFromData(error._body, 'class="error">', 'dao:')); 
+                                    console.log(error);
+                                } else  console.log(error);
+                            }
+                        );
+        } else this.showWarn(this.diction[175][this.langId] + ' : ' + errorText); 
     }
     updatePassword(oldpass: String, pass1: String, pass2: String){
         let oldhash = this.storage.retrieve('md5'); 
@@ -184,7 +211,13 @@ export class UserSettingsComponent implements OnInit{
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');
-        this.user = this.service.user;
+        this.user = this.service.user;     
+
+        this.nUser = {
+            email: this.user.email,
+            name: this.user.name,
+            phoneNumber: this.user.phoneNumber
+        };  
         this.arrLangs = this.service.arrLangs;
     }
 

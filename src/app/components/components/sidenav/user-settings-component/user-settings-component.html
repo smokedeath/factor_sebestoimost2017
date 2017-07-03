@@ -17,15 +17,18 @@
                         <p-panel header={{diction[158][langId]}} [toggleable]="true" [collapsed]="true">   
                             <div class="form-group">
                                 <label class="label-pass-css">{{diction[162][langId]}}</label>
-                                <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
+                                <label class="error-label" *ngIf="nUser.name.length==0">{{diction[175][langId]}}</label>
+                                <input type="text" class="form-control" name="name" [(ngModel)]="nUser.name">
                             </div>                         
                             <div class="form-group">
                                 <label class="label-pass-css">{{diction[120][langId]}}</label>
-                                <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="user.phoneNumber">
+                                <label class="error-label" *ngIf="nUser.phoneNumber.length==0">{{diction[175][langId]}}</label>
+                                <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="nUser.phoneNumber">
                             </div>
                             <div class="form-group">
                                 <label class="label-pass-css">{{diction[155][langId]}}</label>
-                                <input type='email' class="form-control" name="email" placeholder='user.example@example.com' [(ngModel)]="user.email">
+                                <label class="error-label" *ngIf="nUser.email.length==0">{{diction[175][langId]}}</label>
+                                <input type='email' class="form-control" name="email" placeholder='user.example@example.com' [(ngModel)]="nUser.email">
                             </div>
                             <div class="row margin-row">
                                 <div class="col-lg-6">
@@ -73,9 +76,9 @@
                                 <div class="row">
                                     <div class="col-lg-6"><label class="vertical-label-css">{{diction[167][langId]}} : </label></div>
                                     <div class="col-lg-6">
-                                        <combobox-component (oNgModel)="userSetings.langId = $event" 
+                                        <combobox-component (oNgModel)="cbLangChang($event)" 
                                                             [iNgModel]=userSetings.langId 
-                                                            [structure]=arrLangs>                                                            
+                                                            [structure]=arrLangs (onChange)='updateProgramSetings()'>                                                            
                                         </combobox-component>
                                     </div>
                                 </div>
