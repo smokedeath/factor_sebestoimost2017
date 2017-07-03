@@ -128,6 +128,7 @@ export class FinanceDataInput implements OnInit{
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.updateSetings();
+        let user = this.storage.retrieve('userData');
 
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
@@ -141,30 +142,101 @@ export class FinanceDataInput implements OnInit{
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
         }
         ///////////////////   Типо сервисы   ////////////////////  
-        this.arrVladelic = this.service.getVladelic();
-        this.arrPostavschik = this.service.getPostavschik();
-        this.vladelicModel = this.arrVladelic[0].id;        
-        this.postavschikModel = this.arrPostavschik[0].id; 
+        // Структурные подразделения
+        this.service.getVladelic(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrVladelic = [];
+                                this.vladelicModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrVladelic.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.vladelicModel = this.arrVladelic[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    ); 
+        this.service.getPostavschik(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrPostavschik = [];
+                                this.postavschikModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrPostavschik.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.postavschikModel = this.arrPostavschik[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );  
+
         this.arrItemSize = this.service.getItemSize();
         this.itemSizeModel = this.arrItemSize[0].id;
 
         //Тип периода
-        this.arrtypePeriud = this.service.getGenPeriodList();
-        this.typePeriudModel = this.arrtypePeriud[0].id;
-                    // .subscribe(data => {               
-                    //     let dateInJson: any;   
-                    //     dateInJson = data.json();
-                    //     for (let i = 0; i<dateInJson.length; i++){
-                    //         this.arrtypePeriud.push({                        
-                    //             name: dateInJson[i].name_ru,
-                    //             id: dateInJson[i].id
-                    //         });
-                    //     }   
-                    //     this.typePeriudModel = this.arrtypePeriud[0].id;
-                    // });
+        this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe( 
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrtypePeriud = [];
+                                this.typePeriudModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrtypePeriud.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.typePeriudModel = this.arrtypePeriud[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
         //статусы
-        this.arrStatus = this.service.getStatus();
-        this.statusModel = this.arrStatus[0].id;
+        this.service.getStatus(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe( 
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrStatus = [];
+                                this.statusModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrStatus.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.statusModel = this.arrStatus[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {
             this.tableDate = data.json().data

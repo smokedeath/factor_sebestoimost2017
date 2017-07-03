@@ -79,21 +79,31 @@ export class CraschetDataInputComponent implements OnInit{
         // Загрузка по умолчанию (Пока нет api)
         this.arrAnyData = this.service.getAnyData();
         this.anyDataModel = this.arrAnyData[0].id;
+        let user = this.storage.retrieve('userData');
 
         //Тип периода
-        this.arrtypePeriud = this.service.getGenPeriodList();
-        this.typePeriudModel = this.arrtypePeriud[2].id;
-                    // .subscribe(data => {               
-                    //     let dateInJson: any;   
-                    //     dateInJson = data.json();
-                    //     for (let i = 0; i<dateInJson.length; i++){
-                    //         this.arrtypePeriud.push({                        
-                    //             name: dateInJson[i].name_ru,
-                    //             id: dateInJson[i].id
-                    //         });
-                    //     }   
-                    //     this.typePeriudModel = this.arrtypePeriud[0].id;
-                    // });
+        this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe( 
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrtypePeriud = [];
+                                this.typePeriudModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrtypePeriud.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.typePeriudModel = this.arrtypePeriud[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
 
         this.service.getIODVtable().subscribe(data => {
             this.tableDate = data.json();

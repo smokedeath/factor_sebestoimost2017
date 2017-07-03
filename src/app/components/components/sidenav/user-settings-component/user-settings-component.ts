@@ -202,8 +202,8 @@ export class UserSettingsComponent implements OnInit{
         }else this.showWarn(this.diction[174][this.langId]);
     }
     getCorectPassword(pass: String): Boolean{
-        let result=true;
-        if (pass.indexOf(' ')>0) result=false;
+        let result=true;        
+        if (pass.charAt(0)==' ' || pass.indexOf(' ')>0) result=false;
         return result;
     };
 

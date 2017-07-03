@@ -86,6 +86,7 @@ export class ExplotationPokazTemplateComponent implements OnInit{
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');
+        let user = this.storage.retrieve('userData');
         
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
@@ -102,12 +103,53 @@ export class ExplotationPokazTemplateComponent implements OnInit{
         // this.arrStatus = this.service.getStatus();
         // this.statusModel = this.arrStatus[0].id;
 
-        this.arrVladelic = this.service.getVladelic();
-        this.vladelicModel = this.arrVladelic[0].id;        
+        // Структурные подразделения
+        this.service.getVladelic(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrVladelic = [];
+                                this.vladelicModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrVladelic.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.vladelicModel = this.arrVladelic[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );       
 
         //Тип периода
-        this.arrtypePeriud = this.service.getGenPeriodList();
-        this.typePeriudModel = this.arrtypePeriud[0].id;
+        this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe( 
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrtypePeriud = [];
+                                this.typePeriudModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrtypePeriud.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.typePeriudModel = this.arrtypePeriud[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
         // Таблица            
         this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
     }    

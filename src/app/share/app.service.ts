@@ -5,12 +5,14 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { Dictionary } from './../../assets/dictionary';
 import { Observable } from 'rxjs';
 import { Md5 } from 'ts-md5/dist/md5';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AppService {    
     constructor(private http: Http,
                 private storage : LocalStorageService,
                 private dictionary : Dictionary,
+                private router: Router,
                 private _md5: Md5) {}
                 
     diction = this.dictionary.dictionary;       
@@ -61,51 +63,79 @@ export class AppService {
         if (langId==1) lang = 'ru';
         if (langId==2) lang = 'en';
 
-        url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang + "/session";
+        url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
 
         return url;
     }
     postSessionIn(data, moduleId, langId) { // Авторизация пользователя
-        let apiUrl = "/sessionIn";  
+        let apiUrl = "/session/sessionIn";  
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
     getTest(data, moduleId, langId){ // Просто тест session
-        let apiUrl = "/test"; 
+        let apiUrl = "/session/test"; 
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
     sessionOut(data, moduleId, langId){ // Закрытие сессии
-        let apiUrl = "/sessionOut";  
+        let apiUrl = "/session/sessionOut";  
         let param = { session: data}
         let options = new RequestOptions({ params: param });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options);
     }
     saveSettings(data, moduleId, langId){ // Сохронение настроек программы
-        let apiUrl = "/saveSettings"; 
+        let apiUrl = "/session/saveSettings"; 
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
     changeProfile(data, moduleId, langId){ // Изменения данных профиля пользователя
-        let apiUrl = "/changeProfile"; 
+        let apiUrl = "/session/changeProfile"; 
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
     changePassword(data, moduleId, langId){ //Изменение пароля
-        let apiUrl = "/changePassword"; 
+        let apiUrl = "/session/changePassword"; 
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
+    getGenPeriodList(data, moduleId, langId) {  //Тип периода
+        let apiUrl = "/catalog/periodType"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    } 
+    getVladelic(data, moduleId, langId){ // Структурные подразделения
+        let apiUrl = "/catalog/freightCarrier"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);    
+    }
+    getPostavschik(data, moduleId, langId){ //Поставщики данных
+        let apiUrl = "/catalog/dataProvider"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);    
+    }
+    getStatus(data, moduleId, langId) {  // Статусы данных 
+        let apiUrl = "/catalog/dataStatus"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);    
+    } 
 
     private extractData(res: Response) {
 	    // let body = res.json();
@@ -135,6 +165,18 @@ export class AppService {
         let hash = Md5.hashStr(data);
         return hash;
     }
+    goToLogin(){
+        this.router.navigate(["login"]);
+    }
+
+
+
+
+
+
+
+
+
 
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
@@ -347,27 +389,7 @@ export class AppService {
         return factorTree;
         // let apiUrl = "/api/sebestoimost/gp/getfacttree"; 
         // return this.http.get(this.baseUrl + apiUrl);
-    }
-    getGenPeriodList() {  //Тип периода
-        let priodList = [
-            {id: 1, name: "Год"},
-            {id: 2, name: "Квартал"},
-            {id: 3, name: "Месяц"}
-        ]
-        return priodList;
-        // let apiUrl = "/api/sebestoimost/genperiodlist"; 
-        // return this.http.get(this.baseUrl + apiUrl);
-    }    
-    getStatus() {  // Генерирует статусы для комбобокса в расчете плановой себестоимости
-        let statusList = [
-            {id: 1, name: "Факт"},
-            {id: 2, name: "План"}
-        ];
-        return statusList;
-        // let apiUrl = "/api/sebestoimost/sredsebest/getstatus"; 
-        // return this.http.get(this.baseUrl + apiUrl);
-    } 
-
+    }   
     ////////////////////
     ////////////////////
     getMetodSebestoimost(){
@@ -424,10 +446,6 @@ export class AppService {
         ];
         return itemSize;
     }
-    getPostavschik(){
-         let arrPostavschik = [{id: 1, name: "Поставщик"}];
-         return arrPostavschik;
-    }
     getGrupZnachen(){
         let arrGrupZnachen = [
                                 {id: 1, name: "Измеритель 1"},
@@ -461,15 +479,5 @@ export class AppService {
                         }
                       ];
         return arrGrupZnacheni;
-    }
-
-    getVladelic(){        
-        let arrVladelic = [{id:1,name:"Грузовой Перевозчик"},{id:2,name:"ДН-1 Акмола"},{id:3,name:"ДН-2 Костанай"},{id:4,name:"ДН-3 Павлодар"},
-                            {id:5,name:"ДН-4 Караганда"},{id:6,name:"ДН-5 ЗАЩИТА (К ДН-6 СЕМЕЙ)"},{id:7,name:"ДН-6 Семей"},{id:8,name:"ДН-7 Алматы"},
-                            {id:9,name:"ДН-8 Жамбыл"},{id:10,name:"ДН-9 Шымкент"},{id:11,name:"ДН-10 Кызыл-Орда"},{id:12,name:"ДН-11 Актобе"},
-                            {id:13,name:"ДН-12 Уральск"},{id:14,name:"ДН-13 Атырау"},{id:15,name:"НОД-14 Мангистау"},{id:16,name:"ДС Астана"},
-                            {id:17,name:"ДС Достык"},{id:18,name:"ДС Алтынколь"}    
-                          ];
-        return arrVladelic;
     }
 }
