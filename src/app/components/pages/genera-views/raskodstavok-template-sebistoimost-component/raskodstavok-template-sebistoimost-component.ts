@@ -22,6 +22,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     procentSchow: Boolean = false;
     userSetings;
     user;
+    firstLoad: Boolean = false;
 
     arrtypePeriud = [];
     tableDate = [];
@@ -158,8 +159,51 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
         }
     } 
+    addChild(e){
+        let param = {
+            session: this.user.session,
+            freightCarrier: this.vladelicModel,
+            provider: this.postavschikModel,
+            measure: this.itemSizeModel,
+            status: this.statusModel,
+            parent: e,
+            periodType: this.typePeriudModel,
+            dte: this.service.getDataString(this.defualtDate)
+        }
+        // Таблица      
+        this.service.getRashodiTable(param, this.user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;    
+                                data = data.data; 
+                                if (data.length>0){
+
+                                }   
+                                // delete myobj.leaf;                             
+                            } else console.log(data);
+                        },
+                        error =>{
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
+    }
+    getFirstTableData(){
+        if (this.firstLoad){
+            if (this.vladelicModel>0 && this.postavschikModel>0 && this.itemSizeModel>0 && this.statusModel>0 && this.typePeriudModel>0){
+                this.getTabelData();
+                this.firstLoad = false;
+            }
+        }
+    }
 
     ngOnInit(){
+        this.firstLoad = true;
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');        
