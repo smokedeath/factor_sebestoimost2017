@@ -21,6 +21,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     diction: any;
     procentSchow: Boolean = false;
     userSetings;
+    user;
 
     arrtypePeriud = [];
     tableDate = [];
@@ -28,7 +29,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
 
     fixetColumns = [
         {
-            field: "name",
+            field: "id",
             header: "Номер статьи"
         },
         {
@@ -36,48 +37,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
             header: "Наименование статьи"
         }
     ];
-    noFixetColumns = [
-        {
-            field: "size",
-            header: "Расходы на оплату труда"
-        },
-        {
-            field: "size",
-            header: "Отчисления от фонда оплаты труда"
-        },
-        {
-            field: "size",
-            header: "Материалы"
-        },
-        {
-            field: "size",
-            header: "Топливо"
-        },
-        {
-            field: "size",
-            header: "Электроэнергия"
-        },
-        {
-            field: "size",
-            header: "Оплата работ сторонних организаций"
-        },
-        {
-            field: "size",
-            header: "Оплата работ дочерних предприятий"
-        },
-        {
-            field: "size",
-            header: "Износ средств"
-        },
-        {
-            field: "size",
-            header: "Прочие расходы"
-        },
-        {
-            field: "size",
-            header: "Сумма по элементам"
-        }        
-    ];
+    noFixetColumns = [];
 
     tableDateColumns = []; 
 
@@ -105,6 +65,9 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     viewTemplateFolder(){
         //
     }
+    refreschData(){
+        this.getTabelData();
+    }
     updateTableColumns(columns: any[]){
         let newColumns = columns;
         this.tableDateColumns = [];
@@ -115,17 +78,75 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
             this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
         }
     }
-
     updateIdLang(){
         this.userSetings = this.storage.retrieve('UserSetings');
     }
-
-    ngOnInit(){
-        this.diction = this.dictionary.dictionary;
-        this.service.loadUserSetings();
-        this.userSetings = this.storage.retrieve('UserSetings');        
-        let user = this.storage.retrieve('userData');
-
+    getTabelData(){
+        let param = {
+            session: this.user.session,
+            freightCarrier: this.vladelicModel,
+            provider: this.postavschikModel,
+            measure: this.itemSizeModel,
+            status: this.statusModel,
+            parent: 0,
+            periodType: this.typePeriudModel,
+            dte: this.service.getDataString(this.defualtDate)
+        }
+        // Таблица      
+        this.service.getRashodiTable(param, this.user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.noFixetColumns = [];
+                                for (let i=0; i<data.сostElements.length; i++){
+                                    if (this.userSetings.langId==0)
+                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.kz});   
+                                    if (this.userSetings.langId==1)
+                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.ru});   
+                                    if (this.userSetings.langId==2)
+                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.en});     
+                                }
+                                this.initTableColumns();
+                                data = data.data;
+                                this.inputTabelData(data, this.userSetings.langId);                                          
+                            } else console.log(data);
+                        },
+                        error =>{
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );   
+    }
+    inputTabelData(data, lang){        
+        this.tableDate = [];
+         for (let i=0; i<data.length; i++){  
+             let dat = {};           
+             for (let key in data[i]){
+                if (key!='id'&&key!='name'){
+                    if (this.procentSchow) dat[key] = data[i][key].percentValue;
+                    else dat[key] = data[i][key].value;
+                }else{
+                    if (key=='id')dat[key] = data[i][key];
+                    if (key=='name'){
+                        if (lang==0) dat[key] = data[i][key].kz;
+                        if (lang==1) dat[key] = data[i][key].ru;
+                        if (lang==2) dat[key] = data[i][key].en;
+                    }
+                }
+             }
+             let inData = {
+                 data: dat,
+                 leaf: false
+             }
+             this.tableDate.push(inData);
+         }
+    }
+    initTableColumns(){
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
@@ -133,13 +154,19 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
         for (let i=0; i<this.noFixetColumns.length; i++){
             this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
         }
-
         for(let i=0; i<this.noFixetColumns.length; i++){    
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
         }
+    } 
+
+    ngOnInit(){
+        this.diction = this.dictionary.dictionary;
+        this.service.loadUserSetings();
+        this.userSetings = this.storage.retrieve('UserSetings');        
+        this.user = this.storage.retrieve('userData');
         ///////////////////   Типо сервисы   ////////////////////  
         // Структурные подразделения
-        this.service.getVladelic(user.session, user.programmId, this.userSetings.langId)
+        this.service.getVladelic(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -161,7 +188,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                             } else  console.log(error);
                         }
                     ); 
-        this.service.getPostavschik(user.session, user.programmId, this.userSetings.langId)
+        this.service.getPostavschik(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -183,12 +210,31 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                             } else  console.log(error);
                         }
                     ); 
-
-        this.arrItemSize = this.service.getItemSize();
-        this.itemSizeModel = this.arrItemSize[0].id;
-
+        //Единицы измерения  
+        this.service.getItemSize(this.user.session, this.user.programmId, this.userSetings.langId)
+                    .subscribe( 
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrItemSize = [];
+                                this.itemSizeModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrItemSize.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.itemSizeModel = this.arrItemSize[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
         //Тип периода
-        this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
+        this.service.getGenPeriodList(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
@@ -211,7 +257,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                         }
                     );
         //статусы
-        this.service.getStatus(user.session, user.programmId, this.userSetings.langId)
+        this.service.getStatus(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
@@ -232,9 +278,8 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    );
-        // Таблица            
-        this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
-
+                    );   
+        // this.getTabelData();
+        this.initTableColumns();
     }
 }

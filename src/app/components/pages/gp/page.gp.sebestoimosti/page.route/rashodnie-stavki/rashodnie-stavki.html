@@ -1,13 +1,15 @@
 <bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
-<p-tabView>
-    <p-tabPanel header={{diction[18][userSetings.langId]}}>
-        <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>      
-    </p-tabPanel>
-    <p-tabPanel header={{diction[19][userSetings.langId]}}>
-        <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>    
-    </p-tabPanel>
-    <p-tabPanel header={{diction[20][userSetings.langId]}}>
-        <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>   
-    </p-tabPanel>
-</p-tabView>
-<div>{{updateIdLang()}}</div>
+<div class="breadcramps-margin">
+    <p-tabView>
+        <p-tabPanel header={{diction[18][userSetings.langId]}}>
+            <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>      
+        </p-tabPanel>
+        <p-tabPanel header={{diction[19][userSetings.langId]}}>
+            <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>    
+        </p-tabPanel>
+        <p-tabPanel header={{diction[20][userSetings.langId]}}>
+            <raskodstavok-template-sebistoimost-component></raskodstavok-template-sebistoimost-component>   
+        </p-tabPanel>
+    </p-tabView>
+    <div>{{updateIdLang()}}</div>
+</div>

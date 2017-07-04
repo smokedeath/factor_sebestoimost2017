@@ -1,4 +1,7 @@
 .breadcrumb-css {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    position: fixed;
+    left: 15px;
+    right: 15px;
+    top: 103px;
+    z-index: 1;
 }

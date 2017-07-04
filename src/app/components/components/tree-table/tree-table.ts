@@ -34,6 +34,7 @@ export class TreeTableComponent {
 
     ngOnChanges(){
         this.filterColumnIdStatValue = [];
+        this.FilterTableDate = [];
         this.filterColumnIdStatValue = this.getChildDate(this.tableDate, 0);
         this.filterColumnNameStatValue = this.getChildDate(this.tableDate, 1);
         for (let i=0; i<this.tableDate.length; i++) this.FilterTableDate.push(this.tableDate[i]);

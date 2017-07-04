@@ -1,158 +1,160 @@
 <bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
 <div>{{updateIdLang()}}</div>
 <!--<p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">-->
-<p-tabView *ngIf="!disabled">  
-    <p-tabPanel header={{diction[137][userSetings.langId]}}>        
-        <div class="row row-margin">  
-                <button  pTooltip={{diction[134][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
-                        (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  
-                        <label *ngIf="userSetings.visibleLabel">  {{diction[134][userSetings.langId]}}</label></button>
-                <button  pTooltip={{diction[58][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
-                        (click)="resetParams()"><i class="material-icons">clear</i>  
-                        <label *ngIf="userSetings.visibleLabel">  {{diction[58][userSetings.langId]}}</label></button>       
-        </div>       
-        <div class="row row-margin">  
-            <p-panel>
+<div class="breadcramps-margin">
+    <p-tabView *ngIf="!disabled">  
+        <p-tabPanel header={{diction[137][userSetings.langId]}}>        
+            <div class="row row-margin">  
+                    <button  pTooltip={{diction[134][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                            (click)="colculateSebestoimost()"><i class="material-icons">assessment</i>  
+                            <label *ngIf="userSetings.visibleLabel">  {{diction[134][userSetings.langId]}}</label></button>
+                    <button  pTooltip={{diction[58][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" [ngClass]="{'disabled': disabled}" 
+                            (click)="resetParams()"><i class="material-icons">clear</i>  
+                            <label *ngIf="userSetings.visibleLabel">  {{diction[58][userSetings.langId]}}</label></button>       
+            </div>       
+            <div class="row row-margin">  
+                <p-panel>
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <label class="lbl-text-css">{{diction[53][userSetings.langId]}} : </label>
+                        </div>
+                        <div class="col-lg-2">
+                            <combobox-component [iNgModel]=uslugaModel 
+                                                (oNgModel)="uslugaModel = $event"   
+                                                [structure]=arrUsluga>
+                            </combobox-component>
+                        </div>
+                        <div class="col-lg-1">
+                            <label class="lbl-text-css">{{diction[54][userSetings.langId]}} : </label>
+                        </div>
+                        <div class="col-lg-2">
+                            <my-calendar (dateOut)="curentDate = $event"></my-calendar>
+                        </div>
+                        <div class="col-lg-2"><combobox-component [iNgModel]=periudModel 
+                                                                        (oNgModel)="periudModel = $event" 
+                                                                        [structure]=arrPeriud>
+                                            </combobox-component>
+                        </div>
+                        <div class="col-lg-1">
+                            <label class="lbl-text-css">{{diction[52][userSetings.langId]}} : </label>
+                        </div>
+                        <div class="col-lg-2">
+                            <combobox-component [iNgModel]=metodikaModel 
+                                                (oNgModel)="metodikaModel = $event"  
+                                                [structure]=arrMetodika>
+                            </combobox-component>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+
+            <div class="row row-margin">  
+                <p-panel>
+                    <div class="row facotr-css">  
+                        <div class="col-lg-3">
+                            <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
+                            <div class="row"><p-tree [value]="nameFactors1" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                    [(selection)]="selectedNameFactors1" ></p-tree>
+                            </div>
+                        </div>    
+                        <div class="col-lg-3">
+                            <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
+                            <div class="row"><p-tree [value]="nameFactors2" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                    [(selection)]="selectedNameFactors2" ></p-tree>
+                            </div>
+                        </div>   
+                        <div class="col-lg-3">
+                            <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
+                            <div class="row"><p-tree [value]="nameFactors3" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                    [(selection)]="selectedNameFactors3" ></p-tree>
+                            </div>
+                        </div>  
+                        <div class="col-lg-3">
+                            <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
+                            <div class="row"><p-tree [value]="nameFactors4" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
+                                                    [(selection)]="selectedNameFactors4" ></p-tree>
+                            </div>
+                        </div>  
+                    </div>
+                </p-panel>    
+            </div>
+
+        <div class="row row-margin">
+            <p-panel header={{diction[139][userSetings.langId]}} [toggleable]="true" [collapsed]="true">
                 <div class="row">
-                    <div class="col-lg-1">
-                        <label class="lbl-text-css">{{diction[53][userSetings.langId]}} : </label>
+                    <div class="col-lg-2" style="margin-left: 15px">
+                            <div class="row"><h6>{{diction[56][userSetings.langId]}} : </h6></div>
+                            <div class="row"><p-spinner size="30" [(ngModel)]="operaciaValue" [min]="0" [max]="100"></p-spinner></div>  
                     </div>
                     <div class="col-lg-2">
-                        <combobox-component [iNgModel]=uslugaModel 
-                                            (oNgModel)="uslugaModel = $event"   
-                                            [structure]=arrUsluga>
-                        </combobox-component>
+                            <div class="row"><h6>{{diction[57][userSetings.langId]}} : </h6></div>
+                            <div class="row"><p-spinner size="30" [(ngModel)]="izmeritelValue" [min]="0" [max]="100"></p-spinner></div>  
                     </div>
-                    <div class="col-lg-1">
-                        <label class="lbl-text-css">{{diction[54][userSetings.langId]}} : </label>
+                    <div class="col-lg-2 css-dop-box  lbl-css">
+                            <label class="lbl-text-css">{{diction[55][userSetings.langId]}} : </label>
+                            <i class="material-icons icon-togl-css" pTooltip={{diction[131][userSetings.langId]}} tooltipPosition="top">error</i>
                     </div>
-                    <div class="col-lg-2">
-                        <my-calendar (dateOut)="curentDate = $event"></my-calendar>
+                    <div class="col-lg-2 css-dop-box">
+                            <combobox-component [iNgModel]=poezdUchastokModel 
+                                                (oNgModel)="poezdUchastokModel = $event" 
+                                                [structure]=arrPoezdUchastok></combobox-component>
                     </div>
-                    <div class="col-lg-2"><combobox-component [iNgModel]=periudModel 
-                                                                    (oNgModel)="periudModel = $event" 
-                                                                    [structure]=arrPeriud>
-                                        </combobox-component>
-                    </div>
-                    <div class="col-lg-1">
-                        <label class="lbl-text-css">{{diction[52][userSetings.langId]}} : </label>
-                    </div>
-                    <div class="col-lg-2">
-                        <combobox-component [iNgModel]=metodikaModel 
-                                            (oNgModel)="metodikaModel = $event"  
-                                            [structure]=arrMetodika>
-                        </combobox-component>
+                    <div class="col-lg-2 css-dop-box">
+                        <div class="row chbox-css"><p-checkbox name="group1" label={{diction[132][userSetings.langId]}} [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
                     </div>
                 </div>
             </p-panel>
         </div>
+        </p-tabPanel>
+    </p-tabView>
 
-        <div class="row row-margin">  
-            <p-panel>
-                <div class="row facotr-css">  
-                    <div class="col-lg-3">
-                        <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
-                        <div class="row"><p-tree [value]="nameFactors1" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
-                                                [(selection)]="selectedNameFactors1" ></p-tree>
-                        </div>
-                    </div>    
-                    <div class="col-lg-3">
-                        <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
-                        <div class="row"><p-tree [value]="nameFactors2" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
-                                                [(selection)]="selectedNameFactors2" ></p-tree>
-                        </div>
-                    </div>   
-                    <div class="col-lg-3">
-                        <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
-                        <div class="row"><p-tree [value]="nameFactors3" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
-                                                [(selection)]="selectedNameFactors3" ></p-tree>
-                        </div>
-                    </div>  
-                    <div class="col-lg-3">
-                        <div class="row"><label>{{diction[59][userSetings.langId]}} : </label></div>
-                        <div class="row"><p-tree [value]="nameFactors4" selectionMode="checkbox" [style]="{'width':'90%','height':'100%'}"
-                                                [(selection)]="selectedNameFactors4" ></p-tree>
-                        </div>
-                    </div>  
+    <p-tabView *ngIf="disabled">    
+        <p-tabPanel header={{diction[135][userSetings.langId]}}>
+            <div class="row row-margin">
+                <button pTooltip={{diction[60][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
+                        (click)="canselColculateSebestoimost()"><i class="material-icons">undo</i>  
+                        <label *ngIf="userSetings.visibleLabel">  {{diction[60][userSetings.langId]}}</label></button>
+                <button pTooltip= {{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary"
+                        (click)="exportToExcell()"><i class="material-icons">file_download</i>  
+                        <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
+            </div>
+            <div class="row row-margin">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>{{diction[30][userSetings.langId]}}</td>
+                        <td>{{getNameByid(arrUsluga, uslugaModel)}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{diction[55][userSetings.langId]}}</td>
+                        <td>{{getNameByid(arrPoezdUchastok, poezdUchastokModel)}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{diction[64][userSetings.langId]}}</td>
+                        <td>{{diction[136][userSetings.langId]}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{diction[54][userSetings.langId]}}</td>
+                        <td>{{getDate(curentDate)}}   {{getNameByid(arrPeriud, periudModel)}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{diction[56][userSetings.langId]}}</td>
+                        <td>{{operaciaValue}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row row-margin">
+                <h4>{{diction[67][userSetings.langId]}}</h4>
+                <div class="row">
+
                 </div>
-            </p-panel>    
-        </div>
-
-       <div class="row row-margin">
-           <p-panel header={{diction[139][userSetings.langId]}} [toggleable]="true" [collapsed]="true">
-               <div class="row">
-                   <div class="col-lg-2" style="margin-left: 15px">
-                        <div class="row"><h6>{{diction[56][userSetings.langId]}} : </h6></div>
-                        <div class="row"><p-spinner size="30" [(ngModel)]="operaciaValue" [min]="0" [max]="100"></p-spinner></div>  
-                   </div>
-                   <div class="col-lg-2">
-                        <div class="row"><h6>{{diction[57][userSetings.langId]}} : </h6></div>
-                        <div class="row"><p-spinner size="30" [(ngModel)]="izmeritelValue" [min]="0" [max]="100"></p-spinner></div>  
-                   </div>
-                   <div class="col-lg-2 css-dop-box  lbl-css">
-                        <label class="lbl-text-css">{{diction[55][userSetings.langId]}} : </label>
-                        <i class="material-icons icon-togl-css" pTooltip={{diction[131][userSetings.langId]}} tooltipPosition="top">error</i>
-                   </div>
-                   <div class="col-lg-2 css-dop-box">
-                        <combobox-component [iNgModel]=poezdUchastokModel 
-                                            (oNgModel)="poezdUchastokModel = $event" 
-                                            [structure]=arrPoezdUchastok></combobox-component>
-                   </div>
-                   <div class="col-lg-2 css-dop-box">
-                       <div class="row chbox-css"><p-checkbox name="group1" label={{diction[132][userSetings.langId]}} [(ngModel)]="balansStatus" binary="true"></p-checkbox></div>
-                   </div>
-               </div>
-           </p-panel>
-       </div>
-    </p-tabPanel>
-</p-tabView>
-
-<p-tabView *ngIf="disabled">    
-    <p-tabPanel header={{diction[135][userSetings.langId]}}>
-        <div class="row row-margin">
-            <button pTooltip={{diction[60][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
-                    (click)="canselColculateSebestoimost()"><i class="material-icons">undo</i>  
-                    <label *ngIf="userSetings.visibleLabel">  {{diction[60][userSetings.langId]}}</label></button>
-            <button pTooltip= {{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary"
-                    (click)="exportToExcell()"><i class="material-icons">file_download</i>  
-                    <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
-        </div>
-        <div class="row row-margin">
-            <table class="table table-bordered">
-                <tbody>
-                <tr>
-                    <td>{{diction[30][userSetings.langId]}}</td>
-                    <td>{{getNameByid(arrUsluga, uslugaModel)}}</td>
-                </tr>
-                <tr>
-                    <td>{{diction[55][userSetings.langId]}}</td>
-                    <td>{{getNameByid(arrPoezdUchastok, poezdUchastokModel)}}</td>
-                </tr>
-                <tr>
-                    <td>{{diction[64][userSetings.langId]}}</td>
-                    <td>{{diction[136][userSetings.langId]}}</td>
-                </tr>
-                <tr>
-                    <td>{{diction[54][userSetings.langId]}}</td>
-                    <td>{{getDate(curentDate)}}   {{getNameByid(arrPeriud, periudModel)}}</td>
-                </tr>
-                <tr>
-                    <td>{{diction[56][userSetings.langId]}}</td>
-                    <td>{{operaciaValue}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="row row-margin">
-            <h4>{{diction[67][userSetings.langId]}}</h4>
-            <div class="row">
-
+                <div class="row">
+                    <div *ngIf="colculate!=0">
+                        <preloader-component [captionText]=preloaderText></preloader-component>
+                    </div>                
+                </div>
             </div>
-            <div class="row">
-                <div *ngIf="colculate!=0">
-                    <preloader-component [captionText]=preloaderText></preloader-component>
-                </div>                
-            </div>
-        </div>
-    </p-tabPanel>
-</p-tabView>
+        </p-tabPanel>
+    </p-tabView>
+</div>

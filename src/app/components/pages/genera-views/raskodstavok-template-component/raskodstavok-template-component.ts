@@ -185,10 +185,29 @@ export class RaskodStavokTemplateComponent implements OnInit{
                             } else  console.log(error);
                         }
                     );  
-
-        this.arrItemSize = this.service.getItemSize();
-        this.itemSizeModel = this.arrItemSize[0].id;
-
+        //Единицы измерения  
+        this.service.getItemSize(user.session, user.programmId, this.userSetings.langId)
+                    .subscribe( 
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                this.arrItemSize = [];
+                                this.itemSizeModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrItemSize.push({id: data[i].id, name: data[i].name});
+                                    if (data[i].default==1) this.itemSizeModel = this.arrItemSize[i].id;  
+                                }                                              
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
         //Тип периода
         this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
                     .subscribe( 

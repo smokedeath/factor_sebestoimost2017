@@ -1,14 +1,16 @@
 <bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
-<p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">
-	<p-tabPanel header={{diction[24][userSetings.langId]}}>
-		<all-parametrs-view-component></all-parametrs-view-component>
-	</p-tabPanel>
-	<p-tabPanel header={{diction[25][userSetings.langId]}}>
-		<vibor-marschruta-view-component></vibor-marschruta-view-component>
-	</p-tabPanel>
-	<p-tabPanel header={{diction[26][userSetings.langId]}}>
-	</p-tabPanel>
-	<p-tabPanel header={{diction[27][userSetings.langId]}}>
-	</p-tabPanel>
-</p-tabView>
+<div class="breadcramps-margin">	
+	<p-tabView [activeIndex]=activTabPanel (onChange)="handleChange($event)">
+		<p-tabPanel header={{diction[24][userSetings.langId]}}>
+			<all-parametrs-view-component></all-parametrs-view-component>
+		</p-tabPanel>
+		<p-tabPanel header={{diction[25][userSetings.langId]}}>
+			<vibor-marschruta-view-component></vibor-marschruta-view-component>
+		</p-tabPanel>
+		<p-tabPanel header={{diction[26][userSetings.langId]}}>
+		</p-tabPanel>
+		<p-tabPanel header={{diction[27][userSetings.langId]}}>
+		</p-tabPanel>
+	</p-tabView>
+</div>
 <div>{{updateIdLang()}}</div>

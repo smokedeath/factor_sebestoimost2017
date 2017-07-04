@@ -136,6 +136,20 @@ export class AppService {
             .map(this.extractData)
             .catch(this.handleError);    
     } 
+    getItemSize(data, moduleId, langId){  //Единицы измерения  
+        let apiUrl = "/catalog/currencyMeasure"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);  
+    }
+    getRashodiTable(data, moduleId, langId){  //РАСХОДЫ  
+        let apiUrl = "/rashodstavok/rashodi"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);  
+    }
 
     private extractData(res: Response) {
 	    // let body = res.json();
@@ -168,6 +182,17 @@ export class AppService {
     goToLogin(){
         this.router.navigate(["login"]);
     }
+    getDataString(inData){
+        let datepar = new Date(inData);
+        let month: String;
+        let day: String;
+        let d = datepar.getDate();  
+        if (d<10){ day = '0' + d }else{ day = String(d)}
+        let m = datepar.getMonth() + 1;
+        if (m < 10){ month = '0' + m }else{ month = String(m)};
+        let year = datepar.getFullYear();
+        return year + "-" + month + "-" + day;
+    }
 
 
 
@@ -189,7 +214,6 @@ export class AppService {
             this.userSetings = this.storage.retrieve('userData'); 
             this.user.userSetings = this.userSetings
     }
-
     clearProgrammSession(){        
         this.storage.clear('UserSetings');
         this.storage.clear('UserData');    
@@ -208,7 +232,6 @@ export class AppService {
             userSetings: this.userSetings
         };
     }
-
     getSmalMenuGP(langId){
         this.smallMenuGp = [
             {
@@ -250,7 +273,6 @@ export class AppService {
         ];
         return this.smallMenuGp;
     }
-
     getTabelFilters(tableDate: any[], tableDateColumns: any[]){
         let seriaFilter: SelectItem[];
         for (let i = 0; i < tableDateColumns.length; i++){
@@ -407,7 +429,6 @@ export class AppService {
         ];
         return usluga;
     }
-
     getAnyData(){
         let anyData = [
             {id:1, name: "Данные 1"},
@@ -437,14 +458,6 @@ export class AppService {
     }   
     getIODVtable(){
         return this.http.get('https://api.myjson.com/bins/cvrxx');
-    }
-    getItemSize(){
-        let itemSize = [
-            {id: 1, name: "Тенге"},
-            {id: 2, name: "тысяча тенге"},
-            {id: 3, name: "милион тенге"}
-        ];
-        return itemSize;
     }
     getGrupZnachen(){
         let arrGrupZnachen = [

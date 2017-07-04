@@ -1,9 +1,9 @@
-<div class="row row-margin">    
+<div class="row row-margin breadcramps-margin">    
     <p-panel>
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-2">
-                <my-calendar></my-calendar>       
+                <my-calendar (date)="defualtDate = $event"></my-calendar>       
                 </div>
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=typePeriudModel [idLang]=userSetings.langId
@@ -35,7 +35,7 @@
         <div class="col-lg-3">
             <div class="row">
             <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][userSetings.langId]}}:</label></div>
-            <div class="col-lg-6"><combobox-component [iNgModel]=itemSizeModel 
+            <div class="col-lg-6"><combobox-component [iNgModel]=itemSizeModel [idLang]=userSetings.langId  
                                 [structure]=arrItemSize></combobox-component></div>
             </div>
         </div>
@@ -51,7 +51,7 @@
             <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
                     (click)="exportToExcell()"><i class="material-icons">file_download</i> 
                     <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
-            <button pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
+            <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
                     class="btn btn-primary"><i class="material-icons">autorenew</i> 
                     <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
         </div>

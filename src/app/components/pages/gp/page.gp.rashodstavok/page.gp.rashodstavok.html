@@ -1,24 +1,22 @@
-<div class="wrapper">
-	<header class="page-header">
-		<nav class="navbar mega-menu" role="navigation">
-			<div class="container-fluid">
-				<navbar-mega-menu-component [smallMenu]=smallMenu
-											[rLink]=rExitLink 
-											[logoName]=logoName 
-											[navbarLevel]=navbarLevel
-											(updateIdLang)="updIdLang($event)">
-				</navbar-mega-menu-component>
-				<singl-top-menu [menu]="menu" [curentMenuItem]=curentMenuItem></singl-top-menu>	
-			</div>
-		</nav>
-	</header>
-	
-	<div class="container-fluid ">
-		<div class="page-content">
-			<div ui-view class="fade-in-up">				
-				<router-outlet></router-outlet>
-			</div>
+<header class="page-header">
+	<nav class="navbar mega-menu" role="navigation">
+		<div class="container-fluid">
+			<navbar-mega-menu-component [smallMenu]=smallMenu
+										[rLink]=rExitLink 
+										[logoName]=logoName 
+										[navbarLevel]=navbarLevel
+										(updateIdLang)="updIdLang($event)">
+			</navbar-mega-menu-component>
+			<singl-top-menu [menu]="menu" [curentMenuItem]=curentMenuItem></singl-top-menu>	
+		</div>
+	</nav>
+</header>
+
+<div class="container-fluid ">
+	<div class="page-content">
+		<div ui-view class="fade-in-up">				
+			<router-outlet></router-outlet>
 		</div>
 	</div>
-	<footer-component [langId]=userSetings.langId></footer-component>
 </div>
+<footer-component [langId]=userSetings.langId></footer-component>

@@ -10,7 +10,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class CalendarComponent implements OnInit{
     @Output()
     dateOut: EventEmitter<Date> = new EventEmitter(); 
-        
+       
     date = new Date();
     ru: any;
    
@@ -18,7 +18,9 @@ export class CalendarComponent implements OnInit{
         this.dateOut.emit(this.date);
     }
     
-    ngOnInit(){
+    ngOnInit(){       
+        let year = this.date.getFullYear()-1;
+        this.date.setFullYear(year);
         this.ru = {
                     firstDayOfWeek: 0,
                     dayNames: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
