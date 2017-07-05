@@ -15,12 +15,12 @@ export class TreeTableComponent {
     @Input() tableDate = [];  
     @Input() tableDateColumns = [];
     @Input() langId: any = 0;
-    @Output() addChild: EventEmitter<String> = new EventEmitter();
+    @Output() addChild: EventEmitter<any> = new EventEmitter();
 
     diction: any;
     loadNode(event) {
-        if(!event.node.leaf) {
-            this.addChild.emit(event.node.data.id);
+        if(event.node.leaf==false) {
+            this.addChild.emit(event.node);
         }
     }
 

@@ -15,7 +15,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
                 private storage : LocalStorageService){}  
-    //
+
     defualtDate = Date();
     defaultLabel = "Элементы затрат:";
     diction: any;
@@ -62,7 +62,6 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     exportToExcell(){
         //
     }
-
     viewTemplateFolder(){
         //
     }
@@ -111,7 +110,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                                 }
                                 this.initTableColumns();
                                 data = data.data;
-                                this.inputTabelData(data, this.userSetings.langId);                                          
+                                this.tableDate = this.inputTabelData(data, this.userSetings.langId);                                          
                             } else console.log(data);
                         },
                         error =>{
@@ -124,7 +123,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                     );   
     }
     inputTabelData(data, lang){        
-        this.tableDate = [];
+        let rData = [];
          for (let i=0; i<data.length; i++){  
              let dat = {};           
              for (let key in data[i]){
@@ -144,8 +143,9 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                  data: dat,
                  leaf: false
              }
-             this.tableDate.push(inData);
+             rData.push(inData);
          }
+         return rData;
     }
     initTableColumns(){
         this.tableDateColumns = [];
@@ -160,13 +160,14 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
         }
     } 
     addChild(e){
+        console.log(e);
         let param = {
             session: this.user.session,
             freightCarrier: this.vladelicModel,
             provider: this.postavschikModel,
             measure: this.itemSizeModel,
             status: this.statusModel,
-            parent: e,
+            parent: e.data.id,
             periodType: this.typePeriudModel,
             dte: this.service.getDataString(this.defualtDate)
         }
@@ -179,9 +180,9 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                                 data = data.data;    
                                 data = data.data; 
                                 if (data.length>0){
-
+                                    e.children = this.inputTabelData(data, this.userSetings.langId);
                                 }   
-                                // delete myobj.leaf;                             
+                                delete e.leaf;                             
                             } else console.log(data);
                         },
                         error =>{

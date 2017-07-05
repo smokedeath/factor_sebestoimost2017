@@ -151,7 +151,10 @@ export class ExplotationPokazTemplateComponent implements OnInit{
                         }
                     );
         // Таблица            
-        this.service.getFinDataInput().subscribe(data => {this.tableDate = data.json().data});
+        this.service.getFinDataInput().subscribe(data => {
+            this.tableDate = data.json().data
+            console.log(this.tableDate);
+        });
     }    
 
 }
