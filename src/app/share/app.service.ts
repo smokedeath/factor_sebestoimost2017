@@ -63,7 +63,8 @@ export class AppService {
         if (langId==1) lang = 'ru';
         if (langId==2) lang = 'en';
 
-        url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
+        // url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
+        url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
 
         return url;
     }
@@ -145,6 +146,13 @@ export class AppService {
     }
     getRashodiTable(data, moduleId, langId){  //РАСХОДЫ  
         let apiUrl = "/rashodstavok/rashodi"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);  
+    }    
+    getExplpokazTable(data, moduleId, langId){  //Эксплуатационные показатели
+        let apiUrl = "/rashodstavok/explpokaz";  
         let options = new RequestOptions({ params: data });
         return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
             .map(this.extractData)

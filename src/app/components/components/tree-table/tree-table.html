@@ -1,5 +1,5 @@
 <p-treeTable [value]="tableDate" selectionMode="single" [(selection)]="selectedField" (onNodeExpand)="loadNode($event)">
-  <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header}} (click)="onColumnClick()">
+  <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header}}>
   </p-column>
 </p-treeTable>
 

@@ -26,6 +26,5 @@ export class TreeTableComponent {
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
-    }
-    
+    }    
 }

@@ -28,10 +28,11 @@
   <div class="col-md-3 btn-css">
     <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary"  
             (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
-    <button pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
+    <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
             class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
   </div>  
 </div>
 
-  <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns></tree-table>
+  <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
 <div>{{updateIdLang()}}</div>
+<div>{{getFirstTableData()}}</div>

@@ -100,6 +100,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                                 data = data.json();
                                 data = data.data;
                                 this.noFixetColumns = [];
+                                console.log(data);
                                 for (let i=0; i<data.сostElements.length; i++){
                                     if (this.userSetings.langId==0)
                                         this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.kz});   
@@ -141,7 +142,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
              }
              let inData = {
                  data: dat,
-                 leaf: false
+                 leaf: data[i].hasChild==0
              }
              rData.push(inData);
          }
@@ -324,7 +325,6 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                             } else  console.log(error);
                         }
                     );   
-        // this.getTabelData();
         this.initTableColumns();
     }
 }
