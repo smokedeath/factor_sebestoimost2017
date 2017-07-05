@@ -25,10 +25,10 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
          PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, FaqComponent }  from './components/pages/pages.index';
 
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
-         SinglTopMenu , ErrorFormDate, ComboboxStructureKtzh, LefletMap, CalendarComponent, FooterComponent,
-         MultiComboboxComponent, SidenavFTComponent, PassRefDialogComponent, NavbarMegaMenuComponent, 
+         SinglTopMenu , ErrorFormDate, LefletMap, CalendarComponent, FooterComponent, PanelFilterComponent,
+         SidenavFTComponent, PassRefDialogComponent, NavbarMegaMenuComponent, ComboboxFilterComponent,
          SidenavLinkMenuComponent, PreloaderComponent, ViewPositionCcomponent, UserSettingsComponent,
-         ComboboxCheckComponent, MyTableComponent, ComboboxMultiSelectComponent, BreadCrumbComponent } from './components/components/components.index';
+         MyTableComponent, ComboboxMultiSelectComponent, BreadCrumbComponent } from './components/components/components.index';
 
 import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, AllParametrsViewComponent,
          ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent, 
@@ -58,9 +58,9 @@ import { BreadcrumbService } from './share/breadcrumb.service';
                 RaskodstavokTemplateSebistoimostComponent, FactSrednSebeStoimostComponent, AllParametrsViewComponent,  // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
-                SinglTopMenu, ErrorFormDate, ComboboxStructureKtzh, LefletMap, TreeTableComponent, MultiComboboxComponent,
+                SinglTopMenu, ErrorFormDate, LefletMap, TreeTableComponent, ComboboxFilterComponent,
                 PassRefDialogComponent, NavbarMegaMenuComponent, SidenavLinkMenuComponent, PreloaderComponent, 
-                ViewPositionCcomponent, UserSettingsComponent, ComboboxCheckComponent , MyTableComponent, 
+                ViewPositionCcomponent, UserSettingsComponent, MyTableComponent, PanelFilterComponent,
                 ComboboxMultiSelectComponent, BreadCrumbComponent, FooterComponent // Общие компоненты
   ],
   imports: [

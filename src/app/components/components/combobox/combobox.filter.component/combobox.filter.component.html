@@ -1,0 +1,26 @@
+<div *ngIf="idLang<0">
+    <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
+        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name}}</option>
+    </select>
+</div>
+
+<div *ngIf="idLang==0">
+    <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
+        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name.kz}}</option>
+    </select>
+</div>
+
+<div *ngIf="idLang==1">
+    <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
+        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name.ru}}</option>
+    </select>
+</div>
+
+<div *ngIf="idLang==2">
+    <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
+        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name.en}}</option>
+    </select>
+</div>
+
+
+<!--style="max-width: 200px;"-->

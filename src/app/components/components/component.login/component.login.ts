@@ -86,11 +86,12 @@ export class ComponentLogin implements OnInit{
                                             phoneNumber: data.phoneNumber,
                                             session: data.session,
                                             programmId: this.user.programmId,
-                                            userSetings: data.userSettings
+                                            userSetings: this.service.StringToObject(data.userSettings)
                                         };
                                     let md5 = this.service.getMD5fromString(this.user.password);
                                     this.storage.store('md5', md5);
                                     this.storage.store('userData', user);
+                                    this.storage.store('userSetings', user.userSetings);
                                     switch(Number(this.user.userId)){
                                         case 1: { 
                                             switch(this.user.programmId) { 
@@ -124,7 +125,7 @@ export class ComponentLogin implements OnInit{
                                    console.log(data);
                                 }
                         }, error =>  {
-                            this.getErrorDialog(this.service.getErrorFromData(error._body, 'class="error">', 'dao:'));
+                            this.getErrorDialog(this.service.getErrorFromData(error._body, 'class="error">', '<'));
                         }
                     );                  
         }else{           

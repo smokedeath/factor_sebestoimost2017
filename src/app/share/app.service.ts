@@ -63,8 +63,8 @@ export class AppService {
         if (langId==1) lang = 'ru';
         if (langId==2) lang = 'en';
 
-        // url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
-        url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
+        url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
+        // url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
 
         return url;
     }
@@ -174,6 +174,18 @@ export class AppService {
         }
         str = q.join('&');
         return str;
+    }
+    StringToObject(inData: String): Object{
+        let data: Object = {};
+        let arr = inData.split('&')  
+        for (let i=0; i<arr.length; i++){
+            let dat = arr[i].split('=');
+            if (dat[1]=='false' || dat[1]=='true')
+                data[dat[0]] = (dat[1]=='true') ;
+             else   
+                data[dat[0]] = dat[1];
+        }
+        return data;
     }
     getErrorFromData(data, sStr, eStr){
         let searchStr = data;

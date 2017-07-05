@@ -1,5 +1,0 @@
-<select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" style="max-width: 270px;">
-    <optgroup *ngFor="let group of structure" label={{group.name}}>
-        <option *ngFor="let struct of group.option" [value]="struct.id">{{struct.name}}</option>    
-    </optgroup>    
-</select>

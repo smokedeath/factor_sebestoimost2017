@@ -17,7 +17,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                 private storage : LocalStorageService){}  
 
     defualtDate = Date();
-    defaultLabel = "Элементы затрат:";
+    defaultLabel = "";
     diction: any;
     procentSchow: Boolean = false;
     userSetings;
@@ -46,6 +46,8 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
 
     arrVladelic = [];   
     vladelicModel: Number; 
+    
+    tableDateOptionsFilter = [];
     
     arrPostavschik = [];
     postavschikModel: Number;
@@ -80,6 +82,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     }
     updateIdLang(){
         this.userSetings = this.storage.retrieve('UserSetings');
+        this.defaultLabel = this.diction[177][this.userSetings.langId];
     }
     getTabelData(){
         let param = {
@@ -98,16 +101,33 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                         data => {
                             if (data.status==200){
                                 data = data.json();
-                                data = data.data;
-                                this.noFixetColumns = [];
+                                data = data.data;                                
                                 console.log(data);
-                                for (let i=0; i<data.сostElements.length; i++){
-                                    if (this.userSetings.langId==0)
-                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.kz});   
-                                    if (this.userSetings.langId==1)
-                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.ru});   
-                                    if (this.userSetings.langId==2)
-                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.en});     
+                                this.noFixetColumns = [];
+                                this.tableDateOptionsFilter = [];
+                                let n = {
+                                    kz: this.fixetColumns[0].header,    
+                                    ru: this.fixetColumns[0].header,  
+                                    en: this.fixetColumns[0].header                                 
+                                }
+                                this.tableDateOptionsFilter.push({id: 1, name: n});
+                                n = {
+                                    kz: this.fixetColumns[1].header,    
+                                    ru: this.fixetColumns[1].header,  
+                                    en: this.fixetColumns[1].header                                 
+                                }
+                                this.tableDateOptionsFilter.push({id: 2, name: n});
+                                for (let i=0; i<data.сostElements.length; i++){                                    
+                                    this.tableDateOptionsFilter.push({id: i+3, name: data.сostElements[i].name});
+                                    if (this.userSetings.langId==0){
+                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.kz});  
+                                    } 
+                                    if (this.userSetings.langId==1){
+                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.ru});  
+                                    } 
+                                    if (this.userSetings.langId==2){
+                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.en});   
+                                    }  
                                 }
                                 this.initTableColumns();
                                 data = data.data;
@@ -158,10 +178,9 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
         }
         for(let i=0; i<this.noFixetColumns.length; i++){    
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
-        }
+        }      
     } 
     addChild(e){
-        console.log(e);
         let param = {
             session: this.user.session,
             freightCarrier: this.vladelicModel,
@@ -245,7 +264,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
                                 for (let i=0; i<data.length; i++){
                                     this.arrPostavschik.push({id: data[i].id, name: data[i].name});
                                     if (data[i].default==1) this.postavschikModel = this.arrPostavschik[i].id;  
-                                }                                              
+                                }                                       
                             } else console.log(data);
                         },
                         error => {

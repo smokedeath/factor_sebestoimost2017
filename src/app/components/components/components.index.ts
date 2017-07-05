@@ -4,10 +4,8 @@ export * from './component.login/component.login';
 export * from './component.bigbatton/component.bigbatton'; 
 export * from './menus/singl.top.menu/singl.top.menu';
 export * from './error.form.date/error.form.date';
-export * from './combobox/combobox.structure.ktzh/combobox.structure.ktzh'
 export * from './combobox/combobox.component/combobox.component';
-export * from './combobox/combobox-check-component/combobox-check-component';
-export * from './combobox/multi-combobox.component/multi-combobox.component';
+export * from './combobox/combobox.filter.component/combobox.filter.component';
 export * from './combobox/combobox-multi-select-component/combobox-multi-select-component'; 
 export * from './leaflet-map/leaflet-map';
 export * from './tree-table/tree-table';
@@ -22,3 +20,4 @@ export * from './sidenav/user-settings-component/user-settings-component';
 export * from './table-component/table-component';
 export * from './bread-crumb-component/bread-crumb-component';
 export * from './footer-component/footer-component';
+export * from './panel-filter-component/panel-filter-component';
