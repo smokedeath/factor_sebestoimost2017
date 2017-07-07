@@ -1,0 +1,22 @@
+<raskodstavok-template-component
+                [userSetings]=userSetings
+                [typePeriudModel]=typePeriudModel
+                [arrtypePeriud]=arrtypePeriud
+                [vladelicModel]=vladelicModel
+                [arrVladelic]=arrVladelic
+                [postavschikModel]=postavschikModel
+                [arrPostavschik]=arrPostavschik
+                [statusModel]=statusModel
+                [arrStatus]=arrStatus
+                [itemSizeModel]=itemSizeModel
+                [arrItemSize]=arrItemSize
+                [noFixetColumns]=noFixetColumns
+                [tableDateOptions]=tableDateOptions
+                [tableDate]=tableDate
+                [tableDateColumns]=tableDateColumns
+                [defualtDate]=defualtDate
+                (outProcent)='procentSchow = $event'
+                (outUpdateTableColumns)='updateTableColumns($event)'
+                (outGetTabelData)='refreschData($event)'>
+</raskodstavok-template-component>  
+<div>{{getFirstTableData()}}</div>

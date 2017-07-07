@@ -158,6 +158,51 @@ export class AppService {
             .map(this.extractData)
             .catch(this.handleError);  
     }
+    getOtnesenierashodovZav(data, moduleId, langId){ //Отнесение Расходов - Зависящие расходы по расходным измерителям
+        let apiUrl = "/rashodstavok/otnesenierashodovZav";  
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError); 
+    }   
+    getOtnesenierashodovUsl(data, moduleId, langId){ //Отнесение Расходов - Условно-постоянные расходы по расходным измерителям
+        let apiUrl = "/rashodstavok/otnesenierashodovUsl";  
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError); 
+    } 
+    getOtnesenierashodovFull (data, moduleId, langId){ //Отнесение Расходов - Полные расходы по расходным измерителям
+        let apiUrl = "/rashodstavok/otnesenierashodovFull";  
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError); 
+    }
+    getRashodstavokZav (data, moduleId, langId){ //Расчет расходных ставок - Зависящие расходы по расходным измерителям
+        let apiUrl = "/rashodstavok/rashodstavokZav";  
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError); 
+    }
+    getRashodstavokUsl (data, moduleId, langId){ //Расчет расходных ставок - Условно-постоянные расходы по расходным измерителям
+        let apiUrl = "/rashodstavok/rashodstavokUsl";  
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError); 
+    }
+    getRashodstavokFull (data, moduleId, langId){ //Расчет расходных ставок - Полные расходы по расходным измерителям
+        let apiUrl = "/rashodstavok/rashodstavokFull";  
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError); 
+    }
+      
+     
+    
 
     private extractData(res: Response) {
 	    // let body = res.json();
@@ -213,12 +258,6 @@ export class AppService {
         let year = datepar.getFullYear();
         return year + "-" + month + "-" + day;
     }
-
-
-
-
-
-
 
 
 

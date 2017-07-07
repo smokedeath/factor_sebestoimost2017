@@ -3,23 +3,23 @@
     <div class="col-md-2">
     </div>
     <div class="col-md-2">
-      <my-calendar></my-calendar>       
+      <my-calendar (date)="defualtDate = $event"></my-calendar>       
     </div>
     <div class="col-md-2">
       <combobox-component [iNgModel]=typePeriudModel [idLang]=userSetings.langId
-                          [structure]=arrtypePeriud></combobox-component>       
+                          [structure]=arrtypePeriud (oNgModel)='typePeriudModel=$event'></combobox-component>       
     </div>
     <div class="col-md-2"> 
       <combobox-component [iNgModel]=vladelicModel [idLang]=userSetings.langId 
-                          [structure]=arrVladelic></combobox-component>       
+                          [structure]=arrVladelic (oNgModel)='vladelicModel=$event'></combobox-component>       
     </div>
     <div class="col-md-2"> 
       <div class="row">
           <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[80][userSetings.langId]}}:</label></div>  
           <div class="col-lg-6 lbl-css">
             <combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions 
-                                                             [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
-                            </combobox-multi-select-component>      
+                                             [selectModel]=noFixetColumns [defaultLabel]=diction[80][userSetings.langId]>
+            </combobox-multi-select-component>      
           </div>    
       </div>       
     </div>
@@ -33,6 +33,8 @@
   </div>  
 </div>
 
-  <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
-<div>{{updateIdLang()}}</div>
-<div>{{getFirstTableData()}}</div>
+<div class="row">
+    <div class="table-margin">
+        <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
+    </div>
+</div>   

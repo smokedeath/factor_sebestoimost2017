@@ -3,23 +3,23 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-2">
-                <my-calendar></my-calendar>       
+                <my-calendar (date)="defualtDate = $event"></my-calendar>       
                 </div>
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=typePeriudModel [idLang]=userSetings.langId
-                                    [structure]=arrtypePeriud></combobox-component>      
+                                    [structure]=arrtypePeriud (oNgModel)='typePeriudModel=$event'></combobox-component>      
                 </div>
                 <div class="col-md-2"> 
                 <combobox-component [iNgModel]=vladelicModel [idLang]=userSetings.langId
-                                    [structure]=arrVladelic></combobox-component>    
+                                    [structure]=arrVladelic (oNgModel)='vladelicModel=$event'></combobox-component>    
                 </div>
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=postavschikModel [idLang]=userSetings.langId
-                                    [structure]=arrPostavschik></combobox-component>  
+                                    [structure]=arrPostavschik (oNgModel)='postavschikModel=$event'></combobox-component>  
                 </div>    
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=statusModel [idLang]=userSetings.langId 
-                                    [structure]=arrStatus></combobox-component>  
+                                    [structure]=arrStatus (oNgModel)='statusModel=$event'></combobox-component>  
                 </div>   
             </div>   
 
@@ -39,23 +39,23 @@
             <div class="row">
             <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][userSetings.langId]}}:</label></div>
             <div class="col-lg-6"><combobox-component [iNgModel]=itemSizeModel [idLang]=userSetings.langId   
-                                [structure]=arrItemSize></combobox-component></div>
+                                                      [structure]=arrItemSize (oNgModel)='itemSizeModel=$event'></combobox-component></div>
             </div>
         </div>
         <div class="col-lg-3">
         <div class="col-lg-6"><combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions
-                                                                [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
+                                                                [selectModel]=noFixetColumns [defaultLabel]=diction[177][userSetings.langId]>
                                 </combobox-multi-select-component></div>
         </div>
         <div class="col-lg-3">
-            <p-checkbox name="group1" label={{diction[125][userSetings.langId]}} [(ngModel)]="procentSchow"></p-checkbox>
+            <p-checkbox name="group1" label={{diction[125][userSetings.langId]}} [(ngModel)]="procentSchow" (onChange)='procentChang'></p-checkbox>
         </div>
         <div class="col-lg-3 btn-css">
             <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary" 
                     (click)="exportToExcell()"><i class="material-icons">file_download</i> 
                     <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
             <button pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
-                    class="btn btn-primary"><i class="material-icons">autorenew</i> 
+                    (click)='refreschData()' class="btn btn-primary"><i class="material-icons">autorenew</i> 
                     <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
         </div>
     </div>
@@ -65,4 +65,3 @@
 <div class="row row-margin">
     <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns></tree-table>
 </div>   
-<div>{{updateIdLang()}}</div>

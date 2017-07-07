@@ -7,19 +7,19 @@
                 </div>
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=typePeriudModel [idLang]=userSetings.langId
-                                    [structure]=arrtypePeriud></combobox-component>      
+                                    [structure]=arrtypePeriud (oNgModel)='typePeriudModel = $event'></combobox-component>      
                 </div>
                 <div class="col-md-2"> 
                 <combobox-component [iNgModel]=vladelicModel [idLang]=userSetings.langId
-                                    [structure]=arrVladelic></combobox-component>    
+                                    [structure]=arrVladelic (oNgModel)='vladelicModel = $event'></combobox-component>    
                 </div>
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=postavschikModel [idLang]=userSetings.langId
-                                    [structure]=arrPostavschik></combobox-component>  
+                                    [structure]=arrPostavschik (oNgModel)='postavschikModel = $event'></combobox-component>  
                 </div>    
                 <div class="col-md-2">
-                <combobox-component [iNgModel]=statusModel [idLang]=userSetings.langId 
-                                    [structure]=arrStatus></combobox-component>  
+                <combobox-component [iNgModel]=statusModel [idLang]=userSetings.langId
+                                    [structure]=arrStatus (oNgModel)='statusModel = $event'></combobox-component>  
                 </div>   
             </div>   
 
@@ -36,12 +36,12 @@
             <div class="row">
                 <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[124][userSetings.langId]}}:</label></div>
                 <div class="col-lg-6"><combobox-component [iNgModel]=itemSizeModel [idLang]=userSetings.langId  
-                                [structure]=arrItemSize></combobox-component></div>
+                                [structure]=arrItemSize (oNgModel)='itemSizeModel = $event'></combobox-component></div>
             </div>
         </div>
         <div class="col-lg-2">
             <combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions 
-                                                                [selectModel]=noFixetColumns [defaultLabel]=defaultLabel>
+                                             [selectModel]=noFixetColumns [defaultLabel]=diction[177][userSetings.langId]>
             </combobox-multi-select-component>
         </div>
         <div class="col-lg-1">            
@@ -51,7 +51,7 @@
             </button>
         </div>
         <div class="col-lg-2">
-            <p-checkbox name="group1" label={{diction[125][userSetings.langId]}} [(ngModel)]="procentSchow"></p-checkbox>
+            <p-checkbox name="group1" label={{diction[125][userSetings.langId]}} [(ngModel)]="procentSchow" (onChange)='procentChang()'></p-checkbox>
         </div>
         <div class="col-lg-1">
         </div>
@@ -72,8 +72,6 @@
         <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
     </div>
 </div>   
-<div>{{updateIdLang()}}</div>
-<div>{{getFirstTableData()}}</div>
 
 <p-overlayPanel #filter [showCloseIcon]="true" appendTo="body">
     <panel-filter-component [langId]=userSetings.langId [tableDateOptionsFilter]=tableDateOptionsFilter></panel-filter-component>

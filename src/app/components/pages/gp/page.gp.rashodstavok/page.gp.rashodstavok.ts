@@ -64,5 +64,4 @@ export class PageGpRashodStavok implements OnInit{
         this.curentMenuItem = 'rashodstavok';
         this.router.navigate(['gp.rashodstavok/rashodstavok']);
     }
-
 }

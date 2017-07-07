@@ -1,28 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './../../../../../../share/app.service';
-import { Dictionary } from './../../../../../../../assets/dictionary';
+import { AppService } from './../../../../../../../share/app.service';
+import { Dictionary } from './../../../../../../../../assets/dictionary';
 import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'rashodi.html',
-    styleUrls: ['rashodi.css'],
-
+    selector: 'zav-rashodstavok-component',
+    templateUrl: 'zav-rashodstavok-component.html'
 })
 
-export class RashodiComponent implements OnInit{
+export class ZavRashodStavokComponent implements OnInit{      
     constructor(private service : AppService,
                 private dictionary : Dictionary,
                 private storage : LocalStorageService){}  
-
-    titelName = 'РАСХОДЫ';
-    diction = []; 
+    userSetings;  
+    user;
+    diction: any;
     defualtDate = Date();
     procentSchow: Boolean = false;
     firstLoad: Boolean = false;
-    userSetings;
-    user;
 
+    arrtypePeriud = [];
     tableDate = [];
     tableDateOptions = [];
 
@@ -37,36 +35,23 @@ export class RashodiComponent implements OnInit{
         }
     ];
     noFixetColumns = [];
-    tableDateColumns = [];     
-    tableDateOptionsFilter = [];
-    
+    tableDateColumns = []
+    tableDateOptionsFilter = []; 
+
+    typePeriudModel: Number;  
+
     arrVladelic = [];   
     vladelicModel: Number; 
-
+    
     arrPostavschik = [];
     postavschikModel: Number;
 
-    arrItemSize = [];    
-    itemSizeModel: Number;
-
-    arrtypePeriud = [];
-    typePeriudModel: Number; 
-
     arrStatus = [];
     statusModel: Number;
-
-    updateIdLang(){
-        this.userSetings = this.storage.retrieve('UserSetings');
-    }    
-    refreschData(e){
-        this.defualtDate= e.defualtDate;
-        this.typePeriudModel= e.typePeriudModel;
-        this.vladelicModel= e.vladelicModel;
-        this.postavschikModel= e.postavschikModel;
-        this.statusModel= e.statusModel;
-        this.itemSizeModel= e.itemSizeModel;
-        this.getTabelData();
-    }
+    
+    arrItemSize = [];    
+    itemSizeModel: Number;    
+    
     updateTableColumns(columns: any[]){
         let newColumns = columns;
         this.tableDateColumns = [];
@@ -76,6 +61,15 @@ export class RashodiComponent implements OnInit{
         for (let i=0; i<newColumns.length; i++){
             this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
         }
+    }
+    refreschData(e){
+            this.defualtDate= e.defualtDate;
+            this.typePeriudModel= e.typePeriudModel;
+            this.vladelicModel= e.vladelicModel;
+            this.postavschikModel= e.postavschikModel;
+            this.statusModel= e.statusModel;
+            this.itemSizeModel= e.itemSizeModel;
+        this.getTabelData();
     }
     getTabelData(){
         let param = {
@@ -89,7 +83,7 @@ export class RashodiComponent implements OnInit{
             dte: this.service.getDataString(this.defualtDate)
         }
         // Таблица      
-        this.service.getRashodiTable(param, this.user.programmId, this.userSetings.langId)
+        this.service.getRashodstavokZav(param, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -219,9 +213,8 @@ export class RashodiComponent implements OnInit{
         this.firstLoad = true;
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        this.userSetings = this.storage.retrieve('UserSetings');    
+        this.userSetings = this.storage.retrieve('UserSetings');
         this.user = this.storage.retrieve('userData');
-        /////////////////// Сервисы ////////////////////  
         // Структурные подразделения
         this.service.getVladelic(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe(
@@ -256,7 +249,7 @@ export class RashodiComponent implements OnInit{
                                 for (let i=0; i<data.length; i++){
                                     this.arrPostavschik.push({id: data[i].id, name: data[i].name});
                                     if (data[i].default==1) this.postavschikModel = this.arrPostavschik[i].id;  
-                                }                                       
+                                }                                              
                             } else console.log(data);
                         },
                         error => {
@@ -266,7 +259,7 @@ export class RashodiComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    ); 
+                    );  
         //Единицы измерения  
         this.service.getItemSize(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
@@ -335,7 +328,7 @@ export class RashodiComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    );   
+                    );
         this.initTableColumns();
     }
 }

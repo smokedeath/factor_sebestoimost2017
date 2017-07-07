@@ -35,8 +35,10 @@ import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent
          ViborMarschrutaViewComponent } from './components/pages/gp/page.gp.sebestoimosti/page.route/view.index';   
 import { FinanceDataInput, IodvDataInput, StatPokazInputComponent,
          AsudkrDataInputComponent, CraschetDataInputComponent } from './components/pages/gp/page.gp.dateinput/page.route/view.index'; 
-import { RashodStavokComponent, OtnesenieRashodovComponent, 
-         ExplotationPokazRashodStavokComponent, RashodiComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
+import { RashodStavokComponent, OtnesenieRashodovComponent, ZavOtnesenieRashodovComponent,
+         ExplotationPokazRashodStavokComponent, RashodiComponent, UslOtnesenieRashodovComponent,
+         FullOtnesenieRashodovComponent, ZavRashodStavokComponent, UslRashodStavokComponent, 
+         FullRashodStavokComponent } from './components/pages/gp/page.gp.rashodstavok/page.route/view.index';  
 
 import { RaskodStavokTemplateComponent, ExplotationPokazTemplateComponent,
          RaskodstavokTemplateSebistoimostComponent } from './components/pages/genera-views/view.index';
@@ -55,7 +57,9 @@ import { BreadcrumbService } from './share/breadcrumb.service';
                 IodvDataInput, StatPokazInputComponent, RazhodnieIzmeriteli, CraschetDataInputComponent, RashodnieStavkiComponent,
                 RashodStavokComponent, RaskodStavokTemplateComponent, OtnesenieRashodovComponent, ExplotationPokazRashodStavokComponent,
                 RashodiComponent,  ExplotationPokazSebestoimost, ExplotationPokazTemplateComponent, ViborMarschrutaViewComponent,
-                RaskodstavokTemplateSebistoimostComponent, FactSrednSebeStoimostComponent, AllParametrsViewComponent,  // View основных страниц
+                RaskodstavokTemplateSebistoimostComponent, FactSrednSebeStoimostComponent, AllParametrsViewComponent,
+                ZavOtnesenieRashodovComponent, UslOtnesenieRashodovComponent, FullOtnesenieRashodovComponent, 
+                ZavRashodStavokComponent, UslRashodStavokComponent, FullRashodStavokComponent, // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
                 SinglTopMenu, ErrorFormDate, LefletMap, TreeTableComponent, ComboboxFilterComponent,
