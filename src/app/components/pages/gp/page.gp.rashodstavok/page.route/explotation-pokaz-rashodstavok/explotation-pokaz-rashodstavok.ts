@@ -14,8 +14,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
                 private storage : LocalStorageService){}  
-
-    titelName = 'ЭКСПЛУАТАЦИОННЫЕ ПОКАЗАТЕЛИ';  
+ 
     diction = [];
     userSetings;
     user;

@@ -21,3 +21,4 @@ export * from './table-component/table-component';
 export * from './bread-crumb-component/bread-crumb-component';
 export * from './footer-component/footer-component';
 export * from './panel-filter-component/panel-filter-component';
+export * from './treetable-settings-component/treetable-settings-component';

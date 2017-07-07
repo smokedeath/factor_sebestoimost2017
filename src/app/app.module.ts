@@ -28,7 +28,7 @@ import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, Tre
          SinglTopMenu , ErrorFormDate, LefletMap, CalendarComponent, FooterComponent, PanelFilterComponent,
          SidenavFTComponent, PassRefDialogComponent, NavbarMegaMenuComponent, ComboboxFilterComponent,
          SidenavLinkMenuComponent, PreloaderComponent, ViewPositionCcomponent, UserSettingsComponent,
-         MyTableComponent, ComboboxMultiSelectComponent, BreadCrumbComponent } from './components/components/components.index';
+         MyTableComponent, ComboboxMultiSelectComponent, BreadCrumbComponent, TreeTableSettingsComponent } from './components/components/components.index';
 
 import { FactConcSebistoimostView, RazhodnieIzmeriteli, RashodnieStavkiComponent, AllParametrsViewComponent,
          ExplotationPokazSebestoimost, FactSrednSebeStoimostComponent, 
@@ -65,7 +65,7 @@ import { BreadcrumbService } from './share/breadcrumb.service';
                 SinglTopMenu, ErrorFormDate, LefletMap, TreeTableComponent, ComboboxFilterComponent,
                 PassRefDialogComponent, NavbarMegaMenuComponent, SidenavLinkMenuComponent, PreloaderComponent, 
                 ViewPositionCcomponent, UserSettingsComponent, MyTableComponent, PanelFilterComponent,
-                ComboboxMultiSelectComponent, BreadCrumbComponent, FooterComponent // Общие компоненты
+                ComboboxMultiSelectComponent, BreadCrumbComponent, FooterComponent, TreeTableSettingsComponent // Общие компоненты
   ],
   imports: [
     Ng2Webstorage,

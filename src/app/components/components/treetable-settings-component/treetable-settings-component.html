@@ -1,0 +1,52 @@
+ <p-panel header={{diction[176][userSetings.langId]}}  [toggleable]="true">
+    <div class="row">
+        <div class="col-lg-3 btn-css">
+            <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="exportToExcell()"><i class="material-icons icon-size-css">file_download</i> 
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
+            <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="top" type="button" 
+                    class="btn btn-primary"><i class="material-icons icon-size-css">autorenew</i> 
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>         
+            <button pTooltip={{diction[147][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="showFilters()"><i class="material-icons icon-size-css">filter_list</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[147][userSetings.langId]}}</label>
+            </button>
+            <button pTooltip={{diction[124][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="showitemSize()"><i class="material-icons icon-size-css">format_list_numbered</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[124][userSetings.langId]}}</label>
+            </button>
+            <button pTooltip={{diction[177][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="showItemColumnSettings()"><i class="material-icons icon-size-css">view_column</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[177][userSetings.langId]}}</label>
+            </button>
+            <button pTooltip={{diction[125][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="procentChang()" *ngIf="showpPocentButton"><i class="icon-size-css">%</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[125][userSetings.langId]}}</label>
+            </button>
+        </div>
+    </div>
+    <div class="row row-margin-css">
+        <div class="col-lg-4" *ngIf="showItemColumnSettingsModel">
+            <h3 class="first">{{diction[177][userSetings.langId]}}</h3>
+            <div class="colomns-settings-css">
+                <p-checkbox name='selectAll' label='' [(ngModel)]=checkAllColumns binary="true" (onChange)=onCheckAllColumns()></p-checkbox>
+                <div class="procent-css" *ngFor="let item of tableDateOptions">
+                    <p-checkbox name={{item.name}} label={{item.label}} [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()></p-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4" *ngIf="showItemSizeSettingsModel">
+            <h3 class="first">{{diction[124][userSetings.langId]}}</h3>
+            <div class="row colomns-settings-css" *ngFor="let item of tableDateOptions">
+                <div class="col-lg-6" >
+                    <label>{{item.label}}:</label>
+                </div>
+                <div class="col-lg-6" >
+                    <combobox-component [iNgModel]=itemSizeModel [idLang]=userSetings.langId   
+                                        [structure]=arrItemSize (oNgModel)='itemSizeModel=$event'>
+                    </combobox-component>
+                </div>
+            </div>
+        </div>
+    </div>
+  </p-panel>

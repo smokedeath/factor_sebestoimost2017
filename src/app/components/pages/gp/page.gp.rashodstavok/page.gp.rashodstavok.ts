@@ -61,7 +61,9 @@ export class PageGpRashodStavok implements OnInit{
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');
         this.updIdLang(this.userSetings.langId);
-        this.curentMenuItem = 'rashodstavok';
-        this.router.navigate(['gp.rashodstavok/rashodstavok']);
+        // this.curentMenuItem = 'rashodstavok';
+        // this.router.navigate(['gp.rashodstavok/rashodstavok']);
+        this.curentMenuItem = 'rashodi';
+        this.router.navigate(['gp.rashodstavok/rashodi']);
     }
 }
