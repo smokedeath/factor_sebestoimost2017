@@ -25,8 +25,8 @@ import { PageLogin, PageIndexGp, PageIndexMzhs, PageGpAnaliz, NotFountComponent,
          PageGpDateInput, PageGpRashodStavok, PageGpSebestoimosti, FaqComponent }  from './components/pages/pages.index';
 
 import { ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, TreeTableComponent,
-         SinglTopMenu , ErrorFormDate, LefletMap, CalendarComponent, FooterComponent, PanelFilterComponent,
-         SidenavFTComponent, PassRefDialogComponent, NavbarMegaMenuComponent, ComboboxFilterComponent,
+         SinglTopMenu , ErrorFormDate, LefletMap, CalendarComponent, FooterComponent, 
+         SidenavFTComponent, PassRefDialogComponent, NavbarMegaMenuComponent, 
          SidenavLinkMenuComponent, PreloaderComponent, ViewPositionCcomponent, UserSettingsComponent,
          MyTableComponent, ComboboxMultiSelectComponent, BreadCrumbComponent, TreeTableSettingsComponent } from './components/components/components.index';
 
@@ -62,9 +62,9 @@ import { BreadcrumbService } from './share/breadcrumb.service';
                 ZavRashodStavokComponent, UslRashodStavokComponent, FullRashodStavokComponent, // View основных страниц
 
                 ComponentLogin, ErrorDialog, ComponentBigBatton, ComboboxComponent, CalendarComponent, SidenavFTComponent,
-                SinglTopMenu, ErrorFormDate, LefletMap, TreeTableComponent, ComboboxFilterComponent,
+                SinglTopMenu, ErrorFormDate, LefletMap, TreeTableComponent, 
                 PassRefDialogComponent, NavbarMegaMenuComponent, SidenavLinkMenuComponent, PreloaderComponent, 
-                ViewPositionCcomponent, UserSettingsComponent, MyTableComponent, PanelFilterComponent,
+                ViewPositionCcomponent, UserSettingsComponent, MyTableComponent, 
                 ComboboxMultiSelectComponent, BreadCrumbComponent, FooterComponent, TreeTableSettingsComponent // Общие компоненты
   ],
   imports: [

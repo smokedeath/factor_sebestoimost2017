@@ -96,21 +96,7 @@ export class RashodiComponent implements OnInit{
                                 data = data.json();
                                 data = data.data;  
                                 this.noFixetColumns = [];
-                                this.tableDateOptionsFilter = [];
-                                let n = {
-                                    kz: this.fixetColumns[0].header,    
-                                    ru: this.fixetColumns[0].header,  
-                                    en: this.fixetColumns[0].header                                 
-                                }
-                                this.tableDateOptionsFilter.push({id: 1, name: n});
-                                n = {
-                                    kz: this.fixetColumns[1].header,    
-                                    ru: this.fixetColumns[1].header,  
-                                    en: this.fixetColumns[1].header                                 
-                                }
-                                this.tableDateOptionsFilter.push({id: 2, name: n});
                                 for (let i=0; i<data.сostElements.length; i++){                                    
-                                    this.tableDateOptionsFilter.push({id: i+3, name: data.сostElements[i].name});
                                     if (this.userSetings.langId==0){
                                         this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.kz});  
                                     } 
@@ -162,6 +148,19 @@ export class RashodiComponent implements OnInit{
     }
     initTableColumns(){
         this.tableDateColumns = [];
+        this.tableDateOptionsFilter = [];
+        let n = {
+            kz: this.fixetColumns[0].header,    
+            ru: this.fixetColumns[0].header,  
+            en: this.fixetColumns[0].header                                 
+        }
+        this.tableDateOptionsFilter.push({id: 1, name: n});
+        n = {
+            kz: this.fixetColumns[1].header,    
+            ru: this.fixetColumns[1].header,  
+            en: this.fixetColumns[1].header                                 
+        }
+        this.tableDateOptionsFilter.push({id: 2, name: n});
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
         }
@@ -170,6 +169,12 @@ export class RashodiComponent implements OnInit{
         }
         for(let i=0; i<this.noFixetColumns.length; i++){    
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
+            let n = {
+                kz: this.noFixetColumns[i].header,    
+                ru: this.noFixetColumns[i].header,  
+                en: this.noFixetColumns[i].header                                 
+            } 
+            this.tableDateOptionsFilter.push({id: i+3, name: n}); 
         }      
     } 
     addChild(e){
@@ -214,7 +219,6 @@ export class RashodiComponent implements OnInit{
             }
         }
     }
-
     ngOnInit(){
         this.firstLoad = true;
         this.diction = this.dictionary.dictionary;

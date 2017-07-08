@@ -1,12 +1,10 @@
  <p-panel header={{diction[176][userSetings.langId]}}  [toggleable]="true">
     <div class="row">
-        <div class="col-lg-3 btn-css">
-            <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="exportToExcell()"><i class="material-icons icon-size-css">file_download</i> 
-                    <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
-            <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="top" type="button" 
-                    class="btn btn-primary"><i class="material-icons icon-size-css">autorenew</i> 
-                    <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>         
+        <div class="col-lg-3 btn-css">    
+            <button pTooltip={{diction[180][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="closeAll()"><i class="material-icons icon-size-css">arrow_drop_up</i>
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[180][userSetings.langId]}}</label>
+            </button>     
             <button pTooltip={{diction[147][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
                     (click)="showFilters()"><i class="material-icons icon-size-css">filter_list</i>  
                     <label *ngIf="userSetings.visibleLabel">  {{diction[147][userSetings.langId]}}</label>
@@ -26,16 +24,32 @@
         </div>
     </div>
     <div class="row row-margin-css">
-        <div class="col-lg-4" *ngIf="showItemColumnSettingsModel">
-            <h3 class="first">{{diction[177][userSetings.langId]}}</h3>
-            <div class="colomns-settings-css">
-                <p-checkbox name='selectAll' label='' [(ngModel)]=checkAllColumns binary="true" (onChange)=onCheckAllColumns()></p-checkbox>
-                <div class="procent-css" *ngFor="let item of tableDateOptions">
-                    <p-checkbox name={{item.name}} label={{item.label}} [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()></p-checkbox>
+        <div class="col-lg-3" *ngIf="showFiltersModel">
+            <h3 class="first">{{diction[147][userSetings.langId]}}</h3>
+            <div class="row colomns-settings-css">
+                <combobox-component [iNgModel]=tableDateOptionsFilterModel [idLang]=userSetings.langId 
+                                    [structure]=tableDateOptionsFilter [style]="{'max-width':'450px'}"
+                                    (oNgModel)='selectFilter($event)'>
+                </combobox-component> 
+            </div>
+            <div class="row colomns-settings-css" *ngIf="arrSelectFilter.length>0">
+                <div class="row colomns-settings-css" *ngFor="let item of arrSelectFilter">
+                    <div class="col-lg-5">                        
+                        <label *ngIf="userSetings.langId==0">{{item.label.kz}}:</label>         
+                        <label *ngIf="userSetings.langId==1">{{item.label.ru}}:</label>         
+                        <label *ngIf="userSetings.langId==2">{{item.label.en}}:</label>
+                    </div>
+                    <div class="col-lg-7">                        
+                        <input type="text" class="form-control" [(ngModel)]=item.model>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4" *ngIf="showItemSizeSettingsModel">
+            <div class="row colomns-settings-css">
+                <button (click)='saveFilter()' type="button" class="btn btn-primary"><i class="material-icons">done</i>  {{diction[179][userSetings.langId]}}</button>
+                <button (click)="cancelFilter()" type="button" class="btn btn-primary"><i class="material-icons">highlight_off</i>  {{diction[60][userSetings.langId]}}</button>
+            </div>
+        </div>        
+        <div class="col-lg-5 padding-css" *ngIf="showItemSizeSettingsModel">
             <h3 class="first">{{diction[124][userSetings.langId]}}</h3>
             <div class="row colomns-settings-css" *ngFor="let item of tableDateOptions">
                 <div class="col-lg-6" >
@@ -45,6 +59,15 @@
                     <combobox-component [iNgModel]=itemSizeModel [idLang]=userSetings.langId   
                                         [structure]=arrItemSize (oNgModel)='itemSizeModel=$event'>
                     </combobox-component>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 padding-css" *ngIf="showItemColumnSettingsModel">
+            <h3 class="first">{{diction[177][userSetings.langId]}}</h3>
+            <div class="colomns-settings-css">
+                <p-checkbox name='selectAll' label='' [(ngModel)]=checkAllColumns binary="true" (onChange)=onCheckAllColumns()></p-checkbox>
+                <div class="procent-css" *ngFor="let item of tableDateOptions">
+                    <p-checkbox name={{item.name}} label={{item.label}} [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()></p-checkbox>
                 </div>
             </div>
         </div>

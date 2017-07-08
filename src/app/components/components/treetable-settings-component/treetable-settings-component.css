@@ -18,5 +18,8 @@
 }
 .colomns-settings-css{
     width:auto;
-    margin-bottom:5px
+    margin-bottom:5px; 
+}
+.padding-css{
+    padding-left: 100px;
 }

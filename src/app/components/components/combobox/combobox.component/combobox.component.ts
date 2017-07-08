@@ -22,7 +22,7 @@ export class ComboboxComponent{
 
     @Output()    
     oNgModel: EventEmitter<Number> = new EventEmitter();
-
+ 
     onComboboxChenge(){
         this.oNgModel.emit(this.iNgModel);
     }

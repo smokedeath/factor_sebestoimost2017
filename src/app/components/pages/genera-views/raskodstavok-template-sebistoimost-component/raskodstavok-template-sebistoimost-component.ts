@@ -67,6 +67,6 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.diction = this.dictionary.dictionary;
+        this.diction = this.dictionary.dictionary;  
     }
 }

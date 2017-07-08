@@ -17,13 +17,19 @@
                 <combobox-component [iNgModel]=postavschikModel [idLang]=userSetings.langId
                                     [structure]=arrPostavschik (oNgModel)='postavschikModel = $event'></combobox-component>  
                 </div>    
-                <div class="col-md-2">
+                <div class="col-md-2 ">
                 <combobox-component [iNgModel]=statusModel [idLang]=userSetings.langId
                                     [structure]=arrStatus (oNgModel)='statusModel = $event'></combobox-component>  
                 </div>   
             </div>   
 
-            <div class="col-md-3">
+            <div class="col-md-3 btn-css">                
+                <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                        (click)="exportToExcell()"><i class="material-icons">file_download</i> 
+                        <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
+                <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="top" type="button" 
+                        class="btn btn-primary"><i class="material-icons">autorenew</i> 
+                        <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>  
             </div> 
         </div>
     </p-panel>   
@@ -36,6 +42,7 @@
                                   [showpPocentButton]=true
                                   [itemSizeModel]=itemSizeModel
                                   [arrItemSize]=arrItemSize
+                                  [tableDateOptionsFilter]=tableDateOptionsFilter
                                   (outItemColumnSettingsChange)='updateTableColumns($event)'>        
     </treetable-settings-component>
 </div>
@@ -45,7 +52,3 @@
         <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
     </div>
 </div>   
-
-<p-overlayPanel #filter [showCloseIcon]="true" appendTo="body">
-    <panel-filter-component [langId]=userSetings.langId [tableDateOptionsFilter]=tableDateOptionsFilter></panel-filter-component>
-</p-overlayPanel>
