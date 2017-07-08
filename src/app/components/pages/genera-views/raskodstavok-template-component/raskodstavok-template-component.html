@@ -51,5 +51,5 @@
 </div>
 
 <div class="row row-margin">
-    <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns></tree-table>
+    <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
 </div>   

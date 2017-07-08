@@ -5,12 +5,11 @@
             #dt>
     <p-column *ngFor="let column of cols" field="{{column.field}}" header="{{column.header}}"  [sortable]="true" 
                                        [filter]="true" filterMatchMode="in" [style]="{'overflow':'visible','width':'200px'}" >
-
+<!--
         <ng-template pTemplate="filter" let-col>
             <p-multiSelect appendTo="body" [options]="column.dataFilter" defaultLabel="Фильтр" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" 
                             styleClass="ui-column-filter" *ngIf="tableFilter" [displaySelectedLabel]=false></p-multiSelect>
-        </ng-template>
-
+        </ng-template>-->
     </p-column>
 </p-dataTable>
 

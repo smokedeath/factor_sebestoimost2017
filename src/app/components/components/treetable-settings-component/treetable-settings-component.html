@@ -1,6 +1,6 @@
  <p-panel header={{diction[176][userSetings.langId]}}  [toggleable]="true">
     <div class="row">
-        <div class="col-lg-3 btn-css">    
+        <div class="btn-css">    
             <button pTooltip={{diction[180][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
                     (click)="closeAll()"><i class="material-icons icon-size-css">arrow_drop_up</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[180][userSetings.langId]}}</label>
@@ -14,14 +14,30 @@
                     <label *ngIf="userSetings.visibleLabel">  {{diction[124][userSetings.langId]}}</label>
             </button>
             <button pTooltip={{diction[177][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="showItemColumnSettings()"><i class="material-icons icon-size-css">view_column</i>  
+                    (click)="showItemColumnSettings()"><i class="material-icons icon-size-css">view_week</i> 
                     <label *ngIf="userSetings.visibleLabel">  {{diction[177][userSetings.langId]}}</label>
+            </button>
+            <button pTooltip={{diction[181][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="addNewColumns()"><i class="material-icons icon-size-css">format_indent_increase</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[181][userSetings.langId]}}</label>
+            </button>
+            <button pTooltip={{diction[182][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="selectColorColumns()"><i class="material-icons icon-size-css">border_horizontal</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[182][userSetings.langId]}}</label>
+            </button>
+            <button pTooltip={{diction[183][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="sortColumns()"><i class="material-icons icon-size-css">sort</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[183][userSetings.langId]}}</label>
+            </button>
+            <button pTooltip={{diction[184][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+                    (click)="sortColumns()"><i class="material-icons icon-size-css">multiline_chart</i>  
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[183][userSetings.langId]}}</label>
             </button>
             <button pTooltip={{diction[125][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
                     (click)="procentChang()" *ngIf="showpPocentButton"><i class="icon-size-css">%</i>  
                     <label *ngIf="userSetings.visibleLabel">  {{diction[125][userSetings.langId]}}</label>
             </button>
-        </div>
+        </div>  
     </div>
     <div class="row row-margin-css">
         <div class="col-lg-3" *ngIf="showFiltersModel">

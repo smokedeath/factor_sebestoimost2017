@@ -36,6 +36,15 @@ export class TreeTableSettingsComponent implements OnInit{
         this.showItemSizeSettingsModel= false;
         this.showFiltersModel= false;
     }
+    addNewColumns(){
+        //
+    }
+    selectColorColumns(){
+        //
+    }
+    sortColumns(){
+        //
+    }
     selectFilter(e){
         this.tableDateOptionsFilterModel=0;
         this.selectFilterId++;

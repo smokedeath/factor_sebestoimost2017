@@ -35,6 +35,7 @@ export class RaskodStavokTemplateComponent implements OnInit{
     @Output() outProcent: EventEmitter<Boolean> = new EventEmitter();
     @Output() outUpdateTableColumns: EventEmitter<any> = new EventEmitter();
     @Output() outGetTabelData: EventEmitter<any> = new EventEmitter();
+    @Output() outAddChild: EventEmitter<any> = new EventEmitter();
 
     diction: any;
     procentSchow: Boolean = false;
@@ -44,6 +45,9 @@ export class RaskodStavokTemplateComponent implements OnInit{
     }
     exportToExcell(){
         //
+    }
+    addChild(e){
+        this.outAddChild.emit(e);
     }
     refreschData(){
         let outModel = {
