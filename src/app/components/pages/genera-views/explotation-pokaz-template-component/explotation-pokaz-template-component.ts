@@ -25,6 +25,7 @@ export class ExplotationPokazTemplateComponent implements OnInit{
     @Input() tableDateOptions=[];
     @Input() tableDateColumns=[];
     @Input() tableDate=[];
+    @Input() tableDateOptionsFilter=[];
 
     @Output() outAddChild: EventEmitter<any> = new EventEmitter();
     @Output() outUpdateTableColumns: EventEmitter<any> = new EventEmitter();

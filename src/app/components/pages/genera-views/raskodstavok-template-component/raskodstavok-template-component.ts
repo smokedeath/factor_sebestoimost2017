@@ -29,7 +29,8 @@ export class RaskodStavokTemplateComponent implements OnInit{
     @Input() tableDateOptions=[];
     @Input() defualtDate;    
     @Input() tableDate=[];
-    @Input() tableDateColumns=[];
+    @Input() tableDateColumns=[];    
+    @Input() tableDateOptionsFilter=[];
 
     @Output() outProcent: EventEmitter<Boolean> = new EventEmitter();
     @Output() outUpdateTableColumns: EventEmitter<any> = new EventEmitter();

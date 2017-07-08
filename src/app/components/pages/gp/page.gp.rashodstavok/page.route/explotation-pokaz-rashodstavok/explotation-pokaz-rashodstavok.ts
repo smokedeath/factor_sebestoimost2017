@@ -25,6 +25,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     tableDate = [];
     tableDateOptions = [];
     tableDateColumns = []; 
+    tableDateOptionsFilter = [];
 
     fixetColumns = [
         {
@@ -142,6 +143,19 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     }
     initTableColumns(){        
         this.tableDateColumns = [];
+        this.tableDateOptionsFilter = [];
+        let n = {
+            kz: this.fixetColumns[0].header,    
+            ru: this.fixetColumns[0].header,  
+            en: this.fixetColumns[0].header                                 
+        }
+        this.tableDateOptionsFilter.push({id: 1, name: n});
+        n = {
+            kz: this.fixetColumns[1].header,    
+            ru: this.fixetColumns[1].header,  
+            en: this.fixetColumns[1].header                                 
+        }
+        this.tableDateOptionsFilter.push({id: 2, name: n});
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
         }
@@ -150,6 +164,12 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
         }
         for(let i=0; i<this.noFixetColumns.length; i++){    
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
+            let n = {
+                kz: this.noFixetColumns[i].header,    
+                ru: this.noFixetColumns[i].header,  
+                en: this.noFixetColumns[i].header                                 
+            } 
+            this.tableDateOptionsFilter.push({id: i+3, name: n}); 
         }
     } 
     addChild(e){
