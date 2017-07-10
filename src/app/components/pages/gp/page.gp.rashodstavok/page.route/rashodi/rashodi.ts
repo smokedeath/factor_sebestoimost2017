@@ -17,6 +17,7 @@ export class RashodiComponent implements OnInit{
 
     titelName = 'РАСХОДЫ';
     diction = []; 
+    constants = [];
     defualtDate = Date();
     procentSchow: Boolean = false;
     firstLoad: Boolean = false;
@@ -41,7 +42,7 @@ export class RashodiComponent implements OnInit{
     tableDateOptionsFilter = [];
     
     arrVladelic = [];   
-    vladelicModel: Number; 
+    vladelicModel; 
 
     arrPostavschik = [];
     postavschikModel: Number;
@@ -213,11 +214,46 @@ export class RashodiComponent implements OnInit{
     }
     getFirstTableData(){
         if (this.firstLoad){
-            if (this.vladelicModel>0 && this.postavschikModel>0 && this.itemSizeModel>0 && this.statusModel>0 && this.typePeriudModel>0){
-                this.getTabelData();
+            if (this.vladelicModel >=0  && this.postavschikModel>0 && this.itemSizeModel>0 && this.statusModel>0 && this.typePeriudModel>0){
+                this.getCube();//this.getTabelData();
                 this.firstLoad = false;
             }
         }
+    }
+    getIdByConst(inConst, data){
+        let id = -1;
+        for (let i=0; i<data.length; i++){
+            if (data[i].own==inConst) id = i;
+        }
+        return id;
+    }
+    getCube(){
+        let data = {
+            session: this.user.session,
+            cubeId: 'rashodiCubes',
+            filter: [
+                     {tableName:"freightCarrierDo",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},
+                     {tableName:"dp_q", ids: this.postavschikModel},
+                     {tableName:"dp_s", ids: this.statusModel},
+                     {tableName:"period", dte: this.defualtDate, periodType: this.typePeriudModel}
+                    ]
+        }
+        this.service.getCubeValues(data, this.user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                this.constants = data.data;
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
     }
     ngOnInit(){
         this.firstLoad = true;
@@ -226,19 +262,18 @@ export class RashodiComponent implements OnInit{
         this.userSetings = this.storage.retrieve('UserSetings');    
         this.user = this.storage.retrieve('userData');
         /////////////////// Сервисы ////////////////////  
-        // Структурные подразделения
-        this.service.getVladelic(this.user.session, this.user.programmId, this.userSetings.langId)
+        let data = {
+            session: this.user.session,
+            cubeId: 'rashodiCubes',
+            dimName: 'freightCarrierDo'
+        }
+        // Списки всех констант
+        this.service.getAllConst(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
                                 data = data.json();
-                                data = data.data;
-                                this.arrVladelic = [];
-                                this.vladelicModel = -1;
-                                for (let i=0; i<data.length; i++){
-                                    this.arrVladelic.push({id: data[i].id, name: data[i].name});
-                                    if (data[i].default==1) this.vladelicModel = this.arrVladelic[i].id;  
-                                }                                              
+                                this.constants = data.data;
                             } else console.log(data);
                         },
                         error => {
@@ -248,19 +283,45 @@ export class RashodiComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    ); 
-        this.service.getPostavschik(this.user.session, this.user.programmId, this.userSetings.langId)
+                    );
+        // Структурные подразделения
+        this.service.getCubeDimData({session: this.user.session, cubeId: 'rashodiCubes', dimName: 'freightCarrierDo' }, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
                                 data = data.json();
                                 data = data.data;
+                                data = data[Object.keys(data)[0]]
+                                this.arrVladelic = [];
+                                this.vladelicModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrVladelic.push({id: i, name: data[i].name, idName: data[i].id});
+                                }        
+                                this.vladelicModel = this.getIdByConst(this.constants['gpId'].id, data);             
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );
+        // поставщики
+        this.service.getCubeDimData({session: this.user.session, cubeId: 'rashodiCubes', dimName: 'dp_q' }, this.user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                data = data[Object.keys(data)[0]]
                                 this.arrPostavschik = [];
                                 this.postavschikModel = -1;
                                 for (let i=0; i<data.length; i++){
                                     this.arrPostavschik.push({id: data[i].id, name: data[i].name});
-                                    if (data[i].default==1) this.postavschikModel = this.arrPostavschik[i].id;  
-                                }                                       
+                                }        
+                                this.postavschikModel = this.constants['defProvider'].id;             
                             } else console.log(data);
                         },
                         error => {
@@ -270,7 +331,31 @@ export class RashodiComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    ); 
+                    );        
+        //статусы
+        this.service.getCubeDimData({session: this.user.session, cubeId: 'rashodiCubes', dimName: 'dp_s' }, this.user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                data = data[Object.keys(data)[0]]
+                                this.arrStatus = [];
+                                this.statusModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrStatus.push({id: data[i].id, name: data[i].name});
+                                }        
+                                this.statusModel = this.constants['defStatus'].id;             
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );  
         //Единицы измерения  
         this.service.getItemSize(this.user.session, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
@@ -317,29 +402,6 @@ export class RashodiComponent implements OnInit{
                             } else  console.log(error);
                         }
                     );
-        //статусы
-        this.service.getStatus(this.user.session, this.user.programmId, this.userSetings.langId)
-                    .subscribe( 
-                        data => {
-                            if (data.status==200){
-                                data = data.json();
-                                data = data.data;
-                                this.arrStatus = [];
-                                this.statusModel = -1;
-                                for (let i=0; i<data.length; i++){
-                                    this.arrStatus.push({id: data[i].id, name: data[i].name});
-                                    if (data[i].default==1) this.statusModel = this.arrStatus[i].id;  
-                                }                                              
-                            } else console.log(data);
-                        },
-                        error => {
-                            if (error.status==403){
-                                this.service.goToLogin();
-                            }else  if(error.status==500) {
-                                console.log(error);
-                            } else  console.log(error);
-                        }
-                    );   
         this.initTableColumns();
     }
 }

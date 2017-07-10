@@ -18,7 +18,7 @@
                     <label *ngIf="userSetings.visibleLabel">  {{diction[177][userSetings.langId]}}</label>
             </button>
             <button pTooltip={{diction[181][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="addNewColumns()"><i class="material-icons icon-size-css">format_indent_increase</i>  
+                    (click)="showAddNewColumns()"><i class="material-icons icon-size-css">format_indent_increase</i>  
                     <label *ngIf="userSetings.visibleLabel">  {{diction[181][userSetings.langId]}}</label>
             </button>
             <button pTooltip={{diction[182][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
@@ -31,7 +31,7 @@
             </button>
             <button pTooltip={{diction[184][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
                     (click)="sortColumns()"><i class="material-icons icon-size-css">multiline_chart</i>  
-                    <label *ngIf="userSetings.visibleLabel">  {{diction[183][userSetings.langId]}}</label>
+                    <label *ngIf="userSetings.visibleLabel">  {{diction[184][userSetings.langId]}}</label>
             </button>
             <button pTooltip={{diction[125][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
                     (click)="procentChang()" *ngIf="showpPocentButton"><i class="icon-size-css">%</i>  
@@ -65,7 +65,7 @@
                 <button (click)="cancelFilter()" type="button" class="btn btn-primary"><i class="material-icons">highlight_off</i>  {{diction[60][userSetings.langId]}}</button>
             </div>
         </div>        
-        <div class="col-lg-5 padding-css" *ngIf="showItemSizeSettingsModel">
+        <div class="col-lg-3 padding-css" *ngIf="showItemSizeSettingsModel">
             <h3 class="first">{{diction[124][userSetings.langId]}}</h3>
             <div class="row colomns-settings-css" *ngFor="let item of tableDateOptions">
                 <div class="col-lg-6" >
@@ -78,13 +78,24 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 padding-css" *ngIf="showItemColumnSettingsModel">
+        <div class="col-lg-3 padding-css" *ngIf="showItemColumnSettingsModel">
             <h3 class="first">{{diction[177][userSetings.langId]}}</h3>
             <div class="colomns-settings-css">
                 <p-checkbox name='selectAll' label='' [(ngModel)]=checkAllColumns binary="true" (onChange)=onCheckAllColumns()></p-checkbox>
                 <div class="procent-css" *ngFor="let item of tableDateOptions">
                     <p-checkbox name={{item.name}} label={{item.label}} [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()></p-checkbox>
                 </div>
+            </div>
+        </div>
+        <div class="col-lg-3 padding-css" *ngIf="addNewColumnsModel">
+            <h3 class="first">{{diction[181][userSetings.langId]}}</h3>
+            <div class="colomns-settings-css">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" placeholder={{diction[185][userSetings.langId]}} [(ngModel)]=newColumnModel>
+                    </div>                    
+                    <button (click)='addNewColumns()' pTooltip={{diction[186][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary">+</button>
+                </div>               
             </div>
         </div>
     </div>

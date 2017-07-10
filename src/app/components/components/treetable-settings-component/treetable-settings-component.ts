@@ -28,16 +28,21 @@ export class TreeTableSettingsComponent implements OnInit{
     showFiltersModel: Boolean = false;
     procentSchow: Boolean = false;
     checkAllColumns: Boolean = true;
-    panelcollapsed: Boolean = false;
+    addNewColumnsModel: Boolean = false;
     selectFilterId: number = 0;
+    newColumnModel:String = '';
 
     closeAll(){
         this.showItemColumnSettingsModel= false;
         this.showItemSizeSettingsModel= false;
         this.showFiltersModel= false;
+        this.addNewColumnsModel= false;
     }
     addNewColumns(){
         //
+    }
+    showAddNewColumns(){
+        this.addNewColumnsModel = !this.addNewColumnsModel;
     }
     selectColorColumns(){
         //

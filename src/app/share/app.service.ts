@@ -63,8 +63,8 @@ export class AppService {
         if (langId==1) lang = 'ru';
         if (langId==2) lang = 'en';
 
-        url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
-        // url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
+        // url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
+        url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
 
         return url;
     }
@@ -109,6 +109,31 @@ export class AppService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+    getCubeDimData(data, moduleId, langId){ //Выгрузка измерении куба с данными
+        let apiUrl = "/cube/getCubeDimData"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+    getAllConst(data, moduleId, langId){ // Списки всех констант
+        let apiUrl = "/catalog/getAllConst"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+    getCubeValues(data, moduleId, langId){ // Полдучение куба
+        let apiUrl = "/cube/getCubeValues"; 
+        let options = new RequestOptions({ params: data });
+        return this.http.get(this.getBaseUrl(moduleId, langId) + apiUrl, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+
+
+
     getGenPeriodList(data, moduleId, langId) {  //Тип периода
         let apiUrl = "/catalog/periodType"; 
         let options = new RequestOptions({ params: data });
@@ -258,10 +283,6 @@ export class AppService {
         let year = datepar.getFullYear();
         return year + "-" + month + "-" + day;
     }
-
-
-
-
     loadUserSetings(){
         // Загрузка данных о настройках пользователя с сервера
             let user = this.storage.retrieve('userData');
