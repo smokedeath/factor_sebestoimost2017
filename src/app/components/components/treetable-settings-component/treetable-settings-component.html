@@ -69,7 +69,9 @@
             <h3 class="first">{{diction[124][userSetings.langId]}}</h3>
             <div class="row colomns-settings-css" *ngFor="let item of tableDateOptions">
                 <div class="col-lg-6" >
-                    <label>{{item.label}}:</label>
+                    <label *ngIf="userSetings.langId==0">{{item.label.kz}}:</label>
+                    <label *ngIf="userSetings.langId==1">{{item.label.ru}}:</label>
+                    <label *ngIf="userSetings.langId==2">{{item.label.en}}:</label>
                 </div>
                 <div class="col-lg-6" >
                     <combobox-component [iNgModel]=itemSizeModel [idLang]=userSetings.langId   
@@ -83,7 +85,15 @@
             <div class="colomns-settings-css">
                 <p-checkbox name='selectAll' label='' [(ngModel)]=checkAllColumns binary="true" (onChange)=onCheckAllColumns()></p-checkbox>
                 <div class="procent-css" *ngFor="let item of tableDateOptions">
-                    <p-checkbox name={{item.name}} label={{item.label}} [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()></p-checkbox>
+                    <p-checkbox *ngIf="userSetings.langId==0" name={{item.name}} label={{item.label.kz}} 
+                                [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()>
+                    </p-checkbox>
+                    <p-checkbox *ngIf="userSetings.langId==1" name={{item.name}} label={{item.label.ru}} 
+                                [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()>
+                    </p-checkbox>
+                    <p-checkbox *ngIf="userSetings.langId==2" name={{item.name}} label={{item.label.en}} 
+                                [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()>
+                    </p-checkbox>
                 </div>
             </div>
         </div>

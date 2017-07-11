@@ -1,5 +1,16 @@
-<p-treeTable [value]="tableDate" selectionMode="single" [(selection)]="selectedField" (onNodeExpand)="loadNode($event)">
-  <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header}}>
+
+<p-treeTable *ngIf="langId==0" [value]="tableDate" selectionMode="single" [(selection)]="selectedField" (onNodeExpand)="loadNode($event)">
+  <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header.kz}}>
+  </p-column>
+</p-treeTable>
+
+<p-treeTable *ngIf="langId==1" [value]="tableDate" selectionMode="single" [(selection)]="selectedField" (onNodeExpand)="loadNode($event)">
+  <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header.ru}}>
+  </p-column>
+</p-treeTable>
+
+<p-treeTable *ngIf="langId==2" [value]="tableDate" selectionMode="single" [(selection)]="selectedField" (onNodeExpand)="loadNode($event)">
+  <p-column *ngFor="let colmn of tableDateColumns" field={{colmn.field}} header={{colmn.header.en}}>
   </p-column>
 </p-treeTable>
 

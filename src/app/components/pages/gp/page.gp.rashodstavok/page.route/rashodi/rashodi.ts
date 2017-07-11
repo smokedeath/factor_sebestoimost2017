@@ -18,25 +18,19 @@ export class RashodiComponent implements OnInit{
     titelName = 'РАСХОДЫ';
     diction = []; 
     constants = [];
-    defualtDate = Date();
+    defualtDate = new Date();
     procentSchow: Boolean = false;
     firstLoad: Boolean = false;
     userSetings;
-    user;
+    user;    
+    tableY0 = [];
+    tableYChild = {};
+    coardinat=[];
 
     tableDate = [];
     tableDateOptions = [];
 
-    fixetColumns = [
-        {
-            field: "id",
-            header: "Номер статьи"
-        },
-        {
-            field: "name",
-            header: "Наименование статьи"
-        }
-    ];
+    fixetColumns = [{field:"id",header:{kz:'',ru:'',en:''}},{field:"id",header:{kz:'',ru:'',en:''}}];
     noFixetColumns = [];
     tableDateColumns = [];     
     tableDateOptionsFilter = [];
@@ -66,7 +60,8 @@ export class RashodiComponent implements OnInit{
         this.postavschikModel= e.postavschikModel;
         this.statusModel= e.statusModel;
         this.itemSizeModel= e.itemSizeModel;
-        this.getTabelData();
+        if (this.vladelicModel >=0  && this.postavschikModel>0 && this.itemSizeModel>0 && this.statusModel>0 && this.typePeriudModel>0)
+         this.getCube();
     }
     updateTableColumns(columns: any[]){
         let newColumns = columns;
@@ -78,144 +73,10 @@ export class RashodiComponent implements OnInit{
             this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
         }
     }
-    getTabelData(){
-        let param = {
-            session: this.user.session,
-            freightCarrier: this.vladelicModel,
-            provider: this.postavschikModel,
-            measure: this.itemSizeModel,
-            status: this.statusModel,
-            parent: 0,
-            periodType: this.typePeriudModel,
-            dte: this.service.getDataString(this.defualtDate)
-        }
-        // Таблица      
-        this.service.getRashodiTable(param, this.user.programmId, this.userSetings.langId)
-                    .subscribe(
-                        data => {
-                            if (data.status==200){
-                                data = data.json();
-                                data = data.data;  
-                                this.noFixetColumns = [];
-                                for (let i=0; i<data.сostElements.length; i++){                                    
-                                    if (this.userSetings.langId==0){
-                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.kz});  
-                                    } 
-                                    if (this.userSetings.langId==1){
-                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.ru});  
-                                    } 
-                                    if (this.userSetings.langId==2){
-                                        this.noFixetColumns.push({field: data.сostElements[i].id, header: data.сostElements[i].name.en});   
-                                    }  
-                                }
-                                this.initTableColumns();
-                                data = data.data;
-                                this.tableDate = this.inputTabelData(data, this.userSetings.langId);                                          
-                            } else console.log(data);
-                        },
-                        error =>{
-                            if (error.status==403){
-                                this.service.goToLogin();
-                            }else  if(error.status==500) {
-                                console.log(error);
-                            } else  console.log(error);
-                        }
-                    );   
-    }
-    inputTabelData(data, lang){        
-        let rData = [];
-         for (let i=0; i<data.length; i++){  
-             let dat = {};           
-             for (let key in data[i]){
-                if (key!='id'&&key!='name'){
-                    if (this.procentSchow) dat[key] = data[i][key].percentValue;
-                    else dat[key] = data[i][key].value;
-                }else{
-                    if (key=='id')dat[key] = data[i][key];
-                    if (key=='name'){
-                        if (lang==0) dat[key] = data[i][key].kz;
-                        if (lang==1) dat[key] = data[i][key].ru;
-                        if (lang==2) dat[key] = data[i][key].en;
-                    }
-                }
-             }
-             let inData = {
-                 data: dat,
-                 leaf: data[i].hasChild==0
-             }
-             rData.push(inData);
-         }
-         return rData;
-    }
-    initTableColumns(){
-        this.tableDateColumns = [];
-        this.tableDateOptionsFilter = [];
-        let n = {
-            kz: this.fixetColumns[0].header,    
-            ru: this.fixetColumns[0].header,  
-            en: this.fixetColumns[0].header                                 
-        }
-        this.tableDateOptionsFilter.push({id: 1, name: n});
-        n = {
-            kz: this.fixetColumns[1].header,    
-            ru: this.fixetColumns[1].header,  
-            en: this.fixetColumns[1].header                                 
-        }
-        this.tableDateOptionsFilter.push({id: 2, name: n});
-        for (let i=0; i<this.fixetColumns.length; i++){
-            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
-        }
-        for (let i=0; i<this.noFixetColumns.length; i++){
-            this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
-        }
-        for(let i=0; i<this.noFixetColumns.length; i++){    
-            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
-            let n = {
-                kz: this.noFixetColumns[i].header,    
-                ru: this.noFixetColumns[i].header,  
-                en: this.noFixetColumns[i].header                                 
-            } 
-            this.tableDateOptionsFilter.push({id: i+3, name: n}); 
-        }      
-    } 
-    addChild(e){
-        let param = {
-            session: this.user.session,
-            freightCarrier: this.vladelicModel,
-            provider: this.postavschikModel,
-            measure: this.itemSizeModel,
-            status: this.statusModel,
-            parent: e.data.id,
-            periodType: this.typePeriudModel,
-            dte: this.service.getDataString(this.defualtDate)
-        }
-        // Таблица      
-        this.service.getRashodiTable(param, this.user.programmId, this.userSetings.langId)
-                    .subscribe(
-                        data => {
-                            if (data.status==200){
-                                data = data.json();
-                                data = data.data;    
-                                data = data.data; 
-                                if (data.length>0){
-                                    e.children = this.inputTabelData(data, this.userSetings.langId);
-                                }   
-                                delete e.leaf;                             
-                            } else console.log(data);
-                        },
-                        error =>{
-                            if (error.status==403){
-                                this.service.goToLogin();
-                            }else  if(error.status==500) {
-                                console.log(error);
-                            } else  console.log(error);
-                        }
-                    );
-    }
     getFirstTableData(){
         if (this.firstLoad){
             if (this.vladelicModel >=0  && this.postavschikModel>0 && this.itemSizeModel>0 && this.statusModel>0 && this.typePeriudModel>0){
-                this.getCube();//this.getTabelData();
+                this.getCube();
                 this.firstLoad = false;
             }
         }
@@ -228,22 +89,46 @@ export class RashodiComponent implements OnInit{
         return id;
     }
     getCube(){
-        let data = {
-            session: this.user.session,
-            cubeId: 'rashodiCubes',
-            filter: [
+        let s = JSON.stringify([
                      {tableName:"freightCarrierDo",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},
                      {tableName:"dp_q", ids: this.postavschikModel},
                      {tableName:"dp_s", ids: this.statusModel},
-                     {tableName:"period", dte: this.defualtDate, periodType: this.typePeriudModel}
-                    ]
+                     {tableName:"period", dte: this.service.getDataString(this.defualtDate), periodType: this.typePeriudModel.toString()}
+                    ]);
+        let data = {
+            session: this.user.session,
+            cubeId: 'rashodiCubes',
+            filter: s
         }
         this.service.getCubeValues(data, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
                                 data = data.json();
-                                this.constants = data.data;
+                                data = data.data;
+                                this.coardinat = data.data;
+                                
+                                this.noFixetColumns = [];
+                                let tableX = data[this.service.cubParams.tableX];
+                                for (let i=0; i<tableX.length; i++){
+                                    this.noFixetColumns.push({field: tableX[i].id, header: tableX[i].name}); 
+                                }
+                                this.initTableColumns();
+
+                                let tableY = data[this.service.cubParams.tableY];
+                                this.tableY0 = [];
+                                this.tableYChild = {};
+                                for (let i=0; i<tableY.length; i++){
+                                    if (tableY[i].parent==0){
+                                        this.tableY0.push({id: tableY[i].id, name: tableY[i].name});
+                                    }else{
+                                        if (this.tableYChild[tableY[i].parent]==null) this.tableYChild[tableY[i].parent] = [];
+                                        this.tableYChild[tableY[i].parent].push({id: tableY[i].id, name: tableY[i].name});
+                                    }
+                                }                                
+                                this.tableDate = this.inputTabelData(this.tableY0, this.tableYChild); 
+                                this.tableDate = this.inputCoardinate(this.tableDate);
+                                console.log('');
                             } else console.log(data);
                         },
                         error => {
@@ -255,20 +140,88 @@ export class RashodiComponent implements OnInit{
                         }
                     );
     }
-    ngOnInit(){
+    inputCoardinate(data){       
+        for (let i=0; i<data.length; i++){
+            for (let b=0; b<this.coardinat.length; b++){
+                if (this.coardinat[b][this.service.cubParams.tableY]==data[i].data.id){
+                    data[i].data[this.coardinat[b][this.service.cubParams.tableX]] = this.coardinat[b].valueNumb;
+                }
+            }
+        }
+        return data;
+    }
+    initTableColumns(){
+        this.tableDateColumns = [];
+        this.tableDateOptionsFilter = [];
+        this.tableDateOptions = [];
+
+        this.tableDateOptionsFilter.push({id: 1, name:  this.fixetColumns[0].header});
+        this.tableDateOptionsFilter.push({id: 2, name: this.fixetColumns[1].header});
+        for (let i=0; i<this.fixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
+        }
+        for (let i=0; i<this.noFixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
+        }
+        for(let i=0; i<this.noFixetColumns.length; i++){    
+            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
+            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header}); 
+        }      
+    } 
+    inputTabelData(data, child){        
+        let rData = [];
+         for (let i=0; i<data.length; i++){  
+             let dat = {};           
+             for (let key in data[i]){
+                if (key!='id'&&key!='name'){
+                    dat[key] = data[i][key].value;
+                }else{
+                    if (key=='id')dat[key] = data[i][key];
+                    if (key=='name') {
+                        dat[key] = data[i][key].kz;
+                    }
+                }
+             }
+             let inData = {
+                 data: dat,
+                 leaf: child[data[i]['id']] == null
+             }
+             rData.push(inData);
+         }
+         return rData;
+    }
+    addChild(e){ 
+        let data = [];
+        let child = this.tableYChild[e.data.id];
+        for (let i=0; i<child.length; i++) 
+            data.push(child[i]);       
+        e.children = this.inputTabelData(data, this.tableYChild);        
+        e.children = this.inputCoardinate(e.children);
+        delete e.leaf; 
+    }
+
+
+    ngOnInit(){        
+        let year = this.defualtDate.getFullYear()-1;
+        this.defualtDate.setFullYear(year);
         this.firstLoad = true;
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');    
         this.user = this.storage.retrieve('userData');
+        this.fixetColumns = [
+            {
+                field: "id",
+                header:  {kz: this.diction[187][0], ru: this.diction[187][1], en: this.diction[187][2]}
+            },
+            {
+                field: "name",
+                header:  {kz: this.diction[188][0], ru: this.diction[188][1], en: this.diction[188][2]}
+            }
+        ];
         /////////////////// Сервисы ////////////////////  
-        let data = {
-            session: this.user.session,
-            cubeId: 'rashodiCubes',
-            dimName: 'freightCarrierDo'
-        }
-        // Списки всех констант
-        this.service.getAllConst(this.user.session, this.user.programmId, this.userSetings.langId)
+        // Списки всех констант        
+        this.service.getAllConst({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -357,7 +310,7 @@ export class RashodiComponent implements OnInit{
                         }
                     );  
         //Единицы измерения  
-        this.service.getItemSize(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getItemSize({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
@@ -380,7 +333,7 @@ export class RashodiComponent implements OnInit{
                         }
                     );
         //Тип периода
-        this.service.getGenPeriodList(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getGenPeriodList({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){

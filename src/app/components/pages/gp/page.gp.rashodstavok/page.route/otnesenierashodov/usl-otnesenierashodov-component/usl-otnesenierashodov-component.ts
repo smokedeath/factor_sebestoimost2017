@@ -217,7 +217,7 @@ export class UslOtnesenieRashodovComponent implements OnInit{
         this.userSetings = this.storage.retrieve('UserSetings');
         this.user = this.storage.retrieve('userData');
         // Структурные подразделения
-        this.service.getVladelic(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getVladelic({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -239,7 +239,7 @@ export class UslOtnesenieRashodovComponent implements OnInit{
                             } else  console.log(error);
                         }
                     ); 
-        this.service.getPostavschik(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getPostavschik({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -262,7 +262,7 @@ export class UslOtnesenieRashodovComponent implements OnInit{
                         }
                     );  
         //Единицы измерения  
-        this.service.getItemSize(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getItemSize({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
@@ -285,7 +285,7 @@ export class UslOtnesenieRashodovComponent implements OnInit{
                         }
                     );
         //Тип периода
-        this.service.getGenPeriodList(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getGenPeriodList({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
@@ -308,7 +308,7 @@ export class UslOtnesenieRashodovComponent implements OnInit{
                         }
                     );
         //статусы
-        this.service.getStatus(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getStatus({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){

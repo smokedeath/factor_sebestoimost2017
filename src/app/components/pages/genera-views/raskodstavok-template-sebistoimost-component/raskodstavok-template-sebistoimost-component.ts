@@ -45,6 +45,9 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     exportToExcell(){
         //
     }
+    updateDate(e){
+        this.defualtDate = e;
+    }
     refreschData(){
         let outModel = {
             defualtDate: this.defualtDate,

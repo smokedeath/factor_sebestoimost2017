@@ -191,7 +191,7 @@ export class ExplotationPokazSebestoimost implements OnInit{
         this.user = this.storage.retrieve('userData');
         
         // Структурные подразделения
-        this.service.getVladelic(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getVladelic({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -214,7 +214,7 @@ export class ExplotationPokazSebestoimost implements OnInit{
                         }
                     );    
         //Тип периода
-        this.service.getGenPeriodList(this.user.session, this.user.programmId, this.userSetings.langId)
+        this.service.getGenPeriodList({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
