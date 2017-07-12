@@ -13,16 +13,16 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class RashodiComponent implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
-                private storage : LocalStorageService){}  
+                private storage : LocalStorageService){}
 
     titelName = 'РАСХОДЫ';
-    diction = []; 
+    diction = [];
     constants = [];
     defualtDate = new Date();
     procentSchow: Boolean = false;
     firstLoad: Boolean = false;
     userSetings;
-    user;    
+    user;
     tableY0 = [];
     tableYChild = {};
     coardinat=[];
@@ -32,28 +32,28 @@ export class RashodiComponent implements OnInit{
 
     fixetColumns = [{field:"id",header:{kz:'',ru:'',en:''}},{field:"id",header:{kz:'',ru:'',en:''}}];
     noFixetColumns = [];
-    tableDateColumns = [];     
+    tableDateColumns = [];
     tableDateOptionsFilter = [];
-    
-    arrVladelic = [];   
-    vladelicModel; 
+
+    arrVladelic = [];
+    vladelicModel;
 
     arrPostavschik = [];
     postavschikModel: Number;
 
-    arrItemSize = []; 
-    arrItemSizeObj = {};  
+    arrItemSize = [];
+    arrItemSizeObj = {};
     itemSizeModel = [];
 
     arrtypePeriud = [];
-    typePeriudModel: Number; 
+    typePeriudModel: Number;
 
     arrStatus = [];
     statusModel: Number;
 
     updateIdLang(){
         this.userSetings = this.storage.retrieve('UserSetings');
-    }    
+    }
     refreschData(e){
         this.defualtDate= e.defualtDate;
         this.typePeriudModel= e.typePeriudModel;
@@ -121,7 +121,7 @@ export class RashodiComponent implements OnInit{
                                         this.arrItemSizeObj[measure[i].id].sizeParent = measure[i].id;
                                         this.arrItemSizeObj[measure[i].id].size.push({id: measure[i].id,size: measure[i].kFromBase, name:  measure[i].name});
                                     }
-                                } 
+                                }
                                 for(let i=0; i<measure.length; i++){
                                     if (measure[i].parent!=0) {
                                         this.arrItemSizeObj[measure[i].parent].size.push({id: measure[i].id,size: measure[i].kFromBase, name:  measure[i].name});
@@ -140,7 +140,7 @@ export class RashodiComponent implements OnInit{
                                 this.noFixetColumns = [];
                                 let tableX = data[this.service.cubParams.tableX];
                                 for (let i=0; i<tableX.length; i++){
-                                    this.noFixetColumns.push({field: tableX[i].id, header: tableX[i].name}); 
+                                    this.noFixetColumns.push({field: tableX[i].id, header: tableX[i].name});
                                 }
                                 this.initTableColumns();
 
@@ -154,8 +154,8 @@ export class RashodiComponent implements OnInit{
                                         if (this.tableYChild[tableY[i].parent]==null) this.tableYChild[tableY[i].parent] = [];
                                         this.tableYChild[tableY[i].parent].push({id: tableY[i].id, name: tableY[i].name});
                                     }
-                                }                                
-                                this.tableDate = this.inputTabelData(this.tableY0, this.tableYChild); 
+                                }
+                                this.tableDate = this.inputTabelData(this.tableY0, this.tableYChild);
                                 this.tableDate = this.inputCoardinate(this.tableDate);
                                 console.log('');
                             } else console.log(data);
@@ -169,10 +169,16 @@ export class RashodiComponent implements OnInit{
                         }
                     );
     }
-    updateCoardinateFormSizeModel(){
-        this.tableDate = this.inputCoardinate(this.tableDate);
+    updateCoardinateFormSizeModel(data){
+        data = this.inputCoardinate(data);
+        for (let i=0; i<data.length; i++){
+          if (data[i].children!=null){
+              data[i].children = this.updateCoardinateFormSizeModel(data[i].children);
+          }
+        }
+        return data;
     }
-    inputCoardinate(data){       
+    inputCoardinate(data){
         for (let i=0; i<data.length; i++){
             for (let b=0; b<this.coardinat.length; b++){
                 if (this.coardinat[b][this.service.cubParams.tableY]==data[i].data.id){
@@ -180,7 +186,9 @@ export class RashodiComponent implements OnInit{
                         if (this.arrItemSize[q].sizeParent==this.coardinat[b].measure){
                             for (let w=0; w<this.arrItemSize[q].size.length; w++){
                                 if (this.arrItemSize[q].size[w].id==this.arrItemSize[q].sizeModel){
-                                    data[i].data[this.coardinat[b][this.service.cubParams.tableX]] = this.coardinat[b].valueNumb*this.arrItemSize[q].size[w].size;
+                                    let randNum = this.coardinat[b].valueNumb*this.arrItemSize[q].size[w].size;
+                                    let rounded = parseFloat(randNum.toFixed(2));
+                                    data[i].data[this.coardinat[b][this.service.cubParams.tableX]] = rounded;
                                 }
                             }
                         }
@@ -196,7 +204,7 @@ export class RashodiComponent implements OnInit{
                 this.arrItemSize[i].sizeModel=e.modelId;
             }
         }
-        this.updateCoardinateFormSizeModel();
+        this.tableDate = this.updateCoardinateFormSizeModel(this.tableDate);
     }
     initTableColumns(){
         this.tableDateColumns = [];
@@ -211,15 +219,15 @@ export class RashodiComponent implements OnInit{
         for (let i=0; i<this.noFixetColumns.length; i++){
             this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
         }
-        for(let i=0; i<this.noFixetColumns.length; i++){    
-            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
-            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header}); 
-        }      
-    } 
-    inputTabelData(data, child){        
+        for(let i=0; i<this.noFixetColumns.length; i++){
+            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});
+            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header});
+        }
+    }
+    inputTabelData(data, child){
         let rData = [];
-         for (let i=0; i<data.length; i++){  
-             let dat = {};           
+         for (let i=0; i<data.length; i++){
+             let dat = {};
              for (let key in data[i]){
                 if (key!='id'&&key!='name'){
                     dat[key] = data[i][key].value;
@@ -238,24 +246,24 @@ export class RashodiComponent implements OnInit{
          }
          return rData;
     }
-    addChild(e){ 
+    addChild(e){
         let data = [];
         let child = this.tableYChild[e.data.id];
-        for (let i=0; i<child.length; i++) 
-            data.push(child[i]);       
-        e.children = this.inputTabelData(data, this.tableYChild);        
+        for (let i=0; i<child.length; i++)
+            data.push(child[i]);
+        e.children = this.inputTabelData(data, this.tableYChild);
         e.children = this.inputCoardinate(e.children);
-        delete e.leaf; 
+        delete e.leaf;
     }
 
 
-    ngOnInit(){        
+    ngOnInit(){
         let year = this.defualtDate.getFullYear()-1;
         this.defualtDate.setFullYear(year);
         this.firstLoad = true;
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        this.userSetings = this.storage.retrieve('UserSetings');    
+        this.userSetings = this.storage.retrieve('UserSetings');
         this.user = this.storage.retrieve('userData');
         this.fixetColumns = [
             {
@@ -267,8 +275,8 @@ export class RashodiComponent implements OnInit{
                 header:  {kz: this.diction[188][0], ru: this.diction[188][1], en: this.diction[188][2]}
             }
         ];
-        /////////////////// Сервисы ////////////////////  
-        // Списки всех констант        
+        /////////////////// Сервисы ////////////////////
+        // Списки всех констант
         this.service.getAllConst({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
@@ -297,8 +305,8 @@ export class RashodiComponent implements OnInit{
                                 this.vladelicModel = -1;
                                 for (let i=0; i<data.length; i++){
                                     this.arrVladelic.push({id: i, name: data[i].name, idName: data[i].id});
-                                }        
-                                this.vladelicModel = this.getIdByConst(this.constants['gpId'].id, data);             
+                                }
+                                this.vladelicModel = this.getIdByConst(this.constants['gpId'].id, data);
                             } else console.log(data);
                         },
                         error => {
@@ -321,8 +329,8 @@ export class RashodiComponent implements OnInit{
                                 this.postavschikModel = -1;
                                 for (let i=0; i<data.length; i++){
                                     this.arrPostavschik.push({id: data[i].id, name: data[i].name});
-                                }        
-                                this.postavschikModel = this.constants['defProvider'].id;             
+                                }
+                                this.postavschikModel = this.constants['defProvider'].id;
                             } else console.log(data);
                         },
                         error => {
@@ -332,7 +340,7 @@ export class RashodiComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    );        
+                    );
         //статусы
         this.service.getCubeDimData({session: this.user.session, cubeId: 'rashodiCubes', dimName: 'dp_s' }, this.user.programmId, this.userSetings.langId)
                     .subscribe(
@@ -345,8 +353,8 @@ export class RashodiComponent implements OnInit{
                                 this.statusModel = -1;
                                 for (let i=0; i<data.length; i++){
                                     this.arrStatus.push({id: data[i].id, name: data[i].name});
-                                }        
-                                this.statusModel = this.constants['defStatus'].id;             
+                                }
+                                this.statusModel = this.constants['defStatus'].id;
                             } else console.log(data);
                         },
                         error => {
@@ -356,10 +364,10 @@ export class RashodiComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    );  
+                    );
         //Тип периода
         this.service.getGenPeriodList({session: this.user.session}, this.user.programmId, this.userSetings.langId)
-                    .subscribe( 
+                    .subscribe(
                         data => {
                             if (data.status==200){
                                 data = data.json();
@@ -368,8 +376,8 @@ export class RashodiComponent implements OnInit{
                                 this.typePeriudModel = -1;
                                 for (let i=0; i<data.length; i++){
                                     this.arrtypePeriud.push({id: data[i].id, name: data[i].name});
-                                    if (data[i].default==1) this.typePeriudModel = this.arrtypePeriud[i].id;  
-                                }                                              
+                                    if (data[i].default==1) this.typePeriudModel = this.arrtypePeriud[i].id;
+                                }
                             } else console.log(data);
                         },
                         error => {

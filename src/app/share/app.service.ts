@@ -497,8 +497,6 @@ export class AppService {
                                 }
                             ];
         return factorTree;
-        // let apiUrl = "/api/sebestoimost/gp/getfacttree"; 
-        // return this.http.get(this.baseUrl + apiUrl);
     }   
     ////////////////////
     ////////////////////
