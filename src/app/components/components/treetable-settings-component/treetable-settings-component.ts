@@ -15,10 +15,11 @@ export class TreeTableSettingsComponent implements OnInit{
     @Input() noFixetColumns=[];
     @Input() showpPocentButton: Boolean;
     @Input() itemSizeModel: Number;
-    @Input() arrItemSize= [];
+    @Input() arrItemSize = [];
     @Input() tableDateOptionsFilter=[];
 
     @Output() outItemColumnSettingsChange: EventEmitter<any> = new EventEmitter();
+    @Output() outSizeModelUpdate: EventEmitter<any> = new EventEmitter();
 
     diction=[];
     arrSelectFilter=[];
@@ -49,6 +50,13 @@ export class TreeTableSettingsComponent implements OnInit{
     }
     sortColumns(){
         //
+    }
+    sizeModelChenge(e, p){
+        let model = {
+            parentId: p,
+            modelId: e
+        }
+        this.outSizeModelUpdate.emit(model);
     }
     selectFilter(e){
         this.tableDateOptionsFilterModel=0;

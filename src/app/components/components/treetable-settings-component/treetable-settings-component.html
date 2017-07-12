@@ -67,17 +67,17 @@
         </div>        
         <div class="col-lg-3 padding-css" *ngIf="showItemSizeSettingsModel">
             <h3 class="first">{{diction[124][userSetings.langId]}}</h3>
-            <div class="row colomns-settings-css" *ngFor="let item of tableDateOptions">
-                <div class="col-lg-6" >
-                    <label *ngIf="userSetings.langId==0">{{item.label.kz}}:</label>
-                    <label *ngIf="userSetings.langId==1">{{item.label.ru}}:</label>
-                    <label *ngIf="userSetings.langId==2">{{item.label.en}}:</label>
+            <div class="row colomns-settings-css" *ngFor="let sizeNum of arrItemSize">                
+                <div class="col-lg-3" >
+                    <h4 class="lbl-text-css" *ngIf="userSetings.langId==0">{{sizeNum.sizeName.kz}}:</h4>
+                    <h4 class="lbl-text-css" *ngIf="userSetings.langId==1">{{sizeNum.sizeName.ru}}:</h4>
+                    <h4 class="lbl-text-css" *ngIf="userSetings.langId==2">{{sizeNum.sizeName.en}}:</h4>
                 </div>
-                <div class="col-lg-6" >
-                    <combobox-component [iNgModel]=itemSizeModel [idLang]=userSetings.langId   
-                                        [structure]=arrItemSize (oNgModel)='itemSizeModel=$event'>
+                 <div class="col-lg-9">
+                    <combobox-component [iNgModel]=sizeNum.sizeModel [idLang]=userSetings.langId   
+                                        [structure]=sizeNum.size (oNgModel)='sizeModelChenge($event, sizeNum.sizeParent)'>
                     </combobox-component>
-                </div>
+                </div>  
             </div>
         </div>
         <div class="col-lg-3 padding-css" *ngIf="showItemColumnSettingsModel">

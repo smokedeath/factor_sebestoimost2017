@@ -41,8 +41,9 @@ export class RashodiComponent implements OnInit{
     arrPostavschik = [];
     postavschikModel: Number;
 
-    arrItemSize = [];    
-    itemSizeModel: Number;
+    arrItemSize = []; 
+    arrItemSizeObj = {};  
+    itemSizeModel = [];
 
     arrtypePeriud = [];
     typePeriudModel: Number; 
@@ -60,7 +61,7 @@ export class RashodiComponent implements OnInit{
         this.postavschikModel= e.postavschikModel;
         this.statusModel= e.statusModel;
         this.itemSizeModel= e.itemSizeModel;
-        if (this.vladelicModel >=0  && this.postavschikModel>0 && this.itemSizeModel>0 && this.statusModel>0 && this.typePeriudModel>0)
+        if (this.vladelicModel >=0  && this.postavschikModel>0 && this.statusModel>0 && this.typePeriudModel>0)
          this.getCube();
     }
     updateTableColumns(columns: any[]){
@@ -75,7 +76,7 @@ export class RashodiComponent implements OnInit{
     }
     getFirstTableData(){
         if (this.firstLoad){
-            if (this.vladelicModel >=0  && this.postavschikModel>0 && this.itemSizeModel>0 && this.statusModel>0 && this.typePeriudModel>0){
+            if (this.vladelicModel >=0  && this.postavschikModel>0 && this.statusModel>0 && this.typePeriudModel>0){
                 this.getCube();
                 this.firstLoad = false;
             }
@@ -107,7 +108,35 @@ export class RashodiComponent implements OnInit{
                                 data = data.json();
                                 data = data.data;
                                 this.coardinat = data.data;
-                                
+
+                                this.arrItemSizeObj = {};
+                                this.itemSizeModel = [];
+                                let measure = data.measure;
+                                for(let i=0; i<measure.length; i++){
+                                    if (measure[i].parent==0) {
+                                        this.arrItemSizeObj[measure[i].id] = {};
+                                        this.arrItemSizeObj[measure[i].id].size = [];
+                                        this.arrItemSizeObj[measure[i].id].sizeName = {};
+                                        this.arrItemSizeObj[measure[i].id].sizeModel = measure[i].id;
+                                        this.arrItemSizeObj[measure[i].id].sizeParent = measure[i].id;
+                                        this.arrItemSizeObj[measure[i].id].size.push({id: measure[i].id,size: measure[i].kFromBase, name:  measure[i].name});
+                                    }
+                                } 
+                                for(let i=0; i<measure.length; i++){
+                                    if (measure[i].parent!=0) {
+                                        this.arrItemSizeObj[measure[i].parent].size.push({id: measure[i].id,size: measure[i].kFromBase, name:  measure[i].name});
+                                    }
+                                }
+                                let sizeName = data[this.service.cubParams.sizeName];
+                                for (let i=0; i<sizeName.length; i++){
+                                    this.arrItemSizeObj[sizeName[i].measure].sizeName = sizeName[i].name;
+                                }
+
+                                this.arrItemSize = [];
+                                for(let key in this.arrItemSizeObj) {
+                                    this.arrItemSize.push(this.arrItemSizeObj[key]);
+                                }
+
                                 this.noFixetColumns = [];
                                 let tableX = data[this.service.cubParams.tableX];
                                 for (let i=0; i<tableX.length; i++){
@@ -149,6 +178,9 @@ export class RashodiComponent implements OnInit{
             }
         }
         return data;
+    }
+    sizeModelUpdate(e){
+        console.log(e);
     }
     initTableColumns(){
         this.tableDateColumns = [];
@@ -309,29 +341,6 @@ export class RashodiComponent implements OnInit{
                             } else  console.log(error);
                         }
                     );  
-        //Единицы измерения  
-        this.service.getItemSize({session: this.user.session}, this.user.programmId, this.userSetings.langId)
-                    .subscribe( 
-                        data => {
-                            if (data.status==200){
-                                data = data.json();
-                                data = data.data;
-                                this.arrItemSize = [];
-                                this.itemSizeModel = -1;
-                                for (let i=0; i<data.length; i++){
-                                    this.arrItemSize.push({id: data[i].id, name: data[i].name});
-                                    if (data[i].default==1) this.itemSizeModel = this.arrItemSize[i].id;  
-                                }                                              
-                            } else console.log(data);
-                        },
-                        error => {
-                            if (error.status==403){
-                                this.service.goToLogin();
-                            }else  if(error.status==500) {
-                                console.log(error);
-                            } else  console.log(error);
-                        }
-                    );
         //Тип периода
         this.service.getGenPeriodList({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 

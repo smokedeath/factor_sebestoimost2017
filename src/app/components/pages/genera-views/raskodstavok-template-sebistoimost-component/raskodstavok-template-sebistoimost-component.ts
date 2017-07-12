@@ -37,6 +37,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     @Output() outProcent: EventEmitter<Boolean> = new EventEmitter();
     @Output() outAddChild: EventEmitter<any> = new EventEmitter();
     @Output() outGetTabelData: EventEmitter<any> = new EventEmitter();
+    @Output() outSizeModelUpdate: EventEmitter<any> = new EventEmitter();
 
 
     diction: any;
@@ -64,6 +65,9 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     }
     updateTableColumns(e){
         this.outUpdateTableColumns.emit(e);        
+    }
+    sizeModelUpdate(e){
+        this.outSizeModelUpdate.emit(e);
     }
     procentChang(){
         this.outProcent.emit(this.procentSchow);

@@ -49,6 +49,7 @@ export class AppService {
         tableX: 'do_1003',
         tableY: 'do_1002',
         sizeType :'measure',
+        sizeName: 'dp_1003',
         data: 'data'
     }
 
