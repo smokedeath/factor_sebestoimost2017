@@ -169,18 +169,34 @@ export class RashodiComponent implements OnInit{
                         }
                     );
     }
+    updateCoardinateFormSizeModel(){
+        this.tableDate = this.inputCoardinate(this.tableDate);
+    }
     inputCoardinate(data){       
         for (let i=0; i<data.length; i++){
             for (let b=0; b<this.coardinat.length; b++){
                 if (this.coardinat[b][this.service.cubParams.tableY]==data[i].data.id){
-                    data[i].data[this.coardinat[b][this.service.cubParams.tableX]] = this.coardinat[b].valueNumb;
+                    for (let q=0; q<this.arrItemSize.length; q++){
+                        if (this.arrItemSize[q].sizeParent==this.coardinat[b].measure){
+                            for (let w=0; w<this.arrItemSize[q].size.length; w++){
+                                if (this.arrItemSize[q].size[w].id==this.arrItemSize[q].sizeModel){
+                                    data[i].data[this.coardinat[b][this.service.cubParams.tableX]] = this.coardinat[b].valueNumb*this.arrItemSize[q].size[w].size;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
         return data;
     }
     sizeModelUpdate(e){
-        console.log(e);
+        for (let i=0; i<this.arrItemSize.length; i++){
+            if (this.arrItemSize[i].sizeParent==e.parentId){
+                this.arrItemSize[i].sizeModel=e.modelId;
+            }
+        }
+        this.updateCoardinateFormSizeModel();
     }
     initTableColumns(){
         this.tableDateColumns = [];
