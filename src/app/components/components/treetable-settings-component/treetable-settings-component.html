@@ -67,17 +67,19 @@
         </div>        
         <div class="col-lg-3 padding-css" *ngIf="showItemSizeSettingsModel">
             <h3 class="first">{{diction[124][userSetings.langId]}}</h3>
-            <div class="row colomns-settings-css" *ngFor="let sizeNum of arrItemSize">                
-                <div class="col-lg-3" >
-                    <h4 class="lbl-text-css" *ngIf="userSetings.langId==0">{{sizeNum.sizeName.kz}}:</h4>
-                    <h4 class="lbl-text-css" *ngIf="userSetings.langId==1">{{sizeNum.sizeName.ru}}:</h4>
-                    <h4 class="lbl-text-css" *ngIf="userSetings.langId==2">{{sizeNum.sizeName.en}}:</h4>
+            <div *ngFor="let sizeNum of arrItemSize">
+                <div class="row colomns-settings-css" *ngIf="sizeNum.size.length>1">
+                    <div class="col-lg-3" >
+                        <h4 class="lbl-text-css" *ngIf="userSetings.langId==0">{{sizeNum.sizeName.kz}}:</h4>
+                        <h4 class="lbl-text-css" *ngIf="userSetings.langId==1">{{sizeNum.sizeName.ru}}:</h4>
+                        <h4 class="lbl-text-css" *ngIf="userSetings.langId==2">{{sizeNum.sizeName.en}}:</h4>
+                    </div>
+                    <div class="col-lg-9">
+                        <combobox-component [iNgModel]=sizeNum.sizeModel [idLang]=userSetings.langId   
+                                            [structure]=sizeNum.size (oNgModel)='sizeModelChenge($event, sizeNum.sizeParent)'>
+                        </combobox-component>
+                    </div>  
                 </div>
-                 <div class="col-lg-9">
-                    <combobox-component [iNgModel]=sizeNum.sizeModel [idLang]=userSetings.langId   
-                                        [structure]=sizeNum.size (oNgModel)='sizeModelChenge($event, sizeNum.sizeParent)'>
-                    </combobox-component>
-                </div>  
             </div>
         </div>
         <div class="col-lg-3 padding-css" *ngIf="showItemColumnSettingsModel">
@@ -103,6 +105,10 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <input type="text" class="form-control" placeholder={{diction[185][userSetings.langId]}} [(ngModel)]=newColumnModel>
+                        <!-- <combobox-component [iNgModel]=newColumnTypeModel [idLang]=userSetings.langId   
+                                            [structure]=arrNewColumnType (oNgModel)='newColumnTypeModel =  $event'>
+                        </combobox-component> -->
+
                     </div>                    
                     <button (click)='addNewColumns()' pTooltip={{diction[186][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary">+</button>
                 </div>               

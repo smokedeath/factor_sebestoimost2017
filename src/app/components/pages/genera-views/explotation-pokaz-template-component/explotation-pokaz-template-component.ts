@@ -26,13 +26,18 @@ export class ExplotationPokazTemplateComponent implements OnInit{
     @Input() tableDateColumns=[];
     @Input() tableDate=[];
     @Input() tableDateOptionsFilter=[];
+    @Input() arrItemSize=[];
 
     @Output() outAddChild: EventEmitter<any> = new EventEmitter();
     @Output() outUpdateTableColumns: EventEmitter<any> = new EventEmitter();
     @Output() outRefreschData: EventEmitter<any> = new EventEmitter(); 
+    @Output() outSizeModelUpdate: EventEmitter<any> = new EventEmitter(); 
 
-    diction: any;    
-
+    diction: any;   
+    
+    updateDate(e){
+        this.defualtDate = e;
+    } 
     exportToExcell(){
         // new Angular2Csv(this.tableDate, 'My Report', options);
     }
@@ -49,6 +54,9 @@ export class ExplotationPokazTemplateComponent implements OnInit{
     }
     updateTableColumns(e){
         this.outUpdateTableColumns.emit(e);
+    }
+    sizeModelUpdate(e){
+        this.outSizeModelUpdate.emit(e);
     }
 
     ngOnInit(){

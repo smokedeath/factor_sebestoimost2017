@@ -11,9 +11,11 @@
                     [tableDateOptions]=tableDateOptions
                     [tableDateColumns]=tableDateColumns
                     [tableDate]=tableDate
+                    [arrItemSize]=arrItemSize
                     [tableDateOptionsFilter]=tableDateOptionsFilter
                     (outAddChild)='addChild($event)'
                     (outUpdateTableColumns)='updateTableColumns($event)'
-                    (outRefreschData)='refreschData($event)'>    
+                    (outRefreschData)='refreschData($event)'
+                    (outSizeModelUpdate)='sizeModelUpdate($event)'>    
 </explotation-pokaz-template-component>
 <div>{{getFirstTableData()}}</div>

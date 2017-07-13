@@ -33,6 +33,9 @@ export class TreeTableSettingsComponent implements OnInit{
     selectFilterId: number = 0;
     newColumnModel:String = '';
 
+    arrNewColumnType = [];
+    newColumnTypeModel: Number;
+
     closeAll(){
         this.showItemColumnSettingsModel= false;
         this.showItemSizeSettingsModel= false;
@@ -101,5 +104,8 @@ export class TreeTableSettingsComponent implements OnInit{
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
+        this.arrNewColumnType = [
+            {id: 1, Name:  {kz: this.diction[189][0], ru: this.diction[189][1], en: this.diction[189][2]}, typeColumn: 0}
+        ];
     }
 }

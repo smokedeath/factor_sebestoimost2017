@@ -45,11 +45,18 @@ export class AppService {
         }
     ];
 
-    cubParams = {
+    cubRashodiParams = {
         tableX: 'do_1003',
         tableY: 'do_1002',
         sizeType :'measure',
         sizeName: 'dp_1003',
+        data: 'data'
+    }
+    cubExplPokazParams = {
+        tableX: 'dp_s',
+        tableY: 'dp_1007',
+        sizeType :'measure',
+        sizeName: 'dp_1007',
         data: 'data'
     }
 

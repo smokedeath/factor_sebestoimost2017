@@ -20,23 +20,18 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     user;
     firstLoad: Boolean = false;
     procentSchow: Boolean = false;
-    defualtDate = Date();
+    defualtDate = new Date();
+    constants = [];
     arrtypePeriud = [];
     tableDate = [];
     tableDateOptions = [];
     tableDateColumns = []; 
     tableDateOptionsFilter = [];
+    coardinat=[];
+    tableY0 = [];
+    tableYChild = {};
 
-    fixetColumns = [
-        {
-            field: "name",
-            header: "Наименование измерителей"
-        },
-        {
-            field: "measure",
-            header: "Единица измерения"
-        }
-    ];
+    fixetColumns = [{field:"id",header:{kz:'',ru:'',en:''}},{field:"id",header:{kz:'',ru:'',en:''}}];
 
     noFixetColumns = [];
 
@@ -49,7 +44,11 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     grupZnacheniModel: number;
            
     arrStatus = [];
-    statusModel: number;
+    statusModel: number;    
+
+    arrItemSize = [];
+    arrItemSizeObj = {};
+    itemSizeModel = [];
 
     updateIdLang(){
         this.userSetings = this.storage.retrieve('UserSetings');
@@ -59,7 +58,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
         this.vladelicModel= e.vladelicModel;
         this.defualtDate= e.defualtDate;
 
-        this.getTabelData();
+        this.getCube();
     }   
     updateTableColumns(columns: any[]){
         let newColumns = columns;
@@ -73,128 +72,83 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     }
     getFirstTableData(){
         if (this.firstLoad){
-            if (this.vladelicModel>0 && this.typePeriudModel>0){
-                this.getTabelData();
+            if (this.vladelicModel>=0 && this.typePeriudModel>0){
+                this.getCube();
                 this.firstLoad = false;
             }
         }
     }
-    getTabelData(){
-        let param = {
+    getCube(){
+        let s = JSON.stringify([
+                     {tableName:"explpokazGP",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},   
+                     {tableName:"period", dte: this.service.getDataString(this.defualtDate), periodType: this.typePeriudModel.toString()}
+                    ]);
+        let data = {
             session: this.user.session,
-            freightCarrier: this.vladelicModel,
-            parent: 0,
-            periodType: this.typePeriudModel,
-            dte: this.service.getDataString(this.defualtDate)
+            cubeId: 'explpokazCubes',
+            filter: s
         }
-        // Таблица      
-        this.service.getExplpokazTable(param, this.user.programmId, this.userSetings.langId)
+        this.service.getCubeValues(data, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
                                 data = data.json();
                                 data = data.data;
+                                this.coardinat = data.data;
+
+                                this.arrItemSizeObj = {};
+                                this.itemSizeModel = [];
+                                let measure = data.measure;
+                                for(let i=0; i<measure.length; i++){
+                                    if (measure[i].parent==0) {
+                                        this.arrItemSizeObj[measure[i].id] = {};
+                                        this.arrItemSizeObj[measure[i].id].size = [];
+                                        this.arrItemSizeObj[measure[i].id].sizeName = {};
+                                        this.arrItemSizeObj[measure[i].id].sizeModel = measure[i].id;
+                                        this.arrItemSizeObj[measure[i].id].sizeParent = measure[i].id;
+                                        this.arrItemSizeObj[measure[i].id].size.push({id: measure[i].id,size: measure[i].kFromBase, name:  measure[i].name});
+                                    }
+                                }
+                                for(let i=0; i<measure.length; i++){
+                                    if (measure[i].parent!=0) {
+                                        this.arrItemSizeObj[measure[i].parent].size.push({id: measure[i].id,size: measure[i].kFromBase, name:  measure[i].name});
+                                    }
+                                }
+                                let sizeName = data[this.service.cubExplPokazParams.sizeName];
+                                for (let i=0; i<sizeName.length; i++){
+                                    if (this.arrItemSizeObj[sizeName[i].measure] !=null) 
+                                        this.arrItemSizeObj[sizeName[i].measure].sizeName = sizeName[i].nameMeasure;
+                                }
+
+                                this.arrItemSize = [];
+                                for(let key in this.arrItemSizeObj) {
+                                    this.arrItemSize.push(this.arrItemSizeObj[key]);
+                                }
+
                                 this.noFixetColumns = [];
-                                for (let i=0; i<data.statuses.length; i++){
-                                    if (this.userSetings.langId==0)
-                                        this.noFixetColumns.push({field: data.statuses[i].id, header: data.statuses[i].name.kz});   
-                                    if (this.userSetings.langId==1)
-                                        this.noFixetColumns.push({field: data.statuses[i].id, header: data.statuses[i].name.ru});   
-                                    if (this.userSetings.langId==2)
-                                        this.noFixetColumns.push({field: data.statuses[i].id, header: data.statuses[i].name.en});     
+                                let tableX = data[this.service.cubExplPokazParams.tableX];
+                                for (let i=0; i<2; i++){
+                                    this.noFixetColumns.push({field: tableX[i].id, header: tableX[i].name});
                                 }
                                 this.initTableColumns();
-                                data = data.data;
-                                this.tableDate = this.inputTabelData(data, this.userSetings.langId);                                          
+
+                                let tableY = data[this.service.cubExplPokazParams.tableY];
+                                this.tableY0 = [];
+                                this.tableYChild = {};
+                                for (let i=0; i<tableY.length; i++){
+                                    if (tableY[i].parent==0){
+                                        this.tableY0.push({id: tableY[i].id, name: tableY[i].name});
+                                    }else{
+                                        if (this.tableYChild[tableY[i].parent]==null) this.tableYChild[tableY[i].parent] = [];
+                                        this.tableYChild[tableY[i].parent].push({id: tableY[i].id, name: tableY[i].name});
+                                    }
+                                }
+                                this.tableDate = this.inputTabelData(this.tableY0, this.tableYChild);
+                                this.tableDate = this.inputCoardinate(this.tableDate);
+                                console.log('');
                             } else console.log(data);
                         },
-                        error =>{
-                            if (error.status==403){
-                                this.service.goToLogin();
-                            }else  if(error.status==500) {
-                                console.log(error);
-                            } else  console.log(error);
-                        }
-                    );  
-    };
-    inputTabelData(data, lang){        
-        let rData = [];
-         for (let i=0; i<data.length; i++){  
-             let dat = {};           
-             for (let key in data[i]){
-                if (key!='id' && key!='name' && key!='measure'){
-                    dat[key] = data[i][key];
-                }else{
-                    if (key=='id')dat[key] = data[i][key];
-                    if (key=='name' || key=='measure'){
-                        if (lang==0) dat[key] = data[i][key].kz;
-                        if (lang==1) dat[key] = data[i][key].ru;
-                        if (lang==2) dat[key] = data[i][key].en;
-                    }
-                }
-             }
-             let inData = {
-                 data: dat,
-                 leaf: data[i].hasChild==0
-             }
-             rData.push(inData);
-         }
-         return rData;
-    }
-    initTableColumns(){        
-        this.tableDateColumns = [];
-        this.tableDateOptionsFilter = [];
-        let n = {
-            kz: this.fixetColumns[0].header,    
-            ru: this.fixetColumns[0].header,  
-            en: this.fixetColumns[0].header                                 
-        }
-        this.tableDateOptionsFilter.push({id: 1, name: n});
-        n = {
-            kz: this.fixetColumns[1].header,    
-            ru: this.fixetColumns[1].header,  
-            en: this.fixetColumns[1].header                                 
-        }
-        this.tableDateOptionsFilter.push({id: 2, name: n});
-        for (let i=0; i<this.fixetColumns.length; i++){
-            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
-        }
-        for (let i=0; i<this.noFixetColumns.length; i++){
-            this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
-        }
-        for(let i=0; i<this.noFixetColumns.length; i++){    
-            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});  
-            let n = {
-                kz: this.noFixetColumns[i].header,    
-                ru: this.noFixetColumns[i].header,  
-                en: this.noFixetColumns[i].header                                 
-            } 
-            this.tableDateOptionsFilter.push({id: i+3, name: n}); 
-        }
-    } 
-    addChild(e){
-        let param = {
-            session: this.user.session,
-            freightCarrier: this.vladelicModel,
-            parent: e.data.id,
-            periodType: this.typePeriudModel,
-            dte: this.service.getDataString(this.defualtDate)
-        }
-        // Таблица      
-        this.service.getExplpokazTable(param, this.user.programmId, this.userSetings.langId)
-                    .subscribe(
-                        data => {
-                            if (data.status==200){
-                                data = data.json();
-                                data = data.data;    
-                                data = data.data; 
-                                if (data.length>0){
-                                    e.children = this.inputTabelData(data, this.userSetings.langId);
-                                }   
-                                delete e.leaf;                             
-                            } else console.log(data);
-                        },
-                        error =>{
+                        error => {
                             if (error.status==403){
                                 this.service.goToLogin();
                             }else  if(error.status==500) {
@@ -203,27 +157,125 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                         }
                     );
     }
+    updateCoardinateFormSizeModel(data){
+        data = this.inputCoardinate(data);
+        for (let i=0; i<data.length; i++){
+          if (data[i].children!=null){
+              data[i].children = this.updateCoardinateFormSizeModel(data[i].children);
+          }
+        }
+        return data;
+    }
+    inputCoardinate(data){
+        for (let i=0; i<data.length; i++){
+            for (let b=0; b<this.coardinat.length; b++){
+                if (this.coardinat[b][this.service.cubExplPokazParams.tableY]==data[i].data.id){
+                    for (let q=0; q<this.arrItemSize.length; q++){
+                        if (this.arrItemSize[q].sizeParent==this.coardinat[b].measure){
+                            for (let w=0; w<this.arrItemSize[q].size.length; w++){
+                                if (this.arrItemSize[q].size[w].id==this.arrItemSize[q].sizeModel){
+                                    let randNum = this.coardinat[b].valueNumb*this.arrItemSize[q].size[w].size;
+                                    let rounded = parseFloat(randNum.toFixed(2));
+                                    data[i].data[this.coardinat[b][this.service.cubExplPokazParams.tableX]] = rounded;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return data;
+    }
+    inputTabelData(data, child){
+        let rData = [];
+         for (let i=0; i<data.length; i++){
+             let dat = {};
+             for (let key in data[i]){
+                if (key!='id'&&key!='name'){
+                    dat[key] = data[i][key].value;
+                }else{
+                    if (key=='id')dat[key] = data[i][key];
+                    if (key=='name') {
+                        dat[key] = data[i][key].kz;
+                    }
+                }
+             }
+             let inData = {
+                 data: dat,
+                 leaf: child[data[i]['id']] == null
+             }
+             rData.push(inData);
+         }
+         return rData;
+    }
+    initTableColumns(){
+        this.tableDateColumns = [];
+        this.tableDateOptionsFilter = [];
+        this.tableDateOptions = [];
+
+        this.tableDateOptionsFilter.push({id: 1, name:  this.fixetColumns[0].header});
+        this.tableDateOptionsFilter.push({id: 2, name: this.fixetColumns[1].header});
+        for (let i=0; i<this.fixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
+        }
+        for (let i=0; i<this.noFixetColumns.length; i++){
+            this.tableDateColumns.push({field: this.noFixetColumns[i].field, header: this.noFixetColumns[i].header});
+        }
+        for(let i=0; i<this.noFixetColumns.length; i++){
+            this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});
+            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header});
+        }
+    }
+    sizeModelUpdate(e){
+        for (let i=0; i<this.arrItemSize.length; i++){
+            if (this.arrItemSize[i].sizeParent==e.parentId){
+                this.arrItemSize[i].sizeModel=e.modelId;
+            }
+        }
+        this.tableDate = this.updateCoardinateFormSizeModel(this.tableDate);
+    }
+    addChild(e){
+        let data = [];
+        let child = this.tableYChild[e.data.id];
+        for (let i=0; i<child.length; i++)
+            data.push(child[i]);
+        e.children = this.inputTabelData(data, this.tableYChild);
+        e.children = this.inputCoardinate(e.children);
+        delete e.leaf;
+    }
+    getIdByConst(inConst, data){
+        let id = -1;
+        for (let i=0; i<data.length; i++){
+            if (data[i].own==inConst) id = i;
+        }
+        return id;
+    }
 
     ngOnInit(){
+        let year = this.defualtDate.getFullYear()-1;
+        this.defualtDate.setFullYear(year);
         this.firstLoad = true;
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
         this.userSetings = this.storage.retrieve('UserSetings');      
         this.user = this.storage.retrieve('userData');
-        
-        // Структурные подразделения
-        this.service.getVladelic({session: this.user.session}, this.user.programmId, this.userSetings.langId)
+        this.fixetColumns = [
+            {
+                field: "id",
+                header:  {kz: this.diction[187][0], ru: this.diction[187][1], en: this.diction[187][2]}
+            },
+            {
+                field: "name",
+                header:  {kz: this.diction[188][0], ru: this.diction[188][1], en: this.diction[188][2]}
+            }
+        ];
+        // Списки всех констант
+        this.service.getAllConst({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
                                 data = data.json();
-                                data = data.data;
-                                this.arrVladelic = [];
-                                this.vladelicModel = -1;
-                                for (let i=0; i<data.length; i++){
-                                    this.arrVladelic.push({id: data[i].id, name: data[i].name});
-                                    if (data[i].default==1) this.vladelicModel = this.arrVladelic[i].id;  
-                                }                                              
+                                this.constants = data.data;
                             } else console.log(data);
                         },
                         error => {
@@ -234,6 +286,30 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                             } else  console.log(error);
                         }
                     );    
+        // Структурные подразделения
+        this.service.getCubeDimData({session: this.user.session, cubeId: 'explpokazCubes', dimName: 'explpokazGP' }, this.user.programmId, this.userSetings.langId)
+                    .subscribe(
+                        data => {
+                            if (data.status==200){
+                                data = data.json();
+                                data = data.data;
+                                data = data[Object.keys(data)[0]]
+                                this.arrVladelic = [];
+                                this.vladelicModel = -1;
+                                for (let i=0; i<data.length; i++){
+                                    this.arrVladelic.push({id: i, name: data[i].name, idName: data[i].id});
+                                }
+                                this.vladelicModel = this.getIdByConst(this.constants['gpId'].id, data);
+                            } else console.log(data);
+                        },
+                        error => {
+                            if (error.status==403){
+                                this.service.goToLogin();
+                            }else  if(error.status==500) {
+                                console.log(error);
+                            } else  console.log(error);
+                        }
+                    );       
         //Тип периода
         this.service.getGenPeriodList({session: this.user.session}, this.user.programmId, this.userSetings.langId)
                     .subscribe( 
@@ -258,7 +334,6 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                         }
                     );        
         this.initTableColumns();
-
     }
 
 }

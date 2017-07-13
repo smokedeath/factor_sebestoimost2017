@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="col-md-2">
-          <my-calendar (date)="defualtDate = $event"></my-calendar>       
+          <my-calendar (dateOut)="updateDate($event)"></my-calendar>       
         </div>
         <div class="col-md-2">
           <combobox-component [iNgModel]=typePeriudModel [idLang]=userSetings.langId
@@ -43,7 +43,8 @@
                                   [itemSizeModel]=itemSizeModel
                                   [arrItemSize]=arrItemSize
                                   [tableDateOptionsFilter]=tableDateOptionsFilter
-                                  (outItemColumnSettingsChange)='updateTableColumns($event)'>        
+                                  (outItemColumnSettingsChange)='updateTableColumns($event)'
+                                  (outSizeModelUpdate)='sizeModelUpdate($event)'>        
     </treetable-settings-component>
 </div>
 

@@ -127,9 +127,10 @@ export class RashodiComponent implements OnInit{
                                         this.arrItemSizeObj[measure[i].parent].size.push({id: measure[i].id,size: measure[i].kFromBase, name:  measure[i].name});
                                     }
                                 }
-                                let sizeName = data[this.service.cubParams.sizeName];
+                                let sizeName = data[this.service.cubRashodiParams.sizeName];
                                 for (let i=0; i<sizeName.length; i++){
-                                    this.arrItemSizeObj[sizeName[i].measure].sizeName = sizeName[i].name;
+                                    if (this.arrItemSizeObj[sizeName[i].measure] !=null) 
+                                        this.arrItemSizeObj[sizeName[i].measure].sizeName = sizeName[i].name;
                                 }
 
                                 this.arrItemSize = [];
@@ -138,13 +139,13 @@ export class RashodiComponent implements OnInit{
                                 }
 
                                 this.noFixetColumns = [];
-                                let tableX = data[this.service.cubParams.tableX];
+                                let tableX = data[this.service.cubRashodiParams.tableX];
                                 for (let i=0; i<tableX.length; i++){
                                     this.noFixetColumns.push({field: tableX[i].id, header: tableX[i].name});
                                 }
                                 this.initTableColumns();
 
-                                let tableY = data[this.service.cubParams.tableY];
+                                let tableY = data[this.service.cubRashodiParams.tableY];
                                 this.tableY0 = [];
                                 this.tableYChild = {};
                                 for (let i=0; i<tableY.length; i++){
@@ -181,14 +182,14 @@ export class RashodiComponent implements OnInit{
     inputCoardinate(data){
         for (let i=0; i<data.length; i++){
             for (let b=0; b<this.coardinat.length; b++){
-                if (this.coardinat[b][this.service.cubParams.tableY]==data[i].data.id){
+                if (this.coardinat[b][this.service.cubRashodiParams.tableY]==data[i].data.id){
                     for (let q=0; q<this.arrItemSize.length; q++){
                         if (this.arrItemSize[q].sizeParent==this.coardinat[b].measure){
                             for (let w=0; w<this.arrItemSize[q].size.length; w++){
                                 if (this.arrItemSize[q].size[w].id==this.arrItemSize[q].sizeModel){
                                     let randNum = this.coardinat[b].valueNumb*this.arrItemSize[q].size[w].size;
                                     let rounded = parseFloat(randNum.toFixed(2));
-                                    data[i].data[this.coardinat[b][this.service.cubParams.tableX]] = rounded;
+                                    data[i].data[this.coardinat[b][this.service.cubRashodiParams.tableX]] = rounded;
                                 }
                             }
                         }
