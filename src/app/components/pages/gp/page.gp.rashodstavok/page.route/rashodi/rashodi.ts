@@ -28,6 +28,7 @@ export class RashodiComponent implements OnInit{
     coardinat=[];
 
     tableDate = [];
+    tableDatePercent = [];
     tableDateOptions = [];
 
     fixetColumns = [{field:"id",header:{kz:'',ru:'',en:''}},{field:"id",header:{kz:'',ru:'',en:''}}];
@@ -51,6 +52,26 @@ export class RashodiComponent implements OnInit{
     arrStatus = [];
     statusModel: Number;
 
+    delParent(data){
+      for (let i=0; i<data.length; i++){
+        for (let key in data[i]){
+          if (key=='parent') delete data[i].parent;
+          if (key=='children') data[i].children = this.delParent(data[i].children);
+        }
+      }
+      return data;
+    }
+
+    updateProcentSchow(e){
+        if (e){
+          this.tableDatePercent = [];
+          this.tableDate = this.delParent(this.tableDate);
+          this.tableDatePercent = JSON.parse( JSON.stringify(this.tableDate));
+          this.tableDatePercent = this.service.getPercentTable(this.tableDatePercent);
+        }
+        this.procentSchow=e;
+    }
+
     updateIdLang(){
         this.userSetings = this.storage.retrieve('UserSetings');
     }
@@ -68,11 +89,14 @@ export class RashodiComponent implements OnInit{
         let newColumns = columns;
         this.tableDateColumns = [];
         for (let i=0; i<this.fixetColumns.length; i++){
-            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
+            this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header, type: 0});
         }
         for (let i=0; i<newColumns.length; i++){
-            this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header});
+            let type=0;
+            if (newColumns[i].type!=null) {type = newColumns[i].type} else type=0;
+            this.tableDateColumns.push({field: newColumns[i].field, header: newColumns[i].header, type: type});
         }
+        this.tableDate = this.service.updateNewColumns(this.tableDateColumns, this.tableDate);
     }
     getFirstTableData(){
         if (this.firstLoad){
@@ -91,14 +115,14 @@ export class RashodiComponent implements OnInit{
     }
     getCube(){
         let s = JSON.stringify([
-                     {tableName:"freightCarrierDo",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},
-                     {tableName:"dp_q", ids: this.postavschikModel},
-                     {tableName:"dp_s", ids: this.statusModel},
-                     {tableName:"period", dte: this.service.getDataString(this.defualtDate), periodType: this.typePeriudModel.toString()}
+                     {tableNameConst:"freightCarrierDo",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},
+                     {tableNameId:"dp_q", ids: this.postavschikModel},
+                     {tableNameId:"dp_s", ids: this.statusModel},
+                     {tableNameConst:"period", dte: this.service.getDataString(this.defualtDate), periodType: this.typePeriudModel.toString()}
                     ]);
         let data = {
             session: this.user.session,
-            cubeId: 'rashodiCubes',
+            cubeConst: 'rashodiCubes',
             filter: s
         }
         this.service.getCubeValues(data, this.user.programmId, this.userSetings.langId)
@@ -129,13 +153,24 @@ export class RashodiComponent implements OnInit{
                                 }
                                 let sizeName = data[this.service.cubRashodiParams.sizeName];
                                 for (let i=0; i<sizeName.length; i++){
-                                    if (this.arrItemSizeObj[sizeName[i].measure] !=null) 
+                                    if (this.arrItemSizeObj[sizeName[i].measure] !=null)
                                         this.arrItemSizeObj[sizeName[i].measure].sizeName = sizeName[i].name;
                                 }
 
                                 this.arrItemSize = [];
                                 for(let key in this.arrItemSizeObj) {
                                     this.arrItemSize.push(this.arrItemSizeObj[key]);
+                                }
+                                for (let i=0; i<this.arrItemSize.length; i++){
+                                    let visible = true;
+                                    let own = 0;
+                                    if (this.arrItemSize[i].size.length<=1) visible = false;
+                                    for (let a=0; a<this.arrItemSize[i].size.length; a++){
+                                        if (own != this.arrItemSize[i].size[a].size){
+                                            own = this.arrItemSize[i].size[a].size;
+                                        }else visible = false;
+                                    }
+                                    this.arrItemSize[i].visible = visible;
                                 }
 
                                 this.noFixetColumns = [];
@@ -171,25 +206,28 @@ export class RashodiComponent implements OnInit{
                     );
     }
     updateCoardinateFormSizeModel(data){
-        data = this.inputCoardinate(data);
-        for (let i=0; i<data.length; i++){
-          if (data[i].children!=null){
-              data[i].children = this.updateCoardinateFormSizeModel(data[i].children);
+        let rData = [];
+        rData = this.inputCoardinate(data);
+        for (let i=0; i<rData.length; i++){
+          if (rData[i].children!=null){
+              rData[i].children = this.updateCoardinateFormSizeModel(rData[i].children);
           }
         }
-        return data;
+        return rData;
     }
     inputCoardinate(data){
-        for (let i=0; i<data.length; i++){
+       let rData = [];
+       rData = data;
+        for (let i=0; i<rData.length; i++){
             for (let b=0; b<this.coardinat.length; b++){
-                if (this.coardinat[b][this.service.cubRashodiParams.tableY]==data[i].data.id){
+                if (this.coardinat[b][this.service.cubRashodiParams.tableY]==rData[i].data.id){
                     for (let q=0; q<this.arrItemSize.length; q++){
                         if (this.arrItemSize[q].sizeParent==this.coardinat[b].measure){
                             for (let w=0; w<this.arrItemSize[q].size.length; w++){
                                 if (this.arrItemSize[q].size[w].id==this.arrItemSize[q].sizeModel){
                                     let randNum = this.coardinat[b].valueNumb*this.arrItemSize[q].size[w].size;
                                     let rounded = parseFloat(randNum.toFixed(2));
-                                    data[i].data[this.coardinat[b][this.service.cubRashodiParams.tableX]] = rounded;
+                                    rData[i].data[this.coardinat[b][this.service.cubRashodiParams.tableX]] = rounded;
                                 }
                             }
                         }
@@ -197,7 +235,7 @@ export class RashodiComponent implements OnInit{
                 }
             }
         }
-        return data;
+        return rData;
     }
     sizeModelUpdate(e){
         for (let i=0; i<this.arrItemSize.length; i++){
@@ -206,6 +244,7 @@ export class RashodiComponent implements OnInit{
             }
         }
         this.tableDate = this.updateCoardinateFormSizeModel(this.tableDate);
+        this.tableDate = this.service.updateNewColumns(this.tableDateColumns, this.tableDate);
     }
     initTableColumns(){
         this.tableDateColumns = [];
@@ -240,7 +279,7 @@ export class RashodiComponent implements OnInit{
                 }
              }
              let inData = {
-                 data: dat,
+                 data: JSON.parse(JSON.stringify(dat)),
                  leaf: child[data[i]['id']] == null
              }
              rData.push(inData);
@@ -248,8 +287,9 @@ export class RashodiComponent implements OnInit{
          return rData;
     }
     addChild(e){
+        delete e.parent;
         let data = [];
-        let child = this.tableYChild[e.data.id];
+        let child =  JSON.parse(JSON.stringify(this.tableYChild[e.data.id]));
         for (let i=0; i<child.length; i++)
             data.push(child[i]);
         e.children = this.inputTabelData(data, this.tableYChild);
@@ -295,7 +335,7 @@ export class RashodiComponent implements OnInit{
                         }
                     );
         // Структурные подразделения
-        this.service.getCubeDimData({session: this.user.session, cubeId: 'rashodiCubes', dimName: 'freightCarrierDo' }, this.user.programmId, this.userSetings.langId)
+        this.service.getCubeDimData({session: this.user.session, cubeConst: 'rashodiCubes', dimNameConst: 'freightCarrierDo' }, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -319,7 +359,7 @@ export class RashodiComponent implements OnInit{
                         }
                     );
         // поставщики
-        this.service.getCubeDimData({session: this.user.session, cubeId: 'rashodiCubes', dimName: 'dp_q' }, this.user.programmId, this.userSetings.langId)
+        this.service.getCubeDimData({session: this.user.session, cubeConst: 'rashodiCubes', dimNameId: 'dp_q' }, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -343,7 +383,7 @@ export class RashodiComponent implements OnInit{
                         }
                     );
         //статусы
-        this.service.getCubeDimData({session: this.user.session, cubeId: 'rashodiCubes', dimName: 'dp_s' }, this.user.programmId, this.userSetings.langId)
+        this.service.getCubeDimData({session: this.user.session, cubeConst: 'rashodiCubes', dimNameId: 'dp_s' }, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){

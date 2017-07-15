@@ -1,23 +1,25 @@
 <raskodstavok-template-component
-                [userSetings]=userSetings
-                [typePeriudModel]=typePeriudModel
-                [arrtypePeriud]=arrtypePeriud
-                [vladelicModel]=vladelicModel
-                [arrVladelic]=arrVladelic
-                [postavschikModel]=postavschikModel
-                [arrPostavschik]=arrPostavschik
-                [statusModel]=statusModel
-                [arrStatus]=arrStatus
-                [itemSizeModel]=itemSizeModel
-                [arrItemSize]=arrItemSize
-                [noFixetColumns]=noFixetColumns
-                [tableDateOptions]=tableDateOptions
-                [tableDate]=tableDate
-                [tableDateColumns]=tableDateColumns
-                [defualtDate]=defualtDate
-                [tableDateOptionsFilter]=tableDateOptionsFilter
-                (outProcent)='procentSchow = $event'
-                (outUpdateTableColumns)='updateTableColumns($event)'
-                (outGetTabelData)='refreschData($event)'>
+            [arrtypePeriud]=arrtypePeriud
+            [arrVladelic]=arrVladelic
+            [arrPostavschik]=arrPostavschik
+            [arrStatus]=arrStatus
+            [arrItemSize]=arrItemSize
+            [typePeriudModel]=typePeriudModel
+            [vladelicModel]=vladelicModel
+            [postavschikModel]=postavschikModel
+            [statusModel]=statusModel
+            [itemSizeModel]=itemSizeModel
+            [tableDateOptionsFilter]=tableDateOptionsFilter
+            [tableDate]=tableDate
+            [tableDateColumns]=tableDateColumns
+            [tableDateOptions]=tableDateOptions
+            [noFixetColumns]=noFixetColumns
+            [userSetings]=userSetings 
+            [defualtDate]=defualtDate
+            (outUpdateTableColumns)='updateTableColumns($event)'
+            (outProcent)='procentSchow = $event'
+            (outAddChild)='addChild($event)'
+            (outGetTabelData)='refreschData($event)'
+            (outSizeModelUpdate)='sizeModelUpdate($event)'>
 </raskodstavok-template-component>  
 <div>{{getFirstTableData()}}</div>

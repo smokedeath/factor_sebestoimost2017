@@ -1,41 +1,41 @@
-<div class="row row-margin breadcramps-margin">    
+<div class="row row-margin breadcramps-margin">
     <p-panel>
         <div class="row">
             <div class="col-md-9">
                 <div class="col-md-2">
-                <my-calendar (dateOut)="updateDate($event)"></my-calendar>       
+                <my-calendar (dateOut)="updateDate($event)"></my-calendar>
                 </div>
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=typePeriudModel [idLang]=userSetings.langId
-                                    [structure]=arrtypePeriud (oNgModel)='typePeriudModel = $event'></combobox-component>      
+                                    [structure]=arrtypePeriud (oNgModel)='typePeriudModel = $event'></combobox-component>
                 </div>
-                <div class="col-md-2"> 
+                <div class="col-md-2">
                 <combobox-component [iNgModel]=vladelicModel [idLang]=userSetings.langId
-                                    [structure]=arrVladelic (oNgModel)='vladelicModel = $event'></combobox-component>    
+                                    [structure]=arrVladelic (oNgModel)='vladelicModel = $event'></combobox-component>
                 </div>
                 <div class="col-md-2">
                 <combobox-component [iNgModel]=postavschikModel [idLang]=userSetings.langId
-                                    [structure]=arrPostavschik (oNgModel)='postavschikModel = $event'></combobox-component>  
-                </div>    
+                                    [structure]=arrPostavschik (oNgModel)='postavschikModel = $event'></combobox-component>
+                </div>
                 <div class="col-md-2 ">
                 <combobox-component [iNgModel]=statusModel [idLang]=userSetings.langId
-                                    [structure]=arrStatus (oNgModel)='statusModel = $event'></combobox-component>  
-                </div>   
-            </div>   
+                                    [structure]=arrStatus (oNgModel)='statusModel = $event'></combobox-component>
+                </div>
+            </div>
 
-            <div class="col-md-3 btn-css">                
-                <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                        (click)="exportToExcell()"><i class="material-icons">file_download</i> 
+            <div class="col-md-3 btn-css">
+                <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                        (click)="exportToExcell()"><i class="material-icons">file_download</i>
                         <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
-                <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="top" type="button" 
-                        class="btn btn-primary"><i class="material-icons">autorenew</i> 
-                        <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>  
-            </div> 
+                <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="top" type="button"
+                        class="btn btn-primary"><i class="material-icons">autorenew</i>
+                        <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
+            </div>
         </div>
-    </p-panel>   
+    </p-panel>
 </div>
 
-<div class="row row-margin">    
+<div class="row row-margin">
     <treetable-settings-component [userSetings]=userSetings
                                   [tableDateOptions]=tableDateOptions
                                   [noFixetColumns]=noFixetColumns
@@ -44,12 +44,16 @@
                                   [arrItemSize]=arrItemSize
                                   [tableDateOptionsFilter]=tableDateOptionsFilter
                                   (outItemColumnSettingsChange)='updateTableColumns($event)'
-                                  (outSizeModelUpdate)='sizeModelUpdate($event)'>
+                                  (outSizeModelUpdate)='sizeModelUpdate($event)'
+                                  (outProcent)='procentChang($event)'>
     </treetable-settings-component>
 </div>
 
 <div class="row">
-    <div class="table-margin">
+    <div class="table-margin" *ngIf="!procentSchow">
         <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
     </div>
-</div>   
+    <div class="table-margin" *ngIf="procentSchow">
+        <tree-table [tableDate]=tableDatePercent [langId]=userSetings.langId [tableDateColumns]=tableDateColumns></tree-table>
+    </div>
+</div>

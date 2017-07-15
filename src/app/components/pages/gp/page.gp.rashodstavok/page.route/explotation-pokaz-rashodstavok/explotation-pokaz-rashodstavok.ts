@@ -80,12 +80,12 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     }
     getCube(){
         let s = JSON.stringify([
-                     {tableName:"explpokazGP",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},   
-                     {tableName:"period", dte: this.service.getDataString(this.defualtDate), periodType: this.typePeriudModel.toString()}
+                     {tableNameConst:"explpokazGP",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},   
+                     {tableNameConst:"period", dte: this.service.getDataString(this.defualtDate), periodType: this.typePeriudModel.toString()}
                     ]);
         let data = {
             session: this.user.session,
-            cubeId: 'explpokazCubes',
+            cubeConst: 'explpokazCubes',
             filter: s
         }
         this.service.getCubeValues(data, this.user.programmId, this.userSetings.langId)
@@ -124,6 +124,17 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                                 for(let key in this.arrItemSizeObj) {
                                     this.arrItemSize.push(this.arrItemSizeObj[key]);
                                 }
+                                for (let i=0; i<this.arrItemSize.length; i++){
+                                    let visible = true;
+                                    let own = 0;
+                                    if (this.arrItemSize[i].size.length<=1) visible = false; 
+                                    for (let a=0; a<this.arrItemSize[i].size.length; a++){                                        
+                                        if (own != this.arrItemSize[i].size[a].size){
+                                            own = this.arrItemSize[i].size[a].size;
+                                        }else visible = false;                                       
+                                    }
+                                    this.arrItemSize[i].visible = visible;
+                                } 
 
                                 this.noFixetColumns = [];
                                 let tableX = data[this.service.cubExplPokazParams.tableX];
@@ -287,7 +298,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                         }
                     );    
         // Структурные подразделения
-        this.service.getCubeDimData({session: this.user.session, cubeId: 'explpokazCubes', dimName: 'explpokazGP' }, this.user.programmId, this.userSetings.langId)
+        this.service.getCubeDimData({session: this.user.session, cubeConst: 'explpokazCubes', dimNameConst: 'explpokazGP' }, this.user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){

@@ -82,7 +82,7 @@ export class CraschetDataInputComponent implements OnInit{
         let user = this.storage.retrieve('userData');
 
         //Тип периода
-        this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
+        this.service.getGenPeriodList({session: user.session}, user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){

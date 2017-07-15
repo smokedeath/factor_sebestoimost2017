@@ -1,61 +1,61 @@
  <p-panel header={{diction[176][userSetings.langId]}}  [toggleable]="true">
     <div class="row">
-        <div class="btn-css">    
-            <button pTooltip={{diction[180][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
+        <div class="btn-css">
+            <button pTooltip={{diction[180][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
                     (click)="closeAll()"><i class="material-icons icon-size-css">arrow_drop_up</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[180][userSetings.langId]}}</label>
-            </button>     
-            <button pTooltip={{diction[147][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="showFilters()"><i class="material-icons icon-size-css">filter_list</i>  
+            </button>
+            <button pTooltip={{diction[147][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="showFilters()"><i class="material-icons icon-size-css">filter_list</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[147][userSetings.langId]}}</label>
             </button>
-            <button pTooltip={{diction[124][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="showitemSize()"><i class="material-icons icon-size-css">format_list_numbered</i>  
+            <button pTooltip={{diction[124][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="showitemSize()"><i class="material-icons icon-size-css">format_list_numbered</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[124][userSetings.langId]}}</label>
             </button>
-            <button pTooltip={{diction[177][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="showItemColumnSettings()"><i class="material-icons icon-size-css">view_week</i> 
+            <button pTooltip={{diction[177][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="showItemColumnSettings()"><i class="material-icons icon-size-css">view_week</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[177][userSetings.langId]}}</label>
             </button>
-            <button pTooltip={{diction[181][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="showAddNewColumns()"><i class="material-icons icon-size-css">format_indent_increase</i>  
+            <button pTooltip={{diction[181][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="showAddNewColumns()"><i class="material-icons icon-size-css">format_indent_increase</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[181][userSetings.langId]}}</label>
             </button>
-            <button pTooltip={{diction[182][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="selectColorColumns()"><i class="material-icons icon-size-css">border_horizontal</i>  
+            <button pTooltip={{diction[182][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="selectColorColumns()"><i class="material-icons icon-size-css">border_horizontal</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[182][userSetings.langId]}}</label>
             </button>
-            <button pTooltip={{diction[183][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="sortColumns()"><i class="material-icons icon-size-css">sort</i>  
+            <button pTooltip={{diction[183][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="sortColumns()"><i class="material-icons icon-size-css">sort</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[183][userSetings.langId]}}</label>
             </button>
-            <button pTooltip={{diction[184][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="sortColumns()"><i class="material-icons icon-size-css">multiline_chart</i>  
+            <button pTooltip={{diction[184][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="sortColumns()"><i class="material-icons icon-size-css">multiline_chart</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[184][userSetings.langId]}}</label>
             </button>
-            <button pTooltip={{diction[125][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary" 
-                    (click)="procentChang()" *ngIf="showpPocentButton"><i class="icon-size-css">%</i>  
+            <button pTooltip={{diction[125][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary"
+                    (click)="procentChang()" *ngIf="showpPocentButton"><i class="icon-size-css">%</i>
                     <label *ngIf="userSetings.visibleLabel">  {{diction[125][userSetings.langId]}}</label>
             </button>
-        </div>  
+        </div>
     </div>
     <div class="row row-margin-css">
         <div class="col-lg-3" *ngIf="showFiltersModel">
             <h3 class="first">{{diction[147][userSetings.langId]}}</h3>
             <div class="row colomns-settings-css">
-                <combobox-component [iNgModel]=tableDateOptionsFilterModel [idLang]=userSetings.langId 
+                <combobox-component [iNgModel]=tableDateOptionsFilterModel [idLang]=userSetings.langId
                                     [structure]=tableDateOptionsFilter [style]="{'max-width':'450px'}"
                                     (oNgModel)='selectFilter($event)'>
-                </combobox-component> 
+                </combobox-component>
             </div>
             <div class="row colomns-settings-css" *ngIf="arrSelectFilter.length>0">
                 <div class="row colomns-settings-css" *ngFor="let item of arrSelectFilter">
-                    <div class="col-lg-5">                        
-                        <label *ngIf="userSetings.langId==0">{{item.label.kz}}:</label>         
-                        <label *ngIf="userSetings.langId==1">{{item.label.ru}}:</label>         
+                    <div class="col-lg-5">
+                        <label *ngIf="userSetings.langId==0">{{item.label.kz}}:</label>
+                        <label *ngIf="userSetings.langId==1">{{item.label.ru}}:</label>
                         <label *ngIf="userSetings.langId==2">{{item.label.en}}:</label>
                     </div>
-                    <div class="col-lg-7">                        
+                    <div class="col-lg-7">
                         <input type="text" class="form-control" [(ngModel)]=item.model>
                     </div>
                 </div>
@@ -64,21 +64,21 @@
                 <button (click)='saveFilter()' type="button" class="btn btn-primary"><i class="material-icons">done</i>  {{diction[179][userSetings.langId]}}</button>
                 <button (click)="cancelFilter()" type="button" class="btn btn-primary"><i class="material-icons">highlight_off</i>  {{diction[60][userSetings.langId]}}</button>
             </div>
-        </div>        
+        </div>
         <div class="col-lg-3 padding-css" *ngIf="showItemSizeSettingsModel">
             <h3 class="first">{{diction[124][userSetings.langId]}}</h3>
             <div *ngFor="let sizeNum of arrItemSize">
-                <div class="row colomns-settings-css" *ngIf="sizeNum.size.length>1">
+                <div class="row colomns-settings-css" *ngIf="sizeNum.visible">
                     <div class="col-lg-3" >
                         <h4 class="lbl-text-css" *ngIf="userSetings.langId==0">{{sizeNum.sizeName.kz}}:</h4>
                         <h4 class="lbl-text-css" *ngIf="userSetings.langId==1">{{sizeNum.sizeName.ru}}:</h4>
                         <h4 class="lbl-text-css" *ngIf="userSetings.langId==2">{{sizeNum.sizeName.en}}:</h4>
                     </div>
                     <div class="col-lg-9">
-                        <combobox-component [iNgModel]=sizeNum.sizeModel [idLang]=userSetings.langId   
+                        <combobox-component [iNgModel]=sizeNum.sizeModel [idLang]=userSetings.langId
                                             [structure]=sizeNum.size (oNgModel)='sizeModelChenge($event, sizeNum.sizeParent)'>
                         </combobox-component>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,13 +87,13 @@
             <div class="colomns-settings-css">
                 <p-checkbox name='selectAll' label='' [(ngModel)]=checkAllColumns binary="true" (onChange)=onCheckAllColumns()></p-checkbox>
                 <div class="procent-css" *ngFor="let item of tableDateOptions">
-                    <p-checkbox *ngIf="userSetings.langId==0" name={{item.name}} label={{item.label.kz}} 
+                    <p-checkbox *ngIf="userSetings.langId==0" name={{item.name}} label={{item.label.kz}}
                                 [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()>
                     </p-checkbox>
-                    <p-checkbox *ngIf="userSetings.langId==1" name={{item.name}} label={{item.label.ru}} 
+                    <p-checkbox *ngIf="userSetings.langId==1" name={{item.name}} label={{item.label.ru}}
                                 [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()>
                     </p-checkbox>
-                    <p-checkbox *ngIf="userSetings.langId==2" name={{item.name}} label={{item.label.en}} 
+                    <p-checkbox *ngIf="userSetings.langId==2" name={{item.name}} label={{item.label.en}}
                                 [(ngModel)]=item.check binary="true" (onChange)=ItemColumnSettingsChange()>
                     </p-checkbox>
                 </div>
@@ -103,16 +103,52 @@
             <h3 class="first">{{diction[181][userSetings.langId]}}</h3>
             <div class="colomns-settings-css">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" placeholder={{diction[185][userSetings.langId]}} [(ngModel)]=newColumnModel>
-                        <!-- <combobox-component [iNgModel]=newColumnTypeModel [idLang]=userSetings.langId   
-                                            [structure]=arrNewColumnType (oNgModel)='newColumnTypeModel =  $event'>
-                        </combobox-component> -->
-
-                    </div>                    
+                    <div class="col-lg-10">
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" placeholder={{diction[185][userSetings.langId]}} [(ngModel)]=newColumnModel>
+                        </div>
+                        <div class="col-lg-4">
+                            <combobox-component [iNgModel]=newColumnTypeModel [idLang]=userSetings.langId
+                                                [structure]=arrNewColumnType (oNgModel)='newColumnTypeModel =  $event'>
+                            </combobox-component>
+                        </div>
+                    </div>
                     <button (click)='addNewColumns()' pTooltip={{diction[186][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary">+</button>
-                </div>               
+                </div>
+                <div class="row row-margin-css" *ngFor="let item of newColumnArr">
+                    <div class='col-lg-10'>
+                        <h4 *ngIf="userSetings.langId==0">{{item.header.kz}} : {{arrNewColumnType[item.type-1].name.kz}}</h4>
+                        <h4 *ngIf="userSetings.langId==1">{{item.header.ru}} : {{arrNewColumnType[item.type-1].name.ru}}</h4>
+                        <h4 *ngIf="userSetings.langId==2">{{item.header.en}} : {{arrNewColumnType[item.type-1].name.en}}</h4>
+                    </div>
+                    <button (click)='delNewColumns(item.field)' pTooltip={{diction[190][userSetings.langId]}} tooltipPosition="top" type="button" class="btn btn-primary">-</button>
+                </div>
             </div>
         </div>
+            <div class="col-lg-3" *ngIf="showSortTableModel">
+                <h3 class="first">{{diction[147][userSetings.langId]}}</h3>
+                <div class="row colomns-settings-css">
+                    <combobox-component [iNgModel]=tableDateOptionsSortModel [idLang]=userSetings.langId
+                                        [structure]=tableDateOptionsFilter [style]="{'max-width':'450px'}"
+                                        (oNgModel)='selectSort($event)'>
+                    </combobox-component>
+                </div>
+                <div class="row colomns-settings-css" *ngIf="arrSelectSort.length>0">
+                    <div class="row colomns-settings-css" *ngFor="let item of arrSelectSort">
+                        <div class="col-lg-5">
+                            <label *ngIf="userSetings.langId==0">{{item.label.kz}}:</label>
+                            <label *ngIf="userSetings.langId==1">{{item.label.ru}}:</label>         
+                            <label *ngIf="userSetings.langId==2">{{item.label.en}}:</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="text" class="form-control" [(ngModel)]=item.model>
+                        </div>
+                    </div>
+                </div>
+                <div class="row colomns-settings-css">
+                    <button (click)='saveSort()' type="button" class="btn btn-primary"><i class="material-icons">done</i>  {{diction[179][userSetings.langId]}}</button>
+                    <button (click)="cancelSort()" type="button" class="btn btn-primary"><i class="material-icons">highlight_off</i>  {{diction[60][userSetings.langId]}}</button>
+                </div>
+            </div>
     </div>
   </p-panel>

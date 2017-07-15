@@ -143,7 +143,7 @@ export class FinanceDataInput implements OnInit{
         }
         ///////////////////   Типо сервисы   ////////////////////  
         // Структурные подразделения
-        this.service.getVladelic(user.session, user.programmId, this.userSetings.langId)
+        this.service.getVladelic({session: user.session}, user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -165,7 +165,7 @@ export class FinanceDataInput implements OnInit{
                             } else  console.log(error);
                         }
                     ); 
-        this.service.getPostavschik(user.session, user.programmId, this.userSetings.langId)
+        this.service.getPostavschik({session: user.session}, user.programmId, this.userSetings.langId)
                     .subscribe(
                         data => {
                             if (data.status==200){
@@ -188,7 +188,7 @@ export class FinanceDataInput implements OnInit{
                         }
                     );  
         //Единицы измерения  
-        this.service.getItemSize(user.session, user.programmId, this.userSetings.langId)
+        this.service.getItemSize({session: user.session}, user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
@@ -211,7 +211,7 @@ export class FinanceDataInput implements OnInit{
                         }
                     );
         //Тип периода
-        this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
+        this.service.getGenPeriodList({session: user.session}, user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){
@@ -234,7 +234,7 @@ export class FinanceDataInput implements OnInit{
                         }
                     );
         //статусы
-        this.service.getStatus(user.session, user.programmId, this.userSetings.langId)
+        this.service.getStatus({session: user.session}, user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){

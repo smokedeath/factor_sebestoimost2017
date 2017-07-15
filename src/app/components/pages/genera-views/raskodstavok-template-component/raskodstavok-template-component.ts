@@ -14,40 +14,39 @@ export class RaskodStavokTemplateComponent implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
                 private storage : LocalStorageService){}  
-    @Input() userSetings=[];
+    @Input() userSetings = [];
+    @Input() arrtypePeriud = [];
+    @Input() arrVladelic = [];
+    @Input() arrPostavschik = [];
+    @Input() arrStatus = [];
+    @Input() arrItemSize = [];
     @Input() typePeriudModel: Number;
-    @Input() arrtypePeriud=[];
     @Input() vladelicModel: Number;
-    @Input() arrVladelic=[];
     @Input() postavschikModel: Number;
-    @Input() arrPostavschik=[];
     @Input() statusModel: Number;
-    @Input() arrStatus=[];
     @Input() itemSizeModel: Number;
-    @Input() arrItemSize=[];
-    @Input() noFixetColumns=[];
-    @Input() tableDateOptions=[];
-    @Input() defualtDate;    
-    @Input() tableDate=[];
-    @Input() tableDateColumns=[];    
-    @Input() tableDateOptionsFilter=[];
+    @Input() defualtDate;
+    @Input() tableDateOptionsFilter = [];
+    @Input() tableDate = [];
+    @Input() tableDateColumns = [];
+    @Input() tableDateOptions = [];
+    @Input() noFixetColumns = [];
 
-    @Output() outProcent: EventEmitter<Boolean> = new EventEmitter();
     @Output() outUpdateTableColumns: EventEmitter<any> = new EventEmitter();
-    @Output() outGetTabelData: EventEmitter<any> = new EventEmitter();
+    @Output() outProcent: EventEmitter<Boolean> = new EventEmitter();
     @Output() outAddChild: EventEmitter<any> = new EventEmitter();
+    @Output() outGetTabelData: EventEmitter<any> = new EventEmitter();
+    @Output() outSizeModelUpdate: EventEmitter<any> = new EventEmitter();
+
 
     diction: any;
     procentSchow: Boolean = false;
 
-    summaryResult(){
-        ///
-    }
     exportToExcell(){
         //
     }
-    addChild(e){
-        this.outAddChild.emit(e);
+    updateDate(e){
+        this.defualtDate = e;
     }
     refreschData(){
         let outModel = {
@@ -60,14 +59,20 @@ export class RaskodStavokTemplateComponent implements OnInit{
         } 
         this.outGetTabelData.emit(outModel);
     }
+    addChild(e){
+        this.outAddChild.emit(e);
+    }
+    updateTableColumns(e){
+        this.outUpdateTableColumns.emit(e);        
+    }
+    sizeModelUpdate(e){
+        this.outSizeModelUpdate.emit(e);
+    }
     procentChang(){
         this.outProcent.emit(this.procentSchow);
     }
-    updateTableColumns(e){
-       this.outUpdateTableColumns.emit(e);
-    }
 
     ngOnInit(){
-        this.diction = this.dictionary.dictionary;
+        this.diction = this.dictionary.dictionary;  
     }
 }

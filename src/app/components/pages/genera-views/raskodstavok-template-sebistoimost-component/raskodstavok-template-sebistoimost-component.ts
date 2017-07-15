@@ -29,6 +29,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     @Input() defualtDate;
     @Input() tableDateOptionsFilter = [];
     @Input() tableDate = [];
+    @Input() tableDatePercent = [];
     @Input() tableDateColumns = [];
     @Input() tableDateOptions = [];
     @Input() noFixetColumns = [];
@@ -69,8 +70,10 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     sizeModelUpdate(e){
         this.outSizeModelUpdate.emit(e);
     }
-    procentChang(){
-        this.outProcent.emit(this.procentSchow);
+    
+    procentChang(e){
+        this.procentSchow = e;
+        this.outProcent.emit(e);
     }
 
     ngOnInit(){

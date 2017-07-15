@@ -88,7 +88,7 @@ export class AsudkrDataInputComponent implements OnInit{
         this.anyDataModel = this.arrAnyData[0].id;
 
         //Тип периода
-        this.service.getGenPeriodList(user.session, user.programmId, this.userSetings.langId)
+        this.service.getGenPeriodList({session: user.session}, user.programmId, this.userSetings.langId)
                     .subscribe( 
                         data => {
                             if (data.status==200){

@@ -2,26 +2,27 @@
 <div>{{updateIdLang()}}</div>
 <div>{{getFirstTableData()}}</div>
 <raskodstavok-template-sebistoimost-component 
-            [arrtypePeriud]=arrtypePeriud
-            [arrVladelic]=arrVladelic
-            [arrPostavschik]=arrPostavschik
-            [arrStatus]=arrStatus
-            [arrItemSize]=arrItemSize
-            [typePeriudModel]=typePeriudModel
-            [vladelicModel]=vladelicModel
-            [postavschikModel]=postavschikModel
-            [statusModel]=statusModel
-            [itemSizeModel]=itemSizeModel
-            [tableDateOptionsFilter]=tableDateOptionsFilter
-            [tableDate]=tableDate
-            [tableDateColumns]=tableDateColumns
-            [tableDateOptions]=tableDateOptions
-            [noFixetColumns]=noFixetColumns
-            [userSetings]=userSetings 
-            [defualtDate]=defualtDate
-            (outUpdateTableColumns)='updateTableColumns($event)'
-            (outProcent)='procentSchow = $event'
-            (outAddChild)='addChild($event)'
-            (outGetTabelData)='refreschData($event)'
-            (outSizeModelUpdate)='sizeModelUpdate($event)'>
-</raskodstavok-template-sebistoimost-component>    
+        [arrtypePeriud]=arrtypePeriud
+        [arrVladelic]=arrVladelic
+        [arrPostavschik]=arrPostavschik
+        [arrStatus]=arrStatus
+        [arrItemSize]=arrItemSize
+        [typePeriudModel]=typePeriudModel
+        [vladelicModel]=vladelicModel
+        [postavschikModel]=postavschikModel
+        [statusModel]=statusModel
+        [itemSizeModel]=itemSizeModel
+        [tableDateOptionsFilter]=tableDateOptionsFilter
+        [tableDate]=tableDate
+        [tableDatePercent]=tableDatePercent
+        [tableDateColumns]=tableDateColumns
+        [tableDateOptions]=tableDateOptions
+        [noFixetColumns]=noFixetColumns
+        [userSetings]=userSetings 
+        [defualtDate]=defualtDate
+        (outUpdateTableColumns)='updateTableColumns($event)'
+        (outProcent)='updateProcentSchow($event)'
+        (outAddChild)='addChild($event)'
+        (outGetTabelData)='refreschData($event)'
+        (outSizeModelUpdate)='sizeModelUpdate($event)'>
+</raskodstavok-template-sebistoimost-component>
