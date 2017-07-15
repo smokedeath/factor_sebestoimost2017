@@ -13,7 +13,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class ExplotationPokazRashodStavokComponent implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
-                private storage : LocalStorageService){}  
+                private storage : LocalStorageService){}
  
     diction = [];
     userSetings;
@@ -25,8 +25,9 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     arrtypePeriud = [];
     tableDate = [];
     tableDateOptions = [];
-    tableDateColumns = []; 
+    tableDateColumns = [];
     tableDateOptionsFilter = [];
+    tableDateOptionsSort = [];
     coardinat=[];
     tableY0 = [];
     tableYChild = {};
@@ -36,15 +37,15 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     noFixetColumns = [];
 
     typePeriudModel: number;
-    
+
     arrVladelic = [];
-    vladelicModel: number; 
+    vladelicModel: number;
 
     arrGrupZnacheni = [];
     grupZnacheniModel: number;
-           
+
     arrStatus = [];
-    statusModel: number;    
+    statusModel: number;
 
     arrItemSize = [];
     arrItemSizeObj = {};
@@ -59,7 +60,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
         this.defualtDate= e.defualtDate;
 
         this.getCube();
-    }   
+    }
     updateTableColumns(columns: any[]){
         let newColumns = columns;
         this.tableDateColumns = [];
@@ -80,7 +81,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     }
     getCube(){
         let s = JSON.stringify([
-                     {tableNameConst:"explpokazGP",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},   
+                     {tableNameConst:"explpokazGP",isRel:"1", ids:this.arrVladelic[this.vladelicModel].idName},
                      {tableNameConst:"period", dte: this.service.getDataString(this.defualtDate), periodType: this.typePeriudModel.toString()}
                     ]);
         let data = {
@@ -116,7 +117,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                                 }
                                 let sizeName = data[this.service.cubExplPokazParams.sizeName];
                                 for (let i=0; i<sizeName.length; i++){
-                                    if (this.arrItemSizeObj[sizeName[i].measure] !=null) 
+                                    if (this.arrItemSizeObj[sizeName[i].measure] !=null)
                                         this.arrItemSizeObj[sizeName[i].measure].sizeName = sizeName[i].nameMeasure;
                                 }
 
@@ -127,14 +128,14 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                                 for (let i=0; i<this.arrItemSize.length; i++){
                                     let visible = true;
                                     let own = 0;
-                                    if (this.arrItemSize[i].size.length<=1) visible = false; 
-                                    for (let a=0; a<this.arrItemSize[i].size.length; a++){                                        
+                                    if (this.arrItemSize[i].size.length<=1) visible = false;
+                                    for (let a=0; a<this.arrItemSize[i].size.length; a++){
                                         if (own != this.arrItemSize[i].size[a].size){
                                             own = this.arrItemSize[i].size[a].size;
-                                        }else visible = false;                                       
+                                        }else visible = false;
                                     }
                                     this.arrItemSize[i].visible = visible;
-                                } 
+                                }
 
                                 this.noFixetColumns = [];
                                 let tableX = data[this.service.cubExplPokazParams.tableX];
@@ -222,10 +223,13 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
     initTableColumns(){
         this.tableDateColumns = [];
         this.tableDateOptionsFilter = [];
+        this.tableDateOptionsSort = [];
         this.tableDateOptions = [];
 
-        this.tableDateOptionsFilter.push({id: 1, name:  this.fixetColumns[0].header});
-        this.tableDateOptionsFilter.push({id: 2, name: this.fixetColumns[1].header});
+        this.tableDateOptionsFilter.push({id: 1, name:  this.fixetColumns[0].header, field: this.fixetColumns[0].field});
+        this.tableDateOptionsFilter.push({id: 2, name: this.fixetColumns[1].header, field: this.fixetColumns[1].field});
+        this.tableDateOptionsSort.push({id: 1, name:  this.fixetColumns[0].header, field: this.fixetColumns[0].field});
+        this.tableDateOptionsSort.push({id: 2, name: this.fixetColumns[1].header, field: this.fixetColumns[1].field});
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
         }
@@ -234,7 +238,8 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
         }
         for(let i=0; i<this.noFixetColumns.length; i++){
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});
-            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header});
+            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header, field: this.noFixetColumns[i].field});
+            this.tableDateOptionsSort.push({id: i+3, name: this.noFixetColumns[i].header, field: this.noFixetColumns[i].field});
         }
     }
     sizeModelUpdate(e){
@@ -268,7 +273,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
         this.firstLoad = true;
         this.diction = this.dictionary.dictionary;
         this.service.loadUserSetings();
-        this.userSetings = this.storage.retrieve('UserSetings');      
+        this.userSetings = this.storage.retrieve('UserSetings');
         this.user = this.storage.retrieve('userData');
         this.fixetColumns = [
             {
@@ -296,7 +301,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    );    
+                    );
         // Структурные подразделения
         this.service.getCubeDimData({session: this.user.session, cubeConst: 'explpokazCubes', dimNameConst: 'explpokazGP' }, this.user.programmId, this.userSetings.langId)
                     .subscribe(
@@ -320,10 +325,10 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    );       
+                    );
         //Тип периода
         this.service.getGenPeriodList({session: this.user.session}, this.user.programmId, this.userSetings.langId)
-                    .subscribe( 
+                    .subscribe(
                         data => {
                             if (data.status==200){
                                 data = data.json();
@@ -332,8 +337,8 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                                 this.typePeriudModel = -1;
                                 for (let i=0; i<data.length; i++){
                                     this.arrtypePeriud.push({id: data[i].id, name: data[i].name});
-                                    if (data[i].default==1) this.typePeriudModel = this.arrtypePeriud[i].id;  
-                                }                                              
+                                    if (data[i].default==1) this.typePeriudModel = this.arrtypePeriud[i].id;
+                                }
                             } else console.log(data);
                         },
                         error => {
@@ -343,7 +348,7 @@ export class ExplotationPokazRashodStavokComponent implements OnInit{
                                 console.log(error);
                             } else  console.log(error);
                         }
-                    );        
+                    );
         this.initTableColumns();
     }
 

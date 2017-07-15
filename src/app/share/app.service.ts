@@ -76,8 +76,8 @@ export class AppService {
         if (langId==1) lang = 'ru';
         if (langId==2) lang = 'en';
 
-        url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
-        // url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
+        // url = "http://192.168.1.20:9595/toficost/a/" + moduleName + "/default/" + lang;
+        url = "http://192.168.1.205:8080/wax/a/" + moduleName + "/default/" + lang;
 
         return url;
     }

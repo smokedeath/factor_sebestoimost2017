@@ -1,24 +1,24 @@
 <div *ngIf="idLang<0">
     <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
-        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name}}</option>
+        <option *ngFor="let struct of structure" [value]="struct.id" disabled={{struct.disabled}}>{{struct.name}}</option>
     </select>
 </div>
 
 <div *ngIf="idLang==0">
     <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
-        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name.kz}}</option>
+        <option *ngFor="let struct of structure" [value]="struct.id" disabled={{struct.disabled}}>{{struct.name.kz}}</option>
     </select>
 </div>
 
 <div *ngIf="idLang==1">
     <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
-        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name.ru}}</option>
+        <option *ngFor="let struct of structure" [value]="struct.id" disabled={{struct.disabled}}>{{struct.name.ru}}</option>
     </select>
 </div>
 
 <div *ngIf="idLang==2">
     <select name="comboboxComponent" class="form-control" [(ngModel)]="iNgModel" [ngStyle]=style  (change)="onComboboxChenge()">
-        <option *ngFor="let struct of structure" [value]="struct.id">{{struct.name.en}}</option>
+        <option *ngFor="let struct of structure" [value]="struct.id" disabled={{struct.disabled}}>{{struct.name.en}}</option>
     </select>
 </div>
 

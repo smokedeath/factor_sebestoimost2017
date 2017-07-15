@@ -1,41 +1,41 @@
-<div class="row row-margin breadcramps-margin">    
+<div class="row row-margin breadcramps-margin">
   <p-panel>
     <div class="row">
       <div class="col-md-9">
         <div class="col-md-2">
-          <my-calendar (dateOut)="updateDate($event)"></my-calendar>       
+          <my-calendar (dateOut)="updateDate($event)"></my-calendar>
         </div>
         <div class="col-md-2">
           <combobox-component [iNgModel]=typePeriudModel [idLang]=userSetings.langId
-                              [structure]=arrtypePeriud (oNgModel)='typePeriudModel=$event'></combobox-component>       
+                              [structure]=arrtypePeriud (oNgModel)='typePeriudModel=$event'></combobox-component>
         </div>
-        <div class="col-md-2"> 
-          <combobox-component [iNgModel]=vladelicModel [idLang]=userSetings.langId 
-                              [structure]=arrVladelic (oNgModel)='vladelicModel=$event'></combobox-component>       
+        <div class="col-md-2">
+          <combobox-component [iNgModel]=vladelicModel [idLang]=userSetings.langId
+                              [structure]=arrVladelic (oNgModel)='vladelicModel=$event'></combobox-component>
         </div>
-        <!--<div class="col-md-2"> 
+        <!--<div class="col-md-2">
           <div class="row">
-              <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[80][userSetings.langId]}}:</label></div>  
+              <div class="col-lg-6 lbl-css"><label class="lbl-text-css">{{diction[80][userSetings.langId]}}:</label></div>
               <div class="col-lg-6 lbl-css">
-                <combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions 
+                <combobox-multi-select-component (updateTableColumns)="updateTableColumns($event)" [option]=tableDateOptions
                                                 [selectModel]=noFixetColumns [defaultLabel]=diction[80][userSetings.langId]>
-                </combobox-multi-select-component>      
-              </div>    
-          </div>       
+                </combobox-multi-select-component>
+              </div>
+          </div>
         </div>-->
-      </div>   
+      </div>
 
       <div class="col-md-3 btn-css">
-        <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary"  
+        <button pTooltip={{diction[61][userSetings.langId]}} tooltipPosition="left" type="button" class="btn btn-primary"
                 (click)="exportToExcell()"><i class="material-icons">file_download</i> <label *ngIf="userSetings.visibleLabel">  {{diction[61][userSetings.langId]}}</label></button>
-        <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button" 
+        <button (click)="refreschData()" pTooltip={{diction[83][userSetings.langId]}} tooltipPosition="left" type="button"
                 class="btn btn-primary"><i class="material-icons">autorenew</i> <label *ngIf="userSetings.visibleLabel">  {{diction[83][userSetings.langId]}}</label></button>
-      </div>  
+      </div>
     </div>
   </p-panel>
 </div>
 
-<div class="row row-margin">    
+<div class="row row-margin">
     <treetable-settings-component [userSetings]=userSetings
                                   [tableDateOptions]=tableDateOptions
                                   [noFixetColumns]=noFixetColumns
@@ -43,8 +43,9 @@
                                   [itemSizeModel]=itemSizeModel
                                   [arrItemSize]=arrItemSize
                                   [tableDateOptionsFilter]=tableDateOptionsFilter
+                                  [tableDateOptionsSort]=tableDateOptionsSort
                                   (outItemColumnSettingsChange)='updateTableColumns($event)'
-                                  (outSizeModelUpdate)='sizeModelUpdate($event)'>        
+                                  (outSizeModelUpdate)='sizeModelUpdate($event)'>
     </treetable-settings-component>
 </div>
 
@@ -52,4 +53,4 @@
     <div class="table-margin">
         <tree-table [tableDate]=tableDate [langId]=userSetings.langId [tableDateColumns]=tableDateColumns (addChild)="addChild($event)"></tree-table>
     </div>
-</div>   
+</div>

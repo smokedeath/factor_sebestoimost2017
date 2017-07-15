@@ -13,8 +13,8 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class ExplotationPokazTemplateComponent implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
-                private storage : LocalStorageService){}     
-    
+                private storage : LocalStorageService){}
+
     @Input() userSetings=[];
     @Input() typePeriudModel: Number;
     @Input() arrtypePeriud=[];
@@ -26,18 +26,19 @@ export class ExplotationPokazTemplateComponent implements OnInit{
     @Input() tableDateColumns=[];
     @Input() tableDate=[];
     @Input() tableDateOptionsFilter=[];
+    @Input() tableDateOptionsSort = [];
     @Input() arrItemSize=[];
 
     @Output() outAddChild: EventEmitter<any> = new EventEmitter();
     @Output() outUpdateTableColumns: EventEmitter<any> = new EventEmitter();
-    @Output() outRefreschData: EventEmitter<any> = new EventEmitter(); 
-    @Output() outSizeModelUpdate: EventEmitter<any> = new EventEmitter(); 
+    @Output() outRefreschData: EventEmitter<any> = new EventEmitter();
+    @Output() outSizeModelUpdate: EventEmitter<any> = new EventEmitter();
 
-    diction: any;   
-    
+    diction: any;
+
     updateDate(e){
         this.defualtDate = e;
-    } 
+    }
     exportToExcell(){
         // new Angular2Csv(this.tableDate, 'My Report', options);
     }
@@ -48,7 +49,7 @@ export class ExplotationPokazTemplateComponent implements OnInit{
             defualtDate: this.defualtDate
         }
         this.outRefreschData.emit(data);
-    }    
+    }
     addChild(e){
         this.outAddChild.emit(e);
     }
@@ -61,5 +62,5 @@ export class ExplotationPokazTemplateComponent implements OnInit{
 
     ngOnInit(){
         this.diction = this.dictionary.dictionary;
-    }    
+    }
 }

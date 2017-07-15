@@ -35,6 +35,7 @@ export class RashodiComponent implements OnInit{
     noFixetColumns = [];
     tableDateColumns = [];
     tableDateOptionsFilter = [];
+    tableDateOptionsSort = [];
 
     arrVladelic = [];
     vladelicModel;
@@ -249,10 +250,13 @@ export class RashodiComponent implements OnInit{
     initTableColumns(){
         this.tableDateColumns = [];
         this.tableDateOptionsFilter = [];
+        this.tableDateOptionsSort = [];
         this.tableDateOptions = [];
 
-        this.tableDateOptionsFilter.push({id: 1, name:  this.fixetColumns[0].header});
-        this.tableDateOptionsFilter.push({id: 2, name: this.fixetColumns[1].header});
+        this.tableDateOptionsFilter.push({id: 1, name:  this.fixetColumns[0].header, field: this.fixetColumns[0].field});
+        this.tableDateOptionsFilter.push({id: 2, name: this.fixetColumns[1].header, field: this.fixetColumns[1].field});
+        this.tableDateOptionsSort.push({id: 1, name:  this.fixetColumns[0].header, field: this.fixetColumns[0].field});
+        this.tableDateOptionsSort.push({id: 2, name: this.fixetColumns[1].header, field: this.fixetColumns[1].field});
         for (let i=0; i<this.fixetColumns.length; i++){
             this.tableDateColumns.push({field: this.fixetColumns[i].field, header: this.fixetColumns[i].header});
         }
@@ -261,7 +265,8 @@ export class RashodiComponent implements OnInit{
         }
         for(let i=0; i<this.noFixetColumns.length; i++){
             this.tableDateOptions.push({label: this.noFixetColumns[i].header, value: this.noFixetColumns[i], check: true});
-            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header});
+            this.tableDateOptionsFilter.push({id: i+3, name: this.noFixetColumns[i].header, field: this.noFixetColumns[i].field});
+            this.tableDateOptionsSort.push({id: i+3, name: this.noFixetColumns[i].header, field: this.noFixetColumns[i].field});
         }
     }
     inputTabelData(data, child){

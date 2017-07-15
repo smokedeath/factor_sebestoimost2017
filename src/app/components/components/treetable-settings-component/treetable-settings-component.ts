@@ -17,10 +17,16 @@ export class TreeTableSettingsComponent implements OnInit{
     @Input() itemSizeModel: Number;
     @Input() arrItemSize = [];
     @Input() tableDateOptionsFilter=[];
+    @Input() tableDateOptionsSort=[];
 
     @Output() outItemColumnSettingsChange: EventEmitter<any> = new EventEmitter();
     @Output() outSizeModelUpdate: EventEmitter<any> = new EventEmitter();
     @Output() outProcent: EventEmitter<any> = new EventEmitter();
+
+    sortType = [
+      {id:1, name: {kz: 'По возрастанию', ru: 'По возрастанию', en: 'По возрастанию'}},
+      {id:2, name: {kz: 'По убыванию', ru: 'По убыванию', en: 'По убыванию'}}
+    ];
 
     diction=[];
     arrSelectFilter=[];
@@ -34,8 +40,6 @@ export class TreeTableSettingsComponent implements OnInit{
     procentSchow: Boolean = false;
     checkAllColumns: Boolean = true;
     addNewColumnsModel: Boolean = false;
-    selectFilterId: number = 0;
-    selectSortId: number = 0;
     newColumnModel:String = '';
 
     arrNewColumnType = [];
@@ -87,22 +91,44 @@ export class TreeTableSettingsComponent implements OnInit{
     }
     selectFilter(e){
         this.tableDateOptionsFilterModel=0;
-        this.selectFilterId++;
-        this.arrSelectFilter.push({ id: this.selectFilterId, label: this.tableDateOptionsFilter[e-1].name, model: ''});
+        this.tableDateOptionsFilter[e-1].disabled = true;
+        this.arrSelectFilter.push({ id: this.tableDateOptionsFilter[e-1].id, label: this.tableDateOptionsFilter[e-1].name, model: ''});
     }
     selectSort(e){
       this.tableDateOptionsSortModel=0;
-      this.selectSortId++;
-      this.arrSelectSort.push({ id: this.selectSortId, label: this.tableDateOptionsFilter[e-1].name, model: ''});
+      this.tableDateOptionsSort[e-1].disabled = true;
+      this.arrSelectSort.push({ id: this.tableDateOptionsSort[e-1].id, label: this.tableDateOptionsSort[e-1].name, model: 0});
     }
     cancelFilter(){
         this.arrSelectFilter = [];
         this.tableDateOptionsFilterModel=0;
+        for (let i=0; i<this.tableDateOptionsFilter.length; i++) delete this.tableDateOptionsFilter[i].disabled;
     }
     cancelSort(){
         this.arrSelectSort = [];
         this.tableDateOptionsSortModel=0;
+        for (let i=0; i<this.tableDateOptionsSort.length; i++) delete this.tableDateOptionsSort[i].disabled;
     }
+    delColumnsSort(id){
+        let newarr = [];
+        for (let i=0; i<this.arrSelectSort.length; i++){
+            if (this.arrSelectSort[i].id!=id) newarr.push(this.arrSelectSort[i]);
+        }
+        for (let i=0; i<this.tableDateOptionsSort.length; i++){
+          if (this.tableDateOptionsSort[i].id==id) delete this.tableDateOptionsSort[i].disabled;
+        }
+        this.arrSelectSort = newarr;
+    }
+    delColumnsFilter(id){
+        let newarr = [];
+        for (let i=0; i<this.arrSelectFilter.length; i++){
+            if (this.arrSelectFilter[i].id!=id) newarr.push(this.arrSelectFilter[i]);
+        }
+        for (let i=0; i<this.tableDateOptionsFilter.length; i++){
+          if (this.tableDateOptionsFilter[i].id==id) delete this.tableDateOptionsFilter[i].disabled;
+        }
+        this.arrSelectFilter = newarr;
+    };
     saveFilter(){
         this.closeAll();
     }

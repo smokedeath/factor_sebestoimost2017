@@ -1,7 +1,7 @@
 <bread-crumb-component [langId]=userSetings.langId></bread-crumb-component>
 <div>{{updateIdLang()}}</div>
 <div>{{getFirstTableData()}}</div>
-<raskodstavok-template-sebistoimost-component 
+<raskodstavok-template-sebistoimost-component
         [arrtypePeriud]=arrtypePeriud
         [arrVladelic]=arrVladelic
         [arrPostavschik]=arrPostavschik
@@ -13,12 +13,13 @@
         [statusModel]=statusModel
         [itemSizeModel]=itemSizeModel
         [tableDateOptionsFilter]=tableDateOptionsFilter
+        [tableDateOptionsSort]=tableDateOptionsSort
         [tableDate]=tableDate
         [tableDatePercent]=tableDatePercent
         [tableDateColumns]=tableDateColumns
         [tableDateOptions]=tableDateOptions
         [noFixetColumns]=noFixetColumns
-        [userSetings]=userSetings 
+        [userSetings]=userSetings
         [defualtDate]=defualtDate
         (outUpdateTableColumns)='updateTableColumns($event)'
         (outProcent)='updateProcentSchow($event)'

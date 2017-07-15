@@ -11,10 +11,10 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 
 
-export class RaskodstavokTemplateSebistoimostComponent implements OnInit{      
+export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     constructor(private service : AppService,
                 private dictionary : Dictionary,
-                private storage : LocalStorageService){}  
+                private storage : LocalStorageService){}
     @Input() userSetings = [];
     @Input() arrtypePeriud = [];
     @Input() arrVladelic = [];
@@ -28,6 +28,7 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
     @Input() itemSizeModel: Number;
     @Input() defualtDate;
     @Input() tableDateOptionsFilter = [];
+    @Input() tableDateOptionsSort = [];
     @Input() tableDate = [];
     @Input() tableDatePercent = [];
     @Input() tableDateColumns = [];
@@ -58,25 +59,25 @@ export class RaskodstavokTemplateSebistoimostComponent implements OnInit{
             postavschikModel: this.postavschikModel,
             statusModel: this.statusModel,
             itemSizeModel: this.itemSizeModel
-        } 
+        }
         this.outGetTabelData.emit(outModel);
     }
     addChild(e){
         this.outAddChild.emit(e);
     }
     updateTableColumns(e){
-        this.outUpdateTableColumns.emit(e);        
+        this.outUpdateTableColumns.emit(e);
     }
     sizeModelUpdate(e){
         this.outSizeModelUpdate.emit(e);
     }
-    
+
     procentChang(e){
         this.procentSchow = e;
         this.outProcent.emit(e);
     }
 
     ngOnInit(){
-        this.diction = this.dictionary.dictionary;  
+        this.diction = this.dictionary.dictionary;
     }
 }
